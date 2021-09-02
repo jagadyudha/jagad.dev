@@ -4,7 +4,7 @@ import DarkMode from "./darkmode";
 function navbar() {
   const [colorTheme, setTheme] = DarkMode();
   return (
-    <div className="sticky top-0 z-50 dark:bg-mydark bg-mylight backdrop-filter backdrop-blur-lg dark:bg-opacity-50 bg-opacity-50">
+    <div className="sticky top-0 z-50 dark:bg-mydark bg-mylight backdrop-filter backdrop-blur-lg dark:bg-opacity-60 bg-opacity-50">
       <nav className="flex max-w-3xl mx-auto text-center sm:text-right py-4 items-center justify-between px-5">
         {colorTheme === "light" ? (
           <button
