@@ -39,7 +39,7 @@ function footer() {
         Code licensed under the{" "}
         <a
           className="dark:text-myorange text-myorangelight hover:underline"
-          href="https://github.com/jagadyudha"
+          href="https://github.com/jagadyudha/jagadyudha.me"
         >
           MIT License.
         </a>
