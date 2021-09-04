@@ -40,7 +40,7 @@ function linktree() {
         </MyLinkTree>
 
         <MyLinkTree
-          link="https://www.youtube.com/channel/UChxSF_3EXmlI5TwHOSoc8vQ"
+          link="https://www.linkedin.com/in/jagad-yudha-39a4a51b6/"
           name="Linkedin"
         >
           <IoLogoLinkedin className="text-black dark:text-white text-5xl mx-auto my-2" />
