@@ -1,5 +1,5 @@
 import React from "react";
-import DarkMode from "./darkmode";
+import DarkMode from "../darkmode";
 
 function navbar() {
   const [colorTheme, setTheme] = DarkMode();

@@ -34,7 +34,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-function index({ photos }) {
+function Photos({ photos }) {
   if (!photos) return <div>Loading...</div>;
   return (
     <div key={photos.fields.title}>
@@ -62,4 +62,4 @@ function index({ photos }) {
   );
 }
 
-export default index;
+export default Photos;

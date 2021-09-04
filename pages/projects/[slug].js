@@ -38,7 +38,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-function index({ projects }) {
+function Projects({ projects }) {
   if (!projects) return <div>Loading...</div>;
   return (
     <div key={projects.fields.title}>
@@ -122,4 +122,4 @@ function index({ projects }) {
   );
 }
 
-export default index;
+export default Projects;
