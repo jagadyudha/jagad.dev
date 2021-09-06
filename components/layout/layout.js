@@ -1,12 +1,12 @@
 import React from "react";
-import MyNavbar from "./navbar";
-import MyFooter from "./footer";
+import Navbar from "./navbar";
+import Footer from "./footer";
 function layout({ children }) {
   return (
     <div>
-      <MyNavbar />
+      <Navbar />
       {children}
-      <MyFooter />
+      <Footer />
     </div>
   );
 }

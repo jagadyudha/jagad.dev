@@ -2,7 +2,7 @@ import React from "react";
 
 function footer() {
   return (
-    <div className="dark:border-white border-black border-t my-10 dark:border-opacity-10 border-opacity-10 max-w-2xl px-8 mx-auto">
+    <footer className="dark:border-white border-black border-t my-10 dark:border-opacity-10 border-opacity-10 max-w-2xl px-8 mx-auto">
       <h1 className="font-semibold text-sm dark:text-gray-300 text-gray-700 text-center mt-10 mb-1">
         Created by{" "}
         <a
@@ -44,7 +44,7 @@ function footer() {
           MIT License.
         </a>
       </h3>
-    </div>
+    </footer>
   );
 }
 
