@@ -1,6 +1,6 @@
 function games({ items }) {
   return (
-    <div className="mb-16 container">
+    <section className="mb-16 container">
       <h1 className="font-sans font-bold dark:text-white text-black sm:text-4xl text-3xl mb-1">
         Recently Played
       </h1>
@@ -16,6 +16,8 @@ function games({ items }) {
           >
             <a
               target="_blank"
+              rel="noopener"
+              rel="noreferrer"
               href="https://steamcommunity.com/profiles/76561198324704779/"
             >
               <h1 className="font-sans font-normal dark:text-gray-300 text-gray-700 text-md sm:text-lg mx-2">
@@ -28,7 +30,7 @@ function games({ items }) {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 

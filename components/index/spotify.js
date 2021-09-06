@@ -13,6 +13,8 @@ function spotify({ items }) {
           <div key={item.track.name}>
             <a
               target="_blank"
+              rel="noopener"
+              rel="noreferrer"
               href={item.track.external_urls.spotify}
               className="flex my-5"
             >
