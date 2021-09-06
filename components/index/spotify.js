@@ -1,4 +1,4 @@
-function spotify({ spotify }) {
+function spotify({ items }) {
   return (
     <div className="mb-16 container">
       <h1 className="font-sans font-bold dark:text-white text-black sm:text-4xl text-3xl mb-1">
@@ -9,7 +9,7 @@ function spotify({ spotify }) {
       </p>
 
       <div>
-        {spotify["items"].slice(0, 5).map((item, index) => (
+        {items["items"].slice(0, 5).map((item, index) => (
           <div key={item.track.name}>
             <a
               target="_blank"

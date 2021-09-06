@@ -1,4 +1,4 @@
-function games({ games }) {
+function games({ items }) {
   return (
     <div className="mb-16 container">
       <h1 className="font-sans font-bold dark:text-white text-black sm:text-4xl text-3xl mb-1">
@@ -9,7 +9,7 @@ function games({ games }) {
       </p>
 
       <div className="grid grid-cols-none gap-4 sm:grid-cols-2">
-        {games["response"]["games"].slice(0, 4).map((item) => (
+        {items["response"]["games"].slice(0, 4).map((item) => (
           <div
             key={item.appid}
             className="border dark:border-white dark:border-opacity-20 border-black border-opacity-20 sm:p-5 p-2 rounded-md hover:bg-mybglight dark:hover:bg-mybg"

@@ -1,6 +1,6 @@
 import React from "react";
 
-function photos({ photos }) {
+function photos({ items }) {
   return (
     <div className="mb-16 container">
       <h1 className="font-sans font-bold dark:text-white text-black sm:text-4xl text-3xl mb-1">
@@ -11,7 +11,7 @@ function photos({ photos }) {
       </p>
 
       <div>
-        {photos.slice(0, 1).map((item) => (
+        {items.slice(0, 1).map((item) => (
           <div key={item.fields.title}>
             <div className="pb-5">
               <a href={"/photos/" + item.fields.slug}>

@@ -1,10 +1,10 @@
 import Head from "next/head";
 import { createClient } from "contentful";
-import MyHeader from "../components/index/header";
-import MyGames from "../components/index/games";
-import MyProjects from "../components/index/projects";
-import MySpotify from "../components/index/spotify";
-import MyPhotos from "../components/index/photos";
+import Header from "../components/index/header";
+import Games from "../components/index/games";
+import Projects from "../components/index/projects";
+import Spotify from "../components/index/spotify";
+import Photos from "../components/index/photos";
 
 export async function getStaticProps() {
   const client = createClient({
@@ -34,18 +34,16 @@ export async function getStaticProps() {
 
 export default function Home({ projects, games, spotify, photos }) {
   return (
-    <div>
+    <main>
       <Head>
-        <title>yudha • frontend developer</title>
+        <title>jagad yudha | frontend developer</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div>
-        <MyHeader />
-        <MyGames games={games} />
-        <MyProjects projects={projects} />
-        <MySpotify spotify={spotify} />
-        <MyPhotos photos={photos} />
-      </div>
-    </div>
+      <Header />
+      <Games items={games} />
+      <Projects items={projects} />
+      <Spotify items={spotify} />
+      <Photos items={photos} />
+    </main>
   );
 }

@@ -1,4 +1,4 @@
-export default function projects({ projects }) {
+export default function projects({ items }) {
   return (
     <div className="mb-16">
       <h1 className="font-sans font-bold dark:text-white text-black md:text-4xl text-3xl mb-1">
@@ -8,7 +8,7 @@ export default function projects({ projects }) {
         Latest project that i have created.
       </p>
       <div className="mx-auto">
-        {projects.slice(0, 5).map((item) => (
+        {items.slice(0, 5).map((item) => (
           <div key={item.fields.title} className="my-5">
             <a href={"projects/" + item.fields.slug}>
               <h1 className="font-sans font-semibold dark:text-white text-black text-lg">
