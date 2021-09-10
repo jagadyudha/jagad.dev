@@ -1,5 +1,6 @@
 import React from "react";
 import DarkMode from "../darkmode";
+import { IoMoon, IoSunny } from "react-icons/io5";
 
 function navbar() {
   const [colorTheme, setTheme] = DarkMode();
@@ -11,14 +12,14 @@ function navbar() {
             onClick={() => setTheme("light")}
             className="bg-white bg-opacity-10 rounded-md font-normal text-md sm:text-lg p-2 sm:mr-2 mr-0"
           >
-            ☀️
+            <IoMoon className="text-white text-lg sm:text-2xl" />
           </button>
         ) : (
           <button
             onClick={() => setTheme("dark")}
             className="bg-black bg-opacity-10 rounded-md font-normal text-md sm:text-lg p-2 sm:mr-2 mr-0"
           >
-            🌙
+            <IoSunny className="text-black text-lg sm:text-2xl" />
           </button>
         )}
         <div>

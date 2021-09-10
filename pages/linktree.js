@@ -10,7 +10,7 @@ import {
 import { FaTelegram } from "react-icons/fa";
 
 function linktree() {
-  let items = [
+  const items = [
     {
       title: "Instagram",
       link: "https://www.instagram.com/imyour_universe/",
