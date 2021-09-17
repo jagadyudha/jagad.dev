@@ -1,52 +1,27 @@
 {
-
   "private": true,
-
   "scripts": {
-
     "predeploy": "npm run build",
-
     "dev": "next dev",
-
     "build": "next build",
-
     "start": "next start"
-
   },
-
   "dependencies": {
-
     "@contentful/rich-text-react-renderer": "^15.2.0",
-
     "@headlessui/react": "^1.4.0",
-
     "@tailwindcss/aspect-ratio": "^0.2.1",
-
     "contentful": "^8.5.0",
-
     "framer-motion": "^4.1.17",
-
     "next": "latest",
-
+    "next-themes": "^0.0.15",
     "react": "^17.0.2",
-
     "react-dom": "^17.0.2",
-
     "react-icons": "^4.2.0",
-
     "react-syntax-highlighter": "^15.4.4"
-
   },
-
   "devDependencies": {
-
     "autoprefixer": "^10.3.1",
-
     "postcss": "^8.3.6",
-
     "tailwindcss": "^2.2.7"
-
   }
-
 }
-
