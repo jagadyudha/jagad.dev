@@ -93,7 +93,7 @@ export default function Projects({ projects }) {
               ) : (
                 <div className="my-2 sm:my-5">
                   <img
-                    className="mx-auto"
+                    className="mx-auto w-full"
                     src={"https:" + node.data.target.fields.file.url}
                   ></img>
                 </div>
