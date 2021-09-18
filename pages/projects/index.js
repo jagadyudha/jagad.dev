@@ -1,4 +1,5 @@
 import { createClient } from "contentful";
+import Head from "next/head";
 
 export async function getStaticProps() {
   const client = createClient({
@@ -18,8 +19,11 @@ export async function getStaticProps() {
 
 export default function index({ projects }) {
   return (
-    <div>
-      <title>yudha • all projects</title>
+    <main>
+      <Head>
+        <title>jagad yudha | projects</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <h1 className="font-sans font-bold dark:text-white text-black sm:text-5xl text-3xl">
         Projects
       </h1>
@@ -65,6 +69,6 @@ export default function index({ projects }) {
           </div>
         ))}
       </div>
-    </div>
+    </main>
   );
 }

@@ -13,23 +13,17 @@ function navbar() {
       <nav className="flex max-w-3xl mx-auto text-center sm:text-right py-4 items-center justify-between px-5">
         <button
           type="button"
-          className="w-10 h-10 p-3 bg-gray-200 rounded dark:bg-gray-800"
+          className="p-2 bg-gray-300 rounded dark:bg-gray-600 my-auto"
           onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
         >
           {mounted && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              stroke="currentColor"
-              className="w-4 h-4 text-mybg dark:text-gray-200"
-            >
+            <div className="mx-auto">
               {resolvedTheme === "dark" ? (
                 <IoSunny className="text-white text-lg sm:text-2xl" />
               ) : (
                 <IoMoon className="text-black text-lg sm:text-2xl" />
               )}
-            </svg>
+            </div>
           )}
         </button>
         <div>
