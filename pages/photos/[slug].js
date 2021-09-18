@@ -1,4 +1,5 @@
 import { createClient } from "contentful";
+import { NextSeo } from "next-seo";
 
 const client = createClient({
   space: process.env.CONTENTFULL_SPACE_PROJECT,
@@ -34,11 +35,30 @@ export async function getStaticProps({ params }) {
   };
 }
 
-function Photos({ photos }) {
+export default function Photos({ photos }) {
+  console.log(photos);
   if (!photos) return <div>Loading...</div>;
   return (
-    <div key={photos.fields.title}>
-      <title>{"yudha • " + photos.fields.title}</title>
+    <div key={photos.fields.slug}>
+      <NextSeo
+        title={photos.fields.title + " - Jagad Yudha"}
+        description={photos.fields.desc}
+        canonical={photos.fields.title}
+        openGraph={{
+          url: "https://jagadyudha.me/photos/" + photos.fields.slug,
+          title: photos.fields.title,
+          description: photos.fields.desc,
+          images: [
+            {
+              url: "https:" + photos.fields.img[0].fields.file.url,
+              width: 1280,
+              height: 720,
+              alt: photos.fields.img[0].fields.title,
+              type: "image/jpeg",
+            },
+          ],
+        }}
+      />
       <h1 className="font-sans font-bold dark:text-white text-black sm:text-5xl text-3xl">
         {photos.fields.title}
       </h1>
@@ -50,16 +70,15 @@ function Photos({ photos }) {
       <div className="pb-10 my-10">
         <div className="grid grid-cols-1 gap-5">
           {photos.fields.img.map((item) => (
-            <img
-              key={item}
-              src={"https:" + item.fields.file.url}
-              className="w-full rounded-xl"
-            />
+            <div key={item.fields.file.url}>
+              <img src={"https:" + item.fields.file.url} className="w-full" />
+              <p className="text-center dark:text-white text-black text-md">
+                {photos.fields.img[0].fields.title}
+              </p>
+            </div>
           ))}
         </div>
       </div>
     </div>
   );
 }
-
-export default Photos;

@@ -13,6 +13,7 @@
     "contentful": "^8.5.0",
     "framer-motion": "^4.1.17",
     "next": "latest",
+    "next-seo": "^4.27.0",
     "next-themes": "^0.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

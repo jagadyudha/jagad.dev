@@ -18,7 +18,6 @@ export async function getStaticProps() {
 function index({ photos }) {
   return (
     <div>
-      <title>yudha • all photos</title>
       <h1 className="font-sans font-bold dark:text-white text-black sm:text-5xl text-3xl">
         Photos
       </h1>

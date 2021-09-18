@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { createClient } from "contentful";
 import Header from "../components/index/header";
 import Games from "../components/index/games";
@@ -35,10 +34,6 @@ export async function getStaticProps() {
 export default function Home({ projects, games, spotify, photos }) {
   return (
     <main>
-      <Head>
-        <title>jagad yudha | frontend developer</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
       <Header />
       <Games items={games} />
       <Projects items={projects} />
