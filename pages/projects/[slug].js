@@ -1,7 +1,7 @@
 import { createClient } from "contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { MARKS, BLOCKS, INLINES } from "@contentful/rich-text-types";
-import SyntaxHighlighter from "react-syntax-highlighter";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 const client = createClient({
@@ -39,7 +39,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Projects({ projects }) {
-  console.log(projects);
   if (!projects) return <div>Loading...</div>;
   return (
     <div key={projects.fields.title}>
@@ -77,7 +76,7 @@ export default function Projects({ projects }) {
                   style={nord}
                   showLineNumbers
                 >
-                  {children}
+                  {String(children).replace(/\n$/, "")}
                 </SyntaxHighlighter>
               );
             },
