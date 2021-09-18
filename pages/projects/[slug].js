@@ -38,11 +38,11 @@ export async function getStaticProps({ params }) {
   };
 }
 
-function Projects({ projects }) {
+export default function Projects({ projects }) {
+  console.log(projects);
   if (!projects) return <div>Loading...</div>;
   return (
     <div key={projects.fields.title}>
-      <title>{"yudha • " + projects.fields.title}</title>
       <h1 className="font-sans font-bold dark:text-white text-black sm:text-5xl text-3xl my-10 tracking-tight">
         {projects.fields.title}
       </h1>
@@ -84,14 +84,21 @@ function Projects({ projects }) {
           },
 
           renderNode: {
-            [BLOCKS.EMBEDDED_ASSET]: (node) => (
-              <div className="my-2 sm:my-5">
-                <img src={"https:" + node.data.target.fields.file.url}></img>
-                <p className="dark:text-gray-300 text-gray-700 font-light text-md">
-                  {node.data.target.fields.title}
-                </p>
-              </div>
-            ),
+            [BLOCKS.EMBEDDED_ASSET]: (node) =>
+              node.data.target.fields.file.contentType === "video/mp4" ? (
+                <div className="my-2 sm:my-5">
+                  <video controls>
+                    <source src={"https:" + node.data.target.fields.file.url} />
+                  </video>
+                </div>
+              ) : (
+                <div className="my-2 sm:my-5">
+                  <img
+                    className="mx-auto"
+                    src={"https:" + node.data.target.fields.file.url}
+                  ></img>
+                </div>
+              ),
             [BLOCKS.HEADING_2]: (node, children) => (
               <h2 className="text-lg sm:text-2xl dark:text-white text-black font-bold mt-5 mb-2 sm:mt-10 sm:mb-5">
                 {children}
@@ -121,5 +128,3 @@ function Projects({ projects }) {
     </div>
   );
 }
-
-export default Projects;

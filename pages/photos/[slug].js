@@ -36,12 +36,11 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Photos({ photos }) {
-  console.log(photos);
   if (!photos) return <div>Loading...</div>;
   return (
-    <div key={photos.fields.slug}>
+    <main key={photos.fields.slug}>
       <NextSeo
-        title={photos.fields.title + " - Jagad Yudha"}
+        title={photos.fields.title}
         description={photos.fields.desc}
         canonical={photos.fields.title}
         openGraph={{
@@ -79,6 +78,6 @@ export default function Photos({ photos }) {
           ))}
         </div>
       </div>
-    </div>
+    </main>
   );
 }
