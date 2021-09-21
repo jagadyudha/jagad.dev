@@ -11,14 +11,11 @@ export async function getStaticProps() {
     accessToken: process.env.CONTENTFULL_TOKEN_PROJECT,
   });
   const projects = await client.getEntries({ content_type: "project" });
-
   const photos = await client.getEntries({ content_type: "photo" });
-
-  const games_res = await fetch(process.env.DB_STEAM);
-  const games = await games_res.json();
-
-  const spotify_res = await fetch(process.env.DB_SPOTIFY);
-  const spotify = await spotify_res.json();
+  const fetchGames = await fetch(process.env.DB_STEAM);
+  const games = await fetchGames.json();
+  const fetchSpotify = await fetch(process.env.DB_SPOTIFY);
+  const spotify = await fetchSpotify.json();
 
   return {
     props: {
