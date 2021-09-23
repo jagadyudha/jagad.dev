@@ -1,4 +1,4 @@
-import React from 'react';
+import Image from 'next/image';
 import { createClient } from 'contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { MARKS, BLOCKS, INLINES } from '@contentful/rich-text-types';
@@ -60,10 +60,14 @@ export default function Projects({ projects }) {
           ))}
       </div>
       <div>
-        <img
+        <Image
           className='rounded-lg'
+          width={projects.fields.header.fields.file.details.image.width}
+          height={projects.fields.header.fields.file.details.image.height}
+          layout='responsive'
           src={'https:' + projects.fields.header.fields.file.url}
-        ></img>
+          alt={projects.fields.title}
+        ></Image>
       </div>
       <div>
         {documentToReactComponents(projects.fields.content, {
@@ -93,10 +97,13 @@ export default function Projects({ projects }) {
                 </div>
               ) : (
                 <div className='my-2 sm:my-5'>
-                  <img
-                    className='mx-auto w-full'
+                  <Image
+                    width={node.data.target.fields.file.details.image.width}
+                    height={node.data.target.fields.file.details.image.height}
+                    layout='responsive'
                     src={'https:' + node.data.target.fields.file.url}
-                  ></img>
+                    alt={node.data.target.fields.title}
+                  ></Image>
                 </div>
               ),
             [BLOCKS.HEADING_2]: (node, children) => (

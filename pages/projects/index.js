@@ -1,4 +1,4 @@
-import React from 'react';
+import Image from 'next/image';
 import { createClient } from 'contentful';
 import Head from 'next/head';
 
@@ -34,12 +34,14 @@ export default function index({ projects }) {
             key={item.fields.title}
             className='dark:bg-mybg bg-mybglight shadow-md rounded-md my-10 sm:my-20'
           >
-            <div>
-              <img
-                className='rounded-t-md'
-                src={'https:' + item.fields.header.fields.file.url}
-              ></img>
-            </div>
+            <Image
+              width={item.fields.header.fields.file.details.image.width}
+              height={item.fields.header.fields.file.details.image.height}
+              layout='responsive'
+              className='rounded-t-md'
+              src={'https:' + item.fields.header.fields.file.url}
+              alt={item.fields.title}
+            ></Image>
             <h1 className='font-sans font-bold dark:text-white text-black text-lg mx-5 my-5'>
               {item.fields.title}
             </h1>

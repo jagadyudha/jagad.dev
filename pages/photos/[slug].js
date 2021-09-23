@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { createClient } from 'contentful';
 import { NextSeo } from 'next-seo';
 
@@ -23,7 +24,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { items } = await client.getEntries({
-    'content_type': 'photo',
+    content_type: 'photo',
     'fields.slug': params.slug,
   });
 
@@ -58,20 +59,27 @@ export default function Photos({ photos }) {
           ],
         }}
       />
-      <h1 className="font-sans font-bold dark:text-white text-black sm:text-5xl text-3xl">
+      <h1 className='font-sans font-bold dark:text-white text-black sm:text-5xl text-3xl'>
         {photos.fields.title}
       </h1>
-      <div className="my-10">
-        <span className="bg-gray-600 text-center shadow-md text-white rounded-2xl text-sm p-2 font-sans font-normal mx-1">
+      <div className='my-10'>
+        <span className='bg-gray-600 text-center shadow-md text-white rounded-2xl text-sm p-2 font-sans font-normal mx-1'>
           {photos.fields.date}
         </span>
       </div>
-      <div className="pb-10 my-10">
-        <div className="grid grid-cols-1 gap-5">
+      <div className='pb-10 my-10'>
+        <div className='grid grid-cols-1 gap-5'>
           {photos.fields.img.map((item) => (
             <div key={item.fields.file.url}>
-              <img src={'https:' + item.fields.file.url} className="w-full" />
-              <p className="text-center dark:text-white text-black text-md">
+              <Image
+                width={500}
+                height={500}
+                layout='responsive'
+                src={'https:' + item.fields.file.url}
+                className='w-full'
+                alt={photos.fields.img[0].fields.title}
+              />
+              <p className='text-center dark:text-white text-black text-md'>
                 {photos.fields.img[0].fields.title}
               </p>
             </div>
