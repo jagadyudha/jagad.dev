@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function Header() {
   return (
@@ -10,20 +10,20 @@ function Header() {
         I'm a front-end developer & UI/UX designer based on Sidoarjo, Indonesia.
         Interested working on front-end and currently learning about react
         native framework. if you want to work with me or ask something, reach me
-        via{" "}
+        via{' '}
         <a
           className="text-myorangelight dark:text-myorange underline hover:opacity-50"
           href="mailto:jagadyudhaawali@gmail.com"
         >
           email
-        </a>{" "}
-        or check my{" "}
+        </a>{' '}
+        or check my{' '}
         <a
           className="text-myorangelight dark:text-myorange underline hover:opacity-50"
           href="/linktree"
         >
           link tree
-        </a>{" "}
+        </a>{' '}
         for other social media.
       </div>
     </div>

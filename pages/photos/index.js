@@ -1,4 +1,4 @@
-import { createClient } from "contentful";
+import { createClient } from 'contentful';
 
 export async function getStaticProps() {
   const client = createClient({
@@ -6,7 +6,7 @@ export async function getStaticProps() {
     accessToken: process.env.CONTENTFULL_TOKEN_PROJECT,
   });
 
-  const res = await client.getEntries({ content_type: "photo" });
+  const res = await client.getEntries({ content_type: 'photo' });
 
   return {
     props: {
@@ -26,10 +26,10 @@ function index({ photos }) {
         {photos.map((item) => (
           <div key={item.fields.title}>
             <div className="dark:bg-mybg bg-mybglight shadow-xl pb-10 my-10 sm:my-20 rounded-md">
-              <a href={"/photos/" + item.fields.slug}>
+              <a href={'/photos/' + item.fields.slug}>
                 <div>
                   <img
-                    src={"https:" + item.fields.img[0].fields.file.url}
+                    src={'https:' + item.fields.img[0].fields.file.url}
                     className="w-full pb-2 rounded-t-md mb-5"
                   />
 

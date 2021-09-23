@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function photos({ items }) {
   return (
@@ -14,10 +14,10 @@ function photos({ items }) {
         {items.slice(0, 1).map((item) => (
           <div key={item.fields.title}>
             <div className="pb-5">
-              <a href={"/photos/" + item.fields.slug}>
+              <a href={'/photos/' + item.fields.slug}>
                 <div>
                   <img
-                    src={"https:" + item.fields.img[0].fields.file.url}
+                    src={'https:' + item.fields.img[0].fields.file.url}
                     className="w-full rounded-md mb-5"
                   />
                 </div>

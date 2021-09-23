@@ -1,5 +1,5 @@
-import { createClient } from "contentful";
-import { NextSeo } from "next-seo";
+import { createClient } from 'contentful';
+import { NextSeo } from 'next-seo';
 
 const client = createClient({
   space: process.env.CONTENTFULL_SPACE_PROJECT,
@@ -7,7 +7,7 @@ const client = createClient({
 });
 
 export async function getStaticPaths() {
-  const res = await client.getEntries({ content_type: "photo" });
+  const res = await client.getEntries({ content_type: 'photo' });
 
   const paths = res.items.map((item) => {
     return {
@@ -23,8 +23,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { items } = await client.getEntries({
-    content_type: "photo",
-    "fields.slug": params.slug,
+    'content_type': 'photo',
+    'fields.slug': params.slug,
   });
 
   return {
@@ -44,16 +44,16 @@ export default function Photos({ photos }) {
         description={photos.fields.desc}
         canonical={photos.fields.title}
         openGraph={{
-          url: "https://jagadyudha.me/photos/" + photos.fields.slug,
+          url: 'https://jagadyudha.me/photos/' + photos.fields.slug,
           title: photos.fields.title,
           description: photos.fields.desc,
           images: [
             {
-              url: "https:" + photos.fields.img[0].fields.file.url,
+              url: 'https:' + photos.fields.img[0].fields.file.url,
               width: 1280,
               height: 720,
               alt: photos.fields.img[0].fields.title,
-              type: "image/jpeg",
+              type: 'image/jpeg',
             },
           ],
         }}
@@ -70,7 +70,7 @@ export default function Photos({ photos }) {
         <div className="grid grid-cols-1 gap-5">
           {photos.fields.img.map((item) => (
             <div key={item.fields.file.url}>
-              <img src={"https:" + item.fields.file.url} className="w-full" />
+              <img src={'https:' + item.fields.file.url} className="w-full" />
               <p className="text-center dark:text-white text-black text-md">
                 {photos.fields.img[0].fields.title}
               </p>

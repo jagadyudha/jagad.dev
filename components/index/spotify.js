@@ -9,7 +9,7 @@ function spotify({ items }) {
       </p>
 
       <div>
-        {items["items"].slice(0, 5).map((item, index) => (
+        {items['items'].slice(0, 5).map((item, index) => (
           <div key={item.track.name}>
             <a
               target="_blank"

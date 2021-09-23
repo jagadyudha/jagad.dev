@@ -1,7 +1,7 @@
-import React from "react";
-import { IoMoon, IoSunny } from "react-icons/io5";
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import React from 'react';
+import { IoMoon, IoSunny } from 'react-icons/io5';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 function navbar() {
   const [mounted, setMounted] = useState(false);
@@ -14,11 +14,11 @@ function navbar() {
         <button
           type="button"
           className="p-3 bg-gray-300 rounded dark:bg-gray-600 my-auto"
-          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+          onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
         >
           {mounted && (
             <div className="mx-auto">
-              {resolvedTheme === "dark" ? (
+              {resolvedTheme === 'dark' ? (
                 <IoSunny className="text-white text-md sm:text-lg" />
               ) : (
                 <IoMoon className="text-black text-md sm:text-lg" />

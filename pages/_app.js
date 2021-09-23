@@ -1,8 +1,8 @@
-import "tailwindcss/tailwind.css";
-import Layout from "../components/layout/layout";
-import { ThemeProvider } from "next-themes";
-import { DefaultSeo } from "next-seo";
-import { cardOpenGraph, cardTwitter } from "../lib/seo";
+import 'tailwindcss/tailwind.css';
+import Layout from '../components/layout/layout';
+import { ThemeProvider } from 'next-themes';
+import { DefaultSeo } from 'next-seo';
+import { cardOpenGraph, cardTwitter } from '../lib/seo';
 
 export default function MyApp({ Component, pageProps }) {
   return (

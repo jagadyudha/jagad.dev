@@ -4,7 +4,9 @@
     "predeploy": "npm run build",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.2.0",
@@ -22,6 +24,11 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.3.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.26.0",
+    "husky": "^7.0.0",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.7"
   }

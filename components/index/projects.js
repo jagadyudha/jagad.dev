@@ -10,7 +10,7 @@ export default function projects({ items }) {
       <div className="mx-auto">
         {items.slice(0, 5).map((item) => (
           <div key={item.fields.title} className="my-5">
-            <a href={"projects/" + item.fields.slug}>
+            <a href={'projects/' + item.fields.slug}>
               <h1 className="font-sans font-semibold dark:text-white text-black text-lg">
                 {item.fields.title}
               </h1>
