@@ -1,22 +1,17 @@
-import { createClient } from 'contentful';
 import Image from 'next/image';
+import { contentfulFetch } from '../../helper/fetchdata';
 
 export async function getStaticProps() {
-  const client = createClient({
-    space: process.env.CONTENTFULL_SPACE_PROJECT,
-    accessToken: process.env.CONTENTFULL_TOKEN_PROJECT,
-  });
-
-  const res = await client.getEntries({ content_type: 'photo' });
-
+  const res = await contentfulFetch('photo');
   return {
     props: {
-      photos: res.items,
+      photos: res.data.items,
     },
     revalidate: 1,
   };
 }
-function index({ photos }) {
+
+export default function index({ photos }) {
   return (
     <div>
       <h1 className='font-sans font-bold dark:text-white text-black sm:text-5xl text-3xl'>
@@ -51,5 +46,3 @@ function index({ photos }) {
     </div>
   );
 }
-
-export default index;

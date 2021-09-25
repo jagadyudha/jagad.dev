@@ -1,21 +1,14 @@
 import Image from 'next/image';
-import { createClient } from 'contentful';
 import { NextSeo } from 'next-seo';
-
-const client = createClient({
-  space: process.env.CONTENTFULL_SPACE_PROJECT,
-  accessToken: process.env.CONTENTFULL_TOKEN_PROJECT,
-});
+import { contentfulFetch, contentfulSlugFetch } from '../../helper/fetchdata';
 
 export async function getStaticPaths() {
-  const res = await client.getEntries({ content_type: 'photo' });
-
-  const paths = res.items.map((item) => {
+  const res = await contentfulFetch('photo');
+  const paths = res.data.items.map((item) => {
     return {
       params: { slug: item.fields.slug },
     };
   });
-
   return {
     paths,
     fallback: true,
@@ -23,14 +16,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { items } = await client.getEntries({
-    content_type: 'photo',
-    'fields.slug': params.slug,
-  });
-
+  const items = await contentfulSlugFetch('photo', params.slug);
   return {
     props: {
-      photos: items[0],
+      photos: items.data.items[0],
     },
     revalidate: 1,
   };
