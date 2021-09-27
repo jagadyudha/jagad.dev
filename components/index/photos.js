@@ -3,10 +3,10 @@ import Image from 'next/image';
 export default function photos({ items }) {
   return (
     <div className='mb-16 container'>
-      <h1 className='font-sans font-bold dark:text-white text-black sm:text-4xl text-3xl mb-1'>
+      <h1 className='font-sans font-bold text-white sm:text-4xl text-3xl mb-1'>
         Latest Photo
       </h1>
-      <p className='font-sans font-normal sm:text-lg text-md dark:text-gray-300 text-gray-700 mb-10'>
+      <p className='font-sans font-normal sm:text-lg text-md text-gray-300 mb-10'>
         Collection of momment that i capture
       </p>
 
@@ -29,7 +29,7 @@ export default function photos({ items }) {
         ))}
       </div>
       <a href='photos' className='justify-center flex flex-row text-center'>
-        <span className='font-sans font-semibold text-lg dark:text-myorange text-myorangelight mx-2 my-5 hover:underline'>
+        <span className='font-sans font-semibold text-lg text-myorange mx-2 my-5 hover:underline'>
           View all Photos ➔
         </span>
       </a>
