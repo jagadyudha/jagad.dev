@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
-import { contentfulFetch, contentfulSlugFetch } from '../../helper/fetchdata';
+import { getContentful, getSlugContentful } from '../../lib/contentful';
 
 export async function getStaticPaths() {
-  const res = await contentfulFetch('photo');
+  const res = await getContentful('photo');
   const paths = res.data.items.map((item) => {
     return {
       params: { slug: item.fields.slug },
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const items = await contentfulSlugFetch('photo', params.slug);
+  const items = await getSlugContentful('photo', params.slug);
   return {
     props: {
       photos: items.data.items[0],

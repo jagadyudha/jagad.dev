@@ -3,13 +3,13 @@ import Games from '../components/index/games';
 import Projects from '../components/index/projects';
 import Spotify from '../components/index/spotify';
 import Photos from '../components/index/photos';
-import { contentfulFetch } from '../helper/fetchdata';
+import { getContentful } from '../lib/contentful';
 import { getRecentlyPlayed } from '../lib/spotify';
 import { getRecentlyGames } from '../lib/steam';
 
 export async function getStaticProps() {
-  const projects = await contentfulFetch('project');
-  const photos = await contentfulFetch('photo');
+  const projects = await getContentful('project');
+  const photos = await getContentful('photo');
   const games = await getRecentlyGames();
   const spotify = await getRecentlyPlayed();
 
@@ -24,7 +24,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ projects, games, spotify, photos }) {
+const home = ({ games, projects, spotify, photos }) => {
   return (
     <main>
       <Header />
@@ -34,4 +34,6 @@ export default function Home({ projects, games, spotify, photos }) {
       <Photos items={photos} />
     </main>
   );
-}
+};
+
+export default home;
