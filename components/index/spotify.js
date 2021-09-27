@@ -28,19 +28,21 @@ const spotify = ({ items }) => {
                 <p className='font-sans font-normal text-gray-300  text-lg my-auto mr-5'>
                   {index + 1}
                 </p>
-                <div className='w-10 h-10 mr-3 my-auto'>
+                <div className='mr-3 my-auto'>
                   <Image
-                    layout='responsive'
-                    width={64}
-                    height={64}
-                    className='rounded-md'
+                    layout='fixed'
+                    width={44}
+                    height={44}
+                    className='rounded-md mr-3'
                     src={trackImg}
                     alt={trackName}
                   ></Image>
                 </div>
                 <div>
                   <p className='font-sans font-semibold text-white  sm:text-lg text-md'>
-                    {trackName}
+                    {trackName.length > 40
+                      ? `${trackName.slice(0, 40)}...`
+                      : trackName}
                   </p>
                   <p className='sm:text-lg text-md font-sans font-normal text-gray-300'>
                     {trackArtist}

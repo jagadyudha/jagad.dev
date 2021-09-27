@@ -22,7 +22,7 @@ export default function navbar() {
                   <FaSpotify className='text-[#1DB954] text-xl my-auto mr-5' />
                   <div className='my-auto text-left'>
                     <p className='font-sans font-normal text-white sm:text-lg text-md'>
-                      Playing - Girl's Day
+                      Playing - Girls Day
                     </p>
                   </div>
                 </div>
