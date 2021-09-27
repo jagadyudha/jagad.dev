@@ -3,13 +3,14 @@ import Games from '../components/index/games';
 import Projects from '../components/index/projects';
 import Spotify from '../components/index/spotify';
 import Photos from '../components/index/photos';
-import { contentfulFetch, indexFetch } from '../helper/fetchdata';
+import { contentfulFetch } from '../helper/fetchdata';
 import { getRecentlyPlayed } from '../lib/spotify';
+import { getRecentlyGames } from '../lib/steam';
 
 export async function getStaticProps() {
   const projects = await contentfulFetch('project');
   const photos = await contentfulFetch('photo');
-  const games = await indexFetch(process.env.DB_STEAM);
+  const games = await getRecentlyGames();
   const spotify = await getRecentlyPlayed();
 
   return {
