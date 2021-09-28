@@ -27,13 +27,20 @@ export default function Navbar() {
                 <div className='flex'>
                   <FaSpotify className='text-[#1DB954] text-xl my-auto mr-5' />
                   <div className='my-auto text-left'>
-                    <p className='font-sans font-normal text-white sm:text-lg text-md'>
+                    <div className='font-sans font-normal text-white sm:text-lg text-md'>
                       {data?.music.is_playing ? (
-                        <div>{`${data.music.item.name} - ${data.music.item.artists[0].name}`}</div>
+                        <a
+                          className='hover:text-myorange'
+                          href={data.music.getUrl}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                        >
+                          {`${data.music.getData}`}
+                        </a>
                       ) : (
                         <div>Not Playing</div>
                       )}
-                    </p>
+                    </div>
                   </div>
                 </div>
                 <div className='-mr-2 flex items-center md:hidden'>
