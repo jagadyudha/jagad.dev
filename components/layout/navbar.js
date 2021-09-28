@@ -85,13 +85,14 @@ export default function Navbar() {
               </div>
               <div className='px-4 pt-2 pb-3 space-y-1'>
                 {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className='block px-3 py-2 rounded-md text-base font-normal text-white'
-                  >
-                    {item.name}
-                  </a>
+                  <Link key={item.name} href={item.href}>
+                    <a
+                      href={item.href}
+                      className='block px-3 py-2 rounded-md text-base font-normal text-white'
+                    >
+                      {item.name}
+                    </a>
+                  </Link>
                 ))}
               </div>
             </div>
