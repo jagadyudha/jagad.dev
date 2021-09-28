@@ -4,6 +4,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { VscChromeClose } from 'react-icons/vsc';
 import { FaSpotify } from 'react-icons/fa';
 import Link from 'next/link';
+import useSWR from 'swr';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -12,7 +13,10 @@ const navigation = [
   { name: 'Linktree', href: '/linktree' },
 ];
 
-export default function navbar() {
+export default function Navbar() {
+  const fetcher = (url) => fetch(url).then((res) => res.json());
+  const { data } = useSWR('/api/nowplaying', fetcher);
+
   return (
     <div className='sticky top-0 z-50 bg-mydark  backdrop-filter backdrop-blur-lg bg-opacity-60'>
       <Popover>
@@ -24,7 +28,11 @@ export default function navbar() {
                   <FaSpotify className='text-[#1DB954] text-xl my-auto mr-5' />
                   <div className='my-auto text-left'>
                     <p className='font-sans font-normal text-white sm:text-lg text-md'>
-                      Playing - Girls Day
+                      {data?.music.is_playing ? (
+                        <div>{`${data.music.item.name} - ${data.music.item.artists[0].name}`}</div>
+                      ) : (
+                        <div>Not Playing</div>
+                      )}
                     </p>
                   </div>
                 </div>
