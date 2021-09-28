@@ -1,4 +1,4 @@
-function games({ items }) {
+const Games = ({ items }) => {
   return (
     <section className='mb-16 container'>
       <h1 className='font-sans font-bold text-white sm:text-4xl text-3xl mb-1'>
@@ -31,6 +31,6 @@ function games({ items }) {
       </div>
     </section>
   );
-}
+};
 
-export default games;
+export default Games;

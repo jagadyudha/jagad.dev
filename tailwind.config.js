@@ -1,5 +1,6 @@
 // tailwind.config.js
-// const colors = require('tailwindcss/colors');
+
+const colors = require('tailwindcss/colors');
 
 module.exports = {
   mode: 'jit',
@@ -14,6 +15,7 @@ module.exports = {
         mylight: '#F3F4F6',
         mybg: '#2E2E2E',
         mybglight: '#FFFFFF',
+        pink: colors.pink,
       },
     },
   },

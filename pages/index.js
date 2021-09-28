@@ -24,7 +24,7 @@ export async function getStaticProps() {
   };
 }
 
-const home = ({ games, projects, spotify, photos }) => {
+const Home = ({ games, projects, spotify, photos }) => {
   return (
     <main>
       <Header />
@@ -36,4 +36,4 @@ const home = ({ games, projects, spotify, photos }) => {
   );
 };
 
-export default home;
+export default Home;

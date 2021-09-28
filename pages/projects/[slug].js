@@ -1,19 +1,15 @@
 import Image from 'next/image';
-import { createClient } from 'contentful';
+import { getContentful, getSlugContentful } from '../../lib/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { MARKS, BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { nord } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { NextSeo } from 'next-seo';
 
-const client = createClient({
-  space: process.env.CONTENTFULL_SPACE_PROJECT,
-  accessToken: process.env.CONTENTFULL_TOKEN_PROJECT,
-});
+export const getStaticPaths = async () => {
+  const res = await getContentful('project');
 
-export async function getStaticPaths() {
-  const res = await client.getEntries({ content_type: 'project' });
-
-  const paths = res.items.map((item) => {
+  const paths = res.data.items.map((item) => {
     return {
       params: { slug: item.fields.slug },
     };
@@ -23,31 +19,57 @@ export async function getStaticPaths() {
     paths,
     fallback: true,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
-  const { items } = await client.getEntries({
-    content_type: 'project',
-    'fields.slug': params.slug,
-  });
+export const getStaticProps = async ({ params }) => {
+  const items = await getSlugContentful('project', params.slug);
 
   return {
     props: {
-      projects: items[0],
+      projects: items.data.items[0],
     },
     revalidate: 1,
   };
-}
+};
 
-export default function Projects({ projects }) {
+const projectsSlug = ({ projects }) => {
   if (!projects) return <div>Loading...</div>;
+  const contentTitle = projects.fields.title;
+  const contentSlug = projects.fields.slug;
+  const contentDesc = projects.fields.desc;
+  const contentLabel = projects.fields.label;
+  const contentImgUrl = `https:${projects.fields.header.fields.file.url}`;
+  const contentImgWidth =
+    projects.fields.header.fields.file.details.image.width;
+  const contentImgHeight =
+    projects.fields.header.fields.file.details.image.height;
+
   return (
-    <div key={projects.fields.title}>
-      <h1 className='font-sans font-bold dark:text-white text-black sm:text-5xl text-3xl'>
-        {projects.fields.title}
+    <div key={contentTitle}>
+      <NextSeo
+        title={`${contentTitle} - Jagad Yudha`}
+        description={contentDesc}
+        canonical={contentTitle}
+        openGraph={{
+          url: `https://jagad.xyz${contentSlug}`,
+          title: `${contentTitle} - Jagad Yudha`,
+          description: contentDesc,
+          images: [
+            {
+              url: `https:${contentImgUrl}`,
+              width: contentImgWidth,
+              height: contentImgHeight,
+              alt: contentTitle,
+              type: 'image/jpeg',
+            },
+          ],
+        }}
+      />
+      <h1 className='font-sans font-bold text-white sm:text-5xl text-3xl'>
+        {contentTitle}
       </h1>
       <div className='my-10'>
-        {projects.fields.label
+        {contentLabel
           .slice(0)
           .reverse()
           .map((item) => (
@@ -62,11 +84,11 @@ export default function Projects({ projects }) {
       <div>
         <Image
           className='rounded-lg'
-          width={projects.fields.header.fields.file.details.image.width}
-          height={projects.fields.header.fields.file.details.image.height}
+          width={contentImgWidth}
+          height={contentImgHeight}
           layout='responsive'
-          src={'https:' + projects.fields.header.fields.file.url}
-          alt={projects.fields.title}
+          src={contentImgUrl}
+          alt={contentTitle}
         ></Image>
       </div>
       <div>
@@ -96,35 +118,34 @@ export default function Projects({ projects }) {
                   </video>
                 </div>
               ) : (
-                <div className='my-2 sm:my-5'>
+                <div className='my-2 sm:my-5 w-auto'>
                   <Image
                     width={node.data.target.fields.file.details.image.width}
                     height={node.data.target.fields.file.details.image.height}
-                    layout='responsive'
                     src={'https:' + node.data.target.fields.file.url}
                     alt={node.data.target.fields.title}
                   ></Image>
                 </div>
               ),
             [BLOCKS.HEADING_2]: (node, children) => (
-              <h2 className='text-lg sm:text-2xl dark:text-white text-black font-bold mt-5 mb-2 sm:mt-10 sm:mb-5'>
+              <h2 className='text-lg sm:text-2xl text-white font-bold mt-5 mb-2 sm:mt-10 sm:mb-5'>
                 {children}
               </h2>
             ),
             [BLOCKS.PARAGRAPH]: (node, children) => (
-              <div className='text-md sm:text-lg dark:text-gray-300 text-gray-700 my-2 sm:my-5'>
+              <div className='text-md sm:text-lg text-gray-300 my-2 sm:my-5'>
                 {children}
               </div>
             ),
             [BLOCKS.LIST_ITEM]: (node) => (
-              <li className='text-md sm:text-lg dark:text-gray-300 text-gray-700'>
+              <li className='text-md sm:text-lg text-gray-300'>
                 <ol>- {node.content[0].content[0].value}</ol>
               </li>
             ),
             [INLINES.HYPERLINK]: (node, children) => (
               <a
                 href={node.data.uri}
-                className='text-md sm:text-lg dark:text-myorange text-myorangelight my-2 sm:my-5 hover:underline'
+                className='text-md sm:text-lg text-myorange my-2 sm:my-5 hover:underline'
               >
                 {children}
               </a>
@@ -134,4 +155,6 @@ export default function Projects({ projects }) {
       </div>
     </div>
   );
-}
+};
+
+export default projectsSlug;

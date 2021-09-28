@@ -1,5 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { getContentful } from '../../lib/contentful';
+import { NextSeo } from 'next-seo';
+import { cardOpenGraph, cardTwitter } from '../../lib/seo';
 
 export const getStaticProps = async () => {
   const res = await getContentful('photo');
@@ -11,28 +14,38 @@ export const getStaticProps = async () => {
   };
 };
 
-const index = ({ photos }) => {
+const photos = ({ photos }) => {
   return (
-    <div>
+    <>
+      <NextSeo
+        title='Photo - Jagad Yudha'
+        description='Collection of momment that I capture'
+        canonical='Jagad Yudha - Frontend Developer'
+        openGraph={cardOpenGraph}
+        twitter={cardTwitter}
+      />
       <h1 className='font-sans font-bold text-white sm:text-5xl text-3xl'>
         Photos
       </h1>
       <div>
         {photos.map((item) => {
           const contentTitle = item.fields.title;
-          const contentUrl = `photos/${item.fields.slug}`;
-          const contentImg = `https:${item.fields.img[0].fields.file.url}`;
+          const contentSlug = `photos/${item.fields.slug}`;
+          const contentImgUrl = `https:${item.fields.img[0].fields.file.url}`;
           const contentDesc = item.fields.desc;
           return (
-            <div key={contentTitle}>
-              <div className='bg-mybg shadow-xl pb-10 my-10 sm:my-20 rounded-md'>
-                <a href={contentUrl}>
+            <div
+              key={contentTitle}
+              className='bg-mybg shadow-xl pb-10 my-10 sm:my-20 rounded-md'
+            >
+              <Link href={contentSlug}>
+                <a>
                   <Image
                     width={500}
                     height={500}
                     layout='responsive'
-                    src={contentImg}
-                    alt={item.fields.title}
+                    src={contentImgUrl}
+                    alt={contentTitle}
                     className='rounded-t-md'
                   />
 
@@ -43,13 +56,13 @@ const index = ({ photos }) => {
                     {contentDesc}
                   </p>
                 </a>
-              </div>
+              </Link>
             </div>
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
-export default index;
+export default photos;

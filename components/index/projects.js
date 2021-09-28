@@ -1,4 +1,4 @@
-export default function projects({ items }) {
+const Projects = ({ items }) => {
   return (
     <div className='mb-16'>
       <h1 className='font-sans font-bold text-white md:text-4xl text-3xl mb-1'>
@@ -28,4 +28,6 @@ export default function projects({ items }) {
       </a>
     </div>
   );
-}
+};
+
+export default Projects;

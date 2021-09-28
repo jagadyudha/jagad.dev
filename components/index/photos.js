@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function photos({ items }) {
+const Photos = ({ items }) => {
   return (
     <div className='mb-16 container'>
       <h1 className='font-sans font-bold text-white sm:text-4xl text-3xl mb-1'>
@@ -35,4 +35,6 @@ export default function photos({ items }) {
       </a>
     </div>
   );
-}
+};
+
+export default Photos;

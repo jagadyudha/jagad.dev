@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const spotify = ({ items }) => {
+const Spotify = ({ items }) => {
   const dataItems = items['items'];
   return (
     <div className='mb-16 container'>
@@ -57,4 +57,4 @@ const spotify = ({ items }) => {
   );
 };
 
-export default spotify;
+export default Spotify;
