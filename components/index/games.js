@@ -23,7 +23,10 @@ const Games = ({ items }) => {
             <div className='my-auto ml-5 mr-3'>
               <div className='w-20 h-20'>
                 {data?.steam.getAvatar ? (
-                  <img src={data?.steam.getAvatar}></img>
+                  <img
+                    src={data?.steam.getAvatar}
+                    alt='steam profil picture'
+                  ></img>
                 ) : (
                   <FaFileImage className='w-20 h-20 mx-auto text-center p-3 text-white' />
                 )}
@@ -49,14 +52,12 @@ const Games = ({ items }) => {
       <div className='grid grid-cols-1 gap-3'>
         {items['response']['games'].slice(0, 2).map((item) => (
           <a
+            key={item.appid}
             target='_blank'
             rel='noopener noreferrer'
             href={`https://store.steampowered.com/app/${item.appid}`}
           >
-            <div
-              key={item.appid}
-              className='border border-opacity-20 sm:p-5 p-2 rounded-md hover:bg-mybg'
-            >
+            <div className='border border-opacity-20 sm:p-5 p-2 rounded-md hover:bg-mybg'>
               <h1 className='font-sans font-normal text-gray-300 text-md sm:text-lg mx-2'>
                 {item.name}
               </h1>
