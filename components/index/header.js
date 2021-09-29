@@ -17,7 +17,7 @@ const Header = () => {
           rel='noopener noreferrer'
         >
           <a className='text-myorange underline hover:opacity-50'>email</a>
-        </Link>
+        </Link>{' '}
         or check my{' '}
         <Link href='/linktree' target='_blank' rel='noopener noreferrer'>
           <a className='text-myorange underline hover:opacity-50'>Linktree</a>

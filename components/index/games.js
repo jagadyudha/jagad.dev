@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+import { FaFileImage } from 'react-icons/fa';
 
 const Games = ({ items }) => {
   const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -17,45 +18,53 @@ const Games = ({ items }) => {
         target='_blank'
         rel='noopener noreferrer'
       >
-        <div className='bg-[#2a475e] rounded-lg hover:bg-opacity-70 mb-3'>
-          <div className='flex rounded-md py-5 my-auto'>
+        <div className='bg-hero-pattern rounded-lg  mb-3'>
+          <div className='flex rounded-md py-6 my-auto'>
             <div className='my-auto ml-5 mr-3'>
               <div className='w-20 h-20'>
                 {data?.steam.getAvatar ? (
                   <img src={data?.steam.getAvatar}></img>
                 ) : (
-                  <div className='w-20 h-20'></div>
+                  <FaFileImage className='w-20 h-20 mx-auto text-center p-3 text-white' />
                 )}
               </div>
             </div>
             <div className='my-auto mr-3'>
               <p className='text-md sm:text-lg text-gray-200'>
-                {data?.steam.getPersonName}
+                {data?.steam.getPersonName ? data?.steam.getPersonName : '~'}
+                <div className='text-md font-semibold sm:text-lg text-white'>
+                  {data?.steam.getGames === false ? (
+                    <p>{data?.steam.getStatus ? data?.steam.getStatus : '-'}</p>
+                  ) : (
+                    <p className='text-green-300 drop-shadow-2xl '>
+                      {data?.steam.getGames}
+                    </p>
+                  )}
+                </div>
               </p>
-              <div className='text-md font-semibold sm:text-lg text-white'>
-                {data?.steam.getGames === false ? (
-                  <p>{data?.steam.getStatus}</p>
-                ) : (
-                  <p className='text-[#1DB954]'>{data?.steam.getGames}</p>
-                )}
-              </div>
             </div>
           </div>
         </div>
       </a>
       <div className='grid grid-cols-1 gap-3'>
         {items['response']['games'].slice(0, 2).map((item) => (
-          <div
-            key={item.appid}
-            className='border border-opacity-20 sm:p-5 p-2 rounded-md'
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href={`https://store.steampowered.com/app/${item.appid}`}
           >
-            <h1 className='font-sans font-normal text-gray-300 text-md sm:text-lg mx-2'>
-              {item.name}
-            </h1>
-            <p className='font-sans mx-2 font-semibold text-white text-md md:text-lg'>
-              {parseInt(item.playtime_forever / 60) + 1} Hours
-            </p>
-          </div>
+            <div
+              key={item.appid}
+              className='border border-opacity-20 sm:p-5 p-2 rounded-md hover:bg-mybg'
+            >
+              <h1 className='font-sans font-normal text-gray-300 text-md sm:text-lg mx-2'>
+                {item.name}
+              </h1>
+              <p className='font-sans mx-2 font-semibold text-white text-md md:text-lg'>
+                {parseInt(item.playtime_forever / 60) + 1} Hours
+              </p>
+            </div>
+          </a>
         ))}
       </div>
     </section>

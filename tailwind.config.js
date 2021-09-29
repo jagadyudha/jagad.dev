@@ -17,6 +17,9 @@ module.exports = {
         mybglight: '#FFFFFF',
         pink: colors.pink,
       },
+      backgroundImage: {
+        'hero-pattern': "url('/bgsteam.jpg')",
+      },
     },
   },
   variants: {

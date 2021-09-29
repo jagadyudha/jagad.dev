@@ -22,7 +22,7 @@ const Projects = ({ items }) => {
         ))}
       </div>
       <a href='projects' className='justify-center flex flex-row text-center'>
-        <span className='font-sans font-semibold text-lg text-myorange mx-2 hover:underline'>
+        <span className='font-sans font-semibold text-lg text-myorange mx-2 my-5 hover:underline'>
           View all Projects ➔
         </span>
       </a>
