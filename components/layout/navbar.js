@@ -2,9 +2,9 @@ import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { VscChromeClose } from 'react-icons/vsc';
-import { FaSpotify } from 'react-icons/fa';
 import Link from 'next/link';
-import useSWR from 'swr';
+import { useRouter } from 'next/router';
+import { NowPlaying } from '../nowplaying';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -14,8 +14,7 @@ const navigation = [
 ];
 
 export default function Navbar() {
-  const fetcher = (url) => fetch(url).then((res) => res.json());
-  const { data } = useSWR('/api/nowplaying', fetcher);
+  const router = useRouter();
 
   return (
     <div className='sticky top-0 z-50 bg-mydark  backdrop-filter backdrop-blur-lg bg-opacity-60'>
@@ -24,25 +23,7 @@ export default function Navbar() {
           <nav className='flex max-w-3xl mx-auto text-center sm:text-right py-4 items-center justify-between px-5'>
             <div className='flex items-center flex-grow flex-shrink-0 lg:flex-grow-0'>
               <div className='flex items-center justify-between w-full md:w-auto'>
-                <div className='flex'>
-                  <FaSpotify className='text-[#1DB954] text-xl my-auto mr-5' />
-                  <div className='my-auto text-left'>
-                    <div className='font-sans font-normal text-white sm:text-lg text-md'>
-                      {data?.music.is_playing ? (
-                        <a
-                          className='hover:text-myorange'
-                          href={data.music.getUrl}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                        >
-                          {`${data.music.getData}`}
-                        </a>
-                      ) : (
-                        <div>Not Playing</div>
-                      )}
-                    </div>
-                  </div>
-                </div>
+                <NowPlaying />
                 <div className='-mr-2 flex items-center md:hidden'>
                   <Popover.Button className='bg-mybg rounded-md p-2 inline-flex items-center justify-center text-gray-300 hove:bg-opacity-80'>
                     <GiHamburgerMenu className='text-lg text-white' />
@@ -53,9 +34,13 @@ export default function Navbar() {
             <div className='hidden md:block md:ml-10 md:pr-4 md:space-x-8'>
               {navigation.map((item) => (
                 <Link key={item.name} href={item.href}>
-                  <a className='font-medium text-gray-200 hover:text-myorange'>
-                    {item.name}
-                  </a>
+                  {item.href === router.asPath ? (
+                    <a className='font-medium text-gray-200 py-2 border-b-2'>
+                      {item.name}
+                    </a>
+                  ) : (
+                    <a className='font-medium text-gray-200'>{item.name}</a>
+                  )}
                 </Link>
               ))}
             </div>
@@ -86,12 +71,21 @@ export default function Navbar() {
               <div className='px-4 pt-2 pb-3 space-y-1'>
                 {navigation.map((item) => (
                   <Link key={item.name} href={item.href}>
-                    <a
-                      href={item.href}
-                      className='block px-3 py-2 rounded-md text-base font-normal text-white'
-                    >
-                      {item.name}
-                    </a>
+                    {item.href === router.asPath ? (
+                      <a
+                        href={item.href}
+                        className='block px-3 py-2 rounded-md text-base font-normal text-myorange'
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className='block px-3 py-2 rounded-md text-base font-normal text-white'
+                      >
+                        {item.name}
+                      </a>
+                    )}
                   </Link>
                 ))}
               </div>

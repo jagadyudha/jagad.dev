@@ -3,8 +3,11 @@ import Layout from '../components/layout/layout';
 import { ThemeProvider } from 'next-themes';
 import { DefaultSeo } from 'next-seo';
 import { cardOpenGraph, cardTwitter } from '../lib/seo';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 export default function MyApp({ Component, pageProps }) {
+  const router = useRouter();
   return (
     <ThemeProvider attribute='class'>
       <DefaultSeo
@@ -14,10 +17,22 @@ export default function MyApp({ Component, pageProps }) {
         openGraph={cardOpenGraph}
         twitter={cardTwitter}
       />
-      <Layout>
-        <div className='max-w-2xl px-8 mx-auto my-8 sm:my-14'>
+      <Layout key={router.asPath}>
+        <motion.div
+          initial='pageInitial'
+          animate='pageAnimate'
+          variants={{
+            pageInitial: {
+              opacity: 0,
+            },
+            pageAnimate: {
+              opacity: 1,
+            },
+          }}
+          className='max-w-2xl px-8 mx-auto my-8 sm:my-14'
+        >
           <Component {...pageProps} />
-        </div>
+        </motion.div>
       </Layout>
     </ThemeProvider>
   );

@@ -25,11 +25,12 @@ export default async function handler(req, res) {
       ? `${getTitleArtist.slice(0, 25)}...`
       : getTitleArtist;
   const getUrl = music.item.external_urls.spotify;
+  const is_playing = music.is_playing;
   return res.status(200).json({
     music: {
       getData,
       getUrl,
-      is_playing: true,
+      is_playing,
     },
   });
 }
