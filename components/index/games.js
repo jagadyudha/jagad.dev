@@ -1,10 +1,9 @@
 import useSWR from 'swr';
-import { IoLogoGameControllerB } from 'react-icons/io5';
 
 const Games = ({ items }) => {
   const fetcher = (url) => fetch(url).then((res) => res.json());
   const { data } = useSWR('/api/playersummaries', fetcher);
-  if (!data) return <div>Please wait...</div>;
+
   return (
     <section className='mb-16 container'>
       <h1 className='font-sans font-bold text-white sm:text-4xl text-3xl mb-1'>
@@ -21,7 +20,13 @@ const Games = ({ items }) => {
         <div className='bg-[#2a475e] rounded-lg hover:bg-opacity-70 mb-3'>
           <div className='flex rounded-md py-5 my-auto'>
             <div className='my-auto ml-5 mr-3'>
-              <img className='w-20 h-20' src={data?.steam.getAvatar}></img>
+              <div className='w-20 h-20'>
+                {data?.steam.getAvatar ? (
+                  <img src={data?.steam.getAvatar}></img>
+                ) : (
+                  <div className='w-20 h-20'></div>
+                )}
+              </div>
             </div>
             <div className='my-auto mr-3'>
               <p className='text-md sm:text-lg text-gray-200'>
