@@ -4,6 +4,7 @@ import { IoLogoGameControllerB } from 'react-icons/io5';
 const Games = ({ items }) => {
   const fetcher = (url) => fetch(url).then((res) => res.json());
   const { data } = useSWR('/api/playersummaries', fetcher);
+  if (!data) return <div>Please wait...</div>;
   return (
     <section className='mb-16 container'>
       <h1 className='font-sans font-bold text-white sm:text-4xl text-3xl mb-1'>
