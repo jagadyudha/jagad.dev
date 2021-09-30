@@ -13,7 +13,7 @@ export default function MyApp({ Component, pageProps }) {
       <DefaultSeo
         title='Jagad Yudha - Frontend Developer'
         description='website for collection all the best works I made as a front-end developer.'
-        canonical='Jagad Yudha - Frontend Developer'
+        canonical='https://jagad.xyz'
         openGraph={cardOpenGraph}
         twitter={cardTwitter}
       />
