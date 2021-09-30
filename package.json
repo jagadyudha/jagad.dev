@@ -4,6 +4,7 @@
     "predeploy": "npm run build",
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install"
@@ -29,6 +30,7 @@
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.0",
+    "next-sitemap": "^1.6.168",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.7"
   }
