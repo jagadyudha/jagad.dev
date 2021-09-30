@@ -11,7 +11,7 @@ const Games = ({ items }) => {
         Game Activity
       </h1>
       <p className='font-sans font-normal sm:text-lg text-md text-gray-300  mb-10'>
-        Sometimes i play video games.
+        Sometimes I play video games.
       </p>
       <a
         href='https://steamcommunity.com/profiles/76561198324704779/'
@@ -24,11 +24,12 @@ const Games = ({ items }) => {
               <div className='w-20 h-20'>
                 {data?.steam.getAvatar ? (
                   <img
+                    className='rounded-lg'
                     src={data?.steam.getAvatar}
                     alt='steam profil picture'
                   ></img>
                 ) : (
-                  <FaFileImage className='w-20 h-20 mx-auto text-center p-3 text-white' />
+                  <FaFileImage className='w-10 h-10 mx-auto text-center p-3 text-white opacity-50' />
                 )}
               </div>
             </div>

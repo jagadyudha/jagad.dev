@@ -17,7 +17,7 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
-    <div className='sticky top-0 z-50 bg-mydark  backdrop-filter backdrop-blur-lg bg-opacity-60'>
+    <div className='sticky top-0 z-50 bg-mydark backdrop-filter backdrop-blur-lg bg-opacity-60'>
       <Popover>
         <div className='sm:py-2 py-0'>
           <nav className='flex max-w-3xl mx-auto text-center sm:text-right py-4 items-center justify-between px-5'>

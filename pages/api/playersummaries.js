@@ -23,12 +23,12 @@ export default async function handler(req, res) {
   const getAvatar = steam.response.players[0].avatarfull;
   const getStatus =
     steam.response.players[0].personastate === 1
-      ? '💚 Online'
+      ? 'Online 😆'
       : steam.response.players[0].personastate === 2
-      ? '🖤 Busy'
+      ? 'Busy 😐'
       : steam.response.players[0].personastate === 3
-      ? '💛 Away'
-      : '❤️ Offline';
+      ? 'Away 🥱'
+      : 'Offline 😴';
 
   const getGames = !steam.response.players[0].gameextrainfo
     ? false
