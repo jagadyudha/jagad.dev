@@ -7,7 +7,7 @@ const Header = () => {
         Jagad Yudha Awali
       </h1>
       <div className='font-sans flex-1 sm:text-lg text-md text-gray-300 my-5'>
-        I&apos;m a front-end developer & UI/UX designer based on Sidoarjo,
+        I&apos;m a front-end engineer & UI/UX designer based on Sidoarjo,
         Indonesia. Interested working on front-end and currently learning about
         react native framework. if you want to work with me or ask something,
         reach me via{' '}
