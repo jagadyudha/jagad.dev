@@ -56,7 +56,7 @@ const projectsSlug = ({ projects }) => {
           description: contentDesc,
           images: [
             {
-              url: `https:${contentImgUrl}`,
+              url: `${contentImgUrl}`,
               width: contentImgWidth,
               height: contentImgHeight,
               alt: contentTitle,
