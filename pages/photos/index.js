@@ -3,18 +3,30 @@ import Link from 'next/link';
 import { getContentful } from '../../lib/contentful';
 import { NextSeo } from 'next-seo';
 import { cardOpenGraph, cardTwitter } from '../../lib/seo';
+import { getPlaiceholder } from 'plaiceholder';
 
 export const getStaticProps = async () => {
   const res = await getContentful('photo');
+  const plaiceholders = await Promise.all(
+    res.data.items.map(async (item) => {
+      const { base64 } = await getPlaiceholder(
+        `https:${item.fields.img[0].fields.file.url}`
+      );
+
+      return base64;
+    })
+  ).then((values) => values);
+
   return {
     props: {
       photos: res.data.items,
+      plaiceholders,
     },
     revalidate: 1,
   };
 };
 
-const photos = ({ photos }) => {
+const photos = ({ photos, plaiceholders }) => {
   return (
     <>
       <NextSeo
@@ -28,7 +40,7 @@ const photos = ({ photos }) => {
         Photos
       </h1>
       <div>
-        {photos.map((item) => {
+        {photos.map((item, index) => {
           const contentTitle = item.fields.title;
           const contentSlug = `photos/${item.fields.slug}`;
           const contentImgUrl = `https:${item.fields.img[0].fields.file.url}`;
@@ -41,6 +53,7 @@ const photos = ({ photos }) => {
               <Link href={contentSlug}>
                 <a>
                   <Image
+                    blurDataURL={plaiceholders[index]}
                     width={500}
                     height={500}
                     layout='responsive'
