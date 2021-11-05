@@ -53,6 +53,7 @@ const photos = ({ photos, plaiceholders }) => {
               <Link href={contentSlug}>
                 <a>
                   <Image
+                    placeholder='blur'
                     blurDataURL={plaiceholders[index]}
                     width={500}
                     height={500}
