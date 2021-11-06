@@ -5,6 +5,7 @@ import { MARKS, BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { nord } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { NextSeo } from 'next-seo';
+import { getPlaiceholder } from 'plaiceholder';
 
 export const getStaticPaths = async () => {
   const res = await getContentful('project');
@@ -23,16 +24,20 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const items = await getSlugContentful('project', params.slug);
+  const { base64 } = await getPlaiceholder(
+    `https:${items.data.items[0].fields.header.fields.file.url}`
+  );
 
   return {
     props: {
       projects: items.data.items[0],
+      plaiceholders: base64,
     },
     revalidate: 1,
   };
 };
 
-const projectsSlug = ({ projects }) => {
+const projectsSlug = ({ projects, plaiceholders }) => {
   if (!projects) return <div>Loading...</div>;
   const contentTitle = projects.fields.title;
   const contentSlug = projects.fields.slug;
@@ -89,6 +94,8 @@ const projectsSlug = ({ projects }) => {
           layout='responsive'
           src={contentImgUrl}
           alt={contentTitle}
+          placeholder='blur'
+          blurDataURL={plaiceholders}
         ></Image>
       </div>
       <div>

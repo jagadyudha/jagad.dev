@@ -3,24 +3,31 @@ import Link from 'next/link';
 import { createClient } from 'contentful';
 import { NextSeo } from 'next-seo';
 import { cardOpenGraph, cardTwitter } from '../../lib/seo';
+import { getContentful } from '../../lib/contentful';
+import { getPlaiceholder } from 'plaiceholder';
 
 export async function getStaticProps() {
-  const client = createClient({
-    space: process.env.CONTENTFULL_SPACE_PROJECT,
-    accessToken: process.env.CONTENTFULL_TOKEN_PROJECT,
-  });
+  const res = await getContentful('project');
+  const plaiceholders = await Promise.all(
+    res.data.items.map(async (item) => {
+      const { base64 } = await getPlaiceholder(
+        `https:${item.fields.header.fields.file.url}`
+      );
 
-  const res = await client.getEntries({ content_type: 'project' });
+      return base64;
+    })
+  ).then((values) => values);
 
   return {
     props: {
-      projects: res.items,
+      projects: res.data.items,
+      plaiceholders,
     },
     revalidate: 1,
   };
 }
 
-const projects = ({ projects }) => {
+const projects = ({ projects, plaiceholders }) => {
   return (
     <>
       <NextSeo
@@ -34,7 +41,7 @@ const projects = ({ projects }) => {
         Projects
       </h1>
       <div className='mx-auto my-10'>
-        {projects.map((item) => {
+        {projects.map((item, index) => {
           const contentTitle = item.fields.title;
           const contentWidth =
             item.fields.header.fields.file.details.image.width;
@@ -58,6 +65,8 @@ const projects = ({ projects }) => {
                     className='rounded-t-md'
                     src={contentUrl}
                     alt={contentTitle}
+                    placeholder='blur'
+                    blurDataURL={plaiceholders[index]}
                   ></Image>
                   <h1 className='font-sans font-bold text-white text-lg mx-5 my-5'>
                     {contentTitle}

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import { getContentful, getSlugContentful } from '../../lib/contentful';
+import { getPlaiceholder } from 'plaiceholder';
 
 export const getStaticPaths = async () => {
   const res = await getContentful('photo');
@@ -9,6 +10,7 @@ export const getStaticPaths = async () => {
       params: { slug: item.fields.slug },
     };
   });
+
   return {
     paths,
     fallback: true,
@@ -17,15 +19,23 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const items = await getSlugContentful('photo', params.slug);
+  const plaiceholders = await Promise.all(
+    items.data.items[0].fields.img.map(async (item) => {
+      const { base64 } = await getPlaiceholder(`https:${item.fields.file.url}`);
+
+      return base64;
+    })
+  ).then((values) => values);
   return {
     props: {
       photos: items.data.items[0],
+      plaiceholders,
     },
     revalidate: 1,
   };
 };
 
-const photosSlug = ({ photos }) => {
+const photosSlug = ({ photos, plaiceholders }) => {
   if (!photos) return <div>Loading...</div>;
   const contentTitle = photos.fields.title;
   const contentSlug = photos.fields.slug;
@@ -64,12 +74,14 @@ const photosSlug = ({ photos }) => {
       </div>
       <div className='pb-10 my-10'>
         <div className='grid grid-cols-1 gap-5'>
-          {contentImg.map((item) => {
+          {contentImg.map((item, index) => {
             const imgUrl = item.fields.file.url;
             const imgTitle = photos.fields.img[0].fields.title;
             return (
               <div key={item.fields.file.url}>
                 <Image
+                  blurDataURL={plaiceholders[index]}
+                  placeholder='blur'
                   width={500}
                   height={500}
                   layout='responsive'
