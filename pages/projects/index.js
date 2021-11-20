@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { createClient } from 'contentful';
 import { NextSeo } from 'next-seo';
 import { cardOpenGraph, cardTwitter } from '../../lib/seo';
 import { getContentful } from '../../lib/contentful';

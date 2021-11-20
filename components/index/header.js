@@ -7,9 +7,9 @@ const Header = () => {
         Jagad Yudha Awali
       </h1>
       <div className='font-sans flex-1 sm:text-lg text-md text-gray-300 my-5'>
-        I&apos;m a Software Engineer & UI/UX designer based on Sidoarjo,
-        Indonesia. Interested working on Frontend and currently learning about
-        react.js & ract native. if you want to work with me or ask something,
+        I&apos;m a software engineer & ui/ux designer based on sidoarjo,
+        indonesia. Interested working on frontend and currently learning about
+        react.Js & ract native. If you want to work with me or ask something,
         reach me via{' '}
         <Link
           href='mailto:jagadyudhaawali@gmail.com'

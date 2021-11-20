@@ -18,10 +18,10 @@ const Games = ({ items }) => {
         target='_blank'
         rel='noopener noreferrer'
       >
-        <div className='bg-hero-pattern rounded-lg  mb-3'>
+        <div className='bg-hero-pattern bg-cover rounded-lg mb-3'>
           <div className='flex rounded-md py-6 my-auto'>
             <div className='my-auto ml-5 mr-3'>
-              <div className='w-20 h-20'>
+              <div className='w-20 h-20 flex items-center justify-center'>
                 {data?.steam.getAvatar ? (
                   <img
                     className='rounded-lg'
@@ -29,7 +29,7 @@ const Games = ({ items }) => {
                     alt='steam profil picture'
                   ></img>
                 ) : (
-                  <FaFileImage className='w-10 h-10 mx-auto text-center p-3 text-white opacity-50' />
+                  <FaFileImage className='w-12 h-12 mx-auto text-center p-3 text-white opacity-50' />
                 )}
               </div>
             </div>
