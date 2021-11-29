@@ -13,7 +13,7 @@ module.exports = {
         myorangelight: '#C25C23',
         mydark: '#171717',
         mylight: '#F3F4F6',
-        mybg: '#2E2E2E',
+        mybg: '#252525',
         mybglight: '#FFFFFF',
         pink: colors.pink,
       },

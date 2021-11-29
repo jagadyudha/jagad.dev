@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/image';
 import { getContentful, getSlugContentful } from '../../lib/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { MARKS, BLOCKS, INLINES } from '@contentful/rich-text-types';

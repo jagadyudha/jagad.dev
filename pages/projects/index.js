@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/image';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import { cardOpenGraph, cardTwitter } from '../../lib/seo';

@@ -1,4 +1,5 @@
-import Image from 'next/image';
+import Image from '@/components/image';
+import Link from 'next/link';
 
 const Photos = ({ items }) => {
   return (
@@ -14,25 +15,29 @@ const Photos = ({ items }) => {
         {items.slice(0, 1).map((item) => (
           <div key={item.fields.title}>
             <div className='pb-5'>
-              <a href={'/photos/' + item.fields.slug}>
-                <Image
-                  width={500}
-                  height={500}
-                  layout='responsive'
-                  className='rounded-md'
-                  src={'https:' + item.fields.img[0].fields.file.url}
-                  alt={item.fields.slug}
-                />
-              </a>
+              <Link href={`/photos/${item.fields.slug}`}>
+                <a>
+                  <Image
+                    width={500}
+                    height={500}
+                    layout='responsive'
+                    className='rounded-md'
+                    src={'https:' + item.fields.img[0].fields.file.url}
+                    alt={item.fields.slug}
+                  />
+                </a>
+              </Link>
             </div>
           </div>
         ))}
       </div>
-      <a href='photos' className='justify-center flex flex-row text-center'>
-        <span className='font-sans font-semibold text-lg text-myorange mx-2 my-5 hover:underline'>
-          View all Photos ➔
-        </span>
-      </a>
+      <Link href='photos'>
+        <a className='justify-center flex flex-row text-center'>
+          <span className='font-sans font-semibold text-lg text-myorange mx-2 my-5 hover:underline'>
+            View all Photos ➔
+          </span>
+        </a>
+      </Link>
     </div>
   );
 };

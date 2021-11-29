@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/image';
 import Link from 'next/link';
 import { getContentful } from '../../lib/contentful';
 import { NextSeo } from 'next-seo';
@@ -48,7 +48,7 @@ const photos = ({ photos, plaiceholders }) => {
           return (
             <div
               key={contentTitle}
-              className='bg-mybg shadow-xl pb-10 my-10 sm:my-20 rounded-md'
+              className='bg-mybg pb-10 my-10 sm:my-20 rounded-md'
             >
               <Link href={contentSlug}>
                 <a>

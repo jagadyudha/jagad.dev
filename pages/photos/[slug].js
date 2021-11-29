@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/image';
 import { NextSeo } from 'next-seo';
 import { getContentful, getSlugContentful } from '../../lib/contentful';
 import { getPlaiceholder } from 'plaiceholder';
