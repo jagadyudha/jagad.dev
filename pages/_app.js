@@ -62,7 +62,7 @@ export default function MyApp({ Component, pageProps }) {
               opacity: 1,
             },
           }}
-          className='max-w-2xl px-8 mx-auto my-8 sm:my-14'
+          className='max-w-3xl px-8 mx-auto my-8 sm:my-14'
         >
           <Component {...pageProps} />
         </motion.div>

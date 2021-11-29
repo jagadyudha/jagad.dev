@@ -57,16 +57,17 @@ const projects = ({ projects, plaiceholders }) => {
             >
               <Link href={contentSlug}>
                 <a>
-                  <Image
-                    width={contentWidth}
-                    height={contentHeight}
-                    layout='responsive'
-                    className='rounded-t-md'
-                    src={contentUrl}
-                    alt={contentTitle}
-                    placeholder='blur'
-                    blurDataURL={plaiceholders[index]}
-                  ></Image>
+                  <div className='rounded-t-md relative object-cover overflow-hidden'>
+                    <Image
+                      width={contentWidth}
+                      height={contentHeight}
+                      layout='responsive'
+                      src={contentUrl}
+                      alt={contentTitle}
+                      placeholder='blur'
+                      blurDataURL={plaiceholders[index]}
+                    ></Image>
+                  </div>
                   <h1 className='font-sans font-bold text-white text-lg mx-5 my-5'>
                     {contentTitle}
                   </h1>

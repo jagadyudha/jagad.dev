@@ -79,16 +79,17 @@ const photosSlug = ({ photos, plaiceholders }) => {
             const imgTitle = photos.fields.img[0].fields.title;
             return (
               <div key={item.fields.file.url}>
-                <Image
-                  blurDataURL={plaiceholders[index]}
-                  placeholder='blur'
-                  width={500}
-                  height={500}
-                  layout='responsive'
-                  src={`https:${imgUrl}`}
-                  className='w-full'
-                  alt={imgTitle}
-                />
+                <div className='rounded-lg relative object-cover overflow-hidden'>
+                  <Image
+                    blurDataURL={plaiceholders[index]}
+                    placeholder='blur'
+                    width={500}
+                    height={500}
+                    layout='responsive'
+                    src={`https:${imgUrl}`}
+                    alt={imgTitle}
+                  />
+                </div>
                 <p className='text-center text-white text-md'>{imgTitle}</p>
               </div>
             );

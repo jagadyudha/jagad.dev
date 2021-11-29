@@ -48,20 +48,21 @@ const photos = ({ photos, plaiceholders }) => {
           return (
             <div
               key={contentTitle}
-              className='bg-mybg pb-10 my-10 sm:my-20 rounded-md'
+              className='bg-mybg shadow-xl pb-10 my-10 sm:my-20 rounded-md'
             >
               <Link href={contentSlug}>
                 <a>
-                  <Image
-                    placeholder='blur'
-                    blurDataURL={plaiceholders[index]}
-                    width={500}
-                    height={500}
-                    layout='responsive'
-                    src={contentImgUrl}
-                    alt={contentTitle}
-                    className='rounded-t-md'
-                  />
+                  <div className='rounded-t-md relative object-cover overflow-hidden'>
+                    <Image
+                      placeholder='blur'
+                      blurDataURL={plaiceholders[index]}
+                      width={500}
+                      height={500}
+                      layout='responsive'
+                      src={contentImgUrl}
+                      alt={contentTitle}
+                    />
+                  </div>
 
                   <h1 className='font-sans font-bold text-white sm:text-lg text-md mx-5 my-5'>
                     {contentTitle}

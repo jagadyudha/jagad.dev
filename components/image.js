@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import NextImage from 'next/image';
 
-function Image({ ...props }) {
+function Image({ onLoadingComplete, customClass, ...props }) {
   const [isReady, setIsReady] = useState(false);
 
   const onLoadCallback = () => {
     setIsReady(true);
   };
   return (
-    <div
-      className={`transition duration-400 ${
-        isReady ? 'opacity-100' : 'opacity-0'
+    <NextImage
+      className={`transform-gpu duration-1000 ${
+        isReady ? 'scale-100' : 'scale-150'
       }`}
-    >
-      <NextImage onLoad={onLoadCallback} {...props} />
-    </div>
+      {...props}
+      onLoadingComplete={onLoadCallback}
+    />
   );
 }
 

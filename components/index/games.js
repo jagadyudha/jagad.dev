@@ -1,6 +1,6 @@
 import useSWR from 'swr';
+import Image from '@/components/image';
 import { FaFileImage } from 'react-icons/fa';
-
 const Games = ({ items }) => {
   const fetcher = (url) => fetch(url).then((res) => res.json());
   const { data } = useSWR('/api/playersummaries', fetcher);
@@ -18,39 +18,67 @@ const Games = ({ items }) => {
         target='_blank'
         rel='noopener noreferrer'
       >
-        <div className='bg-hero-pattern bg-cover rounded-lg mb-3'>
-          <div className='flex rounded-md py-6 my-auto'>
-            <div className='my-auto ml-5 mr-3'>
-              <div className='w-20 h-20 flex items-center justify-center'>
-                {data?.steam.getAvatar ? (
-                  <img
-                    className='rounded-lg'
-                    src={data?.steam.getAvatar}
-                    alt='steam profil picture'
-                  ></img>
-                ) : (
-                  <FaFileImage className='w-12 h-12 mx-auto text-center p-3 text-white opacity-50' />
-                )}
-              </div>
-            </div>
-            <div className='my-auto mr-3'>
-              <p className='text-md sm:text-lg text-gray-200'>
-                {data?.steam.getPersonName ? data?.steam.getPersonName : '~'}
-                <div className='text-md font-semibold sm:text-lg text-white'>
-                  {data?.steam.getGames === false ? (
-                    <p>{data?.steam.getStatus ? data?.steam.getStatus : '-'}</p>
+        <div className='rounded-lg items-center pt-2 border border-opacity-10'>
+          <div className='mx-2 rounded-md'>
+            <div className='flex py-6 my-auto rounded-md'>
+              <div className='my-auto ml-5 mr-4'>
+                <div className='w-20 h-20 flex items-center justify-center'>
+                  {data?.steam.getAvatar ? (
+                    <Image
+                      className='rounded-lg'
+                      src={data?.steam.getAvatar}
+                      width={100}
+                      height={100}
+                      alt='steam profil picture'
+                    />
                   ) : (
-                    <p className='text-green-300 drop-shadow-2xl '>
-                      {data?.steam.getGames}
-                    </p>
+                    <FaFileImage className='w-12 h-12 mx-auto text-center p-3 text-white opacity-50' />
                   )}
                 </div>
-              </p>
+              </div>
+              <div className='my-auto mr-3'>
+                <p className='text-md sm:text-lg text-gray-200'>
+                  {data?.steam.getPersonName ? data?.steam.getPersonName : '~'}
+                  <div className='text-md font-semibold sm:text-lg text-white'>
+                    {data?.steam.getGames === false ? (
+                      <p>
+                        {data?.steam.getStatus ? data?.steam.getStatus : '-'}
+                      </p>
+                    ) : (
+                      <p className='text-green-500 drop-shadow-2xl '>
+                        {data?.steam.getGames}
+                      </p>
+                    )}
+                  </div>
+                </p>
+              </div>
             </div>
+          </div>
+
+          <div className='grid xl:grid-cols-2 grid-cols-1 gap-2 px-2 py-2'>
+            {items['response']['games'].slice(0, 2).map((item) => (
+              <a
+                key={item.appid}
+                target='_blank'
+                rel='noopener noreferrer'
+                href={`https://store.steampowered.com/app/${item.appid}`}
+              >
+                <div className='rounded-md'>
+                  <div className='sm:p-5 p-2 rounded-md bg-mybg'>
+                    <h1 className='font-sans font-normal text-gray-300 text-md sm:text-lg mx-2'>
+                      {item.name}
+                    </h1>
+                    <p className='font-sans mx-2 font-semibold text-white text-md md:text-lg'>
+                      {parseInt(item.playtime_forever / 60) + 1} Hours
+                    </p>
+                  </div>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </a>
-      <div className='grid grid-cols-1 gap-3'>
+      {/* <div className='grid grid-cols-1 gap-3'>
         {items['response']['games'].slice(0, 2).map((item) => (
           <a
             key={item.appid}
@@ -68,7 +96,7 @@ const Games = ({ items }) => {
             </div>
           </a>
         ))}
-      </div>
+      </div> */}
     </section>
   );
 };

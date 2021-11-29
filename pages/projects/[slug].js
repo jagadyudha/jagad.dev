@@ -86,9 +86,8 @@ const projectsSlug = ({ projects, plaiceholders }) => {
             </span>
           ))}
       </div>
-      <div>
+      <div className='rounded-lg relative object-cover overflow-hidden'>
         <Image
-          className='rounded-lg'
           width={contentImgWidth}
           height={contentImgHeight}
           layout='responsive'
