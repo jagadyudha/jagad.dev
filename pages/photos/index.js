@@ -4,6 +4,7 @@ import { getContentful } from '../../lib/contentful';
 import { NextSeo } from 'next-seo';
 import { cardOpenGraph, cardTwitter } from '../../lib/seo';
 import { getPlaiceholder } from 'plaiceholder';
+import DataSeo from '@/_data/seo.json';
 
 export const getStaticProps = async () => {
   const res = await getContentful('photo');
@@ -26,18 +27,18 @@ export const getStaticProps = async () => {
   };
 };
 
-const photos = ({ photos, plaiceholders }) => {
+const Photos = ({ photos, plaiceholders }) => {
   return (
     <>
       <NextSeo
-        title='Photo - Jagad Yudha'
-        description='Collection of momment that I capture'
-        canonical='Jagad Yudha - Frontend Developer'
+        title='Photos - Jagad Yudha Awali'
+        description='photo that I have taken.'
+        canonical={`${DataSeo.url}/photos`}
         openGraph={cardOpenGraph}
         twitter={cardTwitter}
       />
       <h1 className='font-sans font-bold text-white sm:text-5xl text-3xl'>
-        Photos
+        Photo that I have taken
       </h1>
       <div>
         {photos.map((item, index) => {
@@ -80,4 +81,4 @@ const photos = ({ photos, plaiceholders }) => {
   );
 };
 
-export default photos;
+export default Photos;

@@ -4,6 +4,9 @@
     "paths": {
       "@/components/*": [
         "components/*"
+      ],
+      "@/_data/*": [
+        "_data/*"
       ]
     }
   }

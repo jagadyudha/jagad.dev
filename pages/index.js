@@ -6,6 +6,7 @@ import Photos from '../components/index/photos';
 import { getContentful } from '../lib/contentful';
 import { getRecentlyPlayed } from '../lib/spotify';
 import { getRecentlyGames } from '../lib/steam';
+import { getPlaiceholder } from 'plaiceholder';
 
 export async function getStaticProps() {
   const projects = await getContentful('project');
@@ -13,25 +14,36 @@ export async function getStaticProps() {
   const games = await getRecentlyGames();
   const spotify = await getRecentlyPlayed();
 
+  const plaiceholders = await Promise.all(
+    photos.data.items.map(async (item) => {
+      const { base64 } = await getPlaiceholder(
+        `https:${item.fields.img[0].fields.file.url}`
+      );
+
+      return base64;
+    })
+  ).then((values) => values);
+
   return {
     props: {
       projects: projects.data.items,
       photos: photos.data.items,
       games,
       spotify,
+      plaiceholders,
     },
     revalidate: 1,
   };
 }
 
-const Home = ({ games, projects, spotify, photos }) => {
+const Home = ({ games, projects, spotify, photos, plaiceholders }) => {
   return (
     <main>
       <Header />
       <Games items={games} />
       <Projects items={projects} />
       <Spotify items={spotify} />
-      <Photos items={photos} />
+      <Photos items={photos} plaiceholders={plaiceholders} />
     </main>
   );
 };

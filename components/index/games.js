@@ -10,7 +10,7 @@ const Games = ({ items }) => {
       <h1 className='font-sans font-bold text-white sm:text-4xl text-3xl mb-1'>
         Game Activity
       </h1>
-      <p className='font-sans font-normal sm:text-lg text-md text-gray-300  mb-10'>
+      <p className='font-sans font-normal sm:text-lg text-md text-gray-300 mb-10'>
         Sometimes I play video games.
       </p>
       <a
@@ -18,11 +18,11 @@ const Games = ({ items }) => {
         target='_blank'
         rel='noopener noreferrer'
       >
-        <div className='rounded-lg items-center pt-2 border border-opacity-10'>
-          <div className='mx-2 rounded-md'>
+        <div className='rounded-lg items-center pt-2 bg-gradient-to-tr from-mybg to-myorangelight'>
+          <div className='mx-2 rounded-md bg-white bg-opacity-10 backdrop-blur-sm'>
             <div className='flex py-6 my-auto rounded-md'>
               <div className='my-auto ml-5 mr-4'>
-                <div className='w-20 h-20 flex items-center justify-center'>
+                <div className='w-20 h-20 flex items-center justify-center rounded-lg'>
                   {data?.steam.getAvatar ? (
                     <Image
                       className='rounded-lg'
@@ -55,7 +55,7 @@ const Games = ({ items }) => {
             </div>
           </div>
 
-          <div className='grid xl:grid-cols-2 grid-cols-1 gap-2 px-2 py-2'>
+          <div className='grid grid-cols-2 gap-2 px-2 py-2'>
             {items['response']['games'].slice(0, 2).map((item) => (
               <a
                 key={item.appid}
@@ -63,15 +63,16 @@ const Games = ({ items }) => {
                 rel='noopener noreferrer'
                 href={`https://store.steampowered.com/app/${item.appid}`}
               >
-                <div className='rounded-md'>
-                  <div className='sm:p-5 p-2 rounded-md bg-mybg'>
-                    <h1 className='font-sans font-normal text-gray-300 text-md sm:text-lg mx-2'>
-                      {item.name}
-                    </h1>
+                <div className='rounded-md bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg'>
+                  <img
+                    className='rounded-lg w-full opacity-70 grayscale hover:grayscale-0 transition duration-300'
+                    src={`http://media.steampowered.com/steamcommunity/public/images/apps/${item.appid}/${item.img_logo_url}.jpg`}
+                  />
+                  {/* <div className='sm:p-3 p-2'>
                     <p className='font-sans mx-2 font-semibold text-white text-md md:text-lg'>
                       {parseInt(item.playtime_forever / 60) + 1} Hours
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </a>
             ))}

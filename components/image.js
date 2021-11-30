@@ -9,7 +9,7 @@ function Image({ onLoadingComplete, customClass, ...props }) {
   };
   return (
     <NextImage
-      className={`transform-gpu duration-1000 ${
+      className={`transition duration-1000 ${
         isReady ? 'scale-100' : 'scale-150'
       }`}
       {...props}

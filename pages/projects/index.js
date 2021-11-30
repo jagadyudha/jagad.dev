@@ -4,6 +4,7 @@ import { NextSeo } from 'next-seo';
 import { cardOpenGraph, cardTwitter } from '../../lib/seo';
 import { getContentful } from '../../lib/contentful';
 import { getPlaiceholder } from 'plaiceholder';
+import DataSeo from '@/_data/seo.json';
 
 export async function getStaticProps() {
   const res = await getContentful('project');
@@ -26,18 +27,18 @@ export async function getStaticProps() {
   };
 }
 
-const projects = ({ projects, plaiceholders }) => {
+const Projects = ({ projects, plaiceholders }) => {
   return (
     <>
       <NextSeo
-        title='Project - Jagad Yudha'
-        description='project that I made so far'
-        canonical='Jagad Yudha - Frontend Developer'
+        title={'Projects - Jagad Yudha Awali'}
+        description={`This is a collection of projects I've worked on`}
+        canonical={`${DataSeo.url}/projects`}
         openGraph={cardOpenGraph}
         twitter={cardTwitter}
       />
       <h1 className='font-sans font-bold text-white sm:text-5xl text-3xl'>
-        Projects
+        Projects I've worked on
       </h1>
       <div className='mx-auto my-10'>
         {projects.map((item, index) => {
@@ -81,7 +82,7 @@ const projects = ({ projects, plaiceholders }) => {
                         .reverse()
                         .map((item) => (
                           <span
-                            className='bg-gray-600 text-center shadow-md text-white rounded-2xl text-sm p-2 font-sans font-normal mr-1'
+                            className='bg-white bg-opacity-10 text-center shadow-md text-white rounded-2xl text-sm p-2 font-sans font-normal mr-1'
                             key={item}
                           >
                             {item}
@@ -99,4 +100,4 @@ const projects = ({ projects, plaiceholders }) => {
   );
 };
 
-export default projects;
+export default Projects;

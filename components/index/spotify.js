@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { IoArrowForwardOutline } from 'react-icons/io5';
 
 const Spotify = ({ items }) => {
   const dataItems = items['items'];
@@ -8,7 +10,7 @@ const Spotify = ({ items }) => {
         Top Tracks
       </h1>
       <p className='font-sans font-normal sm:text-lg text-md text-gray-300  mb-10'>
-        what I&apos;m currently listening.
+        What I&apos;m currently listening to.
       </p>
 
       <div>
@@ -18,7 +20,7 @@ const Spotify = ({ items }) => {
           const trackUrl = item.track.external_urls.spotify;
           const trackArtist = item.track.artists[0].name;
           return (
-            <div key={item.track.name}>
+            <div key={item.track.name} className='border-b border-opacity-20'>
               <a
                 target='_blank'
                 rel='noopener noreferrer'
@@ -53,6 +55,17 @@ const Spotify = ({ items }) => {
           );
         })}
       </div>
+      <a
+        href='https://open.spotify.com/user/zhof3odxndrrhfp6qxnga05ld'
+        rel='noopener noreferrer'
+        target='_blank'
+        className='justify-left flex text-center items-center my-5 mt-10'
+      >
+        <span className='font-sans font-semibold text-lg text-myorange mr-2'>
+          Check Spotify Playlist
+        </span>
+        <IoArrowForwardOutline className=' text-myorange text-2xl' />
+      </a>
     </div>
   );
 };

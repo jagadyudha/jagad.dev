@@ -37,7 +37,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-const projectsSlug = ({ projects, plaiceholders }) => {
+const ProjectsSlug = ({ projects, plaiceholders }) => {
   if (!projects) return <div>Loading...</div>;
   const contentTitle = projects.fields.title;
   const contentSlug = projects.fields.slug;
@@ -79,7 +79,7 @@ const projectsSlug = ({ projects, plaiceholders }) => {
           .reverse()
           .map((item) => (
             <span
-              className='bg-gray-600 text-center shadow-md text-white rounded-2xl text-sm p-2 font-sans font-normal mx-1'
+              className='bg-white bg-opacity-10 text-center shadow-md text-white rounded-2xl text-sm p-2 font-sans font-normal mx-1'
               key={item}
             >
               {item}
@@ -103,7 +103,14 @@ const projectsSlug = ({ projects, plaiceholders }) => {
             [MARKS.CODE]: (children) => {
               return (
                 <SyntaxHighlighter
-                  lineProps={{ style: { paddingBottom: 8 } }}
+                  lineProps={{
+                    style: {
+                      wordBreak: 'break-all',
+                      whiteSpace: 'pre-wrap',
+                      overflow: 'hidden',
+                    },
+                  }}
+                  wrapLines={true}
                   wrapLines={true}
                   language='javascript'
                   style={nord}
@@ -163,4 +170,4 @@ const projectsSlug = ({ projects, plaiceholders }) => {
   );
 };
 
-export default projectsSlug;
+export default ProjectsSlug;
