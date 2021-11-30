@@ -38,7 +38,7 @@ const Projects = ({ projects, plaiceholders }) => {
         twitter={cardTwitter}
       />
       <h1 className='font-sans font-bold text-white sm:text-5xl text-3xl'>
-        Projects I've worked on
+        {`Projects I've worked on`}
       </h1>
       <div className='mx-auto my-10'>
         {projects.map((item, index) => {

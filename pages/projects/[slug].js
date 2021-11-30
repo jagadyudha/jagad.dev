@@ -111,7 +111,6 @@ const ProjectsSlug = ({ projects, plaiceholders }) => {
                     },
                   }}
                   wrapLines={true}
-                  wrapLines={true}
                   language='javascript'
                   style={nord}
                   showLineNumbers
