@@ -6,6 +6,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { nord } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { NextSeo } from 'next-seo';
 import { getPlaiceholder } from 'plaiceholder';
+import { ProfileCard } from '@/components/profilecard';
 
 export const getStaticPaths = async () => {
   const res = await getContentful('project');
@@ -48,9 +49,10 @@ const ProjectsSlug = ({ projects, plaiceholders }) => {
     projects.fields.header.fields.file.details.image.width;
   const contentImgHeight =
     projects.fields.header.fields.file.details.image.height;
+  const contentDate = projects.fields.publishDate;
 
   return (
-    <div key={contentTitle}>
+    <article key={contentTitle}>
       <NextSeo
         title={`${contentTitle} - Jagad Yudha`}
         description={contentDesc}
@@ -70,9 +72,11 @@ const ProjectsSlug = ({ projects, plaiceholders }) => {
           ],
         }}
       />
+      <ProfileCard dates={contentDate} />
       <h1 className='font-sans font-bold text-white sm:text-5xl text-3xl'>
         {contentTitle}
       </h1>
+
       <div className='my-10'>
         {contentLabel
           .slice(0)
@@ -86,6 +90,7 @@ const ProjectsSlug = ({ projects, plaiceholders }) => {
             </span>
           ))}
       </div>
+
       <div className='rounded-lg relative object-cover overflow-hidden'>
         <Image
           width={contentImgWidth}
@@ -165,7 +170,7 @@ const ProjectsSlug = ({ projects, plaiceholders }) => {
           },
         })}
       </div>
-    </div>
+    </article>
   );
 };
 

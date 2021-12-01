@@ -52,7 +52,7 @@ export default function MyApp({ Component, pageProps }) {
         />
       </Head>
       <Layout key={router.asPath}>
-        <motion.div
+        <motion.main
           initial='pageInitial'
           animate='pageAnimate'
           variants={{
@@ -66,7 +66,7 @@ export default function MyApp({ Component, pageProps }) {
           className='max-w-2xl px-8 mx-auto my-8 sm:my-14'
         >
           <Component {...pageProps} />
-        </motion.div>
+        </motion.main>
       </Layout>
     </ThemeProvider>
   );

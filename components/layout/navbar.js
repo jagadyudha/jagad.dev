@@ -17,10 +17,10 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
-    <div className='sticky top-0 z-50 bg-mydark backdrop-filter backdrop-blur-lg bg-opacity-60'>
+    <nav className='sticky top-0 z-50 bg-mydark backdrop-filter backdrop-blur-lg bg-opacity-60'>
       <Popover>
-        <div className='sm:py-2 py-0'>
-          <nav className='flex max-w-3xl mx-auto text-center sm:text-right py-4 items-center justify-between px-5'>
+        <div className=''>
+          <div className='flex max-w-3xl mx-auto text-center sm:text-right py-6 items-center justify-between px-5 border-b border-opacity-10'>
             <div className='flex items-center flex-grow flex-shrink-0 lg:flex-grow-0'>
               <div className='flex items-center justify-between w-full md:w-auto'>
                 <NowPlaying />
@@ -44,7 +44,7 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
-          </nav>
+          </div>
         </div>
 
         <Transition
@@ -93,6 +93,6 @@ export default function Navbar() {
           </Popover.Panel>
         </Transition>
       </Popover>
-    </div>
+    </nav>
   );
 }

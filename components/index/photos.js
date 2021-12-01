@@ -38,7 +38,7 @@ const Photos = ({ items, plaiceholders }) => {
       <Link href='photos'>
         <a className='justify-left flex text-center items-center '>
           <span className='font-sans font-semibold text-lg text-myorange my-5 mr-2'>
-            View all Photos
+            View All Photos
           </span>
           <IoArrowForwardOutline className=' text-myorange text-2xl' />
         </a>

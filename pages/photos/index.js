@@ -37,10 +37,16 @@ const Photos = ({ photos, plaiceholders }) => {
         openGraph={cardOpenGraph}
         twitter={cardTwitter}
       />
-      <h1 className='font-sans font-bold text-white sm:text-5xl text-3xl'>
-        Photo that I have taken
-      </h1>
+
       <div>
+        <div className='sm:mb-20 mb-10'>
+          <h1 className='font-sans font-bold text-white sm:text-5xl text-3xl'>
+            {`Photos`}
+          </h1>
+          <p className='font-sans font-normal text-gray-300 my-5 sm:text-lg text-md'>
+            {`honestly, I don't really like photography. Of course, I can't do this as well as a professional photographer. But, this is my personal website. So, I'm free to post my garbage photos.`}
+          </p>
+        </div>
         {photos.map((item, index) => {
           const contentTitle = item.fields.title;
           const contentSlug = `photos/${item.fields.slug}`;
@@ -49,7 +55,7 @@ const Photos = ({ photos, plaiceholders }) => {
           return (
             <div
               key={contentTitle}
-              className='bg-mybg shadow-xl pb-10 my-10 sm:my-20 rounded-md'
+              className='bg-mybg my-5 sm:my-10 rounded-md'
             >
               <Link href={contentSlug}>
                 <a>
@@ -65,12 +71,14 @@ const Photos = ({ photos, plaiceholders }) => {
                     />
                   </div>
 
-                  <h1 className='font-sans font-bold text-white sm:text-lg text-md mx-5 my-5'>
-                    {contentTitle}
-                  </h1>
-                  <p className='sm:text-lg text-md font-sans font-normal text-gray-300 mx-5 '>
-                    {contentDesc}
-                  </p>
+                  <div className='py-5'>
+                    <h2 className='font-sans font-bold text-white sm:text-lg text-md mx-5'>
+                      {contentTitle}
+                    </h2>
+                    <p className='sm:text-lg text-md font-sans font-normal text-gray-300 mx-5 '>
+                      {contentDesc}
+                    </p>
+                  </div>
                 </a>
               </Link>
             </div>

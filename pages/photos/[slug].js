@@ -2,6 +2,7 @@ import Image from '@/components/image';
 import { NextSeo } from 'next-seo';
 import { getContentful, getSlugContentful } from '../../lib/contentful';
 import { getPlaiceholder } from 'plaiceholder';
+import { ProfileCard } from '@/components/profilecard';
 
 export const getStaticPaths = async () => {
   const res = await getContentful('photo');
@@ -35,14 +36,14 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-const photosSlug = ({ photos, plaiceholders }) => {
+const PhotosSlug = ({ photos, plaiceholders }) => {
   if (!photos) return <div>Loading...</div>;
   const contentTitle = photos.fields.title;
   const contentSlug = photos.fields.slug;
   const contentImg = photos.fields.img;
   const contentImgUrl = photos.fields.img[0].fields.file.url;
   const contentDesc = photos.fields.desc;
-  const contentDate = photos.fields.date;
+  const contentDate = photos.fields.publishDate;
   return (
     <main key={contentSlug}>
       <NextSeo
@@ -64,14 +65,11 @@ const photosSlug = ({ photos, plaiceholders }) => {
           ],
         }}
       />
+      <ProfileCard dates={contentDate} />
       <h1 className='font-sans font-bold text-white sm:text-5xl text-3xl'>
         {contentTitle}
       </h1>
-      <div className='my-10'>
-        <span className='bg-gray-600 text-center shadow-md text-white rounded-2xl text-sm p-2 font-sans font-normal mx-1'>
-          {contentDate}
-        </span>
-      </div>
+
       <div className='pb-10 my-10'>
         <div className='grid grid-cols-1 gap-5'>
           {contentImg.map((item, index) => {
@@ -100,4 +98,4 @@ const photosSlug = ({ photos, plaiceholders }) => {
   );
 };
 
-export default photosSlug;
+export default PhotosSlug;

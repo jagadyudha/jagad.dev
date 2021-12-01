@@ -62,7 +62,7 @@ const Spotify = ({ items }) => {
         className='justify-left flex text-center items-center my-5 mt-10'
       >
         <span className='font-sans font-semibold text-lg text-myorange mr-2'>
-          Check Spotify Playlist
+          View Spotify Profile
         </span>
         <IoArrowForwardOutline className=' text-myorange text-2xl' />
       </a>

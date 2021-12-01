@@ -10,7 +10,7 @@ function Image({ onLoadingComplete, customClass, ...props }) {
   return (
     <NextImage
       className={`transition duration-1000 ${
-        isReady ? 'scale-100' : 'scale-150'
+        isReady ? 'scale-100' : 'scale-125'
       }`}
       {...props}
       onLoadingComplete={onLoadCallback}

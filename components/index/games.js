@@ -18,8 +18,8 @@ const Games = ({ items }) => {
         target='_blank'
         rel='noopener noreferrer'
       >
-        <div className='rounded-lg items-center bg-gradient-to-tr from-[#fc575e] to-myorangelight p-1'>
-          <div className='rounded-md backdrop-blur-sm bg-mydark'>
+        <div className='rounded-lg items-center bg-hero-pattern'>
+          <div className='rounded-md bg-black hover:bg-transparent transition duration-500 bg-opacity-30 backdrop-filter backdrop-blur-xs'>
             <div className='flex py-6 my-auto rounded-md'>
               <div className='my-auto ml-5 mr-4'>
                 <div className='w-20 h-20 flex items-center justify-center rounded-lg'>
@@ -56,7 +56,7 @@ const Games = ({ items }) => {
           </div>
         </div>
       </a>
-      <div className='grid grid-cols-1 gap-3 mt-3'>
+      <div className='grid xl:grid-cols-2 grid-cols-1 gap-3 mt-3'>
         {items['response']['games'].slice(0, 2).map((item) => (
           <a
             key={item.appid}
