@@ -6,11 +6,11 @@ const Header = () => {
       <h1 className='font-sans font-bold text-white sm:text-5xl text-3xl my-1'>
         Jagad Yudha Awali
       </h1>
-      <div className='font-sans flex-1 sm:text-lg text-md text-gray-300 my-5'>
+      <p className='font-sans flex-1 sm:text-lg text-md text-gray-300 my-5'>
         {`I'm a front-end developer and UI/UX designer based in Sidoarjo,
         Indonesia. I'm interested in front-end development and  currently
         learning about React technology. If you want to work with me or ask
-        something, reach me via`}
+        something, reach me via `}
         <Link
           href='https://twitter.com/imyour_universe'
           target='_blank'
@@ -23,7 +23,7 @@ const Header = () => {
           <a className='text-myorange underline hover:opacity-50'>Linktree</a>
         </Link>{' '}
         for other social media.
-      </div>
+      </p>
     </div>
   );
 };

@@ -16,7 +16,7 @@ const Projects = ({ items }) => {
             key={item.fields.title}
             className='my-5 border-b pb-4 border-opacity-20'
           >
-            <Link href={`projects/${item.fields.slug}}`}>
+            <Link href={`projects/${item.fields.slug}`}>
               <a className='flex items-center justify-between'>
                 <div className='flex'>
                   <p className='text-white mr-5'>{index + 1}</p>
@@ -25,7 +25,7 @@ const Projects = ({ items }) => {
                   </h2>
                 </div>
                 <p className='text-white text-sm xl:text-md bg-white bg-opacity-10 px-2 py-1 rounded-full'>
-                  #{item.fields.label[0]}
+                  {item.fields.label[0]}
                 </p>
               </a>
             </Link>

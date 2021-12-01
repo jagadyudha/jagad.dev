@@ -18,8 +18,8 @@ const Games = ({ items }) => {
         target='_blank'
         rel='noopener noreferrer'
       >
-        <div className='rounded-lg items-center pt-2 bg-gradient-to-tr from-mybg to-myorangelight'>
-          <div className='mx-2 rounded-md bg-white bg-opacity-10 backdrop-blur-sm'>
+        <div className='rounded-lg items-center bg-gradient-to-tr from-[#fc575e] to-myorangelight p-1'>
+          <div className='rounded-md backdrop-blur-sm bg-mydark'>
             <div className='flex py-6 my-auto rounded-md'>
               <div className='my-auto ml-5 mr-4'>
                 <div className='w-20 h-20 flex items-center justify-center rounded-lg'>
@@ -54,32 +54,9 @@ const Games = ({ items }) => {
               </div>
             </div>
           </div>
-
-          <div className='grid grid-cols-2 gap-2 px-2 py-2'>
-            {items['response']['games'].slice(0, 2).map((item) => (
-              <a
-                key={item.appid}
-                target='_blank'
-                rel='noopener noreferrer'
-                href={`https://store.steampowered.com/app/${item.appid}`}
-              >
-                <div className='rounded-md bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg'>
-                  <img
-                    className='rounded-lg w-full opacity-70 grayscale hover:grayscale-0 transition duration-300'
-                    src={`http://media.steampowered.com/steamcommunity/public/images/apps/${item.appid}/${item.img_logo_url}.jpg`}
-                  />
-                  {/* <div className='sm:p-3 p-2'>
-                    <p className='font-sans mx-2 font-semibold text-white text-md md:text-lg'>
-                      {parseInt(item.playtime_forever / 60) + 1} Hours
-                    </p>
-                  </div> */}
-                </div>
-              </a>
-            ))}
-          </div>
         </div>
       </a>
-      {/* <div className='grid grid-cols-1 gap-3'>
+      <div className='grid grid-cols-1 gap-3 mt-3'>
         {items['response']['games'].slice(0, 2).map((item) => (
           <a
             key={item.appid}
@@ -87,17 +64,17 @@ const Games = ({ items }) => {
             rel='noopener noreferrer'
             href={`https://store.steampowered.com/app/${item.appid}`}
           >
-            <div className='border border-opacity-20 sm:p-5 p-2 rounded-md hover:bg-mybg'>
-              <h1 className='font-sans font-normal text-gray-300 text-md sm:text-lg mx-2'>
+            <div className='border border-opacity-20 sm:p-5 p-2 rounded-md hover:bg-mybg transition duration-300'>
+              <h2 className='font-sans font-normal text-gray-300 text-md sm:text-lg mx-2'>
                 {item.name}
-              </h1>
+              </h2>
               <p className='font-sans mx-2 font-semibold text-white text-md md:text-lg'>
                 {parseInt(item.playtime_forever / 60) + 1} Hours
               </p>
             </div>
           </a>
         ))}
-      </div> */}
+      </div>
     </section>
   );
 };
