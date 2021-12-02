@@ -19,8 +19,8 @@ export default function Navbar() {
   return (
     <nav className='sticky top-0 z-50 bg-mydark backdrop-filter backdrop-blur-lg bg-opacity-60'>
       <Popover>
-        <div className=''>
-          <div className='flex max-w-3xl mx-auto text-center sm:text-right py-6 items-center justify-between px-5 border-b border-opacity-10'>
+        <div>
+          <div className='flex max-w-3xl mx-auto text-center sm:text-right sm:py-6 py-3 items-center justify-between px-5 border-b border-opacity-10'>
             <div className='flex items-center flex-grow flex-shrink-0 lg:flex-grow-0'>
               <div className='flex items-center justify-between w-full md:w-auto'>
                 <NowPlaying />
