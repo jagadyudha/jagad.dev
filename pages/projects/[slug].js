@@ -7,6 +7,7 @@ import { nord } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { NextSeo } from 'next-seo';
 import { getPlaiceholder } from 'plaiceholder';
 import { ProfileCard } from '@/components/profilecard';
+import Error from '@/pages/404';
 
 export const getStaticPaths = async () => {
   const res = await getContentful('project');
@@ -25,21 +26,24 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const items = await getSlugContentful('project', params.slug);
-  const { base64 } = await getPlaiceholder(
-    `https:${items.data.items[0].fields.header.fields.file.url}`
-  );
+  let base64 = null;
+  try {
+    base64 = await getPlaiceholder(
+      `https:${items.data.items[0].fields.header.fields.file.url}`
+    );
+  } catch (err) {}
 
   return {
     props: {
-      projects: items.data.items[0],
-      plaiceholders: base64,
+      projects: items.data.items[0] ? items.data.items[0] : null,
+      plaiceholders: base64 ? base64 : null,
     },
     revalidate: 1,
   };
 };
 
 const ProjectsSlug = ({ projects, plaiceholders }) => {
-  if (!projects) return <div>Loading...</div>;
+  if (!projects) return <Error />;
   const contentTitle = projects.fields.title;
   const contentSlug = projects.fields.slug;
   const contentDesc = projects.fields.desc;
@@ -99,7 +103,7 @@ const ProjectsSlug = ({ projects, plaiceholders }) => {
           src={contentImgUrl}
           alt={contentTitle}
           placeholder='blur'
-          blurDataURL={plaiceholders}
+          blurDataURL={plaiceholders.base64}
         ></Image>
       </div>
       <div>

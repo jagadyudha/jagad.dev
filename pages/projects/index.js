@@ -7,15 +7,6 @@ import DataSeo from '@/_data/seo.json';
 
 export async function getStaticProps() {
   const res = await getContentful('project');
-  // const plaiceholders = await Promise.all(
-  //   res.data.items.map(async (item) => {
-  //     const { base64 } = await getPlaiceholder(
-  //       `https:${item.fields.header.fields.file.url}`
-  //     );
-
-  //     return base64;
-  //   })
-  // ).then((values) => values);
 
   return {
     props: {
