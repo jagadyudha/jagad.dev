@@ -22,13 +22,12 @@ export const ProfileCard = ({ dates }) => {
 
   return (
     <div className='my-10 flex'>
-      <div className=' w-12'>
+      <div className='w-12'>
         <Image
           src='/ava.jpg'
-          width='40'
-          height='40'
+          width='50'
+          height='50'
           quality='50'
-          layout='responsive'
           alt='photo of jagad yudha awali'
           className='rounded-full'
         />
