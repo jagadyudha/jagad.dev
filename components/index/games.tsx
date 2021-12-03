@@ -2,12 +2,14 @@ import useSWR from 'swr';
 import Image from '@/components/image';
 import { FaFileImage } from 'react-icons/fa';
 
+export interface GameListProps {
+  appid: number;
+  name: string;
+  playtime_forever: string;
+}
+
 export interface GameProps {
-  items: {
-    appid: number;
-    name: string;
-    playtime_forever: number;
-  }[];
+  items: GameListProps[];
 }
 
 const Games: React.FC<GameProps> = ({ items }) => {
@@ -66,7 +68,7 @@ const Games: React.FC<GameProps> = ({ items }) => {
         </div>
       </a>
       <div className='grid xl:grid-cols-2 grid-cols-1 gap-3 mt-3'>
-        {items.slice(0, 2).map((item: any) => (
+        {items.slice(0, 2).map((item: GameListProps) => (
           <a
             key={item.appid}
             target='_blank'
