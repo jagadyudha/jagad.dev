@@ -1,8 +1,17 @@
 import useSWR from 'swr';
 import Image from '@/components/image';
 import { FaFileImage } from 'react-icons/fa';
-const Games = ({ items }) => {
-  const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export interface GameProps {
+  items: {
+    appid: number;
+    name: string;
+    playtime_forever: number;
+  }[];
+}
+
+const Games: React.FC<GameProps> = ({ items }) => {
+  const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
   const { data } = useSWR('/api/playersummaries', fetcher);
 
   return (
@@ -57,7 +66,7 @@ const Games = ({ items }) => {
         </div>
       </a>
       <div className='grid xl:grid-cols-2 grid-cols-1 gap-3 mt-3'>
-        {items['response']['games'].slice(0, 2).map((item) => (
+        {items.slice(0, 2).map((item: any) => (
           <a
             key={item.appid}
             target='_blank'
@@ -69,7 +78,7 @@ const Games = ({ items }) => {
                 {item.name}
               </h2>
               <p className='font-sans mx-2 font-semibold text-white text-md md:text-lg'>
-                {parseInt(item.playtime_forever / 60) + 1} Hours
+                {(parseInt(item.playtime_forever) / 60 + 1) | 0} Hours
               </p>
             </div>
           </a>

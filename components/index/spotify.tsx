@@ -1,9 +1,11 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { IoArrowForwardOutline } from 'react-icons/io5';
 
-const Spotify = ({ items }) => {
-  const dataItems = items['items'];
+export interface SpotifyProps {
+  items:any
+}
+
+const Spotify : React.FC<SpotifyProps> = ({ items }) => {
   return (
     <div className='mb-16 container'>
       <h1 className='font-sans font-bold text-white  sm:text-4xl text-3xl mb-1'>
@@ -14,7 +16,7 @@ const Spotify = ({ items }) => {
       </p>
 
       <div>
-        {dataItems.slice(0, 5).map((item, index) => {
+        {items.slice(0, 5).map((item:any, index:number) => {
           const trackName = item.track.name;
           const trackImg = item.track.album.images[0].url;
           const trackUrl = item.track.external_urls.spotify;

@@ -1,7 +1,18 @@
 import Link from 'next/link';
 import { IoArrowForwardOutline } from 'react-icons/io5';
 
-const Projects = ({ items }) => {
+export interface ProjectProps {
+  items: {
+    fields:{
+      title:string
+      slug:string
+      desc:string
+      label:Array<any>
+    }
+  }[]
+}
+
+const Projects: React.FC<ProjectProps> = ({ items }) => {
   return (
     <div className='mb-16'>
       <h1 className='font-sans font-bold text-white md:text-4xl text-3xl mb-1'>

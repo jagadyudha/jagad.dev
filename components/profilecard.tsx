@@ -1,6 +1,11 @@
 import Image from '@/components/image';
+import React from 'react';
 
-export const ProfileCard = ({ dates }) => {
+export interface Props {
+  dates: string
+}
+
+export const ProfileCard : React.FC<Props> = ({ dates }) => {
   const monthNames = [
     'January',
     'February',
@@ -29,7 +34,6 @@ export const ProfileCard = ({ dates }) => {
           height='50'
           quality='50'
           alt='photo of jagad yudha awali'
-          className='rounded-full'
         />
       </div>
       <div className='mx-2'>

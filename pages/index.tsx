@@ -8,6 +8,14 @@ import { getRecentlyPlayed } from '../lib/spotify';
 import { getRecentlyGames } from '../lib/steam';
 import { getPlaiceholder } from 'plaiceholder';
 
+export interface IndexProps {
+  games: any;
+  projects: any;
+  photos: any;
+  spotify: any;
+  plaiceholders: any;
+}
+
 export async function getStaticProps() {
   const projects = await getContentful('project');
   const photos = await getContentful('photo');
@@ -15,7 +23,7 @@ export async function getStaticProps() {
   const spotify = await getRecentlyPlayed();
 
   const plaiceholders = await Promise.all(
-    photos.data.items.map(async (item) => {
+    photos.data.items.map(async (item: any) => {
       const { base64 } = await getPlaiceholder(
         `https:${item.fields.img[0].fields.file.url}`
       );
@@ -28,15 +36,22 @@ export async function getStaticProps() {
     props: {
       projects: projects.data.items,
       photos: photos.data.items,
-      games,
-      spotify,
+      games: games['response']['games'],
+      spotify: spotify['items'],
       plaiceholders,
     },
     revalidate: 1,
   };
 }
 
-const Home = ({ games, projects, spotify, photos, plaiceholders }) => {
+const Home: React.FC<IndexProps> = ({
+  games,
+  projects,
+  spotify,
+  photos,
+  plaiceholders,
+}) => {
+
   return (
     <main>
       <Header />
