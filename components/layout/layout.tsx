@@ -2,11 +2,7 @@ import React, { Children } from 'react';
 import Navbar from './navbar';
 import Footer from './footer';
 
-export interface LayoutProps {
-  children:any
-}
-
-const Layout:React.FC<LayoutProps> = ({ children }) => {
+const Layout:React.FC = ({ children }) => {
   return (
     <div>
       <Navbar />
