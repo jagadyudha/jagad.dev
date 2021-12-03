@@ -1,4 +1,11 @@
-const SocialCard = ({ icon, link, title, color }) => {
+export interface SocialCardProps{
+  icon : any
+  link : string
+  title:string
+  color:string
+}
+
+const SocialCard: React.FC<SocialCardProps> = ({ icon, link, title, color }) => {
   return (
     <div className={`${color} rounded-lg hover:bg-opacity-70`}>
       <a href={link} target='_blank' rel='noopener noreferrer'>

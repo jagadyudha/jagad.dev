@@ -2,7 +2,7 @@ import { FaSpotify } from 'react-icons/fa';
 import useSWR from 'swr';
 
 export const NowPlaying = () => {
-  const fetcher = (url) => fetch(url).then((res) => res.json());
+  const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
   const { data } = useSWR('/api/nowplaying', fetcher);
   return (
     <div className='flex'>
