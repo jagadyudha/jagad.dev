@@ -2,7 +2,7 @@ import Image from '@/components/image';
 import React from 'react';
 
 export interface Props {
-  dates: string
+  dates: Date
 }
 
 export const ProfileCard : React.FC<Props> = ({ dates }) => {
@@ -34,6 +34,7 @@ export const ProfileCard : React.FC<Props> = ({ dates }) => {
           height='50'
           quality='50'
           alt='photo of jagad yudha awali'
+          className='rounded-full'
         />
       </div>
       <div className='mx-2'>
@@ -45,3 +46,6 @@ export const ProfileCard : React.FC<Props> = ({ dates }) => {
     </div>
   );
 };
+
+
+export default ProfileCard

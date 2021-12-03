@@ -1,33 +1,46 @@
+//package
 import Image from '@/components/image';
 import Link from 'next/link';
-import { getContentful } from '../../lib/contentful';
 import { NextSeo } from 'next-seo';
-import { cardOpenGraph, cardTwitter } from '../../lib/seo';
-import { getPlaiceholder } from 'plaiceholder';
+import { InferGetStaticPropsType } from 'next';
+
+//lib
+import { getContentful } from '../../lib/contentful';
+import { cardOpenGraph, cardTwitter } from '@/lib/seo';
+import { blurhash } from '@/lib/blurhash';
+
+//static
 import DataSeo from '@/_data/seo.json';
 
-export const getStaticProps = async () => {
-  const res = await getContentful('photo');
-  const plaiceholders = await Promise.all(
-    res.data.items.map(async (item) => {
-      const { base64 } = await getPlaiceholder(
-        `https:${item.fields.img[0].fields.file.url}`
-      );
+export interface FieldsProps {
+  img: Array<any>;
+  title: string;
+  slug: string;
+  desc: string;
+  publishDate: Date;
+}
 
-      return base64;
-    })
-  ).then((values) => values);
+export interface Props {
+  fields: FieldsProps;
+}
+
+export const getStaticProps = async () => {
+  const items = await getContentful('photo');
+  const plaiceholders = await blurhash(items);
 
   return {
     props: {
-      photos: res.data.items,
+      photos: items,
       plaiceholders,
     },
     revalidate: 1,
   };
 };
 
-const Photos = ({ photos, plaiceholders }) => {
+const Photos = ({
+  photos,
+  plaiceholders,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <NextSeo
