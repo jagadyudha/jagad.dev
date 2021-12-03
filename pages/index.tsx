@@ -9,11 +9,11 @@ import { getRecentlyGames } from '../lib/steam';
 import { getPlaiceholder } from 'plaiceholder';
 
 export interface IndexProps {
-  games: any;
-  projects: any;
-  photos: any;
-  spotify: any;
-  plaiceholders: any;
+  games: Array<any>;
+  projects: Array<any>;
+  photos: Array<any>;
+  spotify: Array<any>;
+  plaiceholders: Array<any>;
 }
 
 export async function getStaticProps() {
