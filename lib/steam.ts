@@ -5,7 +5,6 @@ export const getRecentlyGames = async () => {
   const response = await fetch(recentlygames_endpont, {
     method: 'GET',
   });
-
   return response.json();
 };
 

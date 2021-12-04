@@ -2,18 +2,22 @@ import Link from 'next/link';
 import Image from '@/components/image';
 import { IoArrowForwardOutline } from 'react-icons/io5';
 
-export interface PhotoProps {
-  items: {
-    fields:{
-      title:string,
-      slug:string,
-      img:Array<any>
-    }
-  }[],
-  plaiceholders:Array<any>
+export interface PhotosFields {
+  title: string;
+  slug: string;
+  img: Array<any>;
 }
 
-const Photos: React.FC<PhotoProps> = ({ items, plaiceholders }) => {
+export interface PhotosItems {
+  fields: PhotosFields;
+}
+
+export interface PhotosProps {
+  items: PhotosItems[];
+  plaiceholders: Array<string>;
+}
+
+const Photos: React.FC<PhotosProps> = ({ items, plaiceholders }) => {
   return (
     <div className='mb-16 container'>
       <h1 className='font-sans font-bold text-white sm:text-4xl text-3xl mb-1'>

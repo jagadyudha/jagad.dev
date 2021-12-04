@@ -1,11 +1,12 @@
 //lib
 import { NextSeo } from 'next-seo';
-import { getContentful, getSlugContentful } from '../../lib/contentful';
-import { blurhashslug } from 'lib/blurhash';
+import { getContentful, getSlugContentful } from '@/lib/contentful';
+import { blurhashslug } from '@/lib/blurhash';
 
 //components
 import ProfileCard from '@/components/profilecard';
 import PhotoCard from '@/components/photocard';
+import Error from '@/pages/404';
 
 export interface SlugFieldsProps {
   img: Array<any>;
@@ -41,14 +42,21 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (params: { slug: string }) => {
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { slug: string };
+}) => {
   const items: SlugProps[] = await getSlugContentful('photo', params.slug);
-  const plaiceholders = await blurhashslug(items);
+  let plaiceholders = null;
+  try {
+    plaiceholders = await blurhashslug(items[0].fields.img);
+  } catch (err) {}
 
   return {
     props: {
-      photos: items[0],
-      plaiceholders,
+      photos: items[0] ? items[0] : null,
+      plaiceholders: plaiceholders,
     },
     revalidate: 1,
   };
@@ -61,8 +69,9 @@ const PhotosSlug = ({
   photos: SlugProps;
   plaiceholders: Array<string>;
 }) => {
-  if (!photos) return <div>Loading...</div>;
+  if (!photos) return <Error />;
 
+  //declare photos object
   const contentTitle = photos.fields.title;
   const contentSlug = photos.fields.slug;
   const contentImg = photos.fields.img;

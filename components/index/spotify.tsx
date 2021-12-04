@@ -22,7 +22,7 @@ const Spotify : React.FC<SpotifyProps> = ({ items }) => {
           const trackUrl = item.track.external_urls.spotify;
           const trackArtist = item.track.artists[0].name;
           return (
-            <div key={item.track.name} className='border-b border-opacity-20'>
+            <div key={index} className='border-b border-opacity-20'>
               <a
                 target='_blank'
                 rel='noopener noreferrer'

@@ -37,7 +37,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "lib/contentful.js"  ],
+, "lib/contentful.ts", "tailwind.config.js"],
   "exclude": [
     "node_modules"
   ]

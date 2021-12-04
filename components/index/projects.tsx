@@ -1,15 +1,19 @@
 import Link from 'next/link';
 import { IoArrowForwardOutline } from 'react-icons/io5';
 
+export interface ProjectsFields {
+  title: string;
+  slug: string;
+  desc: string;
+  label: Array<string>;
+}
+
+export interface ProjectItems {
+  fields: ProjectsFields;
+}
+
 export interface ProjectProps {
-  items: {
-    fields:{
-      title:string
-      slug:string
-      desc:string
-      label:Array<any>
-    }
-  }[]
+  items: ProjectItems[];
 }
 
 const Projects: React.FC<ProjectProps> = ({ items }) => {

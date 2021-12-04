@@ -1,18 +1,52 @@
 import Image from '@/components/image';
-import { getContentful, getSlugContentful } from '../../lib/contentful';
+import { getContentful, getSlugContentful } from '@/lib/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { MARKS, BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { nord } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { NextSeo } from 'next-seo';
-import { getPlaiceholder } from 'plaiceholder';
+import { blurhashprojects } from '@/lib/blurhash';
 import { ProfileCard } from '@/components/profilecard';
 import Error from '@/pages/404';
+
+export interface SlugFieldsProps {
+  title: string;
+  slug: string;
+  desc: string;
+  content: any
+  label: Array<string>;
+  header: SlugHeaderProps;
+  width: number;
+  height: number;
+  publishDate: Date;
+}
+
+export interface SlugContentProps {
+
+}
+
+export interface SlugHeaderProps {
+  fields: {
+    file: {
+      url: string;
+      details: {
+        image: {
+          width: number;
+          height: number;
+        };
+      };
+    };
+  };
+}
+
+export interface SlugProps {
+  fields: SlugFieldsProps;
+}
 
 export const getStaticPaths = async () => {
   const res = await getContentful('project');
 
-  const paths = res.data.items.map((item) => {
+  const paths = res.map((item) => {
     return {
       params: { slug: item.fields.slug },
     };
@@ -24,26 +58,36 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async ({params}:{
+  params: { slug: string };
+}) => {
   const items = await getSlugContentful('project', params.slug);
-  let base64 = null;
+  let plaiceholders = null;
   try {
-    base64 = await getPlaiceholder(
-      `https:${items.data.items[0].fields.header.fields.file.url}`
-    );
-  } catch (err) {}
+    plaiceholders = await blurhashprojects(items[0].fields.header);
+  } catch (err) {
+  }
 
   return {
     props: {
-      projects: items.data.items[0] ? items.data.items[0] : null,
-      plaiceholders: base64 ? base64 : null,
+      projects: items[0] ? items[0] : null,
+      plaiceholders: plaiceholders
     },
     revalidate: 1,
   };
 };
 
-const ProjectsSlug = ({ projects, plaiceholders }) => {
+const ProjectsSlug = ({
+  projects,
+  plaiceholders,
+}: {
+  projects: SlugProps;
+  plaiceholders: {base64:string};
+}) => {
+
   if (!projects) return <Error />;
+
+
   const contentTitle = projects.fields.title;
   const contentSlug = projects.fields.slug;
   const contentDesc = projects.fields.desc;
@@ -158,7 +202,7 @@ const ProjectsSlug = ({ projects, plaiceholders }) => {
                 {children}
               </div>
             ),
-            [BLOCKS.LIST_ITEM]: (node) => (
+            [BLOCKS.LIST_ITEM]: (node:any) => (
               <li className='text-md sm:text-lg text-gray-300'>
                 <ol>- {node.content[0].content[0].value}</ol>
               </li>

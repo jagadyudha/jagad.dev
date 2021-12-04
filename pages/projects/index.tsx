@@ -1,22 +1,54 @@
-import Image from '@/components/image';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import { cardOpenGraph, cardTwitter } from '../../lib/seo';
 import { getContentful } from '../../lib/contentful';
 import DataSeo from '@/_data/seo.json';
+import { InferGetStaticPropsType } from 'next';
+
+export interface FieldsProps {
+  title: string;
+  slug: string;
+  desc: string;
+  content: any;
+  label: Array<string>;
+  header: HeaderProps;
+  width: number;
+  height: number;
+  publishDate: Date;
+}
+
+export interface HeaderProps {
+  fields: {
+    file: {
+      url: string;
+      details: {
+        image: {
+          width: number;
+          height: number;
+        };
+      };
+    };
+  };
+}
+
+export interface Props {
+  fields: FieldsProps;
+}
 
 export async function getStaticProps() {
-  const res = await getContentful('project');
+  const items = await getContentful('project');
 
   return {
     props: {
-      projects: res.data.items,
+      projects: items,
     },
     revalidate: 1,
   };
 }
 
-const Projects = ({ projects }) => {
+const Projects = ({
+  projects,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <NextSeo
@@ -59,7 +91,7 @@ const Projects = ({ projects }) => {
                           {contentLabel
                             .slice(0)
                             .reverse()
-                            .map((item) => (
+                            .map((item: string) => (
                               <span
                                 className='bg-white bg-opacity-10 text-center shadow-md text-white rounded-2xl text-sm py-1 px-2 font-sans font-normal mr-1'
                                 key={item}

@@ -1,13 +1,11 @@
-//package
-import Image from '@/components/image';
-import Link from 'next/link';
-import { NextSeo } from 'next-seo';
-import { InferGetStaticPropsType } from 'next';
-
 //lib
 import { getContentful } from '../../lib/contentful';
 import { cardOpenGraph, cardTwitter } from '@/lib/seo';
 import { blurhash } from '@/lib/blurhash';
+import Image from '@/components/image';
+import Link from 'next/link';
+import { NextSeo } from 'next-seo';
+import { InferGetStaticPropsType } from 'next';
 
 //static
 import DataSeo from '@/_data/seo.json';
@@ -25,7 +23,7 @@ export interface Props {
 }
 
 export const getStaticProps = async () => {
-  const items = await getContentful('photo');
+  const items:Props[] = await getContentful('photo');
   const plaiceholders = await blurhash(items);
 
   return {
