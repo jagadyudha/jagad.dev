@@ -21,9 +21,6 @@ export interface SlugFieldsProps {
   publishDate: Date;
 }
 
-export interface SlugContentProps {
-
-}
 
 export interface SlugHeaderProps {
   fields: {
