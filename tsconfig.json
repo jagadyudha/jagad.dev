@@ -30,14 +30,17 @@
       ],
       "@/lib/*": [
         "lib/*"
-      ],
-    }
+      ]
+    },
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "lib/contentful.ts", "tailwind.config.js"],
+    "**/*.tsx",
+    "lib/contentful.ts",
+    "tailwind.config.js"
+  ],
   "exclude": [
     "node_modules"
   ]
