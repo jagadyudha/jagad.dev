@@ -8,8 +8,8 @@ import { NowPlaying } from '../nowplaying';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Project', href: '/projects' },
-  { name: 'Photo', href: '/photos' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Photos', href: '/photos' },
   { name: 'Linktree', href: '/linktree' },
 ];
 
