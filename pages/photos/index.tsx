@@ -70,7 +70,7 @@ const Photos = ({
             >
               <Link href={contentSlug}>
                 <a>
-                  <div className='rounded-t-md relative object-cover overflow-hidden'>
+                  <div className='rounded-t-md relative object-cover overflow-hidden h-full'>
                     <Image
                       placeholder='blur'
                       blurDataURL={plaiceholders[index]}
