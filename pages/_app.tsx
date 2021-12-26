@@ -6,27 +6,35 @@ import { ThemeProvider } from 'next-themes';
 import { DefaultSeo } from 'next-seo';
 import { cardOpenGraph, cardTwitter } from '@/lib/seo';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import type { AppProps /*, AppContext */ } from 'next/app'
+import type { AppProps /*, AppContext */ } from 'next/app';
 import Head from 'next/head';
+import nprogress from 'nprogress';
 
 //tailwind
 import 'tailwindcss/tailwind.css';
+
+//custom css
+import '../styles/nprogress.css';
 
 //static
 import DataSeo from '@/_data/seo.json';
 
 declare global {
   interface Window {
-      gtag:any;
+    gtag: any;
   }
 }
 
-export default function MyApp({ Component, pageProps }:AppProps) {
+Router.events.on('routeChangeStart', nprogress.start);
+Router.events.on('routeChangeError', nprogress.done);
+Router.events.on('routeChangeComplete', nprogress.done);
+
+export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
-  const handleRouteChange = (url:string) => {
+  const handleRouteChange = (url: string) => {
     window.gtag('config', process.env.NEXT_PUBLIC_ANALYTICS, {
       page_path: url,
     });
