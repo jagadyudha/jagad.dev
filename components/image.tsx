@@ -11,7 +11,7 @@ const Image: React.FC<ImageProps> = ({ src, ...props }) => {
   return (
     <NextImage
       src={src}
-      className={`transition duration-500 delay-150 ${
+      className={`transition duration-500 delay-300 ${
         isReady ? 'scale-100' : 'scale-125'
       }`}
       {...props}
