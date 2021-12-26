@@ -11,8 +11,8 @@ const Image: React.FC<ImageProps> = ({ src, ...props }) => {
   return (
     <NextImage
       src={src}
-      className={`transition duration-500 delay-300 ${
-        isReady ? 'scale-100' : 'scale-125'
+      className={`transition duration-300 delay-300 rounded-lg ${
+        isReady ? 'scale-100' : 'scale-100'
       }`}
       {...props}
       onLoadingComplete={onLoadCallback}
