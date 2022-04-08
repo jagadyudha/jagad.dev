@@ -3,7 +3,12 @@ import NextImage, { ImageProps } from 'next/image';
 import Lightbox from 'react-image-lightbox';
 import { useRouter } from 'next/router';
 
-const Image: React.FC<ImageProps> = ({ src, blurDataURL, ...props }) => {
+const Image: React.FC<ImageProps> = ({
+  src,
+  className,
+  blurDataURL,
+  ...props
+}) => {
   const [isReady, setIsReady] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,7 +28,7 @@ const Image: React.FC<ImageProps> = ({ src, blurDataURL, ...props }) => {
           setIsOpen(true)
         }
         src={src}
-        className={`scale-125 transform-gpu transition-[opacity,transform,filter] will-change-transform hover:cursor-zoom-in ${
+        className={`${className} scale-125 transform-gpu rounded-md transition-[opacity,transform,filter] will-change-transform hover:cursor-zoom-in ${
           isReady && 'scale-100 duration-[1.3s] ease-in-out'
         }`}
         {...props}

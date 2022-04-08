@@ -1,13 +1,12 @@
 //default
 import { NextSeo } from 'next-seo';
-import Link from 'next/link';
 
 //pages
 import Error from '@/pages/404';
 
 //components
 import Image from '@/components/image';
-import Tags from '@/components/tags';
+import TechStack from '@/components/tech-stack';
 import RichText from '@/components/rich-text';
 
 //lib
@@ -136,12 +135,9 @@ const ProjectsSlug = ({ projects }: { projects: SlugProps }) => {
           </p>
 
           <div className='flex flex-wrap'>
-            {contentLabel
-              .slice(0)
-              .reverse()
-              .map((item: string) => (
-                <Tags key={item} href={`/projects/tags/${item}`} name={item} />
-              ))}
+            {contentLabel.slice(0).map((item: string) => (
+              <TechStack key={item} name={item} />
+            ))}
           </div>
         </div>
       </div>

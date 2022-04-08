@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Tags from '@/components/tags';
+import TechStack from '@/components/tech-stack';
 
 export interface FieldsProps {
   title: string;
@@ -58,16 +58,9 @@ const ProjectList: React.FC<Props> = ({ data }) => {
                   </p>
 
                   <div className='bottom-0 flex flex-wrap'>
-                    {contentLabel
-                      .slice(0)
-                      .reverse()
-                      .map((item: string) => (
-                        <Tags
-                          key={item}
-                          href={`/projects/tags/${item}`}
-                          name={item}
-                        />
-                      ))}
+                    {contentLabel.slice(0).map((item: string) => (
+                      <TechStack key={item} name={item} />
+                    ))}
                   </div>
                 </a>
               </Link>
