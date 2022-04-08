@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://jagad.xyz
+
+# Sitemaps
+Sitemap: https://jagad.xyz/sitemap.xml
