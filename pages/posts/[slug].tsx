@@ -86,7 +86,10 @@ const PostsSlug = ({ posts }: { posts: SlugProps }) => {
   const contentLabel = posts.fields.label;
   const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(
     contentTitle
-  )}&description=${encodeURIComponent(contentDesc)}`;
+  ).replace(`'`, '%27')}&description=${encodeURIComponent(contentDesc).replace(
+    `'`,
+    '%27'
+  )}`;
   const monthNames = [
     'January',
     'February',

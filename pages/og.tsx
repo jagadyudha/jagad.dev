@@ -14,7 +14,7 @@ const Og = () => {
             width={'100%'}
             height={'100%'}
             layout={'responsive'}
-            className='rounded-full'
+            className='rounded-full transition-none'
             alt='Jagad Yudha Awali'
             priority
           />

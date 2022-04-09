@@ -27,9 +27,10 @@ const Projects = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const title = 'Projects';
   const description = `Since my first year of college in 2018, I've been working on projects. I have a lot of ideas for what I want to achieve in the future, and here is an example of a project I completed previously.`;
-  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(
-    title
-  )}&description=${encodeURIComponent(description)}`;
+  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
+    `'`,
+    '%27'
+  )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
   return (
     <main className='mb-16 sm:mb-28'>
       <NextSeo

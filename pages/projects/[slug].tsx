@@ -87,7 +87,10 @@ const ProjectsSlug = ({ projects }: { projects: SlugProps }) => {
   const contentImgUrl = `https:${projects.fields.header.fields.file.url}`;
   const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(
     contentTitle
-  )}&description=${encodeURIComponent(contentDesc)}`;
+  ).replace(`'`, '%27')}&description=${encodeURIComponent(contentDesc).replace(
+    `'`,
+    '%27'
+  )}`;
 
   return (
     <div className='mb-16 sm:mb-28'>

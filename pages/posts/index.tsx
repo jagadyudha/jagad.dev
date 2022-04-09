@@ -43,9 +43,10 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const title = 'Posts';
   const description = `Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`;
-  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(
-    title
-  )}&description=${encodeURIComponent(description)}`;
+  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
+    `'`,
+    '%27'
+  )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
 
   return (
     <main className='mb-16 sm:mb-28'>
