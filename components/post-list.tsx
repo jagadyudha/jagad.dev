@@ -61,21 +61,21 @@ const PostList: React.FC<Props> = ({ data }) => {
                     <p className='text-md my-2 font-sans font-normal text-gray-400'>
                       {contentDesc}
                     </p>
-
-                    <div className='flex flex-wrap'>
-                      {contentLabel
-                        .slice(0)
-                        .reverse()
-                        .map((item: string) => (
-                          <Tags
-                            key={item}
-                            href={`/posts/tags/${item}`}
-                            name={item}
-                          />
-                        ))}
-                    </div>
                   </a>
                 </Link>
+
+                <div className='flex flex-wrap'>
+                  {contentLabel
+                    .slice(0)
+                    .reverse()
+                    .map((item: string) => (
+                      <Tags
+                        key={item}
+                        href={`/posts?tag=${item.toLowerCase()}`}
+                        name={item}
+                      />
+                    ))}
+                </div>
               </div>
             );
           })}

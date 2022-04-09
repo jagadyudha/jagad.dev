@@ -164,7 +164,11 @@ const PostsSlug = ({ posts }: { posts: SlugProps }) => {
             .slice(0)
             .reverse()
             .map((item: string) => (
-              <Tags key={item} href={`/posts/tags/${item}`} name={item} />
+              <Tags
+                key={item}
+                href={`/posts?tag=${item.toLowerCase()}`}
+                name={item}
+              />
             ))}
         </div>
       </div>

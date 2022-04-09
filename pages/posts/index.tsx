@@ -4,6 +4,8 @@ import { getContentful } from '../../lib/contentful';
 import DataSeo from '@/_data/seo.json';
 import { InferGetStaticPropsType } from 'next';
 import PostCard from '@/components/post-list';
+import { useRouter } from 'next/router';
+import React from 'react';
 
 export async function getStaticProps() {
   const items = await getContentful('post');
@@ -17,6 +19,28 @@ export async function getStaticProps() {
 }
 
 const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [post, setPost] = React.useState(posts);
+
+  const router = useRouter();
+  const { query } = router;
+
+  React.useEffect(() => {
+    const fetchByTags = async () => {
+      const tag = post.filter((element) =>
+        element.fields.label.some(
+          (item: string) => query.tag == item.toLocaleLowerCase()
+        )
+      );
+      setPost(tag);
+    };
+
+    if (query.tag) {
+      fetchByTags();
+    } else {
+      setPost(posts);
+    }
+  }, [query]);
+
   const title = 'Posts';
   const description = `Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`;
   const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(
@@ -55,7 +79,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           {`Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`}
         </p>
       </div>
-      <PostCard data={posts} />
+      <PostCard data={post} />
     </main>
   );
 };
