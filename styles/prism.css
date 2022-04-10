@@ -2,7 +2,7 @@
 https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript */
 code[class*='language-'],
 pre[class*='language-'] {
-  @apply whitespace-pre bg-[#1E1E1E] shadow-md md:whitespace-pre-wrap;
+  @apply whitespace-pre md:whitespace-pre-wrap;
   color: #f8f8f2;
   background: 0 0;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
