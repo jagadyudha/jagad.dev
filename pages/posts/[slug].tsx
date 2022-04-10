@@ -159,7 +159,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       </div>
       <hr className='my-8 opacity-20'></hr>
 
-      <article className='prose prose-base prose-invert mx-auto'>
+      <article className='prose prose-base prose-invert mx-auto min-w-full'>
         <Markdown
           options={{
             overrides: {

@@ -124,7 +124,7 @@ const ProjectsSlug = ({ frontmatter, content, slug }: slugProps) => {
           </div>
         </div>
       </div>
-      <article className='prose prose-sm prose-invert mx-auto md:prose-lg'>
+      <article className='prose prose-base prose-invert min-w-full'>
         <Markdown
           options={{
             overrides: {
