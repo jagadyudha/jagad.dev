@@ -75,7 +75,7 @@ const Home = ({
             A Software Engineer who specializes in front-end for mobile and web
             applications. In addition, I publish programming-related blogs.
           </p>
-          <h2 className='mt-8 mb-2 font-sans text-xs font-medium text-white'>
+          <h2 className='mt-8 mb-1 font-sans text-xs font-medium text-white'>
             <span className=' rounded-full border border-primary bg-opacity-60 p-1 px-2 text-primary'>
               {`Featured Post`.toUpperCase()}
             </span>
