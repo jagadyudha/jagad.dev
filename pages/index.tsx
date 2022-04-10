@@ -1,28 +1,29 @@
 //default
 import { InferGetStaticPropsType } from 'next';
+import fs from 'fs';
+import matter from 'gray-matter';
+import readingTime from 'reading-time';
 
 //components
-import Featured from '@/components/featured';
+import PostCard from '@/components/post-card';
 import Image from '@/components/image';
 
-//lib
-import { getContentful } from '@/lib/contentful';
-
 export async function getStaticProps() {
-  const projects = await getContentful('project');
-  const featuredProject = projects.filter(
-    (project) => project.fields.slug === 'citizenapp'
-  );
+  const files = fs.readdirSync('./contents/posts');
+  const posts = files.map((fileName) => {
+    const slug = fileName.replace('.mdx', '');
+    const readFile = fs.readFileSync(`./contents/posts/${fileName}`, 'utf-8');
+    const { data: frontmatter, content } = matter(readFile);
+    return {
+      slug,
+      frontmatter,
+      content,
+    };
+  });
 
-  const posts = await getContentful('post');
-  const featuredPost = posts.filter(
-    (post) =>
-      post.fields.slug === 'how-to-create-steam-player-summaries-with-next-js'
-  );
-
+  const featuredPost = posts.filter((post) => post.slug != 'how-asd');
   return {
     props: {
-      featuredProject,
       featuredPost,
     },
     revalidate: 1,
@@ -31,11 +32,10 @@ export async function getStaticProps() {
 
 const Home = ({
   featuredPost,
-  featuredProject,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
-      <div className='mb-16 flex-none items-center justify-center md:flex'>
+      <div className='mb-16 flex-none items-center justify-center md:-mx-7 md:flex lg:-mx-8 xl:-mx-11'>
         <div className='mx-auto mr-5 hidden w-full overflow-hidden rounded-lg md:block xl:w-1/2'>
           <Image
             src={
@@ -74,8 +74,34 @@ const Home = ({
             A Software Engineer who specializes in front-end for mobile and web
             applications. In addition, I publish programming-related blogs.
           </p>
-          <Featured data={featuredPost} category='Post' />
-          <Featured data={featuredProject} category='Project' />
+          <h2 className='mt-8 font-sans text-xs font-medium text-white'>
+            <span className=' rounded-full border border-primary bg-opacity-60 p-1 px-2 text-primary'>
+              {`Featured Post`.toUpperCase()}
+            </span>
+          </h2>
+          {featuredPost
+            .sort((a, b) => {
+              return (
+                new Date(b.frontmatter.date).valueOf() -
+                new Date(a.frontmatter.date).valueOf()
+              );
+            })
+            .map((featuredPost) => {
+              const { slug, content } = featuredPost;
+              const { title, description, date, tags } =
+                featuredPost.frontmatter;
+              return (
+                <PostCard
+                  key={slug}
+                  slug={slug}
+                  title={title}
+                  description={description}
+                  date={date}
+                  tags={tags}
+                  readtime={readingTime(content).text}
+                />
+              );
+            })}
         </div>
       </div>
     </>

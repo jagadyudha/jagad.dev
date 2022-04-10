@@ -7,6 +7,7 @@ import Prism from 'prismjs';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
+import { IoTimeOutline } from 'react-icons/io5';
 
 export interface frontmatter {
   title: string;
@@ -29,7 +30,6 @@ import Tags from '@/components/tags';
 
 //lib
 import { cardTwitter } from '@/lib/seo';
-import { getContentful, getSlugContentful } from '@/lib/contentful';
 
 //data
 import DataSeo from '@/_data/seo.json';
@@ -82,23 +82,6 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
     `'`,
     '%27'
   )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  const stringDate = `${monthNames[new Date(date).getMonth()]} ${new Date(
-    date
-  ).getDate()}, ${new Date(date).getFullYear()}`;
   const stats = readingTime(content);
 
   return (
@@ -147,9 +130,22 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
           </h1>
           <p className='mb-10 mt-3 text-gray-300'>{description}</p>
 
-          <p className='my-3 font-sans text-sm font-normal text-gray-400'>
-            {stats.text} - {stringDate}
-          </p>
+          <div className='my-3 flex items-center justify-center gap-3 font-sans text-sm font-normal text-gray-300'>
+            <div className='flex items-center gap-1'>
+              <IoTimeOutline />
+              <p>{readingTime(content).text} </p>
+            </div>
+            <div className='flex items-center gap-1'>
+              <IoTimeOutline />
+              <p>
+                {`${new Date(date).toLocaleString('default', {
+                  month: 'long',
+                })} ${new Date(date).getDate()}, ${new Date(
+                  date
+                ).getFullYear()}`}
+              </p>
+            </div>
+          </div>
         </div>
         <div className='my-5'>
           {tags

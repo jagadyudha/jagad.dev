@@ -1,24 +1,25 @@
 import React from 'react';
 import fs from 'fs';
 import matter from 'gray-matter';
-import Link from 'next/link';
-import Tags from '@/components/tags';
 import { NextSeo } from 'next-seo';
 import { cardTwitter } from '../../lib/seo';
 import DataSeo from '@/_data/seo.json';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { IoSearch } from 'react-icons/io5';
+import readingTime from 'reading-time';
+import PostCard from '@/components/post-card';
 
 export async function getStaticProps() {
   const files = fs.readdirSync('./contents/posts');
   const posts = files.map((fileName) => {
     const slug = fileName.replace('.mdx', '');
     const readFile = fs.readFileSync(`./contents/posts/${fileName}`, 'utf-8');
-    const { data: frontmatter } = matter(readFile);
+    const { data: frontmatter, content } = matter(readFile);
     return {
       slug,
       frontmatter,
+      content,
     };
   });
   return {
@@ -121,33 +122,21 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
               return item;
             }
           })
-          .map((post) => (
-            <div key={post.slug} className='py-6'>
-              <Link href={`/posts/${post.slug}`}>
-                <a>
-                  <h2 className='font-sans text-lg font-bold text-white sm:text-xl'>
-                    {post.frontmatter.title}
-                  </h2>
-                  <p className='text-md my-2 font-sans font-normal text-gray-400'>
-                    {post.frontmatter.description}
-                  </p>
-                </a>
-              </Link>
-
-              <div className='flex flex-wrap'>
-                {post.frontmatter.tags
-                  .slice(0)
-                  .reverse()
-                  .map((item: string) => (
-                    <Tags
-                      key={item}
-                      href={`/posts?tag=${item.toLowerCase()}`}
-                      name={item}
-                    />
-                  ))}
-              </div>
-            </div>
-          ))}
+          .map((post) => {
+            const { slug, content } = post;
+            const { title, description, date, tags } = post.frontmatter;
+            return (
+              <PostCard
+                key={slug}
+                slug={slug}
+                title={title}
+                description={description}
+                date={date}
+                tags={tags}
+                readtime={readingTime(content).text}
+              />
+            );
+          })}
       </div>
     </main>
   );
