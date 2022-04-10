@@ -7,7 +7,11 @@ import Prism from 'prismjs';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
-import { IoTimeOutline, IoCalendarOutline } from 'react-icons/io5';
+import {
+  IoTimeOutline,
+  IoCalendarOutline,
+  IoLogoGithub,
+} from 'react-icons/io5';
 
 export interface frontmatter {
   title: string;
@@ -127,7 +131,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
           </h1>
           <p className='mb-10 mt-3 text-gray-300'>{description}</p>
 
-          <div className='my-3 flex items-center justify-center gap-3 font-sans text-sm font-normal text-gray-300'>
+          <div className='my-3 flex items-center justify-center gap-5 font-sans text-sm font-normal text-gray-300'>
             <div className='flex items-center gap-1'>
               <IoTimeOutline />
               <p>{readingTime(content).text} </p>
@@ -141,6 +145,16 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
                   date
                 ).getFullYear()}`}
               </p>
+            </div>
+            <div className='flex items-center gap-1'>
+              <IoLogoGithub />
+              <a
+                rel={'noreferrer noopener'}
+                target={'_blank'}
+                href={`https://github.com/jagadyudha/jagad.dev/edit/master/contents/posts/${slug}.mdx`}
+              >
+                <p>Edit on Github </p>
+              </a>
             </div>
           </div>
         </div>

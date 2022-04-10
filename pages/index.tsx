@@ -34,7 +34,7 @@ const Home = ({
   return (
     <>
       <div className='mb-16 flex-none items-center justify-center md:-mx-[72px] md:flex lg:-mx-[75px] xl:-mx-24'>
-        <div className='mx-auto mr-5 hidden w-full overflow-hidden rounded-md md:block xl:w-1/2'>
+        <div className='mx-auto mr-5 hidden w-full md:block xl:w-1/2'>
           <Image
             src={
               'https://res.cloudinary.com/dlpb6j88q/image/upload/e_grayscale/v1647569135/personal/intro_k7hisn.jpg'
@@ -47,7 +47,7 @@ const Home = ({
             className='rounded-md'
           />
         </div>
-        <div className='-mx-6 -mt-24 mb-10 block w-screen min-w-[140px] overflow-hidden md:hidden'>
+        <div className='-mx-6 -mt-24 mb-10 block w-screen min-w-[140px] md:hidden'>
           <Image
             src={
               'https://res.cloudinary.com/dlpb6j88q/image/upload/w_600,h_600,c_thumb,g_face,e_grayscale/personal/intro_k7hisn.jpg'
