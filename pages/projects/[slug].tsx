@@ -1,5 +1,8 @@
 //default
 import { NextSeo } from 'next-seo';
+import fs from 'fs';
+import matter from 'gray-matter';
+import Markdown from 'markdown-to-jsx';
 
 //pages
 import Error from '@/pages/404';
@@ -11,140 +14,129 @@ import RichText from '@/components/rich-text';
 
 //lib
 import { cardTwitter } from '@/lib/seo';
-import { blurhashprojects } from '@/lib/blurhash';
-import { getContentful, getSlugContentful } from '@/lib/contentful';
 
 //data
 import DataSeo from '@/_data/seo.json';
 
-export interface SlugFieldsProps {
+export interface frontmatter {
   title: string;
+  description: string;
+  date: Date;
+  stack: Array<string>;
+  header: string;
+}
+
+export interface slugProps {
+  frontmatter: frontmatter;
+  content: string;
   slug: string;
-  desc: string;
-  content: any;
-  label: Array<string>;
-  header: SlugHeaderProps;
-  width: number;
-  height: number;
-  publishDate: Date;
-}
-
-export interface SlugHeaderProps {
-  fields: {
-    file: {
-      url: string;
-      details: {
-        image: {
-          width: number;
-          height: number;
-        };
-      };
-    };
-  };
-}
-
-export interface SlugProps {
-  fields: SlugFieldsProps;
 }
 
 export const getStaticPaths = async () => {
-  const res = await getContentful('project');
-
-  const paths = res.map((item) => {
+  const files = fs.readdirSync('./contents/projects');
+  const paths = files.map((fileName) => {
     return {
-      params: { slug: item.fields.slug },
+      params: { slug: fileName.replace('.mdx', '') },
     };
   });
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
-
 export const getStaticProps = async ({
   params,
 }: {
   params: { slug: string };
 }) => {
-  const items = await getSlugContentful('project', params.slug);
-
+  const fileName = fs.readFileSync(
+    `./contents/projects/${params.slug}.mdx`,
+    'utf-8'
+  );
+  const { data: frontmatter, content } = matter(fileName);
   return {
     props: {
-      projects: items[0],
+      frontmatter,
+      content,
+      slug: params.slug,
     },
     revalidate: 1,
   };
 };
 
-const ProjectsSlug = ({ projects }: { projects: SlugProps }) => {
-  if (!projects) return <Error />;
-
-  const contentTitle = projects.fields.title;
-  const contentSlug = projects.fields.slug;
-  const contentDesc = projects.fields.desc;
-  const contentLabel = projects.fields.label;
-  const contentImgUrl = `https:${projects.fields.header.fields.file.url}`;
-  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(
-    contentTitle
-  ).replace(`'`, '%27')}&description=${encodeURIComponent(contentDesc).replace(
+const ProjectsSlug = ({ frontmatter, content, slug }: slugProps) => {
+  const { title, description, date, stack, header } = frontmatter;
+  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
     `'`,
     '%27'
-  )}`;
+  )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
 
   return (
     <div className='mb-16 sm:mb-28'>
       <NextSeo
-        title={`${contentTitle} — Jagad Yudha Awali`}
-        description={contentDesc}
-        canonical={`${DataSeo.url}/projects/${contentSlug}`}
+        title={`${title} — Jagad Yudha Awali`}
+        description={description}
+        canonical={`${DataSeo.url}/projects/${slug}`}
         openGraph={{
           type: 'article',
-          url: `${DataSeo.url}/projects/${contentSlug}`,
-          title: `${contentTitle} — Jagad Yudha Awali`,
-          description: contentDesc,
+          url: `${DataSeo.url}/projects/${slug}`,
+          title: `${title} — Jagad Yudha Awali`,
+          description: description,
           images: [
             {
               url: ogimage,
               width: 1280,
               height: 720,
-              alt: contentTitle,
+              alt: title,
               type: 'image/jpeg',
             },
           ],
-          site_name: contentTitle,
+          site_name: title,
         }}
         twitter={cardTwitter}
       />
       <div
-        key={contentTitle}
+        key={title}
         className='rounded-lg border border-gray-600 border-opacity-50'
       >
         <div className='overflow-hidden rounded-t-lg'>
           <Image
-            src={`${contentImgUrl}`}
+            src={`${header}`}
             height={720}
             width={1280}
-            alt={contentTitle}
+            alt={title}
             priority
           />
         </div>
         <div className=' p-8'>
           <h2 className='font-sans text-lg font-bold text-white sm:text-xl'>
-            {contentTitle}
+            {title}
           </h2>
           <p className='text-md my-5 font-sans font-normal text-gray-400'>
-            {contentDesc}
+            {description}
           </p>
 
           <div className='flex flex-wrap'>
-            {contentLabel.slice(0).map((item: string) => (
+            {stack.slice(0).map((item: string) => (
               <TechStack key={item} name={item} />
             ))}
           </div>
         </div>
       </div>
-      <RichText data={projects} />
+      <article className='prose prose-sm prose-invert mx-auto md:prose-lg'>
+        <Markdown
+          options={{
+            overrides: {
+              img: {
+                component: Image,
+              },
+            },
+          }}
+        >
+          {content}
+        </Markdown>
+      </article>
     </div>
   );
 };

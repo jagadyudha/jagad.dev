@@ -22,9 +22,6 @@ export interface slugProps {
   slug: string;
 }
 
-//pages
-import Error from '@/pages/404';
-
 //components
 import Tags from '@/components/tags';
 

@@ -20,8 +20,12 @@ export async function getStaticProps() {
       content,
     };
   });
+  const arr = [
+    'react-native-camera-but-with-react-hooks',
+    'how-to-create-steam-player-summaries-with-next-js',
+  ];
 
-  const featuredPost = posts.filter((post) => post.slug != 'how-asd');
+  const featuredPost = posts.filter((post) => post.slug === arr[0] || arr[1]);
   return {
     props: {
       featuredPost,
