@@ -7,7 +7,7 @@ import Prism from 'prismjs';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
-import { IoTimeOutline } from 'react-icons/io5';
+import { IoTimeOutline, IoCalendarOutline } from 'react-icons/io5';
 
 export interface frontmatter {
   title: string;
@@ -133,7 +133,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
               <p>{readingTime(content).text} </p>
             </div>
             <div className='flex items-center gap-1'>
-              <IoTimeOutline />
+              <IoCalendarOutline />
               <p>
                 {`${new Date(date).toLocaleString('default', {
                   month: 'long',
