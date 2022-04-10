@@ -7,7 +7,7 @@ pre[class*='language-'] {
   background: 0 0;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  font-size: 0.95em;
+  font-size: 0.94em;
   text-align: left;
   word-spacing: normal;
   word-break: normal;
@@ -28,7 +28,7 @@ pre[class*='language-'] {
 }
 :not(pre) > code[class*='language-'],
 pre[class*='language-'] {
-  @apply bg-[#1E1E1E] shadow-md;
+  @apply border border-zinc-700 bg-background;
 }
 :not(pre) > code[class*='language-'] {
   padding: 0.1em;

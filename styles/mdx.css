@@ -11,9 +11,9 @@
 }
 
 .prose code {
-  @apply whitespace-pre-line rounded-md bg-white bg-opacity-20 p-0.5 text-xs;
+  @apply whitespace-pre-line rounded-md border border-zinc-600 bg-white bg-opacity-10 p-0.5 text-xs;
 }
 
 .prose pre code {
-  @apply p-0;
+  @apply border-none p-0;
 }
