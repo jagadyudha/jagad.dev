@@ -16,7 +16,7 @@ const PostCard: React.FC<postProps> = (props) => {
   const { slug, title, description, date, tags, readtime } = props;
 
   return (
-    <div key={slug} className='py-4'>
+    <div key={slug} className='py-6'>
       <Link href={`/posts/${slug}`}>
         <a>
           <h2 className='font-sans text-lg font-bold text-white sm:text-xl'>

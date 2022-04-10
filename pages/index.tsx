@@ -71,14 +71,11 @@ const Home = ({
           <h1 className='my-1 font-sans text-3xl font-bold text-primary sm:text-5xl'>
             Jagad Yudha Awali
           </h1>
-          <p className='sm:text-md my-1 flex-1 font-sans text-lg text-white'>
-            Software Engineer based in Indonesia, He/Him
-          </p>
-          <p className='sm:text-md my-5 flex-1 whitespace-pre-line font-sans text-gray-400'>
+          <p className='sm:text-md my-2 flex-1 font-sans text-lg text-white'>
             A Software Engineer who specializes in front-end for mobile and web
             applications. In addition, I publish programming-related blogs.
           </p>
-          <h2 className='mt-8 font-sans text-xs font-medium text-white'>
+          <h2 className='mt-8 mb-2 font-sans text-xs font-medium text-white'>
             <span className=' rounded-full border border-primary bg-opacity-60 p-1 px-2 text-primary'>
               {`Featured Post`.toUpperCase()}
             </span>
