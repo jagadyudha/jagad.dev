@@ -5,7 +5,3 @@
 .prose code {
   @apply whitespace-pre-line rounded-md bg-white bg-opacity-20 p-1 text-sm;
 }
-
-.prose pre {
-  @apply md:whitespace-pre-line;
-}
