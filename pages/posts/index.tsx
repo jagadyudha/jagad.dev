@@ -47,10 +47,11 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     };
 
     if (query.tag) {
-      fetchByTags(); // eslint-disable-next-line react-hooks/exhaustive-deps
+      fetchByTags();
     } else {
       setPost(posts);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   const title = 'Posts';
