@@ -47,11 +47,11 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     };
 
     if (query.tag) {
-      fetchByTags();
+      fetchByTags(); // eslint-disable-next-line react-hooks/exhaustive-deps
     } else {
       setPost(posts);
     }
-  }, [query]); // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   const title = 'Posts';
   const description = `Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`;
