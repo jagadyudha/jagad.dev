@@ -5,6 +5,7 @@ module.exports = {
       'i.scdn.co',
       'steamcdn-a.akamaihd.net',
       'res.cloudinary.com',
+      'user-images.githubusercontent.com',
     ],
   },
 };

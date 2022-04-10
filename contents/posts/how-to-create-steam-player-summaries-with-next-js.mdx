@@ -1,0 +1,198 @@
+---
+title: 'How to Create Steam Player Summaries With Next.js'
+description: 'Using Steamworks API to display information about gaming activities on websites'
+date: '2022-02-5'
+tags:
+  - nextjs
+  - swr
+  - tailwind
+---
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Dive into Steam API](#dive-into-steam-web-api-documentation)
+3. [Implementation with Next.js API](#implementation-with-nextjs-api)
+4. [Fetching API with SWR](#fetching-api-with-swr)
+5. [Styled With Tailwind CSS](#styled-with-tailwind-css)
+6. [Resources](#resources)
+
+## Introduction
+
+Who doesn't know steam? The most popular digital distribution platform for PC gaming.
+
+Despite its large user base, several people are unaware that Steam also offers a free application programming interface (API) called Steamworks, which allows developers to integrate many of Steam's features, including matchmaking, in-game achievements, microtransactions, and content support, into their products.
+
+Steamworks, as previously mentioned, is used on my website to display information about my gaming activities, such as online status, currently playing games, playing hours, etc.
+
+<img alt={Demo} src={https://res.cloudinary.com/dlpb6j88q/image/upload/v1649551515/jagad.dev/posts/how-to-create-steam-player-summaries-with-next-js/demo_mrtci7.png} width={1203} height={592} />
+
+You can check live demo [here](https://jagad.dev/activities)
+
+## Dive into Steam Web API Documentation
+
+The most basic thing to do is to read the [documentation](https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29) from Steam directly. It can be seen in the GetPlayerSummaries (v0002) section. Steam provides an example URL as follows :
+
+```bash
+https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=YOUR-STEAM-KEY&steamids=YOUR-STEAM-ID
+```
+
+From that URL, we can replace the steam key and id with your own.
+
+We can get the key by accessing this [Web API Key for Steam - Steam Community](https://steamcommunity.com/dev/apikey).
+
+<img alt={Steam Api key} src={https://res.cloudinary.com/dlpb6j88q/image/upload/v1649551969/jagad.dev/posts/how-to-create-steam-player-summaries-with-next-js/steam_api_key_j8q6b7.png} width={877} height={265} />
+
+To get a steam id, we can use the most primitive method by logging in through the browser and going to the steam profile section. In the URL bar, we will see the steam id.
+
+<img alt={Steam Id} src={https://res.cloudinary.com/dlpb6j88q/image/upload/v1649552921/jagad.dev/posts/how-to-create-steam-player-summaries-with-next-js/steam_id_xtorcq.png} width={1470} height={233} />
+
+Use a browser to access the URL that already contains the key and id, or use Postman if you want it to be easier to read.
+
+## Implementation with Next.js API
+
+Create a steam api route in `/pages/api/playersummaries.tsx`
+
+```javascript
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+export const getPlayerSummaries = () => {
+  const playersummaries_endpoint = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.STEAM_TOKEN}&steamids=${process.env.STEAM_ID}`;
+  return fetch(playersummaries_endpoint, {
+    method: 'GET',
+  });
+};
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const response = await getPlayerSummaries();
+
+  if (response.status != 200) {
+    return res.status(200).json({
+      steam: {
+        personastate: 'Offline',
+      },
+    });
+  }
+
+  const steam = await response.json();
+  if (steam.item === null) {
+    return res.status(200).json({
+      steam: {
+        personastate: 'Offline',
+      },
+    });
+  }
+  const getPersonName = steam.response.players[0].personaname;
+  const getAvatar = steam.response.players[0].avatarfull;
+  const getStatus =
+    steam.response.players[0].personastate === 1
+      ? 'Online 😆'
+      : steam.response.players[0].personastate === 2
+      ? 'Busy 😐'
+      : steam.response.players[0].personastate === 3
+      ? 'Away 🥱'
+      : 'Offline 😴';
+
+  const getGames = !steam.response.players[0].gameextrainfo
+    ? false
+    : `Playing - ${steam.response.players[0].gameextrainfo} 😆`;
+  const getprofileUrl = steam.response.players[0].profileurl;
+  return res.status(200).json({
+    steam: {
+      getPersonName,
+      getAvatar,
+      getStatus,
+      getGames,
+      getprofileUrl,
+    },
+  });
+}
+```
+
+Add `.env.local` with key and id that we get before (change the data below with yours)
+
+```bash
+STEAM_TOKEN=ED20ADF0123188DHDHDHJASSFB
+STEAM_ID=76561198324704779
+```
+
+Try accessing localhost:3000/api/playersummaries from the browser to get response like this.
+
+<img alt={Response Api} src={https://res.cloudinary.com/dlpb6j88q/image/upload/v1649553382/jagad.dev/posts/how-to-create-steam-player-summaries-with-next-js/Response_Api_yhi6p2.png} width={1077} height={277} />
+
+## Fetching API with SWR
+
+To fetch data from next.js API, we can use SWR. SWR is a library that can stream data updates constantly and automatically. And the UI will always be fast and reactive.
+
+Install SWR
+
+```bash
+yarn add swr
+or
+npm i swr
+```
+
+SWR can be placed in `pages/index.tsx` or wherever else you choose.
+
+```javascript
+import useSWR from 'swr';
+
+const Games = () => {
+  const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
+  const { data } = useSWR('/api/playersummaries', fetcher);
+
+  return <section className='container mb-16'></section>;
+};
+
+export default Games;
+```
+
+## Styled With Tailwind CSS
+
+This code can be placed inside the section to render the data from SWR.
+
+You can also modify the style to suit your preferences.
+
+```javascript
+<section className='container mb-16'>
+  <div className='items-center rounded-lg border border-white border-opacity-10'>
+    <div className='my-auto flex rounded-md py-6'>
+      <div className='my-auto ml-5 mr-4 flex'>
+        <div className='flex h-20 w-20 items-center justify-center rounded-lg'>
+          {data?.steam.getAvatar ? (
+            <img
+              className='rounded-lg'
+              src={data?.steam.getAvatar}
+              width={100}
+              height={100}
+              alt='steam profil picture'
+            />
+          ) : (
+            <div></div>
+          )}
+        </div>
+        <div className='my-auto ml-3'>
+          <p className='text-md text-white sm:text-xl'>
+            {data?.steam.getPersonName ? data?.steam.getPersonName : '~'}
+            <div className='text-md font-semibold text-white sm:text-lg'>
+              {data?.steam.getGames === false ? (
+                <p>{data?.steam.getStatus ? data?.steam.getStatus : '-'}</p>
+              ) : (
+                <p className='font-normal text-white'>{data?.steam.getGames}</p>
+              )}
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+## Resources
+
+- [Usage with Next.js – SWR](https://swr.vercel.app/docs/with-nextjs)
+- [API Routes: Introduction | Next.js (nextjs.org)](https://nextjs.org/docs/api-routes/introduction)

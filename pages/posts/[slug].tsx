@@ -1,16 +1,31 @@
-//default
+import React from 'react';
+import fs from 'fs';
+import matter from 'gray-matter';
+import Image from '@/components/image';
+import Markdown from 'markdown-to-jsx';
+import Prism from 'prismjs';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
-import React from 'react';
+
+export interface frontmatter {
+  title: string;
+  description: string;
+  date: Date;
+  tags: Array<string>;
+}
+
+export interface slugProps {
+  frontmatter: frontmatter;
+  content: string;
+  slug: string;
+}
 
 //pages
 import Error from '@/pages/404';
 
 //components
 import Tags from '@/components/tags';
-import RichText from '@/components/rich-text';
-import Comment from '@/components/comment';
 
 //lib
 import { cardTwitter } from '@/lib/seo';
@@ -18,78 +33,55 @@ import { getContentful, getSlugContentful } from '@/lib/contentful';
 
 //data
 import DataSeo from '@/_data/seo.json';
+import Comment from '@/components/comment';
 
-//slug fields props
-export interface SlugFieldsProps {
-  title: string;
-  slug: string;
-  desc: string;
-  content: any;
-  label: Array<string>;
-  width: number;
-  height: number;
-  publishDate: Date;
-}
-
-//slug fields props
-export interface SlugProps {
-  fields: SlugFieldsProps;
-}
-
-//getstaticpaths
 export const getStaticPaths = async () => {
-  const res = await getContentful('post');
-
-  const paths = res.map((item) => {
+  const files = fs.readdirSync('./contents/posts');
+  const paths = files.map((fileName) => {
     return {
-      params: { slug: item.fields.slug },
+      params: { slug: fileName.replace('.mdx', '') },
     };
   });
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
-
-//getstaticprops
 export const getStaticProps = async ({
   params,
 }: {
   params: { slug: string };
 }) => {
-  const items = await getSlugContentful('post', params.slug);
+  const fileName = fs.readFileSync(
+    `./contents/posts/${params.slug}.mdx`,
+    'utf-8'
+  );
+  const { data: frontmatter, content } = matter(fileName);
   return {
     props: {
-      posts: items[0],
+      frontmatter,
+      content,
+      slug: params.slug,
     },
     revalidate: 1,
   };
 };
 
-const PostsSlug = ({ posts }: { posts: SlugProps }) => {
-  //state for document
-  const [_document, set_document] = React.useState<string | undefined | null>(
-    null
-  );
-
-  //get document by article
+const Posts = ({ frontmatter, content, slug }: slugProps) => {
   React.useEffect(() => {
-    set_document(document.getElementById('article')?.innerText);
-  }, []);
+    const highlight = async () => {
+      await Prism.highlightAll(); // <--- prepare Prism
+    };
 
-  if (!posts) return <Error />;
+    highlight(); // <--- call the async function
+  }, []); // <--- run when post updates
 
-  const contentTitle = posts.fields.title;
-  const contentSlug = posts.fields.slug;
-  const contentDesc = posts.fields.desc;
-  const contentLabel = posts.fields.label;
-  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(
-    contentTitle
-  ).replace(`'`, '%27')}&description=${encodeURIComponent(contentDesc).replace(
+  const { title, description, date, tags } = frontmatter;
+  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
     `'`,
     '%27'
-  )}`;
+  )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
   const monthNames = [
     'January',
     'February',
@@ -104,66 +96,63 @@ const PostsSlug = ({ posts }: { posts: SlugProps }) => {
     'November',
     'December',
   ];
-
-  const date = new Date(posts.fields.publishDate);
-  const contentDate = `${
-    monthNames[date.getMonth()]
-  } ${date.getDate()}, ${date.getFullYear()}`;
-
-  const stats = readingTime(_document ? _document : 'loading');
+  const stringDate = `${monthNames[new Date(date).getMonth()]} ${new Date(
+    date
+  ).getDate()}, ${new Date(date).getFullYear()}`;
+  const stats = readingTime(content);
 
   return (
-    <div className='mb-16 sm:mb-28'>
+    <main>
       {/* Next Seo */}
       <NextSeo
-        title={`${contentTitle} — Jagad Yudha Awali`}
-        description={contentDesc}
-        canonical={`${DataSeo.url}/posts/${contentSlug}`}
+        title={`${title} — Jagad Yudha Awali`}
+        description={description}
+        canonical={`${DataSeo.url}/posts/${slug}`}
         openGraph={{
           type: 'article',
-          url: `${DataSeo.url}/posts/${contentSlug}`,
-          title: `${contentTitle} — Jagad Yudha Awali`,
-          description: contentDesc,
+          url: `${DataSeo.url}/posts/${slug}`,
+          title: `${title} — Jagad Yudha Awali`,
+          description: description,
           images: [
             {
               url: ogimage,
               width: 1280,
               height: 720,
-              alt: contentTitle,
+              alt: title,
               type: 'image/jpeg',
             },
           ],
-          site_name: `${contentTitle} - Jagad Yudha Awali`,
+          site_name: `${title} - Jagad Yudha Awali`,
         }}
         twitter={cardTwitter}
       />
 
       {/* JsonLd */}
       <ArticleJsonLd
-        url={`${DataSeo.url}/posts/${contentSlug}`}
-        title={`${contentTitle} — Jagad Yudha Awali`}
+        url={`${DataSeo.url}/posts/${slug}`}
+        title={`${title} — Jagad Yudha Awali`}
         images={[ogimage]}
-        datePublished={date.toISOString()}
-        dateModified={date.toISOString()}
+        datePublished={new Date(date).toISOString()}
+        dateModified={new Date(date).toISOString()}
         authorName={['Jagad Yudha Awali']}
         publisherName='jagad.dev'
         publisherLogo='/assets/images/me.png'
-        description={contentDesc}
+        description={description}
       />
 
-      <div className='text-center' key={contentTitle}>
+      <div className='text-center' key={slug}>
         <div className='mt-5'>
           <h1 className='font-sans text-xl font-bold text-white sm:text-3xl'>
-            {contentTitle}
+            {title}
           </h1>
-          <p className='mb-10 mt-3 text-gray-300'>{contentDesc}</p>
+          <p className='mb-10 mt-3 text-gray-300'>{description}</p>
 
           <p className='my-3 font-sans text-sm font-normal text-gray-400'>
-            {stats.text} - {contentDate}
+            {stats.text} - {stringDate}
           </p>
         </div>
         <div className='my-5'>
-          {contentLabel
+          {tags
             .slice(0)
             .reverse()
             .map((item: string) => (
@@ -176,11 +165,24 @@ const PostsSlug = ({ posts }: { posts: SlugProps }) => {
         </div>
       </div>
       <hr className='my-8 opacity-20'></hr>
-      <RichText data={posts} />
+
+      <article className='prose prose-sm prose-invert mx-auto md:prose-lg'>
+        <Markdown
+          options={{
+            overrides: {
+              img: {
+                component: Image,
+              },
+            },
+          }}
+        >
+          {content}
+        </Markdown>
+      </article>
       <hr className='my-8 opacity-20'></hr>
       <Comment />
-    </div>
+    </main>
   );
 };
 
-export default PostsSlug;
+export default Posts;

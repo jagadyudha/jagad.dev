@@ -17,6 +17,8 @@ import '../styles/globals.css';
 import '../styles/nprogress.css';
 import '../styles/twemoji.css';
 import '../styles/fonts.css';
+import '../styles/mdx.css';
+import '../styles/prism.css';
 
 //static
 import DataSeo from '@/_data/seo.json';

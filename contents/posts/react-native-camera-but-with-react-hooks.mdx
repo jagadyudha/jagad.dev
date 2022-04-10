@@ -1,0 +1,254 @@
+---
+title: 'React Native Camera but With React Hooks'
+description: 'Control the camera and interacts with the devices native operating system and hardware using RNCamera'
+date: '2022-02-12'
+tags:
+  - reactnative
+  - javascript
+  - mobile
+---
+
+## Table of contents
+
+1. [Introduction](#Introduction)
+2. [Install RNCamera Module](#install-rncamera-module)
+3. [Other required steps are to add permissions on both Android and iOS](#other-required-steps-are-to-add-permissions-on-both-android-and-ios)
+4. [Implementation of RNCamera using React Hooks](#implementation-of-rncamera-using-react-hooks)
+5. [How to Take a Photo with RNCamera](#how-to-take-a-photo-with-rncamera)
+6. [How to read barcodes](#how-to-read-barcodes)
+7. [Conclusion](#conslusion)
+
+## Introduction
+
+React Native Camera is a well-known library of React Native ecosystems. It allows you to control the camera and interacts with the device's native operating system and hardware. The features of React Native Camera are listed below :
+
+- Bar Code
+- Face Detection
+- Text Recognition
+- Take Pictures
+
+In this tutorial, let us build a RNCamera with react hooks and implement how to capture and read barcodes.
+
+RNCamera's [official documentation](https://react-native-camera.github.io/react-native-camera/docs/rncamera) may be found here if you want to learn more about it
+
+## Install RNCamera Module
+
+You have to install some dependencies to use the RNCamera module.
+
+### For (RN > 0.60)
+
+```bash
+npm install react-native-camera --save
+cd ios && pod install && cd ..
+```
+
+### For RN < 0.60
+
+```bash
+npm install react-native-camera --save
+react-native link react-native-camera
+```
+
+## Other required steps are to add permissions on both Android and iOS
+
+### iOS - other required steps
+
+Add permissions with usage descriptions to your app `Info.plist`
+
+```plist
+<!-- Required with iOS 10 and higher -->
+<key>NSCameraUsageDescription</key>
+<string>Your message to user when the camera is accessed for the first time</string>
+
+<!-- Required with iOS 11 and higher: include this only if you are planning to use the camera roll -->
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>Your message to user when the photo library is accessed for the first time</string>
+
+<!-- Include this only if you are planning to use the camera roll -->
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Your message to user when the photo library is accessed for the first time</string>
+
+<!-- Include this only if you are planning to use the microphone for video recording -->
+<key>NSMicrophoneUsageDescription</key>
+<string>Your message to user when the microphone is accessed for the first time</string>
+```
+
+### Android - other required steps
+
+```xml
+Add permissions to your app `android/app/src/main/AndroidManifest.xml`
+
+<uses-permission android:name="android.permission.CAMERA" />
+
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+```
+
+Insert the following lines in `android/app/build.gradle`:
+
+```gradle
+android {
+  ...
+  defaultConfig {
+    ...
+    missingDimensionStrategy 'react-native-camera', 'general' // <--- insert this line
+  }
+}
+```
+
+## Implementation of RNCamera using React Hooks
+
+Class components are used instead of functional components in the RNCamera documentation, but we use functional components here because, these days, functional components are used more often.
+
+```javascript
+Import RNCamera Module.
+import {RNCamera} from 'react-native-camera';
+
+Then use the <RNCamera/> tag.
+import React from 'react';
+import {RNCamera} from 'react-native-camera';
+
+const App = () => {
+  const ref = React.createRef();
+  return (
+    <RNCamera
+      ref={ref}
+      style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}
+      type={RNCamera.Constants.Type.back}
+      flashMode={RNCamera.Constants.FlashMode.on}
+      androidCameraPermissionOptions={{
+        title: 'Permission to use camera',
+        message: 'We need your permission to use your camera',
+        buttonPositive: 'Ok',
+        buttonNegative: 'Cancel',
+      }}
+    />
+  );
+};
+
+export default App;
+```
+
+After the `<RNCamera/>` tag is called, this is what it looks like.
+
+<img alt={React Native Camera} src={https://res.cloudinary.com/dlpb6j88q/image/upload/v1649557369/jagad.dev/posts/react-native-camera-but-with-react-hooks/RNCamera_nvliau.png} width={1919} height={1079} />
+
+## How to Take a Photo with RNCamera
+
+In order for the Camera to take pictures, we must create a function to handle it.
+
+```javascript
+const takePicture = async () => {
+  if (ref.current) {
+    const options = { quality: 0.5, base64: true };
+    const data = await ref.current.takePictureAsync(options);
+    console.log(data.uri);
+  }
+};
+```
+
+Here is the complete source code with the "take" button.
+
+```javascript
+import React from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { RNCamera } from 'react-native-camera';
+
+const App = () => {
+  const ref = React.createRef();
+
+  //take picture handler
+  const takePicture = async () => {
+    if (ref.current) {
+      const options = { quality: 0.5, base64: true };
+      const data = await ref.current.takePictureAsync(options);
+      console.log(data.uri);
+    }
+  };
+
+  return (
+    <View
+      style={{ flex: 1, flexDirection: 'column', backgroundColor: 'black' }}
+    >
+      <RNCamera
+        ref={ref}
+        style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
+        type={RNCamera.Constants.Type.back}
+        flashMode={RNCamera.Constants.FlashMode.on}
+        androidCameraPermissionOptions={{
+          title: 'Permission to use camera',
+          message: 'We need your permission to use your camera',
+          buttonPositive: 'Ok',
+          buttonNegative: 'Cancel',
+        }}
+      />
+      <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+        <TouchableOpacity
+          onPress={takePicture}
+          style={{
+            flex: 0,
+            backgroundColor: '#fff',
+            borderRadius: 1000,
+            padding: 15,
+            paddingHorizontal: 20,
+            alignSelf: 'center',
+            margin: 20,
+          }}
+        >
+          <Text style={{ fontSize: 14 }}> Take Picture </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+export default App;
+```
+
+When we press the take button, a log with the URL of the image that was taken will appear.
+
+<img alt={Take Picture With RNCamera} src={https://res.cloudinary.com/dlpb6j88q/image/upload/v1649557743/jagad.dev/posts/react-native-camera-but-with-react-hooks/Take_picture_with_RNCamera_ursckf.png} width={1904} height={1080} />
+
+## How to read barcodes
+
+RNCamera can also read aztec, code128, code39, code39, code39, mod43, code93, ean13, ean8, pdf417, qr, and upce barcodes.
+
+we can use **onBarCodeRead** property to read barcode.
+
+```javascript
+import React from 'react';
+import { RNCamera } from 'react-native-camera';
+
+const App = () => {
+  const ref = React.createRef();
+  return (
+    <RNCamera
+      ref={ref}
+      style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
+      type={RNCamera.Constants.Type.back}
+      flashMode={RNCamera.Constants.FlashMode.on}
+      androidCameraPermissionOptions={{
+        title: 'Permission to use camera',
+        message: 'We need your permission to use your camera',
+        buttonPositive: 'Ok',
+        buttonNegative: 'Cancel',
+      }}
+      //this is onBarcodeRead Property
+      onBarCodeRead={(barcodes) => {
+        console.log(barcodes);
+      }}
+    />
+  );
+};
+
+export default App;
+```
+
+A barcode log will show when we point the camera at the barcode. In this case, I'm using QR types.
+
+<img alt={Scan Barcodes With RNCamera} src={https://res.cloudinary.com/dlpb6j88q/image/upload/v1649557941/jagad.dev/posts/react-native-camera-but-with-react-hooks/Scan_barcode_wirh_RNCamera_utwegr.png} width={1856} height={1078} />
+
+## Conclusion
+
+If you're developing cross-platform apps with React Native, the react-native-camera module is a great way to take advantage of the device's hardware.

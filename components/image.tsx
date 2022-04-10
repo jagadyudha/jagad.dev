@@ -34,6 +34,7 @@ const Image: React.FC<ImageProps> = ({
         {...props}
         onLoadingComplete={onLoadCallback}
         placeholder='blur'
+        layout='responsive'
         blurDataURL={
           blurDataURL ? blurDataURL : '/assets/images/placeholder.jpg'
         }
