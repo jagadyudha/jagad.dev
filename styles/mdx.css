@@ -2,6 +2,18 @@
   @apply text-primary;
 }
 
+.prose h2 {
+  @apply text-xl md:text-2xl;
+}
+
+.prose h3 {
+  @apply text-base md:text-lg;
+}
+
 .prose code {
-  @apply whitespace-pre-line rounded-md bg-white bg-opacity-20 p-1 text-sm;
+  @apply whitespace-pre-line rounded-md bg-white bg-opacity-20 p-0.5 text-xs;
+}
+
+.prose pre code {
+  @apply p-0;
 }
