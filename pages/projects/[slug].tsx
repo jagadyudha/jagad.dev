@@ -4,9 +4,6 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import Markdown from 'markdown-to-jsx';
 
-//pages
-import Error from '@/pages/404';
-
 //components
 import Image from '@/components/image';
 import TechStack from '@/components/tech-stack';
@@ -99,15 +96,13 @@ const ProjectsSlug = ({ frontmatter, content, slug }: slugProps) => {
         key={title}
         className='rounded-lg border border-gray-600 border-opacity-50'
       >
-        <div className='overflow-hidden rounded-t-lg'>
-          <Image
-            src={`${header}`}
-            height={720}
-            width={1280}
-            alt={title}
-            priority
-          />
-        </div>
+        <Image
+          src={header}
+          height={720}
+          width={1280}
+          alt={title}
+          className='rounded-t-md'
+        />
         <div className=' p-8'>
           <h2 className='font-sans text-lg font-bold text-white sm:text-xl'>
             {title}

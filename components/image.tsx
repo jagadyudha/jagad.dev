@@ -20,7 +20,9 @@ const Image: React.FC<ImageProps> = ({
   const router = useRouter();
 
   return (
-    <figure>
+    <figure
+      className={`${className ? className : 'rounded-md'} overflow-hidden`}
+    >
       <NextImage
         onClick={() =>
           (router.pathname === '/posts/[slug]' ||
@@ -28,16 +30,14 @@ const Image: React.FC<ImageProps> = ({
           setIsOpen(true)
         }
         src={src}
-        className={`${className} scale-125 transform-gpu rounded-md transition-[opacity,transform,filter] will-change-transform hover:cursor-zoom-in ${
-          isReady && 'scale-100 duration-[1.3s] ease-in-out'
+        className={`${
+          className ? className : 'rounded-md'
+        } transform-gpu bg-zinc-700 transition-[opacity,transform,filter] duration-[1.2s] ease-in-out will-change-transform hover:cursor-zoom-in ${
+          isReady ? 'blur-0' : 'blur-3xl'
         }`}
         {...props}
         onLoadingComplete={onLoadCallback}
-        placeholder='blur'
         layout='responsive'
-        blurDataURL={
-          blurDataURL ? blurDataURL : '/assets/images/placeholder.jpg'
-        }
       />
 
       {isOpen && (

@@ -33,8 +33,8 @@ const Home = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
-      <div className='mb-16 flex-none items-center justify-center md:-mx-7 md:flex lg:-mx-8 xl:-mx-11'>
-        <div className='mx-auto mr-5 hidden w-full overflow-hidden rounded-lg md:block xl:w-1/2'>
+      <div className='mb-16 flex-none items-center justify-center md:-mx-[72px] md:flex lg:-mx-[75px] xl:-mx-24'>
+        <div className='mx-auto mr-5 hidden w-full overflow-hidden rounded-md md:block xl:w-1/2'>
           <Image
             src={
               'https://res.cloudinary.com/dlpb6j88q/image/upload/e_grayscale/v1647569135/personal/intro_k7hisn.jpg'
@@ -44,7 +44,7 @@ const Home = ({
             layout='responsive'
             objectFit='cover'
             alt='Jagad Yudha Awali'
-            blurDataURL='https://res.cloudinary.com/dlpb6j88q/image/upload/w_6,h_6,e_grayscale,q_1,f_auto/v1647569135/personal/intro_k7hisn.jpg'
+            className='rounded-md'
           />
         </div>
         <div className='-mx-6 -mt-24 mb-10 block w-screen min-w-[140px] overflow-hidden md:hidden'>
@@ -57,8 +57,7 @@ const Home = ({
             layout='responsive'
             objectFit='cover'
             alt='Jagad Yudha Awali'
-            placeholder='blur'
-            blurDataURL='https://res.cloudinary.com/dlpb6j88q/image/upload/w_6,h_6,c_thumb,g_face,e_grayscale,q_1,f_auto/personal/intro_k7hisn.jpg'
+            className='rounded-none'
           />
         </div>
         <div>
