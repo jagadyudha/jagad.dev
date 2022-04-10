@@ -20,15 +20,9 @@ export async function getStaticProps() {
       content,
     };
   });
-  const arr = [
-    'react-native-camera-but-with-react-hooks',
-    'how-to-create-steam-player-summaries-with-next-js',
-  ];
-
-  const featuredPost = posts.filter((post) => post.slug === arr[0] || arr[1]);
   return {
     props: {
-      featuredPost,
+      featuredPost: posts,
     },
     revalidate: 1,
   };
@@ -87,6 +81,7 @@ const Home = ({
                 new Date(a.frontmatter.date).valueOf()
               );
             })
+            .slice(0, 2)
             .map((featuredPost) => {
               const { slug, content } = featuredPost;
               const { title, description, date, tags } =

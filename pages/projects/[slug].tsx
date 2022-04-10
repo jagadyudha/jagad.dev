@@ -10,7 +10,6 @@ import Error from '@/pages/404';
 //components
 import Image from '@/components/image';
 import TechStack from '@/components/tech-stack';
-import RichText from '@/components/rich-text';
 
 //lib
 import { cardTwitter } from '@/lib/seo';

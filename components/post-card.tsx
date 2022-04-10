@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { IoTimeOutline } from 'react-icons/io5';
+import { IoTimeOutline, IoCalendarOutline } from 'react-icons/io5';
 import Tags from '@/components/tags';
 
 export interface postProps {
@@ -28,7 +28,7 @@ const PostCard: React.FC<postProps> = (props) => {
               <p>{readtime}</p>
             </div>
             <div className='flex items-center gap-1'>
-              <IoTimeOutline />
+              <IoCalendarOutline />
               <p>
                 {`${new Date(date).toLocaleString('default', {
                   month: 'long',
