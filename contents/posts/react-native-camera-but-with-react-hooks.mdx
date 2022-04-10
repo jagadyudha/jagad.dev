@@ -35,14 +35,14 @@ RNCamera's [official documentation](https://react-native-camera.github.io/react-
 
 You have to install some dependencies to use the RNCamera module.
 
-### For (RN > 0.60)
+For (RN > 0.60):
 
 ```bash
 npm install react-native-camera --save
 cd ios && pod install && cd ..
 ```
 
-### For RN < 0.60
+For RN < 0.60:
 
 ```bash
 npm install react-native-camera --save
@@ -51,7 +51,7 @@ react-native link react-native-camera
 
 ## Other required steps are to add permissions on both Android and iOS
 
-### iOS - other required steps
+**iOS - other required steps**
 
 Add permissions with usage descriptions to your app `Info.plist`
 
@@ -73,7 +73,7 @@ Add permissions with usage descriptions to your app `Info.plist`
 <string>Your message to user when the microphone is accessed for the first time</string>
 ```
 
-### Android - other required steps
+**Android - other required steps**
 
 Add permissions to your app `android/app/src/main/AndroidManifest.xml`
 
@@ -154,7 +154,7 @@ const takePicture = async () => {
 };
 ```
 
-Here is the complete source code with the "take" button.
+Here is the complete source code with the `take` button.
 
 ```javascript
 import React from 'react';
@@ -212,7 +212,7 @@ const App = () => {
 export default App;
 ```
 
-When we press the take button, a log with the URL of the image that was taken will appear.
+When we press the `take` button, a log with the URL of the image that was taken will appear.
 
 <img
   alt='Take Picture With RNCamera'
@@ -225,7 +225,7 @@ When we press the take button, a log with the URL of the image that was taken wi
 
 RNCamera can also read aztec, code128, code39, code39, code39, mod43, code93, ean13, ean8, pdf417, qr, and upce barcodes.
 
-we can use **onBarCodeRead** property to read barcode.
+we can use `onBarCodeRead` property to read barcode.
 
 ```javascript
 import React from 'react';
