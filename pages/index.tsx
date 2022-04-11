@@ -1,6 +1,7 @@
 //default
 import { InferGetStaticPropsType } from 'next';
 import fs from 'fs';
+import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
 
@@ -12,7 +13,8 @@ export async function getStaticProps() {
   const files = fs.readdirSync('./contents/posts');
   const posts = files.map((fileName) => {
     const slug = fileName.replace('.mdx', '');
-    const readFile = fs.readFileSync(`./contents/posts/${fileName}`, 'utf-8');
+    const fullPath = path.join(process.cwd(), './contents/posts/', fileName);
+    const readFile = fs.readFileSync(fullPath, 'utf-8');
     const { data: frontmatter, content } = matter(readFile);
     return {
       slug,

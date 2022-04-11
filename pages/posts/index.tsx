@@ -17,7 +17,6 @@ export async function getStaticProps() {
     const slug = fileName.replace('.mdx', '');
     const fullPath = path.join(process.cwd(), './contents/posts/', fileName);
     const readFile = fs.readFileSync(fullPath, 'utf-8');
-    // const readFile = fs.readFileSync(`./contents/posts/${fileName}`, 'utf-8');
     const { data: frontmatter, content } = matter(readFile);
     return {
       slug,

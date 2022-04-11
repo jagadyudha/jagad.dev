@@ -3,6 +3,7 @@ import { NextSeo } from 'next-seo';
 import { InferGetStaticPropsType } from 'next';
 import fs from 'fs';
 import matter from 'gray-matter';
+import path from 'path';
 import Link from 'next/link';
 
 import TechStack from '@/components/tech-stack';
@@ -16,11 +17,9 @@ export async function getStaticProps() {
   const files = fs.readdirSync('./contents/projects');
   const projects = files.map((fileName) => {
     const slug = fileName.replace('.mdx', '');
-    const readFile = fs.readFileSync(
-      `./contents/projects/${fileName}`,
-      'utf-8'
-    );
-    const { data: frontmatter, content } = matter(readFile);
+    const fullPath = path.join(process.cwd(), './contents/projects/', fileName);
+    const readFile = fs.readFileSync(fullPath, 'utf-8');
+    const { data: frontmatter } = matter(readFile);
     return {
       slug,
       frontmatter,
