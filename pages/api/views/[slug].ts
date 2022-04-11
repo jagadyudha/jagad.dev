@@ -19,6 +19,8 @@ export default async function handler(
     } else {
       await supabase.from('views').insert([{ slug: req.query.slug }]);
     }
+
+    res.status(200).json({ status: 'ok' });
   }
 
   if (req.method === 'GET') {
