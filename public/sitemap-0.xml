@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://jagad.dev</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/activities</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/citizenapp/privacy-police</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/feedback</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/og</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/posts</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/projects</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/projects/citizenapp</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/projects/contactless-thermometer</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/projects/gets-indonesia-website</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/projects/pemerintah-desa-kebonsari</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/projects/simple-google-scraper</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/projects/telegram-bot-covid</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/posts/how-to-create-a-whatsapp-bot-with-node-js</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/posts/how-to-create-steam-player-summaries-with-next-js</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
-<url><loc>https://jagad.dev/posts/react-native-camera-but-with-react-hooks</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-10T21:14:14.020Z</lastmod></url>
+<url><loc>https://jagad.dev</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/activities</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/citizenapp/privacy-police</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/feedback</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/og</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/posts</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/projects</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/projects/citizenapp</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/projects/contactless-thermometer</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/projects/gets-indonesia-website</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/projects/pemerintah-desa-kebonsari</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/projects/simple-google-scraper</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/projects/telegram-bot-covid</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/posts/how-to-create-a-whatsapp-bot-with-node-js</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/posts/how-to-create-steam-player-summaries-with-next-js</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
+<url><loc>https://jagad.dev/posts/react-native-camera-but-with-react-hooks</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2022-04-11T13:11:41.654Z</lastmod></url>
 </urlset>

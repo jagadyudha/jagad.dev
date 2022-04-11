@@ -1,6 +1,7 @@
 import React from 'react';
 import fs from 'fs';
 import matter from 'gray-matter';
+import path from 'path';
 import { NextSeo } from 'next-seo';
 import { cardTwitter } from '../../lib/seo';
 import DataSeo from '@/_data/seo.json';
@@ -14,7 +15,9 @@ export async function getStaticProps() {
   const files = fs.readdirSync('./contents/posts');
   const posts = files.map((fileName) => {
     const slug = fileName.replace('.mdx', '');
-    const readFile = fs.readFileSync(`./contents/posts/${fileName}`, 'utf-8');
+    const fullPath = path.join(process.cwd(), './contents/posts/', fileName);
+    const readFile = fs.readFileSync(fullPath, 'utf-8');
+    // const readFile = fs.readFileSync(`./contents/posts/${fileName}`, 'utf-8');
     const { data: frontmatter, content } = matter(readFile);
     return {
       slug,
