@@ -32,8 +32,8 @@ const Image: React.FC<ImageProps> = ({
         src={src}
         className={`${
           className ? className : 'rounded-md'
-        } transform-gpu bg-zinc-700 transition-[opacity,transform,filter] duration-[1.2s] ease-in-out will-change-transform hover:cursor-zoom-in ${
-          isReady ? 'blur-0' : 'blur-3xl'
+        } transform-gpu bg-zinc-600 transition-[opacity,transform,filter] duration-[1.2s] ease-in-out will-change-transform hover:cursor-zoom-in ${
+          isReady ? 'blur-0' : 'animate-pulse blur-3xl'
         }`}
         {...props}
         onLoadingComplete={onLoadCallback}
