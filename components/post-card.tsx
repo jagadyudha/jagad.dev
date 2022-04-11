@@ -1,7 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { IoTimeOutline, IoCalendarOutline } from 'react-icons/io5';
+import {
+  IoTimeOutline,
+  IoCalendarOutline,
+  IoEyeOutline,
+} from 'react-icons/io5';
 import Tags from '@/components/tags';
+import ViewsCount from '@/components/views-count';
 
 export interface postProps {
   slug: string;
@@ -24,6 +29,10 @@ const PostCard: React.FC<postProps> = (props) => {
           </h2>
           <div className='my-3 flex items-center gap-3 font-sans text-sm font-normal text-gray-300'>
             <div className='flex items-center gap-1'>
+              <IoEyeOutline />
+              <ViewsCount slug={slug} />
+            </div>
+            <div className='flex items-center gap-1'>
               <IoTimeOutline />
               <p>{readtime}</p>
             </div>
@@ -31,7 +40,7 @@ const PostCard: React.FC<postProps> = (props) => {
               <IoCalendarOutline />
               <p>
                 {`${new Date(date).toLocaleString('default', {
-                  month: 'long',
+                  month: 'short',
                 })} ${new Date(date).getDate()}, ${new Date(
                   date
                 ).getFullYear()}`}

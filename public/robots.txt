@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://jagad.xyz
+Host: https://jagad.dev
 
 # Sitemaps
-Sitemap: https://jagad.xyz/sitemap.xml
+Sitemap: https://jagad.dev/sitemap.xml

@@ -2,7 +2,9 @@ import useSWR from 'swr';
 
 export const NowPlaying = () => {
   const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
-  const { data } = useSWR('/api/nowplaying', fetcher);
+  const { data } = useSWR('/api/nowplaying', fetcher, {
+    refreshInterval: 20000,
+  });
   return (
     <div className='my-6 flex items-center justify-center'>
       <div className='flex min-h-[60px] w-full items-center justify-between rounded-lg border border-white border-opacity-20 p-2 px-3 md:w-2/4'>

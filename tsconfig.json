@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,21 +15,10 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/_data/*": [
-        "_data/*"
-      ],
-      "@/pages/*": [
-        "pages/*"
-      ],
-      "@/lib/*": [
-        "lib/*"
-      ],
-      "@/templates/*": [
-        "templates/*"
-      ]
+      "@/components/*": ["components/*"],
+      "@/_data/*": ["_data/*"],
+      "@/pages/*": ["pages/*"],
+      "@/lib/*": ["lib/*"]
     },
     "incremental": true
   },
@@ -44,7 +29,5 @@
     "lib/contentful.ts",
     "tailwind.config.js"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

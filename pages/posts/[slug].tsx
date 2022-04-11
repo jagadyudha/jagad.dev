@@ -11,7 +11,10 @@ import {
   IoTimeOutline,
   IoCalendarOutline,
   IoLogoGithub,
+  IoEyeOutline,
 } from 'react-icons/io5';
+import ViewsCount from '@/components/views-count';
+import { useSWRConfig } from 'swr';
 
 export interface frontmatter {
   title: string;
@@ -70,13 +73,21 @@ export const getStaticProps = async ({
 };
 
 const Posts = ({ frontmatter, content, slug }: slugProps) => {
+  const { mutate } = useSWRConfig();
+
   React.useEffect(() => {
     const highlight = async () => {
       await Prism.highlightAll(); // <--- prepare Prism
     };
-
     highlight(); // <--- call the async function
-  }, []); // <--- run when post updates
+
+    const registerView = () =>
+      fetch(`/api/views/${slug}`, {
+        method: 'POST',
+      });
+    registerView();
+    mutate(`/api/views/${slug}`);
+  }, []);
 
   const { title, description, date, tags } = frontmatter;
   const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
@@ -131,7 +142,11 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
           </h1>
           <p className='mb-10 mt-3 text-gray-300'>{description}</p>
 
-          <div className='my-3 flex items-center justify-center gap-5 font-sans text-sm font-normal text-gray-300'>
+          <div className='my-3 mb-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-sans text-sm font-normal text-gray-300 md:gap-5'>
+            <div className='flex items-center gap-1'>
+              <IoEyeOutline />
+              <ViewsCount slug={slug} />
+            </div>
             <div className='flex items-center gap-1'>
               <IoTimeOutline />
               <p>{readingTime(content).text} </p>
@@ -146,7 +161,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
                 ).getFullYear()}`}
               </p>
             </div>
-            <div className='flex items-center gap-1'>
+            <div className='hidden items-center gap-1 xl:flex'>
               <IoLogoGithub />
               <a
                 rel={'noreferrer noopener'}
