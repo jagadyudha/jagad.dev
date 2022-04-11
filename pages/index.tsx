@@ -39,7 +39,7 @@ const Home = ({
         <div className='mx-auto mr-5 hidden w-full md:block xl:w-1/2'>
           <Image
             src={
-              'https://res.cloudinary.com/dlpb6j88q/image/upload/e_grayscale/v1647569135/personal/intro_k7hisn.jpg'
+              'https://res.cloudinary.com/dlpb6j88q/image/upload/w_453,h_806,c_fill,e_grayscale/v1647569135/personal/intro_k7hisn.jpg'
             }
             width={'44%'}
             height={'100%'}
