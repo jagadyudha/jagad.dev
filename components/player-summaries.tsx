@@ -26,8 +26,8 @@ const Games: React.FC<GameProps> = ({ items }) => {
         <div className='items-center rounded-lg border border-white border-opacity-10'>
           <div className='my-auto flex rounded-md py-6'>
             <div className='my-auto ml-5 mr-4 flex'>
-              <div className='w-20 overflow-hidden rounded-lg'>
-                {data?.steam.getAvatar && (
+              <div className='w-16 overflow-hidden rounded-lg md:w-20'>
+                {data?.steam.getAvatar ? (
                   <Image
                     src={data?.steam.getAvatar}
                     layout={'responsive'}
@@ -35,23 +35,32 @@ const Games: React.FC<GameProps> = ({ items }) => {
                     height={'100%'}
                     alt='steam profil picture'
                   />
+                ) : (
+                  <div className='h-16 w-16 animate-pulse bg-zinc-800 md:h-20 md:w-20'></div>
                 )}
               </div>
               <div className='my-auto ml-3'>
-                <p className='text-md text-white sm:text-xl'>
-                  {data?.steam.getPersonName ? data?.steam.getPersonName : '~'}
-                  <div className='text-md font-semibold text-white sm:text-lg'>
-                    {data?.steam.getGames === false ? (
-                      <p>
-                        {data?.steam.getStatus ? data?.steam.getStatus : '-'}
-                      </p>
-                    ) : (
-                      <p className='font-normal text-white'>
-                        {data?.steam.getGames}
-                      </p>
-                    )}
-                  </div>
-                </p>
+                {data?.steam ? (
+                  <p className='text-md text-white sm:text-xl'>
+                    {data?.steam.getPersonName}
+                    <div className='text-md font-semibold text-white sm:text-lg'>
+                      {data?.steam.getGames === false ? (
+                        <p>
+                          {data?.steam.getStatus ? data?.steam.getStatus : '-'}
+                        </p>
+                      ) : (
+                        <p className='font-normal text-white'>
+                          {data?.steam.getGames}
+                        </p>
+                      )}
+                    </div>
+                  </p>
+                ) : (
+                  <>
+                    <p className='my-2 h-3 w-24 animate-pulse rounded-md bg-zinc-800'></p>
+                    <p className='h-3 w-12 animate-pulse rounded-md bg-zinc-800'></p>
+                  </>
+                )}
               </div>
             </div>
           </div>
