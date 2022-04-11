@@ -87,6 +87,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       });
     registerView();
     mutate(`/api/views/${slug}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { title, description, date, tags } = frontmatter;
