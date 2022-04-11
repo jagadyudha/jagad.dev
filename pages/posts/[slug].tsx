@@ -9,7 +9,7 @@ import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
 import {
   IoTimeOutline,
-  IoCalendarOutline,
+  IoCalendarClearOutline,
   IoLogoGithub,
   IoEyeOutline,
 } from 'react-icons/io5';
@@ -94,7 +94,6 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
     `'`,
     '%27'
   )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
-  const stats = readingTime(content);
 
   return (
     <main>
@@ -152,7 +151,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
               <p>{readingTime(content).text} </p>
             </div>
             <div className='flex items-center gap-1'>
-              <IoCalendarOutline />
+              <IoCalendarClearOutline />
               <p>
                 {`${new Date(date).toLocaleString('default', {
                   month: 'long',

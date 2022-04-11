@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import {
   IoTimeOutline,
-  IoCalendarOutline,
+  IoCalendarClearOutline,
   IoEyeOutline,
 } from 'react-icons/io5';
 import Tags from '@/components/tags';
@@ -37,7 +37,7 @@ const PostCard: React.FC<postProps> = (props) => {
               <p>{readtime}</p>
             </div>
             <div className='flex items-center gap-1'>
-              <IoCalendarOutline />
+              <IoCalendarClearOutline />
               <p>
                 {`${new Date(date).toLocaleString('default', {
                   month: 'short',
