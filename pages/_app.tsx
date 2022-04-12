@@ -23,31 +23,12 @@ import '../styles/prism.css';
 //static
 import DataSeo from '@/_data/seo.json';
 
-declare global {
-  interface Window {
-    gtag: any;
-  }
-}
-
 export default function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   const router = useRouter();
 
   Router.events.on('routeChangeStart', nprogress.start);
   Router.events.on('routeChangeError', nprogress.done);
   Router.events.on('routeChangeComplete', nprogress.done);
-
-  const handleRouteChange = (url: string) => {
-    window.gtag('config', process.env.NEXT_PUBLIC_ANALYTICS, {
-      page_path: url,
-    });
-  };
-
-  useEffect(() => {
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
 
   //blacklist from layouting
   if ([`/og`].includes(appProps.router.pathname))
@@ -64,20 +45,9 @@ export default function MyApp({ Component, pageProps, ...appProps }: AppProps) {
       />
       <Script
         async
-        id='google-analytics'
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_ANALYTICS}`}
-      />
-
-      <Script
-        id='google-analytics-init'
-        dangerouslySetInnerHTML={{
-          __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_ANALYTICS}', { page_path: window.location.pathname });
-            `,
-        }}
+        defer
+        data-website-id='9431b762-4519-49ab-a53c-e338f465c833'
+        src='https://analytics.jagad.dev/umami.js'
       />
       <Layout key={router.pathname}>
         <main className='mx-auto my-10 max-w-2xl px-6 sm:my-24 md:px-12 xl:px-0'>
