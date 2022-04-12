@@ -6,15 +6,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'GET') {
-    const { slug }: any = req.query;
-    const fullSlug = slug.join('/');
-
     const { count } = await supabase
       .from('pageview')
       .select('*', { count: 'exact' })
-      .eq('url', `/${fullSlug}`);
+      .eq('url', `/`);
     res.send({
-      slug: `/${fullSlug}`,
+      slug: `/`,
       views: count,
     });
   }
