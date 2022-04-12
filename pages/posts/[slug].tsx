@@ -145,7 +145,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
           <div className='my-3 mb-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-sans text-sm font-normal text-gray-300 md:gap-5'>
             <div className='flex items-center gap-1'>
               <IoEyeOutline />
-              <ViewsCount slug={slug} />
+              <ViewsCount slug={`/posts/${slug}`} />
             </div>
             <div className='flex items-center gap-1'>
               <IoTimeOutline />
