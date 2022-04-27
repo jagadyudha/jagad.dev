@@ -36,7 +36,7 @@
     "sharp": "^0.29.2",
     "swr": "^1.0.1",
     "twemoji": "^13.1.0",
-    "yarn": "^1.22.17"
+    "yarn": "^1.22.18"
   },
   "devDependencies": {
     "@types/markdown-it": "^12.2.3",
