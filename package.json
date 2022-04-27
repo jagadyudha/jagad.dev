@@ -48,7 +48,7 @@
     "eslint-config-next": "^11.1.4",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.4",
-    "next-sitemap": "^2.1.9",
+    "next-sitemap": "^2.5.20",
     "postcss": "^8.4.12",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.7",
