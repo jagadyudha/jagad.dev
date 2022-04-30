@@ -23,6 +23,8 @@ import {
 } from 'react-icons/io5';
 import ViewsCount from '@/components/views-count';
 import { useSWRConfig } from 'swr';
+import Script from 'next/script';
+import Head from 'next/head';
 
 export interface frontmatter {
   title: string;
@@ -106,6 +108,13 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
 
   return (
     <main>
+      <Head>
+        <script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
+          crossOrigin='anonymous'
+        />
+      </Head>
       {/* Next Seo */}
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
