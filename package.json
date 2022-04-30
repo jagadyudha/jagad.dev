@@ -36,23 +36,23 @@
     "sharp": "^0.29.2",
     "swr": "^1.0.1",
     "twemoji": "^13.1.0",
-    "yarn": "^1.22.17"
+    "yarn": "^1.22.18"
   },
   "devDependencies": {
     "@types/markdown-it": "^12.2.3",
     "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
-    "autoprefixer": "^10.4.2",
-    "cypress": "^9.4.1",
+    "@types/react-dom": "^17.0.15",
+    "autoprefixer": "^10.4.4",
+    "cypress": "^9.5.4",
     "eslint": "^7.32.0",
-    "eslint-config-next": "^11.1.2",
+    "eslint-config-next": "^11.1.4",
     "eslint-config-prettier": "^8.3.0",
-    "husky": "^7.0.0",
+    "husky": "^7.0.4",
     "next-sitemap": "^2.1.9",
-    "postcss": "^8.4.6",
+    "postcss": "^8.4.12",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.7",
-    "tailwindcss": "^3.0.22",
+    "tailwindcss": "^3.0.24",
     "typescript": "^4.5.2"
   }
 }
