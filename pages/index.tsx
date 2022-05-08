@@ -26,7 +26,6 @@ export async function getStaticProps() {
     props: {
       featuredPost: posts,
     },
-    revalidate: 1,
   };
 }
 
