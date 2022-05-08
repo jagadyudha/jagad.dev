@@ -57,9 +57,9 @@ function footer() {
           target='_blank'
           rel='noreferrer noopener'
           className='text-primary underline'
-          href='https://vercel.com/'
+          href='https://www.netlify.com/'
         >
-          Vercel
+          Netlify
         </a>
         .
         <p className=' text-gray-400'>
