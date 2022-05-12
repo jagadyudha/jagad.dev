@@ -22,9 +22,17 @@ export async function getStaticProps() {
       content,
     };
   });
+
+  var featuredPost = posts.filter((item) =>
+    [
+      'how-to-create-a-whatsapp-bot-with-node-js',
+      'custom-image-transition-in-nextjs-with-tailwind-css',
+    ].includes(item.slug)
+  );
+
   return {
     props: {
-      featuredPost: posts,
+      featuredPost,
     },
   };
 }
