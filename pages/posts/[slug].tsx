@@ -49,6 +49,12 @@ import { cardTwitter } from '@/lib/seo';
 import DataSeo from '@/_data/seo.json';
 import Comment from '@/components/comment';
 
+declare global {
+  interface Window {
+    adsbygoogle: any;
+  }
+}
+
 export const getStaticPaths = async () => {
   const files = fs.readdirSync('./contents/posts');
   const paths = files.map((fileName) => {
@@ -89,6 +95,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       await Prism.highlightAll(); // <--- prepare Prism
     };
     highlight(); // <--- call the async function
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
 
     // const registerView = () =>
     //   fetch(

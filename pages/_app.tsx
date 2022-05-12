@@ -23,22 +23,12 @@ import '../styles/prism.css';
 //static
 import DataSeo from '@/_data/seo.json';
 
-declare global {
-  interface Window {
-    adsbygoogle: any;
-  }
-}
-
 export default function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   const router = useRouter();
 
   Router.events.on('routeChangeStart', nprogress.start);
   Router.events.on('routeChangeError', nprogress.done);
   Router.events.on('routeChangeComplete', nprogress.done);
-
-  useEffect(() => {
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
-  }, []);
 
   //blacklist from layouting
   if ([`/og`, `/404`].includes(appProps.router.pathname))
