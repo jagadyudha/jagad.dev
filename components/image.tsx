@@ -32,12 +32,13 @@ const Image: React.FC<ImageProps> = ({
         src={src}
         className={`${
           className ? className : 'rounded-md'
-        } transform-gpu bg-zinc-600 transition-[opacity,transform,filter] duration-[1.2s] ease-in-out will-change-transform hover:cursor-zoom-in ${
-          isReady ? 'blur-0' : 'animate-pulse blur-3xl'
+        } bg-zinc-600 duration-1000 ease-in-out hover:cursor-zoom-in ${
+          isReady ? 'blur-0' : 'animate-pulse blur-2xl'
         }`}
         {...props}
         onLoadingComplete={onLoadCallback}
         layout='responsive'
+        unoptimized={lightbox.replace(/^.*\./, '') === 'gif' ? true : false}
       />
 
       {isOpen && (
