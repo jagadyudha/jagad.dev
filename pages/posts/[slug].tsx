@@ -24,7 +24,6 @@ import {
 import ViewsCount from '@/components/views-count';
 import { useSWRConfig } from 'swr';
 import Script from 'next/script';
-import Head from 'next/head';
 import Link from 'next/link';
 
 export interface frontmatter {
@@ -113,13 +112,12 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
 
   return (
     <main>
-      <Head>
-        <script
-          async
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
-          crossOrigin='anonymous'
-        />
-      </Head>
+      <Script
+        strategy='beforeInteractive'
+        async
+        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
+        crossOrigin='anonymous'
+      />
       {/* Next Seo */}
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
