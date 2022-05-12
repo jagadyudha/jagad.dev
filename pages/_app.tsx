@@ -31,21 +31,7 @@ declare global {
 
 export default function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   const router = useRouter();
-  useEffect(() => {
-    window.adsbygoogle = window.adsbygoogle || [];
-    window.adsbygoogle.push({});
 
-    router.events.on('routeChangeError', handleRouteChange);
-    router.events.on('routeChangeComplete', handleRouteChange);
-    router.events.off('routeChangeComplete', handleRouteChange);
-  }, []);
-
-  const handleRouteChange = () => {
-    const { googletag }: any = window;
-    googletag.cmd.push(function () {
-      googletag.pubads().clear();
-    });
-  };
   Router.events.on('routeChangeStart', nprogress.start);
   Router.events.on('routeChangeError', nprogress.done);
   Router.events.on('routeChangeComplete', nprogress.done);

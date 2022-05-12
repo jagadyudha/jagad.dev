@@ -25,7 +25,6 @@ import ViewsCount from '@/components/views-count';
 import { useSWRConfig } from 'swr';
 import Script from 'next/script';
 import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
 
 export interface frontmatter {
   title: string;
@@ -114,8 +113,11 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
   return (
     <main>
       <Script
-        strategy='beforeInteractive'
+        strategy='afterInteractive'
         async
+        onError={(e) => {
+          console.error('Script failed to load', e);
+        }}
         src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
         crossOrigin='anonymous'
       />
@@ -228,6 +230,14 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       </div>
 
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
+        <ins
+          className='adsbygoogle'
+          data-ad-layout='in-article'
+          data-ad-format='fluid'
+          data-ad-client='ca-pub-1510507608200585'
+          data-ad-slot='4491763798'
+        ></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <Markdown
           options={{
             overrides: {
