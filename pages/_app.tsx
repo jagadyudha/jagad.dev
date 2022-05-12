@@ -23,8 +23,22 @@ import '../styles/prism.css';
 //static
 import DataSeo from '@/_data/seo.json';
 
+declare global {
+  interface Window {
+    adsbygoogle: any;
+  }
+}
+
 export default function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   const router = useRouter();
+  useEffect(() => {
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.push({});
+
+    router.events.on('routeChangeError', handleRouteChange);
+    router.events.on('routeChangeComplete', handleRouteChange);
+    router.events.off('routeChangeComplete', handleRouteChange);
+  }, []);
 
   const handleRouteChange = () => {
     const { googletag }: any = window;
@@ -32,8 +46,6 @@ export default function MyApp({ Component, pageProps, ...appProps }: AppProps) {
       googletag.pubads().clear();
     });
   };
-  Router.events.on('routeChangeComplete', handleRouteChange);
-  Router.events.off('routeChangeComplete', handleRouteChange);
   Router.events.on('routeChangeStart', nprogress.start);
   Router.events.on('routeChangeError', nprogress.done);
   Router.events.on('routeChangeComplete', nprogress.done);
