@@ -25,6 +25,7 @@ import ViewsCount from '@/components/views-count';
 import { useSWRConfig } from 'swr';
 import Script from 'next/script';
 import Link from 'next/link';
+import Router, { useRouter } from 'next/router';
 
 export interface frontmatter {
   title: string;
@@ -48,12 +49,6 @@ import { cardTwitter } from '@/lib/seo';
 //data
 import DataSeo from '@/_data/seo.json';
 import Comment from '@/components/comment';
-
-declare global {
-  interface Window {
-    adsbygoogle: any;
-  }
-}
 
 export const getStaticPaths = async () => {
   const files = fs.readdirSync('./contents/posts');
@@ -90,12 +85,16 @@ export const getStaticProps = async ({
 const Posts = ({ frontmatter, content, slug }: slugProps) => {
   const { mutate } = useSWRConfig();
 
+  const handleRouteChange = () => {
+    document.querySelectorAll('[data-ad="true"]').forEach((e) => e.remove());
+  };
+  Router.events.on('routeChangeComplete', handleRouteChange);
+
   React.useEffect(() => {
     const highlight = async () => {
       await Prism.highlightAll(); // <--- prepare Prism
     };
     highlight(); // <--- call the async function
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
 
     // const registerView = () =>
     //   fetch(
