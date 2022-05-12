@@ -85,21 +85,11 @@ export const getStaticProps = async ({
 const Posts = ({ frontmatter, content, slug }: slugProps) => {
   const { mutate } = useSWRConfig();
 
-  const handleRouteChange = () => {
-    const { googletag }: any = window;
-    googletag.cmd.push(function () {
-      googletag.pubads().clear();
-    });
-  };
-
   React.useEffect(() => {
     const highlight = async () => {
       await Prism.highlightAll(); // <--- prepare Prism
     };
     highlight(); // <--- call the async function
-
-    Router.events.on('routeChangeComplete', handleRouteChange);
-    Router.events.off('routeChangeComplete', handleRouteChange);
 
     // const registerView = () =>
     //   fetch(
@@ -128,9 +118,6 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
         async
         src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
         crossOrigin='anonymous'
-        onLoad={() => {
-          handleRouteChange;
-        }}
       />
       {/* Next Seo */}
       <NextSeo

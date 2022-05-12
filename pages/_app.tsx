@@ -26,6 +26,14 @@ import DataSeo from '@/_data/seo.json';
 export default function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   const router = useRouter();
 
+  const handleRouteChange = () => {
+    const { googletag }: any = window;
+    googletag.cmd.push(function () {
+      googletag.pubads().clear();
+    });
+  };
+  Router.events.on('routeChangeComplete', handleRouteChange);
+  Router.events.off('routeChangeComplete', handleRouteChange);
   Router.events.on('routeChangeStart', nprogress.start);
   Router.events.on('routeChangeError', nprogress.done);
   Router.events.on('routeChangeComplete', nprogress.done);
