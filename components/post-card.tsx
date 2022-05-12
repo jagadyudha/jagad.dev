@@ -30,7 +30,11 @@ const PostCard: React.FC<postProps> = (props) => {
           <div className='my-3 flex items-center gap-3 font-sans text-sm font-normal text-gray-300'>
             <div className='flex items-center gap-1'>
               <IoEyeOutline />
-              <ViewsCount slug={`/posts/${slug}`} />
+              <ViewsCount
+                slug={`/posts/${
+                  slug.endsWith('-id') ? slug.replace('-id', '') : slug
+                }`}
+              />
             </div>
             <div className='flex items-center gap-1'>
               <IoTimeOutline />

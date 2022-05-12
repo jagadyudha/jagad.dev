@@ -25,6 +25,7 @@ import ViewsCount from '@/components/views-count';
 import { useSWRConfig } from 'swr';
 import Script from 'next/script';
 import Head from 'next/head';
+import Link from 'next/link';
 
 export interface frontmatter {
   title: string;
@@ -90,12 +91,17 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
     };
     highlight(); // <--- call the async function
 
-    const registerView = () =>
-      fetch(`/api/views/${slug}`, {
-        method: 'POST',
-      });
-    registerView();
-    mutate(`/api/views/${slug}`);
+    // const registerView = () =>
+    //   fetch(
+    //     `/api/views/${slug.endsWith('-id') ? slug.replace('-id', '') : slug}`,
+    //     {
+    //       method: 'POST',
+    //     }
+    //   );
+    // registerView();
+    // mutate(
+    //   `/api/views/${slug.endsWith('-id') ? slug.replace('-id', '') : slug}`
+    // );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -161,7 +167,11 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
           <div className='my-3 mb-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-sans text-sm font-normal text-gray-300 md:gap-5'>
             <div className='flex items-center gap-1'>
               <IoEyeOutline />
-              <ViewsCount slug={`/posts/${slug}`} />
+              <ViewsCount
+                slug={`/posts/${
+                  slug.endsWith('-id') ? slug.replace('-id', '') : slug
+                }`}
+              />
             </div>
             <div className='flex items-center gap-1'>
               <IoTimeOutline />
@@ -189,6 +199,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
             </div>
           </div>
         </div>
+
         <div className='my-5'>
           {tags
             .slice(0)
@@ -202,7 +213,20 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
             ))}
         </div>
       </div>
-      <hr className='my-8 opacity-20'></hr>
+      <div className='flex items-center'>
+        <hr className='mr-4 flex-grow opacity-40'></hr>
+        <Link
+          href={`/posts/${
+            slug.endsWith('-id') ? slug.replace('-id', '') : slug.concat('-id')
+          }`}
+        >
+          <a>
+            <button className='whitespace-nowrap rounded-md border border-primary px-2 py-1 text-sm font-medium text-primary'>
+              Read in {!slug.endsWith('-id') ? 'Bahasa' : 'English'}
+            </button>
+          </a>
+        </Link>
+      </div>
 
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
         <Markdown

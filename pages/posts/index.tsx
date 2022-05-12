@@ -32,12 +32,29 @@ export async function getStaticProps() {
 }
 
 const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const [post, setPost] = React.useState(posts);
+  // filter languages
+  const bahasaPosts = posts.filter((item) => item.slug.endsWith('-id'));
+  const englishPosts = posts.filter((item) => !item.slug.endsWith('-id'));
+
+  // set default to english
+  const [languages, setLanguages] = React.useState('en');
+  const [post, setPost] = React.useState(englishPosts);
+
+  // search posts
   const [search, setSearch] = React.useState('');
+
   const router = useRouter();
   const { query } = router;
 
   React.useEffect(() => {
+    const fetchByLang = async () => {
+      if (languages === 'id') {
+        setPost(bahasaPosts);
+      } else {
+        setPost(englishPosts);
+      }
+    };
+
     const fetchByTags = async () => {
       const tag = post.filter((element) =>
         element.frontmatter.tags.some(
@@ -47,13 +64,16 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
       setPost(tag);
     };
 
+    fetchByLang();
+
     if (query.tag) {
       fetchByTags();
-    } else {
-      setPost(posts);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]);
+  }, [query, languages]);
+
+  console.log(languages);
 
   const title = 'Posts';
   const description = `Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`;
@@ -95,7 +115,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </p>
       </div>
 
-      <div className='relative w-full'>
+      <div className='relative mb-4 w-full'>
         <input
           type='text'
           className='form-input block w-full rounded-md border-0 bg-background_100 py-2 text-gray-300 placeholder-gray-300 focus:ring-white'
@@ -103,6 +123,22 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           onChange={(e) => setSearch(e.target.value)}
         />
         <IoSearch className='absolute right-4 top-[9px] text-xl text-gray-300' />
+      </div>
+
+      <div className='mx-4 flex items-center'>
+        <hr className='mr-4 flex-grow opacity-40'></hr>
+        <button
+          className='whitespace-nowrap rounded-md border border-primary px-2 py-1 text-sm font-medium text-primary'
+          onClick={() => {
+            if (languages === 'en') {
+              setLanguages('id');
+            } else {
+              setLanguages('en');
+            }
+          }}
+        >
+          Read in {languages === 'en' ? 'Bahasa' : 'English'}
+        </button>
       </div>
 
       <div className='mx-auto my-5 md:my-10'>

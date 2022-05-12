@@ -1,0 +1,307 @@
+---
+title: 'Transisi Gambar Kustom di Next.js Dengan Tailwind CSS'
+description: 'Membuat gambar lebih interaktif dengan menggunakan transisi CSS.'
+date: '2022-05-12'
+tags:
+  - nextjs
+  - tailwind
+---
+
+## Daftar Isi
+
+1. [Pengantar](#pengantar)
+2. [Memulai](#memulai)
+3. [Cara Kerja Transisi CSS Tailwind](#cara-kerja-transisi-css-tailwind)
+4. [Memahami next/image onLoadingComplete callback](#memahami-next/image-onloadingcomplete-callback)
+5. [Membuat Komponen Gambar Kustom](#membuat-komponen-gambar-kustom)
+6. [Menerapkan Efek Blur ke Gambar](#menerapkan-efek-blur-ke-gambar)
+7. [Membuat Daftar Karakter Rick and Morty Dengan Komponen Gambar Kustom](#membuat-daftar-karakter-rick-and-morty-dengan-komponen-gambar-kustom)
+8. [Kesimpulan](#Kesimpulan)
+
+## Pengantar
+
+Salah satu aspek terpenting dari sebuah situs web adalah gambarnya. Gambar sekarang dapat menjadi lebih interaktif dengan penggunaan transisi CSS. Jadi, dalam tutorial ini, kita akan belajar bagaimana membuat gambar lebih interaktif menggunakan Tailwind CSS.
+
+Tailwind CSS adalah framework CSS utility-first CSS yang dikemas dengan class. Tailwind CSS tidak dilengkapi dengan komponen, tidak seperti framework CSS lainnya seperti Bootstrap atau Chakra UI. Tailwind CSS, di sisi lain, bekerja dengan memberi kita satu set class. Dengan class ini, kita dapat dengan cepat membuat desain kita sendiri.
+
+<img
+  alt='Meme tentang tailwind css'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1652328849/jagad.dev/posts/custom-image-transition-in-nextjs-with-tailwind-css/Meme_a7vr7s.jpg'
+  width='577'
+  height='430'
+/>
+
+## Memulai
+
+Mulailah dengan membuat proyek Next.js baru. Menggunakan Create Next App adalah metode yang paling umum.
+
+```bash
+$ npx create-next-app my-project
+$ cd my-project
+```
+
+Setelah proyek dibuat, kita akan pindah ke instalasi tailwind.
+
+```bash
+$ npm install -D tailwindcss postcss autoprefixer
+$ npx tailwindcss init -p
+```
+
+Tambahkan path ke file `tailwind.config.js`.
+
+```javascript
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+Tambahkan @tailwind ke file `./styles/globals.css`.
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Setelah semua selesai, kita dapat mulai menjalankan proyek dengan:
+
+```bash
+$ yarn dev
+
+# or
+
+$ npm run dev
+
+```
+
+## Cara Kerja Transisi CSS Tailwind
+
+Sebagai contoh, kita dapat membuat tombol dengan transisi hover yang mengubah warna latar belakangnya.
+
+```jsx
+<button className='rounded-full bg-teal-600 px-6 py-3 font-medium text-white transition duration-300 hover:bg-indigo-500'>
+  Hello Universe!
+</button>
+```
+
+<img
+  alt='Cara Kerja Transisi CSS Tailwind'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1652327445/jagad.dev/posts/custom-image-transition-in-nextjs-with-tailwind-css/How_Tailwind_CSS_Transitions_Work_bzg7zq.gif'
+  width='829'
+  height='335'
+/>
+
+terlihat bahwa dengan class `transition` kita dapat mengubah warna background dari `bg-teal-600` menjadi `bg-indigo-500` dengan durasi 300ms `duration-300`.
+
+Hal-hal terkait transisi, yang mencakup properti transisi, durasi transisi, fungsi waktu transisi, penundaan transisi, dan animasi, dapat ditemukan di dokumentasi Tailwind CSS. Berikut semua penjelasan untuk itu:
+
+- [Transition Property - Tailwind CSS](https://tailwindcss.com/docs/transition-property)
+- [Transition Duration - Tailwind CSS](https://tailwindcss.com/docs/transition-duration)
+- [Transition Timing Function - Tailwind CSS](https://tailwindcss.com/docs/transition-timing-function)
+- [Transition Delay - Tailwind CSS](https://tailwindcss.com/docs/transition-delay)
+- [Animation - Tailwind CSS](https://tailwindcss.com/docs/animation)
+
+## Memahami next/image onLoadingComplete callback
+
+onLoadingComplete adalah fungsi callback yang dipanggil setelah gambar dimuat sepenuhnya dan placeholder telah dihapus. Ini berarti, kita dapat menambahkan transisi sebelum gambar dimuat sepenuhnya.
+
+Untuk melihat cara kerja callback `onLoad Complete`, kita harus membuat state yang berisi boolean `false`.
+
+```javascript
+const [isReady, setIsReady] = useState(false);
+```
+
+Selanjutnya, kita membuat fungsi onLoadCallback yang akan mengubah status `isReady` menjadi `true`.
+
+```javascript
+const onLoadCallback = () => {
+  setIsReady(true);
+};
+```
+
+Setelah itu, kita bisa memanggil fungsi `onLoadCallback` pada props `onLoadingComplete`, yang akan memicu parameter event yang berisi img yang dimuat.
+
+```javascript
+<NextImage
+  objectFit='cover'
+  src={}
+  width={}
+  height={}
+  onLoadingComplete={onLoadCallback} //this is called the callback function
+/>
+```
+
+## Membuat Komponen Gambar Kustom
+
+Sekarang setelah kita mengetahui cara menggunakan callback `onLoadingComplete`, kita dapat membuat komponen gambar kustom dengan membuat folder komponen dan meletakkan file `image.js` di dalamnya.
+
+```bash
+├── README.md
+├── components # Ini adalah folder tempat kita akan membuat komponen gambar kustom
+│   └── image.js
+├── next.config.js
+├── package-lock.json
+├── package.json
+├── pages
+│   ├── _app.js
+│   ├── index.js
+├── postcss.config.js
+├── public
+│   ├── favicon.ico
+│   └── vercel.svg
+├── styles
+│   ├── Home.module.css
+│   └── globals.css
+└── tailwind.config.js
+```
+
+Kemudian, pada file `image.js`, tambahkan kode berikut:
+
+```javascript
+import React, { useState } from 'react';
+import NextImage from 'next/image';
+
+const Image = ({ src, ...props }) => {
+  const [isReady, setIsReady] = useState(false);
+
+  const onLoadCallback = () => {
+    setIsReady(true);
+  };
+
+  return (
+    <NextImage
+      objectFit='cover'
+      src={src}
+      {...props}
+      onLoadingComplete={onLoadCallback}
+      layout='responsive'
+    />
+  );
+};
+
+export default Image;
+```
+
+Sebenarnya kode di atas adalah kode yang sama (full version) dengan kode yang telah kita pelajari di bagian [Memahami next/image onLoadingComplete callback](#memahami-next/image-onloadingcomplete-callback).
+
+## Menerapkan Efek Blur ke Gambar
+
+Kita akan menggunakan efek blur untuk menerapkan efek pada gambar kustom yang telah kita buat sebelumnya. Kita dapat melakukannya dengan menambahkan class blur dengan `blur-2xl` ke gambar ketika `isReady` adalah `false` dan menghapusnya ketika `isReady` adalah `true` dengan `blur-0`.
+
+Untuk membuat transisi lebih interaktif, kita dapat menambahkan kelas scale dengan `scale-120` ke gambar ketika `isReady` adalah `false` dan `scale-100` ketika `isReady` adalah `true`.
+
+Kita juga akan menambahkan kelas `transisi` dan `durasi-1000` ke gambar untuk menerapkan efek transisi.
+
+```javascript
+<NextImage
+  objectFit='cover'
+  src={src}
+  className={`bg-gray-400 transition duration-1000 ${
+    isReady ? 'scale-100 bg-gray-400 blur-0' : 'scale-120 blur-2xl'
+  }`}
+  {...props}
+  onLoadingComplete={onLoadCallback}
+  layout='responsive'
+/>
+```
+
+Setelah itu, kita dapat mengimpor komponen gambar yang telah kita buat sebelumnya dan menggunakannya di semua gambar.
+
+```javascript
+//ini adalah komponen gambar yang kita buat sebelumnya
+import Image from '../components/image';
+
+const Test = () => {
+  return (
+    <main className='flex h-screen w-screen items-center justify-center'>
+      <div className='w-1/4'>
+        <Image src={`YOURIMAGESRC`} width={300} height={300} />
+      </div>
+    </main>
+  );
+};
+
+export default Test;
+```
+
+<img
+  alt='menggunakan komponen diseluruh halaman'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1652331620/jagad.dev/posts/custom-image-transition-in-nextjs-with-tailwind-css/use_components_in_all_images_lrnl5h.gif'
+  width='600'
+  height='319'
+/>
+
+# Membuat Daftar Karakter Rick and Morty Dengan Komponen Gambar Kustom
+
+Untuk menerapkan ke proyek, kita hanya perlu mengimpor komponen yang telah dibuat sebelumnya.
+
+Sebagai contoh, kita akan mengimplementasikan dengan menggunakan Rick and Morty API.
+
+```javascript
+import Image from '../components/image';
+
+export async function getStaticProps() {
+  const res = await fetch('https://rickandmortyapi.com/api/character/');
+  const content = await res.json();
+
+  return {
+    props: {
+      content,
+    },
+  };
+}
+
+const Home = ({ content }) => {
+  return (
+    <div className='bg-gray-200 p-5 sm:p-16 lg:p-32'>
+      <div className='grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-10 lg:grid-cols-3 xl:grid-cols-5'>
+        {content.results.map((character) => {
+          const { id, name, image, status, type, gender } = character;
+
+          return (
+            <div key={id} className='rounded-lg bg-white'>
+              <div className='overflow-hidden rounded-t-lg'>
+                <Image
+                  src={image}
+                  width={300}
+                  height={300}
+                  layout='responsive'
+                />
+              </div>
+              <div className='mx-4 my-4'>
+                <h2 className='text-xl font-bold text-gray-900'>{name}</h2>
+                <p className='text-md text-gray-600'>Status : {status}</p>
+                <p className='text-md text-gray-600'>Gender : {gender}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default Home;
+```
+
+Berikut adalah hasil implementasi Daftar Karakter Rick and Morty dengan Gambar Kustom.
+
+<img
+  alt='implementation of the Rick and Morty Character List'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1652332661/jagad.dev/posts/custom-image-transition-in-nextjs-with-tailwind-css/implementation_of_the_Rick_and_Morty_Character_List_rwb1sw.gif'
+  width='600'
+  height='319'
+/>
+
+# Kesimpulan
+
+Tailwind CSS dapat digunakan untuk memberikan efek transisi ke gambar kustom dan membuatnya lebih interaktif.
+
+The code of this project lives at : [https://github.com/jagadyudha/custom-image-transition-in-nextjs-with-tailwind-css](https://github.com/jagadyudha/custom-image-transition-in-nextjs-with-tailwind-css)
