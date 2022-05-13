@@ -235,11 +235,11 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       </div>
 
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
-        <div>
+        <div className='m-6'>
           <ins
             className='adsbygoogle'
             style={{
-              display: 'inline-block',
+              display: 'block',
               textAlign: 'center',
               margin: '10px',
             }}
