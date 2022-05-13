@@ -25,6 +25,7 @@ import ViewsCount from '@/components/views-count';
 import { useSWRConfig } from 'swr';
 import Script from 'next/script';
 import Link from 'next/link';
+import path from 'path';
 
 export interface frontmatter {
   title: string;
@@ -67,11 +68,18 @@ export const getStaticProps = async ({
 }: {
   params: { slug: string };
 }) => {
-  const fileName = fs.readFileSync(
-    `./contents/posts/${params.slug}.mdx`,
-    'utf-8'
+  // const fileName = fs.readFileSync(
+  //   `./contents/posts/${params.slug}.mdx`,
+  //   'utf-8'
+  // );
+  const fullPath = path.join(
+    process.cwd(),
+    `./contents/posts/${params.slug}.mdx`
   );
-  const { data: frontmatter, content } = matter(fileName);
+
+  const readFile = fs.readFileSync(fullPath, 'utf-8');
+
+  const { data: frontmatter, content } = matter(readFile);
   return {
     props: {
       frontmatter,
@@ -111,7 +119,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
   )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
 
   return (
-    <main>
+    <>
       <Script
         strategy='afterInteractive'
         async
@@ -261,7 +269,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       </article>
       <hr className='my-8 opacity-20'></hr>
       <Comment />
-    </main>
+    </>
   );
 };
 
