@@ -231,13 +231,13 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
 
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
         <ins
+          style={{ display: 'block' }}
           className='adsbygoogle'
           data-ad-layout='in-article'
           data-ad-format='fluid'
           data-ad-client='ca-pub-1510507608200585'
           data-ad-slot='4491763798'
         ></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <Markdown
           options={{
             overrides: {
