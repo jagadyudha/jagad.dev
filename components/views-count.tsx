@@ -11,7 +11,7 @@ const ViewsCount: React.FC<Props> = ({ slug }) => {
 
   if (!data) return <div>- views</div>;
 
-  return <p>{data.views} views</p>;
+  return <p>{data.count} views</p>;
 };
 
 export default ViewsCount;

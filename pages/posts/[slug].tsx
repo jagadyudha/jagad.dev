@@ -26,6 +26,7 @@ import { useSWRConfig } from 'swr';
 import Script from 'next/script';
 import Link from 'next/link';
 import path from 'path';
+import { useRouter } from 'next/router';
 
 export interface frontmatter {
   title: string;
@@ -99,6 +100,10 @@ export const getStaticProps = async ({
 
 const Posts = ({ frontmatter, content, slug }: slugProps) => {
   const { mutate } = useSWRConfig();
+  const router = useRouter();
+  const enRouter = router.asPath.endsWith('-id')
+    ? router.asPath.replace('-id', '')
+    : router.asPath;
 
   React.useEffect(() => {
     const highlight = async () => {
@@ -106,17 +111,15 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
     };
     highlight(); // <--- call the async function
 
-    // const registerView = () =>
-    //   fetch(
-    //     `/api/views/${slug.endsWith('-id') ? slug.replace('-id', '') : slug}`,
-    //     {
-    //       method: 'POST',
-    //     }
-    //   );
-    // registerView();
-    // mutate(
-    //   `/api/views/${slug.endsWith('-id') ? slug.replace('-id', '') : slug}`
-    // );
+    const registerView = () =>
+      fetch(`/api/pageview/${enRouter}`, {
+        method: 'POST',
+      });
+    registerView();
+
+    //update data
+    mutate(`/api/pageview/${enRouter}`);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -184,11 +187,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
           <div className='my-3 mb-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-sans text-sm font-normal text-gray-300 md:gap-5'>
             <div className='flex items-center gap-1'>
               <IoEyeOutline />
-              <ViewsCount
-                slug={`/posts/${
-                  slug.endsWith('-id') ? slug.replace('-id', '') : slug
-                }`}
-              />
+              <ViewsCount slug={`${enRouter}`} />
             </div>
             <div className='flex items-center gap-1'>
               <IoTimeOutline />
