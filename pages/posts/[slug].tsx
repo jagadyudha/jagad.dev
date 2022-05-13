@@ -23,7 +23,7 @@ import {
 } from 'react-icons/io5';
 import ViewsCount from '@/components/views-count';
 import { useSWRConfig } from 'swr';
-import Script from 'next/script';
+import Head from 'next/head';
 import Link from 'next/link';
 import path from 'path';
 import { useRouter } from 'next/router';
@@ -131,15 +131,13 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
 
   return (
     <>
-      <Script
-        strategy='afterInteractive'
-        async
-        onError={(e) => {
-          console.error('Script failed to load', e);
-        }}
-        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
-        crossOrigin='anonymous'
-      />
+      <Head>
+        <script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
+          crossOrigin='anonymous'
+        ></script>
+      </Head>
       {/* Next Seo */}
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
