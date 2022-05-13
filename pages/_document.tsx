@@ -5,11 +5,6 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
-          <script
-            async
-            src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
-            crossOrigin='anonymous'
-          ></script>
           <link href='/assets/fonts/fonts.css' rel='preload' as='font' />
           <link
             rel='apple-touch-icon'
