@@ -245,6 +245,15 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
         </Link>
       </div>
 
+      <ins
+        className='adsbygoogle'
+        style={{ display: 'block' }}
+        data-ad-client='ca-pub-1510507608200585'
+        data-ad-slot='5136962755'
+        data-ad-format='auto'
+        data-full-width-responsive='true'
+      ></ins>
+
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
         <ins
           style={{ display: 'block' }}
@@ -265,15 +274,6 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
         >
           {content}
         </Markdown>
-
-        <ins
-          className='adsbygoogle'
-          style={{ display: 'block' }}
-          data-ad-client='ca-pub-1510507608200585'
-          data-ad-slot='5136962755'
-          data-ad-format='auto'
-          data-full-width-responsive='true'
-        ></ins>
       </article>
       <hr className='my-8 opacity-20'></hr>
       <Comment />
