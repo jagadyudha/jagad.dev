@@ -235,7 +235,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       </div>
 
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
-        <div className='m-6 flex justify-center'>
+        <div>
           <ins
             className='adsbygoogle'
             style={{ display: 'block', textAlign: 'center', margin: '10px' }}
