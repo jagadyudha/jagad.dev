@@ -8,7 +8,7 @@ const Adsense = () => {
         style={{
           display: 'block',
           textAlign: 'center',
-          margin: '6px',
+          margin: '6px !important',
         }}
         data-ad-layout='in-article'
         data-ad-format='fluid'

@@ -236,18 +236,19 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       </div>
 
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
-        <Adsense />
         <Markdown
           options={{
             overrides: {
               img: {
                 component: Image,
               },
+              ads: { component: Adsense },
             },
           }}
         >
           {content}
         </Markdown>
+        <Adsense />
       </article>
       <hr className='my-8 opacity-20'></hr>
       <Comment />
