@@ -2,13 +2,13 @@ import React from 'react';
 
 const Adsense = () => {
   return (
-    <div className='my-10'>
+    <div className='my-10 mx-6'>
       <ins
         className='adsbygoogle'
         style={{
           display: 'block',
           textAlign: 'center',
-          padding: '6px',
+          margin: '6px',
         }}
         data-ad-layout='in-article'
         data-ad-format='fluid'
