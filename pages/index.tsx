@@ -42,7 +42,7 @@ const Home = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
-      <div className='mb-16 flex-none items-center justify-center md:-mx-[72px] md:flex lg:-mx-[75px] xl:-mx-24'>
+      <div className='-mx-8 mb-16 flex-none items-center justify-center md:flex'>
         <div className='mx-auto mr-5 hidden w-full md:block xl:w-1/2'>
           <Image
             src={

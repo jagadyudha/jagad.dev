@@ -1,0 +1,126 @@
+---
+title: 'Scraping Pencarian Google Dengan Python dan Beautifulsoup4'
+description: 'Belajar cara melakukan Scraping Google dan mengoptimalkan pencarian menggunakan operator pencarian google'
+date: '2022-04-18'
+tags:
+  - python
+  - beautifulsoup4
+---
+
+## Daftar Isi
+
+1. [Pengantar](#pengantar)
+2. [Penginstalan](#penginstalan)
+3. [Cara Menjalankan Proyek](#cara-menjalankan-proyek)
+4. [Optimalkan Pencarian Dengan Operator Pencarian Google](#optimalkan-pencarian-dengan-operator-pencarian-google)
+5. [Cheat Sheet Operator Penelusuran Google](#cheat-sheet-operator-penelusuran-google)
+6. [Kesimpulan](#kesimpulan)
+
+<ads />
+
+## Pengantar
+
+Scraping web adalah teknik untuk memperoleh data yang dapat digunakan untuk tujuan tertentu. Intinya website berisi data yang banyak, jika ingin mendapatkan data tersebut maka salah satu caranya adalah dengan web scraping.
+
+Dalam posting ini, kami akan mencoba scraping url Google dan mempelajari cara mengoptimalkan pencarian menggunakan operator pencarian Google.
+
+<img
+  alt='Meme'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1650258328/jagad.dev/posts/google-url-scraping-with-python-and-beautifulsoup4/0_Bj_O1jRFzZjKxzi4_pnssel.jpg'
+  width='550'
+  height='400'
+/>
+
+Source Image: [Automating Social Media Contests with Web Scraping | by Jason Yip | Towards Data Science](https://towardsdatascience.com/automating-social-media-contests-with-web-scraping-41c55ff6022a)
+
+## Penginstalan
+
+Kloning repositori dengan menjalankan perintah berikut:
+
+```bash
+$ git clone https://github.com/jagadyudha/google-scraper
+```
+
+Instalasi library yang diperlukan dengan menjalankan perintah berikut:
+
+```bash
+# Python3
+$ pip3 install -r requirements.txt
+
+# or
+
+# Python2
+$ pip install -r requirements.txt
+```
+
+Sebelum kita masuk ke cara menjalankan proyek, kita perlu tahu cara kerja proyek ini.
+
+1. Identifikasi url pencarian google
+2. Kumpulkan data dari url
+3. Temukan tag `div` dengan class `g`
+4. TEMUKAN tag `a` di dalam class yang kita temukan di langkah 3
+
+## Cara Menjalankan Proyek
+
+Untuk menjalankan kodenya cukup sederhana. Cukup tulis perintah berikut:
+
+```bash
+# Python3
+$ python3 main.py
+
+# or
+
+# Python2
+$ python main.py
+```
+
+Halaman input dan data input akan ditampilkan setelah menjalankan perintah di atas.
+
+Halaman input adalah jumlah halaman Google yang ingin Anda kikis, sedangkan data input adalah kata kunci yang ingin Anda cari.
+
+<img
+  alt='Output'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1650265187/jagad.dev/posts/google-url-scraping-with-python-and-beautifulsoup4/output_x6vsfc.png'
+  width='765'
+  height='208'
+/>
+
+## mengoptimalkan pencarian dengan operator pencarian Google
+
+Operator pencarian Google sering digunakan untuk menemukan informasi yang spesifik, memungkinkan hasil pencarian yang akurat bahkan ketika informasi tersebut sulit untuk dilacak.
+
+Kita juga dapat menggunakan operator pencarian Google dalam proyek ini. Sebagai contoh, saya akan mencari file pdf dengan kata kunci `learning Python`.
+
+Jadi, saya akan mencari dengan kata kunci `filetype:pdf intext:learning Python`
+
+<img
+  alt='mengoptimalkan pencarian dengan operator pencarian Google'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1650268568/jagad.dev/posts/google-url-scraping-with-python-and-beautifulsoup4/Search_with_google_search_operators_mzacyk.png'
+  width='1222'
+  height='467'
+/>
+
+Sayangnya, jika Anda terlalu sering menggunakan Operator Penelusuran Google, hal tersebut dapat memunculkan captcha.
+
+<img
+  alt='menggunakan google operator terlalu sering'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1650270958/jagad.dev/posts/google-url-scraping-with-python-and-beautifulsoup4/cons_w5wvru.png'
+  width='595'
+  height='239'
+/>
+
+## Cheat Sheet Operator Penelusuran Google
+
+Sebelumnya saya sudah memberikan contoh penggunaan Google Search Operators. Untuk lebih jelasnya, Anda dapat melihat cheat sheet berikut:
+
+| Nama      | Deskripsi                                               | Contoh                                 |
+| --------- | ------------------------------------------------------- | -------------------------------------- |
+| site:     | mencari situs tertentu seperti jagad.dev.               | site:jagad.dev                         |
+| intext:   | mencari halaman yang berisi kata tertentu dalam konten. | intext:jagad yudha                     |
+| filetype: | mencari jenis file tertentu seperti PDF dan DOCX.       | filetype:pdf                           |
+| intitle:  | mencari berdasarkan title                               | intitle:jagad yudha                    |
+| inurl:    | temukan URL situs web dan directory                     | inurl:/wp-content/themes/bulteno-theme |
+
+## Kesimpulan
+
+Dengan bantuan alat ini, kita dapat melakukan scraping secara otomatis tanpa perlu menyalin URL satu per satu. Namun, ada masalah yang belum terpecahkan dengan captcha saat menggunakannya terlalu sering.

@@ -69,7 +69,7 @@ export default function MyApp({ Component, pageProps, ...appProps }: AppProps) {
         src='https://analytics.jagad.dev/umami.js'
       />
       <Layout key={router.pathname}>
-        <main className='mx-auto my-10 max-w-2xl px-6 sm:my-24 md:px-12 xl:px-0'>
+        <main className='mx-auto my-10 max-w-3xl px-6 sm:my-24 md:px-12 xl:px-0'>
           <Component {...pageProps} />
         </main>
       </Layout>

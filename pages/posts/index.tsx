@@ -115,17 +115,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </p>
       </div>
 
-      <div className='relative mb-4 w-full'>
-        <input
-          type='text'
-          className='form-input block w-full rounded-md border-0 bg-background_100 py-2 text-gray-300 placeholder-gray-300 focus:ring-white'
-          placeholder='Search Posts...'
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <IoSearch className='absolute right-4 top-[9px] text-xl text-gray-300' />
-      </div>
-
-      <div className='mx-4 flex items-center'>
+      <div className='flex items-center'>
         <hr className='mr-4 flex-grow opacity-40'></hr>
         <button
           className='whitespace-nowrap rounded-md border border-primary px-2 py-1 text-sm font-medium text-primary'
