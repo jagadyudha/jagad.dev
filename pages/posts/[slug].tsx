@@ -248,7 +248,6 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
         >
           {content}
         </Markdown>
-        <Adsense slot='7088354586' />
       </article>
       <hr className='my-8 opacity-20'></hr>
       <Comment />
