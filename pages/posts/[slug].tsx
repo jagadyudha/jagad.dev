@@ -73,12 +73,19 @@ export const getStaticProps = async ({
   //   `./contents/posts/${params.slug}.mdx`,
   //   'utf-8'
   // );
-  const fullPath = path.join(
-    process.cwd(),
-    `./contents/posts/${params.slug}.mdx`
-  );
+  let readFile;
+  try {
+    const fullPath = path.join(
+      process.cwd(),
+      `./contents/posts/${params.slug}.mdx`
+    );
 
-  const readFile = fs.readFileSync(fullPath, 'utf-8');
+    readFile = fs.readFileSync(fullPath, 'utf-8');
+  } catch (e) {
+    return {
+      notFound: true,
+    };
+  }
 
   const { data: frontmatter, content } = matter(readFile);
   return {
