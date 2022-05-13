@@ -33,12 +33,9 @@ declare global {
 export default function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
-    var ads = document.getElementsByClassName('adsbygoogle').length;
-    for (var i = 0; i < ads; i++) {
-      try {
-        (window.adsbygoogle || []).push({});
-      } catch (e) {}
-    }
+    try {
+      (window.adsbygoogle || []).push({});
+    } catch (e) {}
   }, []);
 
   Router.events.on('routeChangeStart', nprogress.start);
