@@ -235,13 +235,13 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       </div>
 
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
-        <div className='m-6'>
+        <div className='my-10'>
           <ins
             className='adsbygoogle'
             style={{
               display: 'block',
               textAlign: 'center',
-              margin: '10px',
+              margin: '6px',
             }}
             data-ad-layout='in-article'
             data-ad-format='fluid'

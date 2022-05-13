@@ -22,40 +22,36 @@ const PostCard: React.FC<postProps> = (props) => {
 
   return (
     <div key={slug} className='py-6'>
-      <Link href={`/posts/${slug}`}>
-        <a>
-          <h2 className='font-sans text-lg font-bold text-white sm:text-xl'>
-            {title}
-          </h2>
-          <div className='my-3 flex items-center gap-3 font-sans text-sm font-normal text-gray-300'>
-            <div className='flex items-center gap-1'>
-              <IoEyeOutline />
-              <ViewsCount
-                slug={`/posts/${
-                  slug.endsWith('-id') ? slug.replace('-id', '') : slug
-                }`}
-              />
-            </div>
-            <div className='flex items-center gap-1'>
-              <IoTimeOutline />
-              <p>{readtime}</p>
-            </div>
-            <div className='flex items-center gap-1'>
-              <IoCalendarClearOutline />
-              <p>
-                {`${new Date(date).toLocaleString('default', {
-                  month: 'short',
-                })} ${new Date(date).getDate()}, ${new Date(
-                  date
-                ).getFullYear()}`}
-              </p>
-            </div>
+      <a href={`/posts/${slug}`}>
+        <h2 className='font-sans text-lg font-bold text-white sm:text-xl'>
+          {title}
+        </h2>
+        <div className='my-3 flex items-center gap-3 font-sans text-sm font-normal text-gray-300'>
+          <div className='flex items-center gap-1'>
+            <IoEyeOutline />
+            <ViewsCount
+              slug={`/posts/${
+                slug.endsWith('-id') ? slug.replace('-id', '') : slug
+              }`}
+            />
           </div>
-          <p className='text-md my-2 font-sans font-normal text-gray-400'>
-            {description}
-          </p>
-        </a>
-      </Link>
+          <div className='flex items-center gap-1'>
+            <IoTimeOutline />
+            <p>{readtime}</p>
+          </div>
+          <div className='flex items-center gap-1'>
+            <IoCalendarClearOutline />
+            <p>
+              {`${new Date(date).toLocaleString('default', {
+                month: 'short',
+              })} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
+            </p>
+          </div>
+        </div>
+        <p className='text-md my-2 font-sans font-normal text-gray-400'>
+          {description}
+        </p>
+      </a>
 
       <div className='flex flex-wrap'>
         {tags
