@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import type { AppProps /*, AppContext */ } from 'next/app';
 import Script from 'next/script';
 import nprogress from 'nprogress';
+import Head from 'next/head';
 
 //css
 import 'react-image-lightbox/style.css';
@@ -50,6 +51,13 @@ export default function MyApp({ Component, pageProps, ...appProps }: AppProps) {
 
   return (
     <ThemeProvider attribute='class'>
+      <Head>
+        <script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
+          crossOrigin='anonymous'
+        ></script>
+      </Head>
       <DefaultSeo
         title={DataSeo.title}
         description={DataSeo.description}

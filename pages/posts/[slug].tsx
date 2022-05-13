@@ -23,7 +23,6 @@ import {
 } from 'react-icons/io5';
 import ViewsCount from '@/components/views-count';
 import { useSWRConfig } from 'swr';
-import Head from 'next/head';
 import Link from 'next/link';
 import path from 'path';
 import { useRouter } from 'next/router';
@@ -131,13 +130,6 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
 
   return (
     <>
-      <Head>
-        <script
-          async
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
-          crossOrigin='anonymous'
-        ></script>
-      </Head>
       {/* Next Seo */}
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
@@ -243,16 +235,14 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       </div>
 
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
-        <div>
-          <ins
-            style={{ display: 'block' }}
-            className='adsbygoogle'
-            data-ad-layout='in-article'
-            data-ad-format='fluid'
-            data-ad-client='ca-pub-1510507608200585'
-            data-ad-slot='4491763798'
-          ></ins>
-        </div>
+        <ins
+          className='adsbygoogle mx-6'
+          style={{ display: 'block' }}
+          data-ad-client='ca-pub-1510507608200585'
+          data-ad-slot='5136962755'
+          data-ad-format='auto'
+          data-full-width-responsive='true'
+        ></ins>
         <Markdown
           options={{
             overrides: {
