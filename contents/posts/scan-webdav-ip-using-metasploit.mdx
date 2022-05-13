@@ -1,0 +1,97 @@
+---
+title: 'Scan WebDav IP Using Metasploit'
+description: 'Using the worlds most used penetration testing framework to scan WebDav'
+date: '2015-03-14'
+tags:
+  - exploit
+  - metasploit
+---
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Running Metasploit](#getting-started)
+3. [Auxiliary Module Scanner](#how-tailwind-css-transitions-work)
+4. [Set RHOSTS](#understanding-nextimage-onloadingcomplete-callback)
+5. [Scan Results](#create-custom-images-components)
+
+<ads />
+
+## Introduction
+
+WebDAV has become a boring thing in the underground circles, WebDAV is a loophole that is often used by hacker kiddies (it's me 🤣) because the technique is easy, and there are lots of tools that can be used. One of the most famous tools is the WebDav shell maker created by hmei7.
+
+Although considered for hacker kiddies, many people do not know that there are tools that can be used to find sites that use webDav. of course the site can also be submitted at zone-h.org.😁
+
+The tool we are talking about is metasploit. metasploit is The world's most used penetration testing framework. Metasploit helps security teams do more than just verify vulnerabilities, manage security assessments, and improve security awareness.
+
+## Getting Started
+
+Before we start, we have to install Metasploit. To install Metasploit, we can download it directly from the Metasploit website [Download Metasploit: World's Most Used Penetration Testing Tool | Metasploit](https://www.metasploit.com/download).
+
+Because I'm using kali linux, the metasploit package is available by default.
+
+## Running Metasploit
+
+To run metasploit, we can use the command:
+
+```bash
+$ msfconsole
+```
+
+<img
+  alt='Running Metasploit'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1652440384/jagad.dev/posts/scan-webdav-ip-using-metasploit/Running_Metasploit_jmrwvf.png'
+  width='1366'
+  height='768'
+/>
+
+## Auxiliary Module Scanner
+
+The webdav scanner module checks whether WebDav is enabled on a server or a group of servers. This helps us to fine-tune our attacks even further. [Scanner HTTP Auxiliary Modules - Metasploit Unleashed (offensive-security.com)](https://www.offensive-security.com/metasploit-unleashed/scanner-http-auxiliary-modules/)
+
+To use the scanner module, we can use the command:
+
+```bash
+use auxiliary/scanner/http/webdav_scanner
+```
+
+<img
+  alt='Auxiliary Module Scanner'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1652440712/jagad.dev/posts/scan-webdav-ip-using-metasploit/Auxiliary_Module_Scanner_gbvg5m.png'
+  width='1366'
+  height='768'
+/>
+
+## Set RHOSTS
+
+The only thing we need to do now is set our RHOSTS settings and run the scanner.
+
+```bash
+$ set RHOSTS 192.134.1.200-250
+$ run
+```
+
+192.134.1.200 is the IP Addresses to be scanned and 250 is the end of the IP Addresses. so basically we scan from 192.134.1.200 to 192.134.1.250
+
+<img
+  alt='Set RHOSTS'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1652441104/jagad.dev/posts/scan-webdav-ip-using-metasploit/Set_RHOSTS_g6x6sr.png'
+  width='1366'
+  height='768'
+/>
+
+## Scan Results
+
+When you find the words "has WebDav enabled", it is possible that the website can be exploited.
+
+<img
+  alt='Scan Results'
+  src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1652441322/jagad.dev/posts/scan-webdav-ip-using-metasploit/Scan_Results_wkdluk.png'
+  width='687'
+  height='159'
+/>
+
+## Conclusion
+
+Metasploit tools can be used to find websites that use webdav. But keep in mind that not all websites that use webdav can be exploited. The key is to be patient😋
