@@ -238,7 +238,11 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
         <div>
           <ins
             className='adsbygoogle'
-            style={{ display: 'block', textAlign: 'center', margin: '10px' }}
+            style={{
+              display: 'inline-block',
+              textAlign: 'center',
+              margin: '10px',
+            }}
             data-ad-layout='in-article'
             data-ad-format='fluid'
             data-ad-client='ca-pub-1510507608200585'
