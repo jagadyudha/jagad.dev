@@ -242,24 +242,17 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
         </Link>
       </div>
 
-      <ins
-        className='adsbygoogle'
-        style={{ display: 'block' }}
-        data-ad-client='ca-pub-1510507608200585'
-        data-ad-slot='5136962755'
-        data-ad-format='auto'
-        data-full-width-responsive='true'
-      ></ins>
-
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
-        <ins
-          style={{ display: 'block' }}
-          className='adsbygoogle'
-          data-ad-layout='in-article'
-          data-ad-format='fluid'
-          data-ad-client='ca-pub-1510507608200585'
-          data-ad-slot='4491763798'
-        ></ins>
+        <div>
+          <ins
+            style={{ display: 'block' }}
+            className='adsbygoogle'
+            data-ad-layout='in-article'
+            data-ad-format='fluid'
+            data-ad-client='ca-pub-1510507608200585'
+            data-ad-slot='4491763798'
+          ></ins>
+        </div>
         <Markdown
           options={{
             overrides: {
