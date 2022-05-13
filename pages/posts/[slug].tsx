@@ -169,20 +169,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       />
 
       <div className='text-center' key={slug}>
-        <div className='my-10 mx-6'>
-          <ins
-            className='adsbygoogle'
-            style={{
-              display: 'block',
-              margin: '4px !important',
-            }}
-            data-ad-client='ca-pub-1510507608200585'
-            data-ad-slot='5136962755'
-            data-ad-format='auto'
-            data-full-width-responsive='true'
-          ></ins>
-        </div>
-        <div className='mt-5'>
+        <div className='-mt-5'>
           <h1 className='font-sans text-xl font-bold text-white sm:text-3xl'>
             {title}
           </h1>

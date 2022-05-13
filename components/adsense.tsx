@@ -7,13 +7,12 @@ const Adsense = () => {
         className='adsbygoogle'
         style={{
           display: 'block',
-          textAlign: 'center',
           margin: '6px !important',
         }}
-        data-ad-layout='in-article'
-        data-ad-format='fluid'
         data-ad-client='ca-pub-1510507608200585'
-        data-ad-slot='4491763798'
+        data-ad-slot='5136962755'
+        data-ad-format='auto'
+        data-full-width-responsive='true'
       ></ins>
     </div>
   );
