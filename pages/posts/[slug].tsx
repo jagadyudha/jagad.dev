@@ -26,6 +26,7 @@ import { useSWRConfig } from 'swr';
 import Link from 'next/link';
 import path from 'path';
 import { useRouter } from 'next/router';
+import Adsense from '@/components/adsense';
 
 export interface frontmatter {
   title: string;
@@ -235,20 +236,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       </div>
 
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
-        <div className='my-10'>
-          <ins
-            className='adsbygoogle'
-            style={{
-              display: 'block',
-              textAlign: 'center',
-              margin: '6px',
-            }}
-            data-ad-layout='in-article'
-            data-ad-format='fluid'
-            data-ad-client='ca-pub-1510507608200585'
-            data-ad-slot='4491763798'
-          ></ins>
-        </div>
+        <Adsense />
         <Markdown
           options={{
             overrides: {
