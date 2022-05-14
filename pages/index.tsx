@@ -4,10 +4,10 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
+import Link from 'next/link';
 
 //components
 import PostCard from '@/components/post-card';
-import Image from '@/components/image';
 
 export async function getStaticProps() {
   const files = fs.readdirSync('./contents/posts');
@@ -27,6 +27,8 @@ export async function getStaticProps() {
     [
       'how-to-create-a-whatsapp-bot-with-node-js',
       'custom-image-transition-in-nextjs-with-tailwind-css',
+      'how-to-create-steam-player-summaries-with-next-js',
+      'react-native-camera-but-with-react-hooks',
     ].includes(item.slug)
   );
 
@@ -42,46 +44,31 @@ const Home = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
-      <div className='-mx-8 mb-16 flex-none items-center justify-center md:flex'>
-        <div className='mx-auto mr-5 hidden w-full md:block xl:w-1/2'>
-          <Image
-            src={
-              'https://res.cloudinary.com/dlpb6j88q/image/upload/w_453,h_806,c_fill,e_grayscale/v1647569135/personal/intro_k7hisn.jpg'
-            }
-            width={'44%'}
-            height={'100%'}
-            layout='responsive'
-            objectFit='cover'
-            alt='Jagad Yudha Awali'
-            className='rounded-md'
-          />
-        </div>
-        <div className='-mx-6 -mt-24 mb-10 block w-screen min-w-[140px] md:hidden'>
-          <Image
-            src={
-              'https://res.cloudinary.com/dlpb6j88q/image/upload/w_600,h_600,c_thumb,g_face,e_grayscale/personal/intro_k7hisn.jpg'
-            }
-            width={'100%'}
-            height={'100%'}
-            layout='responsive'
-            objectFit='cover'
-            alt='Jagad Yudha Awali'
-            className='rounded-none'
-          />
-        </div>
-        <div>
-          <h1 className='my-1 font-sans text-3xl font-bold text-primary sm:text-5xl'>
-            Jagad Yudha Awali
+      <main className='prose prose-invert h-full max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline xl:flex xl:h-[70vh] xl:space-x-4'>
+        <div className='text-center xl:max-w-md xl:text-left'>
+          <h1 className='text-3xl text-white sm:text-5xl'>
+            {`Hi there! My name is`}{' '}
+            <span className='text-primary'>Jagad Yudha Awali</span>
           </h1>
-          <p className='sm:text-md my-2 flex-1 font-sans text-lg text-white'>
+          <p className='text-md text-gray-400 sm:text-xl '>
             A Software Engineer who specializes in front-end for mobile and web
             applications. In addition, I publish programming-related blogs.
           </p>
-          <h2 className='mt-8 mb-1 font-sans text-xs font-medium text-white'>
-            <span className=' rounded-full border border-primary bg-opacity-60 p-1 px-2 text-primary'>
-              {`Featured Post`.toUpperCase()}
-            </span>
-          </h2>
+          <div className='mt-10 space-x-3'>
+            <Link href={'/posts'} passHref>
+              <button className='md:text-md rounded-full bg-primary bg-opacity-75 py-3 px-3 text-sm font-bold duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4'>
+                Read the post
+              </button>
+            </Link>
+            <Link href={'/about'} passHref>
+              <button className='md:text-md rounded-full bg-[#393b3f] py-3 px-3 text-sm font-bold md:px-6 md:py-4'>
+                About me
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        <div className='max-2-xl my-10 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:my-0'>
           {featuredPost
             .sort((a, b) => {
               return (
@@ -89,10 +76,10 @@ const Home = ({
                 new Date(a.frontmatter.date).valueOf()
               );
             })
-            .slice(0, 2)
+            .slice(0, 4)
             .map((featuredPost) => {
               const { slug, content } = featuredPost;
-              const { title, description, date, tags } =
+              const { title, description, date, tags, header } =
                 featuredPost.frontmatter;
               return (
                 <PostCard
@@ -100,6 +87,7 @@ const Home = ({
                   slug={slug}
                   title={title}
                   description={description}
+                  header={header}
                   date={date}
                   tags={tags}
                   readtime={readingTime(content).text}
@@ -107,7 +95,7 @@ const Home = ({
               );
             })}
         </div>
-      </div>
+      </main>
     </>
   );
 };

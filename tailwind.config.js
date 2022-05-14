@@ -14,11 +14,11 @@ module.exports = {
     extend: {
       colors: {
         primary: '#0AC5B3',
-        background: '#161618',
-        background_100: '#202425',
+        background: '#232426',
+        background_100: '#2C2D30',
       },
       fontFamily: {
-        sans: ['Nunito Sans'],
+        sans: ['Lexend Deca'],
       },
     },
   },

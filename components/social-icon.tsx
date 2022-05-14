@@ -10,7 +10,7 @@ const SocialIcon: React.FC<SocialIcon> = ({ children, href }) => {
       target='_blank'
       rel='noreferrer noopener'
       href={href}
-      className='mr-5 text-lg text-gray-400 hover:text-white xl:text-xl'
+      className=' text-lg text-gray-400 hover:text-white xl:text-xl'
     >
       {children}
     </a>

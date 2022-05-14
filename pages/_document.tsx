@@ -5,7 +5,6 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
-          <link href='/assets/fonts/fonts.css' rel='preload' as='font' />
           <link
             rel='apple-touch-icon'
             sizes='57x57'

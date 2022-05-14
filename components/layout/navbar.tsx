@@ -1,134 +1,98 @@
-import { IoMenu } from 'react-icons/io5';
+import { Fragment } from 'react';
+import { Popover, Transition } from '@headlessui/react';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { VscChromeClose } from 'react-icons/vsc';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useRef, useEffect, useState } from 'react';
-import {
-  IoAnalyticsOutline,
-  IoPersonOutline,
-  IoPencilOutline,
-  IoCodeSlashOutline,
-  IoHomeOutline,
-} from 'react-icons/io5';
 
 const navigation = [
-  { name: 'Home', href: '/', icon: <IoHomeOutline /> },
-  { name: 'Posts', href: '/posts', icon: <IoPencilOutline /> },
-  { name: 'Projects', href: '/projects', icon: <IoCodeSlashOutline /> },
-  { name: 'Activites', href: '/activities', icon: <IoAnalyticsOutline /> },
-  { name: 'About', href: '/about', icon: <IoPersonOutline /> },
+  { name: 'Home', href: '/' },
+  { name: 'Posts', href: '/posts' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Activites', href: '/activities' },
+  { name: 'About', href: '/about' },
 ];
 
-export default function Navbar() {
+const Navbar = () => {
   const router = useRouter();
-  const [isMenu, setIsMenu] = useState(false);
-  const wrapperRef = useRef<any>(null);
-
-  useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
-    function handleClickOutside(event: MouseEvent) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setIsMenu(false);
-      }
-    }
-
-    if (isMenu) {
-      document.ontouchmove = function (e) {
-        e.preventDefault();
-      };
-    } else {
-      document.ontouchmove = function (e) {
-        return true;
-      };
-    }
-
-    // Bind the event listener
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isMenu]);
-
   return (
-    <>
-      <div className='flex justify-center md:my-0'>
-        <div className=' absolute -top-20 z-[-2] h-10 w-full max-w-6xl bg-gradient-to-r from-primary via-sky-500 to-indigo-600 blur-3xl xl:-top-10'></div>
-      </div>
-      <nav className='fixed -bottom-6 z-50 mx-auto max-w-3xl flex-none py-10 md:static md:flex md:justify-between md:px-12 xl:px-0'>
-        {router.pathname !== '/' ? (
-          <Link href={'/'}>
-            <a>
-              <p className='hidden text-lg font-bold text-white transition-all duration-300 hover:text-primary md:block'>
-                Jagad Yudha Awali
-              </p>
-            </a>
-          </Link>
-        ) : (
-          <div></div>
-        )}
-        <div className='hidden md:flex md:justify-end md:space-x-6'>
-          {navigation.slice(1).map((item) => (
-            <Link key={item.href} href={item.href}>
-              {item.href != router.pathname ? (
-                <a className='flex items-center font-medium text-white transition-all duration-300 hover:text-primary'>
-                  {item.icon}
-                  <p className='ml-2'>{item.name}</p>
-                </a>
-              ) : (
-                <a className='flex items-center font-medium text-primary transition-all duration-300 hover:text-primary'>
-                  {item.icon}
-                  <p className='ml-2'>{item.name}</p>
-                </a>
-              )}
-            </Link>
-          ))}
-        </div>
-
-        <div
-          className={`flex w-screen justify-center transition-all duration-300 md:hidden ${
-            isMenu ? ' translate-y-80' : 'translate-y-0'
-          }`}
-        >
-          <button
-            onClick={() => setIsMenu(true)}
-            className='mx-5 flex items-center rounded-lg border border-white border-opacity-30 bg-background p-2'
-          >
-            <IoMenu className='mr-2 text-lg text-white' />
-            <p className='text-white'>Open Menu</p>
-          </button>
-        </div>
-        {isMenu && (
-          <div
-            className={`fixed bottom-0 z-10 flex h-screen w-screen items-end justify-center bg-background bg-opacity-80 transition-all duration-75 md:hidden `}
-          ></div>
-        )}
-        <div
-          ref={wrapperRef}
-          className={`fixed bottom-0 z-10 flex w-screen items-end justify-start rounded-t-xl border-t border-r border-l border-white border-opacity-20 bg-background bg-opacity-95 pl-8 transition-all duration-300 md:hidden ${
-            isMenu ? ' translate-y-0' : ' translate-y-full'
-          }`}
-        >
-          <div className='flex-none'>
-            {navigation.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.href != router.pathname ? (
-                  <a className='my-10 flex w-screen items-center font-medium text-white transition-all duration-300 hover:text-primary'>
-                    {item.icon}
-                    <p className='ml-2'>{item.name}</p>
-                  </a>
-                ) : (
-                  <a className='my-10 flex items-center font-medium text-primary transition-all duration-300 hover:text-primary'>
-                    {item.icon}
-                    <p className='ml-2'>{item.name}</p>
-                  </a>
-                )}
-              </Link>
-            ))}
+    <nav className='z-50 mt-3 bg-opacity-50'>
+      <Popover>
+        <div>
+          <div className='mx-auto flex items-center justify-center py-3 px-5 text-center sm:py-6 xl:mx-20'>
+            <div className='flex flex-shrink-0 flex-grow items-center lg:flex-grow-0'>
+              <div className='flex w-full items-center justify-end md:w-auto'>
+                <div className='-ml-2 flex items-center  md:hidden'>
+                  <Popover.Button className='inline-flex items-center justify-center rounded-md p-2 text-gray-300 hover:bg-opacity-80'>
+                    <GiHamburgerMenu className='text-lg text-white' />
+                  </Popover.Button>
+                </div>
+              </div>
+            </div>
+            <div className='hidden text-lg md:ml-10 md:block md:space-x-8 md:pr-4'>
+              {navigation.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  {item.href === router.asPath ? (
+                    <a className='text-white '>{item.name}</a>
+                  ) : (
+                    <a className='text-gray-400 hover:text-primary'>
+                      {item.name}
+                    </a>
+                  )}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-      </nav>
-    </>
+
+        <Transition
+          as={Fragment}
+          enter='duration-150 ease-out'
+          enterFrom='opacity-0 scale-95'
+          enterTo='opacity-100 scale-100'
+          leave='duration-100 ease-in'
+          leaveFrom='opacity-100 scale-100'
+          leaveTo='opacity-0 scale-95'
+        >
+          <Popover.Panel
+            focus
+            className='absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition md:hidden'
+          >
+            <div className='overflow-hidden rounded-lg bg-white shadow-md ring-1'>
+              <div className='float-right flex items-center justify-between px-5 pt-4'>
+                <div className='-mr-2'>
+                  <Popover.Button className='inline-flex items-center justify-center rounded-md bg-white p-2'>
+                    <VscChromeClose className='text-lg text-black' />
+                  </Popover.Button>
+                </div>
+              </div>
+              <div className='space-y-1 px-4 pt-2 pb-3'>
+                {navigation.map((item) => (
+                  <Link key={item.name} href={item.href}>
+                    {item.href === router.asPath ? (
+                      <a
+                        href={item.href}
+                        className='block rounded-md px-3 py-2 text-base font-normal text-white'
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className='block rounded-md px-3 py-2 text-base font-normal text-gray-300'
+                      >
+                        {item.name}
+                      </a>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </Popover.Panel>
+        </Transition>
+      </Popover>
+    </nav>
   );
-}
+};
+
+export default Navbar;

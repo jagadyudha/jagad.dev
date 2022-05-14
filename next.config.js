@@ -7,6 +7,7 @@ module.exports = {
       'res.cloudinary.com',
       'user-images.githubusercontent.com',
       'media.giphy.com',
+      'images.unsplash.com',
     ],
   },
 };

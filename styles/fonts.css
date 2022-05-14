@@ -1,106 +1,148 @@
-/* nunito-sans-300 - latin */
+/* lexend-deca-200 - latin */
 @font-face {
-  font-family: 'Nunito Sans';
+  font-family: 'Lexend Deca';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../public/assets/fonts/lexend-deca-v16-latin-200.eot'); /* IE9 Compat Modes */
+  src: local(''),
+    url('../public/assets/fonts/lexend-deca-v16-latin-200.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../public/assets/fonts/lexend-deca-v16-latin-200.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */
+      url('../public/assets/fonts/lexend-deca-v16-latin-200.woff')
+      format('woff'),
+    /* Modern Browsers */
+      url('../public/assets/fonts/lexend-deca-v16-latin-200.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */
+      url('../public/assets/fonts/lexend-deca-v16-latin-200.svg#LexendDeca')
+      format('svg'); /* Legacy iOS */
+}
+/* lexend-deca-300 - latin */
+@font-face {
+  font-family: 'Lexend Deca';
   font-style: normal;
   font-weight: 300;
-  src: url('../public/assets/fonts/nunito-sans-v11-latin-300.eot'); /* IE9 Compat Modes */
+  src: url('../public/assets/fonts/lexend-deca-v16-latin-300.eot'); /* IE9 Compat Modes */
   src: local(''),
-    url('../public/assets/fonts/nunito-sans-v11-latin-300.eot?#iefix')
+    url('../public/assets/fonts/lexend-deca-v16-latin-300.eot?#iefix')
       format('embedded-opentype'),
-    /* IE6-IE8 */ url('../public/assets/fonts/nunito-sans-v11-latin-300.woff2')
+    /* IE6-IE8 */ url('../public/assets/fonts/lexend-deca-v16-latin-300.woff2')
       format('woff2'),
     /* Super Modern Browsers */
-      url('../public/assets/fonts/nunito-sans-v11-latin-300.woff')
+      url('../public/assets/fonts/lexend-deca-v16-latin-300.woff')
       format('woff'),
     /* Modern Browsers */
-      url('../public/assets/fonts/nunito-sans-v11-latin-300.ttf')
+      url('../public/assets/fonts/lexend-deca-v16-latin-300.ttf')
       format('truetype'),
     /* Safari, Android, iOS */
-      url('../public/assets/fonts/nunito-sans-v11-latin-300.svg#NunitoSans')
+      url('../public/assets/fonts/lexend-deca-v16-latin-300.svg#LexendDeca')
       format('svg'); /* Legacy iOS */
 }
-/* nunito-sans-regular - latin */
+/* lexend-deca-regular - latin */
 @font-face {
-  font-family: 'Nunito Sans';
+  font-family: 'Lexend Deca';
   font-style: normal;
   font-weight: 400;
-  src: url('../public/assets/fonts/nunito-sans-v11-latin-regular.eot'); /* IE9 Compat Modes */
+  src: url('../public/assets/fonts/lexend-deca-v16-latin-regular.eot'); /* IE9 Compat Modes */
   src: local(''),
-    url('../public/assets/fonts/nunito-sans-v11-latin-regular.eot?#iefix')
+    url('../public/assets/fonts/lexend-deca-v16-latin-regular.eot?#iefix')
       format('embedded-opentype'),
     /* IE6-IE8 */
-      url('../public/assets/fonts/nunito-sans-v11-latin-regular.woff2')
+      url('../public/assets/fonts/lexend-deca-v16-latin-regular.woff2')
       format('woff2'),
     /* Super Modern Browsers */
-      url('../public/assets/fonts/nunito-sans-v11-latin-regular.woff')
+      url('../public/assets/fonts/lexend-deca-v16-latin-regular.woff')
       format('woff'),
     /* Modern Browsers */
-      url('../public/assets/fonts/nunito-sans-v11-latin-regular.ttf')
+      url('../public/assets/fonts/lexend-deca-v16-latin-regular.ttf')
       format('truetype'),
     /* Safari, Android, iOS */
-      url('../public/assets/fonts/nunito-sans-v11-latin-regular.svg#NunitoSans')
+      url('../public/assets/fonts/lexend-deca-v16-latin-regular.svg#LexendDeca')
       format('svg'); /* Legacy iOS */
 }
-/* nunito-sans-600 - latin */
+/* lexend-deca-600 - latin */
 @font-face {
-  font-family: 'Nunito Sans';
+  font-family: 'Lexend Deca';
   font-style: normal;
   font-weight: 600;
-  src: url('../public/assets/fonts/nunito-sans-v11-latin-600.eot'); /* IE9 Compat Modes */
+  src: url('../public/assets/fonts/lexend-deca-v16-latin-600.eot'); /* IE9 Compat Modes */
   src: local(''),
-    url('../public/assets/fonts/nunito-sans-v11-latin-600.eot?#iefix')
+    url('../public/assets/fonts/lexend-deca-v16-latin-600.eot?#iefix')
       format('embedded-opentype'),
-    /* IE6-IE8 */ url('../public/assets/fonts/nunito-sans-v11-latin-600.woff2')
+    /* IE6-IE8 */ url('../public/assets/fonts/lexend-deca-v16-latin-600.woff2')
       format('woff2'),
     /* Super Modern Browsers */
-      url('../public/assets/fonts/nunito-sans-v11-latin-600.woff')
+      url('../public/assets/fonts/lexend-deca-v16-latin-600.woff')
       format('woff'),
     /* Modern Browsers */
-      url('../public/assets/fonts/nunito-sans-v11-latin-600.ttf')
+      url('../public/assets/fonts/lexend-deca-v16-latin-600.ttf')
       format('truetype'),
     /* Safari, Android, iOS */
-      url('../public/assets/fonts/nunito-sans-v11-latin-600.svg#NunitoSans')
+      url('../public/assets/fonts/lexend-deca-v16-latin-600.svg#LexendDeca')
       format('svg'); /* Legacy iOS */
 }
-/* nunito-sans-700 - latin */
+/* lexend-deca-500 - latin */
 @font-face {
-  font-family: 'Nunito Sans';
+  font-family: 'Lexend Deca';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../public/assets/fonts/lexend-deca-v16-latin-500.eot'); /* IE9 Compat Modes */
+  src: local(''),
+    url('../public/assets/fonts/lexend-deca-v16-latin-500.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../public/assets/fonts/lexend-deca-v16-latin-500.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */
+      url('../public/assets/fonts/lexend-deca-v16-latin-500.woff')
+      format('woff'),
+    /* Modern Browsers */
+      url('../public/assets/fonts/lexend-deca-v16-latin-500.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */
+      url('../public/assets/fonts/lexend-deca-v16-latin-500.svg#LexendDeca')
+      format('svg'); /* Legacy iOS */
+}
+/* lexend-deca-700 - latin */
+@font-face {
+  font-family: 'Lexend Deca';
   font-style: normal;
   font-weight: 700;
-  src: url('../public/assets/fonts/nunito-sans-v11-latin-700.eot'); /* IE9 Compat Modes */
+  src: url('../public/assets/fonts/lexend-deca-v16-latin-700.eot'); /* IE9 Compat Modes */
   src: local(''),
-    url('../public/assets/fonts/nunito-sans-v11-latin-700.eot?#iefix')
+    url('../public/assets/fonts/lexend-deca-v16-latin-700.eot?#iefix')
       format('embedded-opentype'),
-    /* IE6-IE8 */ url('../public/assets/fonts/nunito-sans-v11-latin-700.woff2')
+    /* IE6-IE8 */ url('../public/assets/fonts/lexend-deca-v16-latin-700.woff2')
       format('woff2'),
     /* Super Modern Browsers */
-      url('../public/assets/fonts/nunito-sans-v11-latin-700.woff')
+      url('../public/assets/fonts/lexend-deca-v16-latin-700.woff')
       format('woff'),
     /* Modern Browsers */
-      url('../public/assets/fonts/nunito-sans-v11-latin-700.ttf')
+      url('../public/assets/fonts/lexend-deca-v16-latin-700.ttf')
       format('truetype'),
     /* Safari, Android, iOS */
-      url('../public/assets/fonts/nunito-sans-v11-latin-700.svg#NunitoSans')
+      url('../public/assets/fonts/lexend-deca-v16-latin-700.svg#LexendDeca')
       format('svg'); /* Legacy iOS */
 }
-/* nunito-sans-800 - latin */
+/* lexend-deca-800 - latin */
 @font-face {
-  font-family: 'Nunito Sans';
+  font-family: 'Lexend Deca';
   font-style: normal;
   font-weight: 800;
-  src: url('../public/assets/fonts/nunito-sans-v11-latin-800.eot'); /* IE9 Compat Modes */
+  src: url('../public/assets/fonts/lexend-deca-v16-latin-800.eot'); /* IE9 Compat Modes */
   src: local(''),
-    url('../public/assets/fonts/nunito-sans-v11-latin-800.eot?#iefix')
+    url('../public/assets/fonts/lexend-deca-v16-latin-800.eot?#iefix')
       format('embedded-opentype'),
-    /* IE6-IE8 */ url('../public/assets/fonts/nunito-sans-v11-latin-800.woff2')
+    /* IE6-IE8 */ url('../public/assets/fonts/lexend-deca-v16-latin-800.woff2')
       format('woff2'),
     /* Super Modern Browsers */
-      url('../public/assets/fonts/nunito-sans-v11-latin-800.woff')
+      url('../public/assets/fonts/lexend-deca-v16-latin-800.woff')
       format('woff'),
     /* Modern Browsers */
-      url('../public/assets/fonts/nunito-sans-v11-latin-800.ttf')
+      url('../public/assets/fonts/lexend-deca-v16-latin-800.ttf')
       format('truetype'),
     /* Safari, Android, iOS */
-      url('../public/assets/fonts/nunito-sans-v11-latin-800.svg#NunitoSans')
+      url('../public/assets/fonts/lexend-deca-v16-latin-800.svg#LexendDeca')
       format('svg'); /* Legacy iOS */
 }

@@ -21,7 +21,9 @@ const Image: React.FC<ImageProps> = ({
 
   return (
     <figure
-      className={`${className ? className : 'rounded-md'} overflow-hidden`}
+      className={`${
+        className ? className : 'rounded-md'
+      } flex justify-center overflow-hidden`}
     >
       <NextImage
         onClick={() =>
@@ -32,12 +34,11 @@ const Image: React.FC<ImageProps> = ({
         src={src}
         className={`${
           className ? className : 'rounded-md'
-        } bg-zinc-600 duration-1000 ease-in-out hover:cursor-zoom-in ${
+        } bg-zinc-600 hover:cursor-zoom-in ${
           isReady ? 'blur-0' : 'animate-pulse blur-2xl'
         }`}
         {...props}
         onLoadingComplete={onLoadCallback}
-        layout='responsive'
         unoptimized={lightbox.replace(/^.*\./, '') === 'gif' ? true : false}
       />
 

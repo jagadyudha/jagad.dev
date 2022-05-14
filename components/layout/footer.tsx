@@ -11,88 +11,88 @@ import {
 
 function footer() {
   return (
-    <footer className='mx-8 max-w-3xl text-center sm:mx-auto'>
-      <NowPlaying />
-      <div className='my-3 flex justify-center'>
-        {social.map((item, index) => (
-          <SocialIcon key={index} href={item.href}>
-            {item.children}
-          </SocialIcon>
-        ))}
+    <footer className='mx-8 max-w-6xl flex-none justify-between border-t border-white border-opacity-20 py-10 md:mx-24 xl:mx-auto xl:flex'>
+      {/* Licensed under the MIT License. */}
+      <div className='flex justify-center text-center xl:justify-between xl:text-left'>
+        <div>
+          <div className='mb-4 rounded-xl border border-white border-opacity-20 px-3'>
+            <NowPlaying />
+          </div>
+
+          <div className='text-xs text-gray-400 sm:text-sm'>
+            <p>
+              Content licensed under{' '}
+              <a
+                target='_blank'
+                rel='noreferrer noopener'
+                className='text-primary hover:underline'
+                href='https://creativecommons.org/licenses/by-nc-sa/4.0/'
+              >
+                CC BY-NC-SA 4.0
+              </a>
+              .
+            </p>
+            <p className=' text-gray-400'>
+              <a
+                target='_blank'
+                rel='noreferrer noopener'
+                className='text-primary hover:underline'
+                href='https://github.com/jagadyudha/jagad.dev/blob/main/LICENSE.md'
+              >
+                MIT License
+              </a>
+              {` © ${new Date().getFullYear()} Jagad Yudha`}.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className='pt-10 pb-10 text-xs text-gray-400 sm:text-sm'>
-        <p className='mb-4'>
-          Content licensed under{' '}
-          <a
-            target='_blank'
-            rel='noreferrer noopener'
-            className='text-primary underline'
-            href='https://creativecommons.org/licenses/by-nc-sa/4.0/'
-          >
-            CC BY-NC-SA 4.0
-          </a>
-          .
-        </p>
-        Powered by{' '}
-        <a
-          target='_blank'
-          rel='noreferrer noopener'
-          className='text-primary underline'
-          href='https://nextjs.org/'
-        >
-          Next.js
-        </a>{' '}
-        +{' '}
-        <a
-          target='_blank'
-          rel='noreferrer noopener'
-          className='text-primary underline'
-          href='https://tailwindcss.com/'
-        >
-          Tailwind
-        </a>
-        . Hosted on{' '}
-        <a
-          target='_blank'
-          rel='noreferrer noopener'
-          className='text-primary underline'
-          href='https://www.netlify.com/'
-        >
-          Netlify
-        </a>
-        .
-        <p className=' text-gray-400'>
-          Code licensed under{' '}
-          <a
-            target='_blank'
-            rel='noreferrer noopener'
-            className='text-primary underline'
-            href='https://github.com/jagadyudha/jagad.dev/blob/main/LICENSE.md'
-          >
-            MIT License
-          </a>
-          .
-        </p>
+      {/* Nav Link */}
+      <div className='grid grid-cols-2 gap-10 py-14 sm:grid-cols-3 xl:gap-24 xl:py-0'>
+        {nav.map((item) => (
+          <div key={item} className='mx-auto'>
+            <p className='font-medium text-white'>{item.menu.toUpperCase()}</p>
+            {item.content.map((item, index) => (
+              <p key={index} className='my-4 text-gray-400'>
+                {item.name}
+              </p>
+            ))}
+          </div>
+        ))}
       </div>
     </footer>
   );
 }
 
-const social = [
-  { children: <FiTwitter />, href: 'https://twitter.com/imyour_universe' },
-  { children: <FiGithub />, href: 'https://github.com/jagadyudha' },
+const nav = [
   {
-    children: <FiLinkedin />,
-    href: 'https://www.linkedin.com/in/jagad-yudha-39a4a51b6/',
+    menu: 'Social',
+    content: [
+      { name: 'Twitter', href: 'https' },
+      { name: 'Github', href: 'https' },
+      { name: 'Linkedin', href: 'https' },
+      { name: 'Youtube', href: 'https' },
+      { name: 'PolyWork', href: 'https' },
+    ],
+  },
+
+  {
+    menu: 'General',
+    content: [
+      { name: 'Home', href: 'https' },
+      { name: 'Posts', href: 'https' },
+      { name: 'Projects', href: 'https' },
+      { name: 'Activities', href: 'https' },
+      { name: 'About', href: 'https' },
+    ],
   },
   {
-    children: <FiYoutube />,
-    href: 'https://www.youtube.com/channel/UChxSF_3EXmlI5TwHOSoc8vQ',
-  },
-  {
-    children: <FiInstagram />,
-    href: 'https://www.instagram.com/imyour_universe/',
+    menu: 'Extra',
+    content: [
+      { name: 'Twitter', href: 'https' },
+      { name: 'Github', href: 'https' },
+      { name: 'Linkedin', href: 'https' },
+    ],
   },
 ];
 
