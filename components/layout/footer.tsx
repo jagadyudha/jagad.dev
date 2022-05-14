@@ -50,7 +50,7 @@ function footer() {
       {/* Nav Link */}
       <div className='grid grid-cols-2 gap-10 py-14 sm:grid-cols-3 xl:gap-24 xl:py-0'>
         {nav.map((item) => (
-          <div key={item} className='mx-auto'>
+          <div key={item.menu} className='mx-auto'>
             <p className='font-medium text-white'>{item.menu.toUpperCase()}</p>
             {item.content.map((item, index) => (
               <p key={index} className='my-4 text-gray-400'>
