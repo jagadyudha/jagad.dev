@@ -20,11 +20,12 @@
     "@types/nprogress": "^0.2.0",
     "@types/prismjs": "^1.26.0",
     "@types/twemoji": "^12.1.2",
+    "esbuild": "^0.14.39",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "markdown-to-jsx": "^7.1.7",
+    "mdx-bundler": "^9.0.0",
     "next": "^12.1.5-canary.4",
-    "next-mdx-remote": "^4.0.3",
     "next-seo": "^4.27.0",
     "next-themes": "^0.0.15",
     "nprogress": "^0.2.0",
@@ -43,8 +44,7 @@
     "yarn": "^1.22.18"
   },
   "devDependencies": {
-    "@types/markdown-it": "^12.2.3",
-    "@types/react": "^17.0.37",
+    "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.15",
     "autoprefixer": "^10.4.5",
     "cypress": "^9.5.4",

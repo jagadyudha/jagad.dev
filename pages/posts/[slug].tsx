@@ -2,8 +2,12 @@ import React from 'react';
 import fs from 'fs';
 import matter from 'gray-matter';
 import Image from '@/components/image';
-import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+
+import { getMDXComponent } from 'mdx-bundler/client';
+import { bundleMDX } from 'mdx-bundler';
+
+// import { serialize } from 'next-mdx-remote/serialize';
+// import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import rehypePrism from 'rehype-prism-plus';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
@@ -32,7 +36,7 @@ export interface Props {
   frontmatter: frontmatter;
   content: string;
   slug: string;
-  source: MDXRemoteSerializeResult;
+  code: string;
 }
 
 //components
@@ -83,26 +87,44 @@ export const getStaticProps = async ({
   }
 
   const { data: frontmatter, content } = matter(readFile);
-  const mdxSource = await serialize(content, {
-    scope: {},
+  // const mdxSource = await serialize(content, {
+  //   scope: {},
 
-    mdxOptions: {
-      rehypePlugins: [rehypePrism],
+  //   mdxOptions: {
+  //     rehypePlugins: [rehypePrism],
+  //   },
+
+  //   parseFrontmatter: false,
+  // });
+
+  const result = await bundleMDX({
+    source: content.trim(),
+    mdxOptions(options, frontmatter) {
+      // this is the recommended way to add custom remark/rehype plugins:
+      // The syntax might look weird, but it protects you in case we add/remove
+      // plugins in the future.
+      options.rehypePlugins = [...(options.rehypePlugins ?? []), rehypePrism];
+
+      return options;
     },
-
-    parseFrontmatter: false,
   });
+  const { code } = result;
+
+  console.log(result);
+
   return {
     props: {
       frontmatter,
       content,
+      code,
       slug: params.slug,
-      source: mdxSource,
+      // source: mdxSource,
     },
   };
 };
 
-const Posts = ({ frontmatter, content, slug, source }: Props) => {
+const Posts = ({ frontmatter, content, slug, code }: Props) => {
+  console.log(frontmatter);
   const { mutate } = useSWRConfig();
   const router = useRouter();
   const enRouter = router.asPath.endsWith('-id')
@@ -121,6 +143,8 @@ const Posts = ({ frontmatter, content, slug, source }: Props) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   const { title, description, date, tags } = frontmatter;
   const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
@@ -219,23 +243,20 @@ const Posts = ({ frontmatter, content, slug, source }: Props) => {
             ))}
         </div>
       </div>
-      <div className='flex items-center'>
-        <hr className='mr-4 flex-grow opacity-40'></hr>
-        <Link
-          href={`/posts/${
-            slug.endsWith('-id') ? slug.replace('-id', '') : slug.concat('-id')
-          }`}
-        >
-          <a>
-            <button className='whitespace-nowrap rounded-md border border-primary px-2 py-1 text-sm font-medium text-primary'>
-              Read in {!slug.endsWith('-id') ? 'Bahasa' : 'English'}
-            </button>
-          </a>
-        </Link>
-      </div>
+      <Link
+        href={`/posts/${
+          slug.endsWith('-id') ? slug.replace('-id', '') : slug.concat('-id')
+        }`}
+      >
+        <a>
+          <button className='whitespace-nowrap rounded-md border border-primary px-2 py-1 text-sm font-medium text-primary'>
+            Read in {!slug.endsWith('-id') ? 'Bahasa' : 'English'}
+          </button>
+        </a>
+      </Link>
 
-      <article className='prose prose-base prose-invert mx-auto min-w-full'>
-        <MDXRemote {...(source as any)} components={{ Image, Ads }} />
+      <article className='prose prose-base prose-invert mx-auto'>
+        <Component components={{ Image, Ads } as any} />
       </article>
       <hr className='my-8 opacity-20'></hr>
       <Comment />
