@@ -29,7 +29,7 @@ const PostCard: React.FC<postProps> = (props) => {
           objectFit='cover'
         />
       </div>
-      <div className='relative z-10 h-full rounded-md bg-black bg-opacity-20 p-4'>
+      <div className='relative z-10 h-full rounded-md  p-4'>
         <div>
           <h3>{title} </h3>
 

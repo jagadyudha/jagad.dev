@@ -15,8 +15,13 @@ const navigation = [
 
 const Navbar = () => {
   const router = useRouter();
+
+  const checkSlug = router.pathname.endsWith('/[slug]')
+    ? router.pathname.replace('/[slug]', '')
+    : router.pathname;
+
   return (
-    <nav className='z-50 mt-3 bg-opacity-50'>
+    <nav className='z-50 mt-3 bg-opacity-50 '>
       <Popover>
         <div>
           <div className='mx-auto flex items-center justify-center py-3 px-5 text-center sm:py-6 xl:mx-20'>
@@ -29,11 +34,13 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <div className='hidden text-lg md:ml-10 md:block md:space-x-8 md:pr-4'>
+            <div className='hidden text-lg md:ml-10 md:block md:space-x-16 md:pr-4'>
               {navigation.map((item) => (
                 <Link key={item.name} href={item.href}>
-                  {item.href === router.asPath ? (
-                    <a className='text-white '>{item.name}</a>
+                  {item.href === checkSlug ? (
+                    <a className='border-b-2 border-primary pb-1 text-white'>
+                      {item.name}
+                    </a>
                   ) : (
                     <a className='text-gray-400 hover:text-primary'>
                       {item.name}
@@ -69,7 +76,7 @@ const Navbar = () => {
               <div className='space-y-1 px-4 pt-2 pb-3'>
                 {navigation.map((item) => (
                   <Link key={item.name} href={item.href}>
-                    {item.href === router.asPath ? (
+                    {item.href === checkSlug ? (
                       <a
                         href={item.href}
                         className='block rounded-md px-3 py-2 text-base font-normal text-white'

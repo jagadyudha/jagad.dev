@@ -7,7 +7,7 @@ import readingTime from 'reading-time';
 import Link from 'next/link';
 
 //components
-import FeaturedPosts from '@/components/featured-posts';
+import FeaturedPosts from '@/components/post-card';
 
 export async function getStaticProps() {
   const files = fs.readdirSync('./contents/posts');
@@ -28,7 +28,7 @@ export async function getStaticProps() {
       'how-to-create-a-whatsapp-bot-with-node-js',
       'custom-image-transition-in-nextjs-with-tailwind-css',
       'how-to-create-steam-player-summaries-with-next-js',
-      'react-native-camera-but-with-react-hooks',
+      // 'react-native-camera-but-with-react-hooks',
     ].includes(item.slug)
   );
 
@@ -44,8 +44,8 @@ const Home = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
-      <main className='prose prose-invert h-full max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline xl:flex xl:h-[70vh] xl:space-x-4'>
-        <div className='text-center xl:max-w-md xl:text-left'>
+      <main className='prose prose-invert h-full max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline xl:flex-none xl:space-x-4'>
+        <div className='mx-auto max-w-2xl text-center'>
           <h1 className='text-3xl text-white sm:text-5xl'>
             {`Hi there! My name is`}{' '}
             <span className='text-primary'>Jagad Yudha Awali</span>
@@ -68,7 +68,7 @@ const Home = ({
           </div>
         </div>
 
-        <div className='max-2-xl my-10 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:my-0'>
+        <div className='my-20 grid grid-cols-1 gap-10 sm:grid-cols-2 xl:grid-cols-3'>
           {featuredPost
             .sort((a, b) => {
               return (
