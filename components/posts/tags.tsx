@@ -10,7 +10,7 @@ const Tags: React.FC<TagsProps> = ({ name, href }) => {
   return (
     <Link href={href} passHref>
       <button>
-        <span className=' under mr-2 mt-2 rounded-2xl bg-white bg-opacity-20 py-1 px-2 text-center font-sans text-xs font-normal text-white'>
+        <span className=' under mr-2 mt-2 rounded-md bg-white bg-opacity-40 py-1 px-2 text-center font-sans text-xs font-normal text-white'>
           #{name}
         </span>
       </button>

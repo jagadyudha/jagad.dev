@@ -6,8 +6,6 @@ import Image from '@/components/image';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { bundleMDX } from 'mdx-bundler';
 
-// import { serialize } from 'next-mdx-remote/serialize';
-// import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
@@ -25,7 +23,7 @@ import { useSWRConfig } from 'swr';
 import Link from 'next/link';
 import path from 'path';
 import { useRouter } from 'next/router';
-import Ads from '@/components/adsense';
+import Ads from '@/components/posts/adsense';
 
 export interface frontmatter {
   title: string;
@@ -47,7 +45,7 @@ import { cardTwitter } from '@/lib/seo';
 
 //data
 import DataSeo from '@/_data/seo.json';
-import Comment from '@/components/comment';
+import Comment from '@/components/posts/comment';
 
 export const getStaticPaths = async () => {
   const files = fs.readdirSync('./contents/posts');

@@ -1,8 +1,6 @@
 import React from 'react';
 import Image from '@/components/image';
-import Tags from '@/components/tags';
-import ViewsCount from '@/components/views-count';
-import readingTime from 'reading-time';
+import Tags from '@/components/posts/tags';
 import { useRouter } from 'next/router';
 
 export interface postProps {

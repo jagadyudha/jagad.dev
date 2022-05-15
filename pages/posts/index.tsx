@@ -7,9 +7,8 @@ import { cardTwitter } from '../../lib/seo';
 import DataSeo from '@/_data/seo.json';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
-import { IoSearch } from 'react-icons/io5';
 import readingTime from 'reading-time';
-import PostCard from '@/components/post-card';
+import PostCard from '@/components/posts/card';
 
 export async function getStaticProps() {
   const files = fs.readdirSync('./contents/posts');

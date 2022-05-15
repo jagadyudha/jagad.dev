@@ -124,7 +124,7 @@ pre[class*='language-'] {
 .highlight-line {
   margin-left: -16px;
   margin-right: -16px;
-  background-color: #2c2d30; /* Set highlight bg color */
+  @apply bg-primary bg-opacity-10;
   border-left-width: 4px;
   border-left-color: #0ac5b3; /* Set highlight accent border color */
 }
