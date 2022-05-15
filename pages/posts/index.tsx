@@ -129,7 +129,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </button>
       </div> */}
 
-      <div className='max-2-xl my-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:my-0'>
+      <div className='max-2-xl my-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:my-0'>
         {post
           .sort((a: any, b: any) => {
             return (

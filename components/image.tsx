@@ -3,12 +3,7 @@ import NextImage, { ImageProps } from 'next/image';
 import Lightbox from 'react-image-lightbox';
 import { useRouter } from 'next/router';
 
-const Image: React.FC<ImageProps> = ({
-  src,
-  className,
-  blurDataURL,
-  ...props
-}) => {
+const Image: React.FC<ImageProps> = ({ src, className, ...props }) => {
   const [isReady, setIsReady] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,9 +27,7 @@ const Image: React.FC<ImageProps> = ({
           setIsOpen(true)
         }
         src={src}
-        className={`${
-          className ? className : 'rounded-md'
-        } bg-zinc-600 hover:cursor-zoom-in ${
+        className={`${className ? className : 'rounded-md'} bg-zinc-600 ${
           isReady ? 'blur-0' : 'animate-pulse blur-2xl'
         }`}
         {...props}

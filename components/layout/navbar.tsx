@@ -58,11 +58,11 @@ const Navbar = () => {
             focus
             className='absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition md:hidden'
           >
-            <div className='overflow-hidden rounded-lg bg-white shadow-md ring-1'>
+            <div className='overflow-hidden rounded-lg bg-background_100 shadow-md ring-0'>
               <div className='float-right flex items-center justify-between px-5 pt-4'>
                 <div className='-mr-2'>
-                  <Popover.Button className='inline-flex items-center justify-center rounded-md bg-white p-2'>
-                    <VscChromeClose className='text-lg text-black' />
+                  <Popover.Button className='inline-flex items-center justify-center rounded-md bg-background_100 p-2'>
+                    <VscChromeClose className='text-lg text-white' />
                   </Popover.Button>
                 </div>
               </div>

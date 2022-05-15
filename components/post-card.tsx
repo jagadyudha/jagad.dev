@@ -1,6 +1,9 @@
 import React from 'react';
 import Image from '@/components/image';
 import Tags from '@/components/tags';
+import ViewsCount from '@/components/views-count';
+import readingTime from 'reading-time';
+import { useRouter } from 'next/router';
 
 export interface postProps {
   slug: string;
@@ -14,34 +17,39 @@ export interface postProps {
 
 const PostCard: React.FC<postProps> = (props) => {
   const { slug, title, description, date, tags, readtime, header } = props;
+  const router = useRouter();
 
   return (
-    <a
-      href={`/posts/${slug}`}
-      key={slug}
-      className='group relative h-full rounded-2xl duration-500 ease-in-out hover:scale-105'
-    >
-      <div className='absolute h-full w-full rounded-2xl bg-gray-900 opacity-30 '>
-        <Image
-          className='rounded-2xl'
-          src={header}
-          layout='fill'
-          objectFit='cover'
-        />
-      </div>
-      <div className='relative z-10 p-4 duration-500 ease-in-out group-hover:-translate-y-3'>
-        <div>
-          <h3>{title} </h3>
-
-          <p className='text-gray-300'>{description}</p>
+    <a href={`/posts/${slug}`} key={slug} className='group'>
+      <div className='relative mx-auto h-56 max-w-3xl md:h-72 xl:h-80'>
+        <div className='absolute h-full w-full group-hover:opacity-70'>
+          <Image
+            className='rounded-md'
+            src={header}
+            layout='fill'
+            objectFit='cover'
+          />
         </div>
+      </div>
+
+      <div className='relative '>
+        <p className='text-md'>
+          {`Posted on ${new Date(date).toLocaleString('default', {
+            month: 'long',
+          })} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
+        </p>
+
+        <h3>{title} </h3>
+
+        <p className='text-gray-400'>{description}</p>
+
         <div>
           {tags
             .slice(0)
             .reverse()
-            .map((tag) => (
+            .map((tag, index) => (
               <Tags
-                key={tag}
+                key={index}
                 name={tag}
                 href={`/posts?tag=${tag.toLowerCase()}`}
               />

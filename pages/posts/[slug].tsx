@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import fs from 'fs';
 import matter from 'gray-matter';
 import Image from '@/components/image';
@@ -9,6 +9,8 @@ import { bundleMDX } from 'mdx-bundler';
 // import { serialize } from 'next-mdx-remote/serialize';
 // import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import rehypePrism from 'rehype-prism-plus';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
@@ -30,6 +32,7 @@ export interface frontmatter {
   description: string;
   date: Date;
   tags: Array<string>;
+  header: string;
 }
 
 export interface Props {
@@ -38,9 +41,6 @@ export interface Props {
   slug: string;
   code: string;
 }
-
-//components
-import Tags from '@/components/tags';
 
 //lib
 import { cardTwitter } from '@/lib/seo';
@@ -87,30 +87,21 @@ export const getStaticProps = async ({
   }
 
   const { data: frontmatter, content } = matter(readFile);
-  // const mdxSource = await serialize(content, {
-  //   scope: {},
-
-  //   mdxOptions: {
-  //     rehypePlugins: [rehypePrism],
-  //   },
-
-  //   parseFrontmatter: false,
-  // });
 
   const result = await bundleMDX({
     source: content.trim(),
-    mdxOptions(options, frontmatter) {
-      // this is the recommended way to add custom remark/rehype plugins:
-      // The syntax might look weird, but it protects you in case we add/remove
-      // plugins in the future.
-      options.rehypePlugins = [...(options.rehypePlugins ?? []), rehypePrism];
+    mdxOptions(options) {
+      options.rehypePlugins = [
+        ...(options.rehypePlugins ?? []),
+        rehypeSlug,
+        rehypeAutolinkHeadings,
+        rehypePrism,
+      ];
 
       return options;
     },
   });
   const { code } = result;
-
-  console.log(result);
 
   return {
     props: {
@@ -124,7 +115,6 @@ export const getStaticProps = async ({
 };
 
 const Posts = ({ frontmatter, content, slug, code }: Props) => {
-  console.log(frontmatter);
   const { mutate } = useSWRConfig();
   const router = useRouter();
   const enRouter = router.asPath.endsWith('-id')
@@ -146,14 +136,14 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
 
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
-  const { title, description, date, tags } = frontmatter;
+  const { title, description, date, tags, header } = frontmatter;
   const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
     `'`,
     '%27'
   )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
 
   return (
-    <>
+    <main className='prose prose-base prose-invert mx-auto max-w-none '>
       {/* Next Seo */}
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
@@ -191,76 +181,45 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
         description={description}
       />
 
-      <div className='text-center' key={slug}>
-        <div className='-mt-5'>
-          <h1 className='font-sans text-xl font-bold text-white sm:text-3xl'>
-            {title}
-          </h1>
-          <p className='mb-10 mt-3 text-gray-300'>{description}</p>
-
-          <div className='my-3 mb-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-sans text-sm font-normal text-gray-300 md:gap-5'>
-            <div className='flex items-center gap-1'>
-              <IoEyeOutline />
-              <ViewsCount slug={`${enRouter}`} />
-            </div>
-            <div className='flex items-center gap-1'>
-              <IoTimeOutline />
+      <div className=' text-center' key={slug}>
+        <div className='mx-auto  max-w-4xl'>
+          <h1 className='text-white sm:text-5xl'>{title}</h1>
+          <div className='my-10 text-gray-400'>
+            <p className='text-xl'>
+              {`Posted on ${new Date(date).toLocaleString('default', {
+                month: 'long',
+              })} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
+            </p>
+            <div className='text-md -mt-10 flex items-center justify-center gap-1'>
+              <ViewsCount slug={`${enRouter}`} />•
               <p>{readingTime(content).text} </p>
-            </div>
-            <div className='flex items-center gap-1'>
-              <IoCalendarClearOutline />
-              <p>
-                {`${new Date(date).toLocaleString('default', {
-                  month: 'long',
-                })} ${new Date(date).getDate()}, ${new Date(
-                  date
-                ).getFullYear()}`}
-              </p>
-            </div>
-            <div className='hidden items-center gap-1 xl:flex'>
-              <IoLogoGithub />
-              <a
-                rel={'noreferrer noopener'}
-                target={'_blank'}
-                href={`https://github.com/jagadyudha/jagad.dev/edit/master/contents/posts/${slug}.mdx`}
-              >
-                <p>Edit on Github </p>
-              </a>
             </div>
           </div>
         </div>
 
-        <div className='my-5'>
-          {tags
-            .slice(0)
-            .reverse()
-            .map((item: string) => (
-              <Tags
-                key={item}
-                href={`/posts?tag=${item.toLowerCase()}`}
-                name={item}
-              />
-            ))}
+        <div className='relative mx-auto h-56 max-w-3xl md:h-72 xl:h-96'>
+          <div className='absolute h-full w-full'>
+            <Image
+              className='rounded-xl'
+              src={header}
+              layout='fill'
+              objectFit='cover'
+            />
+          </div>
         </div>
+        <p className='text-md mx-auto max-w-3xl text-left text-gray-400 sm:text-lg'>
+          {description}
+        </p>
       </div>
-      <Link
-        href={`/posts/${
-          slug.endsWith('-id') ? slug.replace('-id', '') : slug.concat('-id')
-        }`}
-      >
-        <a>
-          <button className='whitespace-nowrap rounded-md border border-primary px-2 py-1 text-sm font-medium text-primary'>
-            Read in {!slug.endsWith('-id') ? 'Bahasa' : 'English'}
-          </button>
-        </a>
-      </Link>
 
-      <article className='prose prose-base prose-invert mx-auto'>
-        <Component components={{ Image, Ads } as any} />
-      </article>
-      <hr className='my-8 opacity-20'></hr>
-      <Comment />
-    </>
+      <div className='mx-auto max-w-3xl '>
+        <article>
+          <Component components={{ Image, ads: Ads } as any} />
+        </article>
+        <hr className='my-8 opacity-20'></hr>
+        <Comment />
+      </div>
+    </main>
   );
 };
 

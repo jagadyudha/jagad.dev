@@ -7,7 +7,7 @@ import readingTime from 'reading-time';
 import Link from 'next/link';
 
 //components
-import PostCard from '@/components/post-card';
+import FeaturedPosts from '@/components/featured-posts';
 
 export async function getStaticProps() {
   const files = fs.readdirSync('./contents/posts');
@@ -56,12 +56,12 @@ const Home = ({
           </p>
           <div className='mt-10 space-x-3'>
             <Link href={'/posts'} passHref>
-              <button className='md:text-md rounded-full bg-primary bg-opacity-75 py-3 px-3 text-sm font-bold duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4'>
+              <button className='md:text-md rounded-md bg-primary bg-opacity-75 py-3 px-3 text-sm font-bold duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4'>
                 Read the post
               </button>
             </Link>
             <Link href={'/about'} passHref>
-              <button className='md:text-md rounded-full bg-[#393b3f] py-3 px-3 text-sm font-bold md:px-6 md:py-4'>
+              <button className='md:text-md rounded-md bg-[#393b3f] py-3 px-3 text-sm font-bold md:px-6 md:py-4'>
                 About me
               </button>
             </Link>
@@ -82,7 +82,7 @@ const Home = ({
               const { title, description, date, tags, header } =
                 featuredPost.frontmatter;
               return (
-                <PostCard
+                <FeaturedPosts
                   key={slug}
                   slug={slug}
                   title={title}

@@ -6,7 +6,7 @@ export const NowPlaying = () => {
     refreshInterval: 20000,
   });
   return (
-    <div className='flex items-center justify-center'>
+    <div className='-my-1 flex items-center justify-center'>
       <div className='flex min-h-[60px] w-full items-center justify-between rounded-lg'>
         <div className='flex items-center'>
           <svg
