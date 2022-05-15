@@ -7,7 +7,7 @@ pre[class*='language-'] {
   background: 0 0;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  font-size: 0.94em;
+  font-size: 0.97em;
   text-align: left;
   word-spacing: normal;
   word-break: normal;
@@ -20,6 +20,7 @@ pre[class*='language-'] {
   -ms-hyphens: none;
   hyphens: none;
 }
+
 pre[class*='language-'] {
   padding: 1em;
   margin: 0.5em 0;
@@ -96,4 +97,35 @@ pre[class*='language-'] {
 }
 .token.entity {
   cursor: help;
+}
+
+.code-highlight {
+  float: left; /* 1 */
+  min-width: 100%; /* 2 */
+}
+
+.code-line {
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: -16px;
+  margin-right: -16px;
+  border-left-width: 4px;
+  border-left-color: rgba(31, 41, 55, 0); /* Set code block color */
+}
+
+.code-line.inserted {
+  background-color: rgba(16, 185, 129, 0.2); /* Set inserted line (+) color */
+}
+
+.code-line.deleted {
+  background-color: rgba(239, 68, 68, 0.2); /* Set deleted line (-) color */
+}
+
+.highlight-line {
+  margin-left: -16px;
+  margin-right: -16px;
+  background-color: #2c2d30; /* Set highlight bg color */
+  border-left-width: 4px;
+  border-left-color: #0ac5b3; /* Set highlight accent border color */
 }

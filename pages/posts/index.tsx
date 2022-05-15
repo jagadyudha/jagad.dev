@@ -73,8 +73,6 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, languages]);
 
-  console.log(languages);
-
   const title = 'Posts';
   const description = `Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`;
   const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
@@ -83,7 +81,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
 
   return (
-    <main className='mb-16 sm:mb-28'>
+    <main className='prose prose-invert mb-16 h-full max-w-none prose-a:no-underline sm:mb-32'>
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
         description={description}
@@ -106,16 +104,16 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         }}
         twitter={cardTwitter}
       />
-      <div className='mb-10 sm:mb-12'>
-        <h1 className='font-sans text-3xl font-bold text-white sm:text-5xl'>
-          {`Posts`}
-        </h1>
-        <p className='text-md my-5 font-sans font-normal text-gray-400 sm:text-lg'>
-          {`Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`}
-        </p>
+      <div className='mb-16 flex justify-center text-center'>
+        <div className='max-w-xl'>
+          <h1 className='-my-1 text-3xl sm:text-5xl'>{`Posts`}</h1>
+          <p className='text-md text-gray-400 sm:text-lg'>
+            {`Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`}
+          </p>
+        </div>
       </div>
 
-      <div className='flex items-center'>
+      {/* <div className='flex items-center'>
         <hr className='mr-4 flex-grow opacity-40'></hr>
         <button
           className='whitespace-nowrap rounded-md border border-primary px-2 py-1 text-sm font-medium text-primary'
@@ -129,9 +127,9 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         >
           Read in {languages === 'en' ? 'Bahasa' : 'English'}
         </button>
-      </div>
+      </div> */}
 
-      <div className='mx-auto my-5 md:my-10'>
+      <div className='max-2-xl my-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:my-0'>
         {post
           .sort((a: any, b: any) => {
             return (
@@ -152,9 +150,10 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           })
           .map((post) => {
             const { slug, content } = post;
-            const { title, description, date, tags } = post.frontmatter;
+            const { title, description, date, tags, header } = post.frontmatter;
             return (
               <PostCard
+                header={header}
                 key={slug}
                 slug={slug}
                 title={title}

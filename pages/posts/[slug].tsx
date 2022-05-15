@@ -2,16 +2,9 @@ import React from 'react';
 import fs from 'fs';
 import matter from 'gray-matter';
 import Image from '@/components/image';
-import Markdown from 'markdown-to-jsx';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-bash';
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-json';
-import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-tsx';
-import 'prismjs/components/prism-python';
-import 'prismjs/components/prism-typescript';
-import 'prismjs/components/prism-javascript';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import rehypePrism from 'rehype-prism-plus';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
@@ -26,7 +19,7 @@ import { useSWRConfig } from 'swr';
 import Link from 'next/link';
 import path from 'path';
 import { useRouter } from 'next/router';
-import Adsense from '@/components/adsense';
+import Ads from '@/components/adsense';
 
 export interface frontmatter {
   title: string;
@@ -35,10 +28,11 @@ export interface frontmatter {
   tags: Array<string>;
 }
 
-export interface slugProps {
+export interface Props {
   frontmatter: frontmatter;
   content: string;
   slug: string;
+  source: MDXRemoteSerializeResult;
 }
 
 //components
@@ -89,16 +83,26 @@ export const getStaticProps = async ({
   }
 
   const { data: frontmatter, content } = matter(readFile);
+  const mdxSource = await serialize(content, {
+    scope: {},
+
+    mdxOptions: {
+      rehypePlugins: [rehypePrism],
+    },
+
+    parseFrontmatter: false,
+  });
   return {
     props: {
       frontmatter,
       content,
       slug: params.slug,
+      source: mdxSource,
     },
   };
 };
 
-const Posts = ({ frontmatter, content, slug }: slugProps) => {
+const Posts = ({ frontmatter, content, slug, source }: Props) => {
   const { mutate } = useSWRConfig();
   const router = useRouter();
   const enRouter = router.asPath.endsWith('-id')
@@ -106,11 +110,6 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
     : router.asPath;
 
   React.useEffect(() => {
-    const highlight = async () => {
-      await Prism.highlightAll(); // <--- prepare Prism
-    };
-    highlight(); // <--- call the async function
-
     const registerView = () =>
       fetch(`/api/pageview/${enRouter}`, {
         method: 'POST',
@@ -236,18 +235,7 @@ const Posts = ({ frontmatter, content, slug }: slugProps) => {
       </div>
 
       <article className='prose prose-base prose-invert mx-auto min-w-full'>
-        <Markdown
-          options={{
-            overrides: {
-              img: {
-                component: Image,
-              },
-              ads: { component: Adsense },
-            },
-          }}
-        >
-          {content}
-        </Markdown>
+        <MDXRemote {...(source as any)} components={{ Image, Ads }} />
       </article>
       <hr className='my-8 opacity-20'></hr>
       <Comment />
