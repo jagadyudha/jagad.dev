@@ -1,30 +1,20 @@
 //default
 import { NextSeo } from 'next-seo';
 import { InferGetStaticPropsType } from 'next';
-import fs from 'fs';
-import matter from 'gray-matter';
-import path from 'path';
-import Link from 'next/link';
 
-import TechStack from '@/components/tech-stack';
 //lib
-import { cardTwitter } from '../../lib/seo';
+import { cardTwitter } from '@/lib/seo';
+import { getContentIndex } from '@/lib/fetcher';
+
+//components
+import TechStack from '@/components/tech-stack';
+import ProjectCard from '@/components/projects/card';
 
 //data
 import DataSeo from '@/_data/seo.json';
 
 export async function getStaticProps() {
-  const files = fs.readdirSync('./contents/projects');
-  const projects = files.map((fileName) => {
-    const slug = fileName.replace('.mdx', '');
-    const fullPath = path.join(process.cwd(), './contents/projects/', fileName);
-    const readFile = fs.readFileSync(fullPath, 'utf-8');
-    const { data: frontmatter } = matter(readFile);
-    return {
-      slug,
-      frontmatter,
-    };
-  });
+  const projects = getContentIndex('projects');
   return {
     props: {
       projects,
@@ -42,7 +32,7 @@ const Projects = ({
     '%27'
   )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
   return (
-    <main className='mb-16 sm:mb-28'>
+    <main className='prose prose-invert mb-16 h-full max-w-none prose-a:no-underline sm:mb-32'>
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
         description={description}
@@ -65,16 +55,16 @@ const Projects = ({
         }}
         twitter={cardTwitter}
       />
-      <div className='mb-10 sm:mb-12'>
-        <h1 className='font-sans text-3xl font-bold text-white sm:text-5xl'>
-          {`Projects`}
-        </h1>
-        <p className='text-md my-5 font-sans font-normal text-gray-400 sm:text-lg'>
-          {`I've been creating projects since my college days in 2018. I have a lot of ideas about what I want to do in the future, and this is my project that I have completed in the past.`}
-        </p>
+      <div className='mb-10 flex justify-center text-center md:mb-16'>
+        <div className='max-w-xl'>
+          <h1 className='-my-1 text-3xl sm:text-5xl'>{`Projects`}</h1>
+          <p className='text-xl text-gray-400 sm:text-lg'>
+            {`I've been creating projects since my college days in 2018. I have a lot of ideas about what I want to do in the future, and this is my project that I have completed in the past.`}
+          </p>
+        </div>
       </div>
       <div className='mx-auto my-5 md:my-10'>
-        <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
+        <div className='grid grid-cols-1 gap-5 md:gap-10'>
           {projects
             .sort((a, b) => {
               return (
@@ -82,31 +72,20 @@ const Projects = ({
                 new Date(a.frontmatter.date).valueOf()
               );
             })
-            .map((project) => {
-              const { slug } = project;
-              const { title, description, stack } = project.frontmatter;
+            .map((item) => {
+              const { slug } = item;
+              const { title, description, date, stack, header } =
+                item.frontmatter;
               return (
-                <div
+                <ProjectCard
                   key={slug}
-                  className='flex items-center rounded-lg border border-gray-600 border-opacity-50 p-5'
-                >
-                  <Link href={`/projects/${slug}`}>
-                    <a>
-                      <h2 className='font-sans text-lg font-bold text-white sm:text-xl'>
-                        {title}
-                      </h2>
-                      <p className='text-md my-2 font-sans font-normal text-gray-400'>
-                        {description}
-                      </p>
-
-                      <div className='bottom-0 flex flex-wrap'>
-                        {stack.slice(0).map((item: string) => (
-                          <TechStack key={item} name={item} />
-                        ))}
-                      </div>
-                    </a>
-                  </Link>
-                </div>
+                  slug={slug}
+                  title={title}
+                  description={description}
+                  header={header}
+                  date={date}
+                  stack={stack}
+                />
               );
             })}
         </div>

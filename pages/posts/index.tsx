@@ -1,28 +1,21 @@
 import React from 'react';
-import fs from 'fs';
-import matter from 'gray-matter';
-import path from 'path';
+import readingTime from 'reading-time';
 import { NextSeo } from 'next-seo';
-import { cardTwitter } from '../../lib/seo';
-import DataSeo from '@/_data/seo.json';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
-import readingTime from 'reading-time';
+
+//lib
+import { cardTwitter } from '@/lib/seo';
+import { getContentIndex } from '@/lib/fetcher';
+
+//data
+import DataSeo from '@/_data/seo.json';
+
+//components
 import PostCard from '@/components/posts/card';
 
 export async function getStaticProps() {
-  const files = fs.readdirSync('./contents/posts');
-  const posts = files.map((fileName) => {
-    const slug = fileName.replace('.mdx', '');
-    const fullPath = path.join(process.cwd(), './contents/posts/', fileName);
-    const readFile = fs.readFileSync(fullPath, 'utf-8');
-    const { data: frontmatter, content } = matter(readFile);
-    return {
-      slug,
-      frontmatter,
-      content,
-    };
-  });
+  const posts = getContentIndex('posts');
   return {
     props: {
       posts,
