@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from '@/components/image';
 import Link from 'next/link';
 
 export interface Props {
@@ -15,15 +15,13 @@ const Card: React.FC<Props> = (props) => {
   const { title, description, header, date, stack, slug } = props;
   return (
     <div className='group prose prose-invert max-w-none flex-none items-center justify-between xl:flex xl:flex-row-reverse '>
-      <div className='my-5 ml-0 rounded-md bg-background_100 xl:ml-10'>
-        <div className='h-full w-full rounded-md pl-6 pt-6 shadow-xl md:pl-8 md:pt-8 xl:w-[700px]'>
+      <div className='my-5 ml-0 rounded-md xl:ml-10'>
+        <div className='h-full w-full rounded-md bg-background_100 pl-6 pt-6 shadow-xl md:pl-8 md:pt-8 xl:w-[700px]'>
           <Image
-            className=' rounded-br-md rounded-tl-md shadow-xl'
             src={header}
             objectFit={'cover'}
             width={'1280'}
             height={'720'}
-            layout={'responsive'}
           />
         </div>
       </div>

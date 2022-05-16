@@ -73,13 +73,13 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
     : router.asPath;
 
   React.useEffect(() => {
-    // const registerView = () =>
-    //   fetch(`/api/pageview/${enRouter}`, {
-    //     method: 'POST',
-    //   });
-    // registerView();
-    // //update data
-    // mutate(`/api/pageview/${enRouter}`);
+    const registerView = () =>
+      fetch(`/api/pageview/${enRouter}`, {
+        method: 'POST',
+      });
+    registerView();
+    //update data
+    mutate(`/api/pageview/${enRouter}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

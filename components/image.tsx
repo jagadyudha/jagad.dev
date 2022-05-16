@@ -15,30 +15,35 @@ const Image: React.FC<ImageProps> = ({ src, className, ...props }) => {
   const router = useRouter();
 
   return (
-    <figure
-      className={`${
-        className ? className : 'rounded-md'
-      } flex justify-center overflow-hidden`}
-    >
-      <NextImage
-        onClick={() =>
-          (router.pathname === '/posts/[slug]' ||
-            router.pathname === '/projects/[slug]') &&
-          setIsOpen(true)
-        }
-        src={src}
-        className={`${className ? className : 'rounded-md'} ${
-          isReady ? 'blur-0' : 'animate-pulse bg-zinc-600 blur-2xl'
-        }`}
-        {...props}
-        onLoadingComplete={onLoadCallback}
-        unoptimized={lightbox.replace(/^.*\./, '') === 'gif' ? true : false}
-      />
+    <>
+      <figure
+        className={`${
+          className ? className : 'rounded-md'
+        } flex justify-center overflow-hidden`}
+      >
+        <NextImage
+          onClick={() =>
+            (router.pathname === '/posts/[slug]' ||
+              router.pathname === '/projects/[slug]') &&
+            setIsOpen(true)
+          }
+          src={src}
+          className={`${className ? className : 'rounded-md'} ${
+            isReady ? 'blur-0' : 'animate-pulse bg-zinc-600 blur-2xl'
+          }`}
+          {...props}
+          onLoadingComplete={onLoadCallback}
+          unoptimized={lightbox.replace(/^.*\./, '') === 'gif' ? true : false}
+        />
 
-      {isOpen && (
-        <Lightbox mainSrc={lightbox} onCloseRequest={() => setIsOpen(false)} />
-      )}
-    </figure>
+        {isOpen && (
+          <Lightbox
+            mainSrc={lightbox}
+            onCloseRequest={() => setIsOpen(false)}
+          />
+        )}
+      </figure>
+    </>
   );
 };
 

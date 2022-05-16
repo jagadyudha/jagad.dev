@@ -76,8 +76,7 @@ const Dashboard = ({
                   ? data?.steam.getStatus
                   : '-'
                 : data?.steam.getGames}
-            </span>{' '}
-            on steam.
+            </span>
           </p>
         </div>
         <Steam items={games} />
