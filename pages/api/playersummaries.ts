@@ -27,16 +27,16 @@ export default async function handler(
   const getAvatar = steam.response.players[0].avatarfull;
   const getStatus =
     steam.response.players[0].personastate === 1
-      ? 'Online 😆'
+      ? 'Online'
       : steam.response.players[0].personastate === 2
-      ? 'Busy 😐'
+      ? 'Busy'
       : steam.response.players[0].personastate === 3
-      ? 'Away 🥱'
-      : 'Offline 😴';
+      ? 'Away'
+      : 'Offline';
 
   const getGames = !steam.response.players[0].gameextrainfo
     ? false
-    : `Playing - ${steam.response.players[0].gameextrainfo} 😆`;
+    : `playing ${steam.response.players[0].gameextrainfo}`;
   const getprofileUrl = steam.response.players[0].profileurl;
   return res.status(200).json({
     steam: {

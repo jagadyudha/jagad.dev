@@ -8,6 +8,7 @@ module.exports = {
       'user-images.githubusercontent.com',
       'media.giphy.com',
       'images.unsplash.com',
+      'media.steampowered.com',
     ],
   },
 };

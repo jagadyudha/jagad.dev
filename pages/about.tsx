@@ -1,4 +1,4 @@
-import Twemoji from '@/components/Twemoji';
+import Image from '@/components/image';
 
 //seo
 import { NextSeo } from 'next-seo';
@@ -34,84 +34,122 @@ const About = () => {
         }}
         twitter={cardTwitter}
       />
-      <h1 className='font-sans text-3xl font-bold text-white sm:text-5xl'>
-        About Me
-      </h1>
-      <p className='text-md my-5 mb-10 font-sans font-normal text-gray-400 sm:text-lg'>
-        Hi there! My name is Jagad Yudha Awali
-      </p>
-      <p className='text-md mb-5 text-gray-400'>
-        I was born and raised in Sidoarjo, <Twemoji emoji='🇮🇩' /> Indonesia. I
-        am currently working freelance as a front-end developer while studying
-        at the{' '}
-        <a
-          className='font-medium text-primary underline'
-          href='https://umsida.ac.id'
-        >
-          University of Muhammadiyah Sidoarjo.
-        </a>
-      </p>
-      <p className='text-md mb-5 text-gray-400'>
-        I&apos;ve been attracted by the world of information technology since I
-        was in junior high school.{' '}
-        <a
-          className='font-medium text-primary underline'
-          href='https://www.perl.org/'
-        >
-          Perl
-        </a>{' '}
-        and the{' '}
-        <a
-          className='font-medium text-primary underline'
-          href='https://www.gnu.org/software/bash/'
-        >
-          Bash shell
-        </a>{' '}
-        were both new to me at the time. Since then, I&apos;ve primarily worked
-        with{' '}
-        <a
-          className='font-medium text-primary underline'
-          href='https://www.javascript.com/'
-        >
-          JavaScript
-        </a>{' '}
-        on React, React Native, TypeScript, and Next.Js.
-      </p>
-      <p className='text-md mb-5 text-gray-400'>
-        Learning new technologies is essential for me since, in the future, I
-        think illiteracy will be defined as the inability to read programming
-        languages.
-      </p>
-      <p className='text-md text-gray-400'>
-        Aside from programming stuff, I enjoy playing simulation racing, —
-        especially Formula 1, and began competing in the Indo Formula League and
-        winning the{' '}
-        <a
-          className='font-medium text-primary underline'
-          href='https://youtu.be/jIm3e-iBWjc?t=3845'
-        >
-          France Grand Prix
-        </a>
-        .
-      </p>
-      <div className='my-10'></div>
-      <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
-        {skills.map((item, index) => (
-          <div
-            className='rounded-lg border border-white border-opacity-20 p-5'
-            key={index}
-          >
-            <h3 className='mb-5 text-lg font-bold text-white sm:text-xl'>
-              {item.name}
-            </h3>
-            {item.list.map((item, index) => (
-              <p className='text-md my-2 text-gray-400' key={index}>
-                · {item}
+
+      <main className='prose-md prose prose-invert max-w-none'>
+        <div className='text-center'>
+          <h1 className='-my-1 text-3xl sm:text-5xl'>About Me</h1>
+          <p className='text-md text-gray-400 sm:text-lg'>
+            {`Here's my professional background, key accomplishments, and personal
+            values.`}
+          </p>
+        </div>
+
+        <div className='mx-auto'>
+          <div className='flex-none items-center sm:space-x-4 xl:flex'>
+            <div className='mx-auto my-4 w-1/2 md:w-1/3 lg:w-1/4 xl:w-3/4'>
+              <Image
+                src={'/assets/images/me.png'}
+                className='rounded-full xl:rounded-md'
+                width={'600'}
+                height={'600'}
+                objectFit='cover'
+                objectPosition={'50% 30%'}
+                alt={'Jagad Yudha Awali'}
+              />
+            </div>
+
+            <div>
+              <p>
+                {`Hello! I'm Jagad Yudha Awali. I was born and raised in Sidoarjo,
+                Indonesia. I am currently working freelance as a front-end
+                developer while studying at the `}
+                <a
+                  className='font-medium text-primary underline'
+                  href='https://umsida.ac.id'
+                >
+                  University of Muhammadiyah Sidoarjo.
+                </a>
               </p>
+              <p className='text-md mb-5 '>
+                I&apos;ve been attracted by the world of information technology
+                since I was in junior high school.{' '}
+                <a
+                  className='font-medium text-primary underline'
+                  href='https://www.perl.org/'
+                >
+                  Perl
+                </a>{' '}
+                and the{' '}
+                <a
+                  className='font-medium text-primary underline'
+                  href='https://www.gnu.org/software/bash/'
+                >
+                  Bash shell
+                </a>{' '}
+                were both new to me at the time. Since then, I&apos;ve primarily
+                worked with{' '}
+                <a
+                  className='font-medium text-primary underline'
+                  href='https://www.javascript.com/'
+                >
+                  JavaScript
+                </a>{' '}
+                on React, React Native, TypeScript, and Next.Js.
+              </p>
+              <p className='text-md -mt-1'>
+                Learning new technologies is essential for me since, in the
+                future, I think illiteracy will be defined as the inability to
+                read programming languages.
+              </p>
+              <p className='text-md '>
+                Aside from programming stuff, I enjoy playing simulation racing,
+                — especially Formula 1, and began competing in the Indo Formula
+                League and winning the{' '}
+                <a href='https://youtu.be/jIm3e-iBWjc?t=3845'>
+                  France Grand Prix
+                </a>
+                .
+              </p>
+              <p>
+                Read more about my activities related to programming on{' '}
+                <a
+                  href='https://www.polywork.com/imyour_universe'
+                  target={'_blank'}
+                  rel='noreferrer noopener'
+                >
+                  Polywork
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div className='mt-16 text-center'>
+            <h1 className='-my-1 text-3xl sm:text-5xl'>Skillset</h1>
+            <p className='text-md text-gray-400 sm:text-lg'>
+              My skillset is a mix of web and mobile development.
+            </p>
+          </div>
+
+          <div className='my-10'></div>
+          <div className=' grid grid-cols-1 gap-5 sm:grid-cols-3'>
+            {skills.map((item, index) => (
+              <div
+                className='-pt-5 rounded-lg border border-white border-opacity-10 bg-background_100 p-5'
+                key={index}
+              >
+                <h2 className='mb-5 -mt-0.5 text-lg font-bold text-white sm:text-xl'>
+                  {item.name}
+                </h2>
+                {item.list.map((item, index) => (
+                  <p className='text-md my-2 text-gray-300' key={index}>
+                    · {item}
+                  </p>
+                ))}
+              </div>
             ))}
           </div>
-        ))}
-      </div>
+        </div>
+      </main>
     </>
   );
 };
@@ -119,7 +157,7 @@ const About = () => {
 const skills = [
   {
     name: 'Programming Languages',
-    list: ['JavaScript', 'TypeScript', 'Python', 'Dart (Learning)', 'C++'],
+    list: ['JavaScript', 'TypeScript', 'Python', 'Dart (Learning)'],
   },
   {
     name: 'Mobile Development',

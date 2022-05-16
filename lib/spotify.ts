@@ -4,7 +4,7 @@ const token_basic = process.env.SPOTIFY_BASIC;
 const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
 const token_endpoint = 'https://accounts.spotify.com/api/token';
 const recentlyplayed_endpoint =
-  'https://api.spotify.com/v1/me/player/recently-played?limit=9&before=1000000000000000';
+  'https://api.spotify.com/v1/me/player/recently-played?limit=12&before=1000000000000000';
 const currentlyplaying_endpoint =
   'https://api.spotify.com/v1/me/player/currently-playing?market=ID';
 

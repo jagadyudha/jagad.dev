@@ -28,7 +28,7 @@ const Featured: React.FC<Props> = (props) => {
           objectFit='cover'
         />
       </div>
-      <div className='relative z-10 flex h-full min-h-[300px] items-end rounded-md bg-opacity-40  bg-gradient-to-t from-background_100 to-transparent p-4 shadow-md md:min-h-full lg:min-h-[350px] xl:min-h-full'>
+      <div className='relative z-10 flex h-full min-h-[300px] items-end rounded-md bg-opacity-40 bg-gradient-to-t from-background_100 to-transparent p-4 shadow-md md:min-h-full lg:min-h-[350px] xl:min-h-full'>
         <div>
           <h3>
             <span className='mr-2 rounded-md bg-black bg-opacity-20 p-1 text-sm text-primary'>
