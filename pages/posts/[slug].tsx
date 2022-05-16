@@ -212,7 +212,7 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
 
       <div className='mx-auto max-w-3xl '>
         <article>
-          <Component components={{ Image, ads: Ads } as any} />
+          <Component components={{ Image, Ads } as any} />
         </article>
         <hr className='my-8 opacity-20'></hr>
         <Comment />
