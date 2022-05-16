@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from '@/components/image';
-import Tags from '@/components/posts/tags';
 
 export interface Props {
   slug: string;
@@ -21,7 +20,7 @@ const Featured: React.FC<Props> = (props) => {
       key={slug}
       className='group relative h-full rounded-md bg-opacity-75  duration-150 ease-in-out'
     >
-      <div className='absolute h-full w-full rounded-md opacity-40 duration-150 ease-in-out group-hover:opacity-20'>
+      <div className='absolute h-full w-full rounded-md opacity-80 duration-150 ease-in-out group-hover:opacity-100'>
         <Image
           className='rounded-md'
           src={header}
@@ -29,7 +28,7 @@ const Featured: React.FC<Props> = (props) => {
           objectFit='cover'
         />
       </div>
-      <div className='relative z-10 h-full rounded-md p-4'>
+      <div className='relative z-10 flex h-full min-h-[300px] items-end rounded-md bg-opacity-40  bg-gradient-to-t from-background_100 to-transparent p-4 shadow-md md:min-h-full lg:min-h-[350px] xl:min-h-full'>
         <div>
           <h3>
             <span className='mr-2 rounded-md bg-black bg-opacity-20 p-1 text-sm text-primary'>
@@ -40,7 +39,7 @@ const Featured: React.FC<Props> = (props) => {
             {title}{' '}
           </h3>
 
-          <p className='text-gray-400'>{description}</p>
+          <p className='text-gray-300'>{description}</p>
         </div>
       </div>
     </a>
