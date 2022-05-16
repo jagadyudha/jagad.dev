@@ -28,7 +28,7 @@ Despite its large user base, several people are unaware that Steam also offers a
 
 Steamworks, as previously mentioned, is used on my website to display information about my gaming activities, such as online status, currently playing games, playing hours, etc.
 
-<img
+<Image
   alt='Demo'
   src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1649551515/jagad.dev/posts/how-to-create-steam-player-summaries-with-next-js/demo_mrtci7.png'
   width='1203'
@@ -49,7 +49,7 @@ From that URL, we can replace the steam key and id with your own.
 
 We can get the key by accessing this [Web API Key for Steam - Steam Community](https://steamcommunity.com/dev/apikey).
 
-<img
+<Image
   alt='Steam Api key'
   src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1649551969/jagad.dev/posts/how-to-create-steam-player-summaries-with-next-js/steam_api_key_j8q6b7.png'
   width='877'
@@ -58,7 +58,7 @@ We can get the key by accessing this [Web API Key for Steam - Steam Community](h
 
 To get a steam id, we can use the most primitive method by logging in through the browser and going to the steam profile section. In the URL bar, we will see the steam id.
 
-<img
+<Image
   alt='Steam Id'
   src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1649552921/jagad.dev/posts/how-to-create-steam-player-summaries-with-next-js/steam_id_xtorcq.png'
   width='1470'
@@ -139,7 +139,7 @@ STEAM_ID=76561198324704779
 
 Try accessing localhost:3000/api/playersummaries from the browser to get response like this.
 
-<img
+<Image
   alt='Response Api'
   src='https://res.cloudinary.com/dlpb6j88q/image/upload/v1649553382/jagad.dev/posts/how-to-create-steam-player-summaries-with-next-js/Response_Api_yhi6p2.png'
   width='1077'
@@ -186,7 +186,7 @@ You can also modify the style to suit your preferences.
       <div className='my-auto ml-5 mr-4 flex'>
         <div className='flex h-20 w-20 items-center justify-center rounded-lg'>
           {data?.steam.getAvatar ? (
-            <img
+            <Image
               className='rounded-lg'
               src={data?.steam.getAvatar}
               width={100}
