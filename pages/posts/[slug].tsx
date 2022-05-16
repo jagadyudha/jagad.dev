@@ -92,7 +92,7 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
   )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
 
   return (
-    <main className='prose prose-base prose-invert mx-auto max-w-none '>
+    <main className='prose prose-base prose-invert mx-auto max-w-none'>
       {/* Next Seo */}
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
@@ -130,7 +130,7 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
         description={description}
       />
 
-      <div className='text-center' key={slug}>
+      <div className='text-center'>
         <div className='mx-auto  max-w-4xl'>
           <h1 className='text-white sm:text-5xl'>{title}</h1>
           <div className='my-10 text-gray-400'>

@@ -1,7 +1,7 @@
 //default
+import React from 'react';
 import { NextSeo } from 'next-seo';
-import fs from 'fs';
-import matter from 'gray-matter';
+import { getMDXComponent } from 'mdx-bundler/client';
 import Markdown from 'markdown-to-jsx';
 
 //components
@@ -10,7 +10,7 @@ import TechStack from '@/components/projects/tech-stack';
 
 //lib
 import { cardTwitter } from '@/lib/seo';
-
+import { getContentPaths, getContentSlug } from '@/lib/fetcher';
 //data
 import DataSeo from '@/_data/seo.json';
 
@@ -26,15 +26,11 @@ export interface slugProps {
   frontmatter: frontmatter;
   content: string;
   slug: string;
+  code: string;
 }
 
 export const getStaticPaths = async () => {
-  const files = fs.readdirSync('./contents/projects');
-  const paths = files.map((fileName) => {
-    return {
-      params: { slug: fileName.replace('.mdx', '') },
-    };
-  });
+  const paths = getContentPaths('projects');
 
   return {
     paths,
@@ -46,21 +42,24 @@ export const getStaticProps = async ({
 }: {
   params: { slug: string };
 }) => {
-  const fileName = fs.readFileSync(
-    `./contents/projects/${params.slug}.mdx`,
-    'utf-8'
+  //get from fetcher lib
+  const { frontmatter, code, content } = await getContentSlug(
+    params.slug,
+    'projects' //<--- content --->
   );
-  const { data: frontmatter, content } = matter(fileName);
+
   return {
     props: {
       frontmatter,
       content,
+      code,
       slug: params.slug,
     },
   };
 };
 
-const ProjectsSlug = ({ frontmatter, content, slug }: slugProps) => {
+const ProjectsSlug = ({ frontmatter, content, code, slug }: slugProps) => {
+  const Component = React.useMemo(() => getMDXComponent(code), [code]);
   const { title, description, date, stack, header } = frontmatter;
   const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
     `'`,
@@ -68,7 +67,7 @@ const ProjectsSlug = ({ frontmatter, content, slug }: slugProps) => {
   )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
 
   return (
-    <div className='mb-16 sm:mb-28'>
+    <main className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
         description={description}
@@ -91,46 +90,37 @@ const ProjectsSlug = ({ frontmatter, content, slug }: slugProps) => {
         }}
         twitter={cardTwitter}
       />
-      <div
-        key={title}
-        className='rounded-lg border border-gray-600 border-opacity-50'
-      >
-        <Image
-          src={header}
-          height={720}
-          width={1280}
-          alt={title}
-          className='rounded-t-md'
-        />
-        <div className=' p-8'>
-          <h2 className='font-sans text-lg font-bold text-white sm:text-xl'>
-            {title}
-          </h2>
-          <p className='text-md my-5 font-sans font-normal text-gray-400'>
-            {description}
-          </p>
+      <div className='mx-auto max-w-4xl text-center'>
+        <h1 className='text-white sm:text-5xl'>{title}</h1>
 
-          <div className='flex flex-wrap'>
-            {stack.slice(0).map((item: string) => (
-              <TechStack key={item} name={item} />
-            ))}
+        <p className='my-14 text-xl'>
+          {`Launched by Jagad Yudha Awali on ${new Date(date).toLocaleString(
+            'default',
+            {
+              month: 'long',
+            }
+          )} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
+        </p>
+
+        <div className='relative mx-auto h-56 max-w-3xl md:h-72 xl:h-96'>
+          <div className='absolute h-full w-full'>
+            <Image
+              className='rounded-md'
+              src={header}
+              layout='fill'
+              objectFit='cover'
+            />
           </div>
         </div>
+
+        <p className='text-md mx-auto max-w-3xl text-left text-gray-400 sm:text-lg'>
+          {description}
+        </p>
       </div>
-      <article className='prose prose-base prose-invert min-w-full'>
-        <Markdown
-          options={{
-            overrides: {
-              img: {
-                component: Image,
-              },
-            },
-          }}
-        >
-          {content}
-        </Markdown>
+      <article className='mx-auto max-w-3xl '>
+        <Component components={{ Image } as any} />
       </article>
-    </div>
+    </main>
   );
 };
 
