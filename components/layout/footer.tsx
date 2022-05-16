@@ -1,13 +1,5 @@
 import React from 'react';
 import { NowPlaying } from '@/components/now-playing';
-import SocialIcon from '@/components/social-icon';
-import {
-  FiTwitter,
-  FiGithub,
-  FiLinkedin,
-  FiYoutube,
-  FiInstagram,
-} from 'react-icons/fi';
 
 function footer() {
   return (
