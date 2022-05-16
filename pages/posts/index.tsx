@@ -3,6 +3,7 @@ import readingTime from 'reading-time';
 import { NextSeo } from 'next-seo';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
+import { IoSearch } from 'react-icons/io5';
 
 //lib
 import { cardTwitter } from '@/lib/seo';
@@ -105,10 +106,19 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </div>
       </div>
 
-      {/* <div className='flex items-center'>
-        <hr className='mr-4 flex-grow opacity-40'></hr>
+      <div className='my-10'>
+        <div className='relative mb-4 w-full'>
+          <input
+            type='text'
+            className='form-input block w-full rounded-md border-0 bg-background_100 py-2 text-gray-300 placeholder-gray-300 focus:ring-white'
+            placeholder='Search Posts...'
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <IoSearch className='absolute right-4 top-[9px] text-xl text-gray-300' />
+        </div>
+
         <button
-          className='whitespace-nowrap rounded-md border border-primary px-2 py-1 text-sm font-medium text-primary'
+          className='whitespace-nowrap rounded-md border border-primary px-4 py-2 text-sm font-medium text-primary'
           onClick={() => {
             if (languages === 'en') {
               setLanguages('id');
@@ -119,7 +129,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         >
           Read in {languages === 'en' ? 'Bahasa' : 'English'}
         </button>
-      </div> */}
+      </div>
 
       <div className='max-2-xl my-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:my-0'>
         {post

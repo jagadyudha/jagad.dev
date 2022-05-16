@@ -1,29 +1,24 @@
-import React, { Children } from 'react';
-import fs from 'fs';
-import matter from 'gray-matter';
+import React from 'react';
 import Image from '@/components/image';
-
 import { getMDXComponent } from 'mdx-bundler/client';
-import { bundleMDX } from 'mdx-bundler';
-
-import rehypePrism from 'rehype-prism-plus';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeSlug from 'rehype-slug';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
-import {
-  IoTimeOutline,
-  IoCalendarClearOutline,
-  IoLogoGithub,
-  IoEyeOutline,
-} from 'react-icons/io5';
-import ViewsCount from '@/components/views-count';
 import { useSWRConfig } from 'swr';
 import Link from 'next/link';
-import path from 'path';
 import { useRouter } from 'next/router';
+
+//lib
+import { getContentPaths, getContentSlug } from '@/lib/fetcher';
+import { cardTwitter } from '@/lib/seo';
+
+//components
+import ViewsCount from '@/components/views-count';
 import Ads from '@/components/posts/adsense';
+import Comment from '@/components/posts/comment';
+
+//data
+import DataSeo from '@/_data/seo.json';
 
 export interface frontmatter {
   title: string;
@@ -40,20 +35,8 @@ export interface Props {
   code: string;
 }
 
-//lib
-import { cardTwitter } from '@/lib/seo';
-
-//data
-import DataSeo from '@/_data/seo.json';
-import Comment from '@/components/posts/comment';
-
 export const getStaticPaths = async () => {
-  const files = fs.readdirSync('./contents/posts');
-  const paths = files.map((fileName) => {
-    return {
-      params: { slug: fileName.replace('.mdx', '') },
-    };
-  });
+  const paths = getContentPaths('posts');
 
   return {
     paths,
@@ -66,40 +49,11 @@ export const getStaticProps = async ({
 }: {
   params: { slug: string };
 }) => {
-  // const fileName = fs.readFileSync(
-  //   `./contents/posts/${params.slug}.mdx`,
-  //   'utf-8'
-  // );
-  let readFile;
-  try {
-    const fullPath = path.join(
-      process.cwd(),
-      `./contents/posts/${params.slug}.mdx`
-    );
-
-    readFile = fs.readFileSync(fullPath, 'utf-8');
-  } catch (e) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const { data: frontmatter, content } = matter(readFile);
-
-  const result = await bundleMDX({
-    source: content.trim(),
-    mdxOptions(options) {
-      options.rehypePlugins = [
-        ...(options.rehypePlugins ?? []),
-        rehypeSlug,
-        rehypeAutolinkHeadings,
-        rehypePrism,
-      ];
-
-      return options;
-    },
-  });
-  const { code } = result;
+  //get from fetcher lib
+  const { frontmatter, code, content } = await getContentSlug(
+    params.slug,
+    'posts' //<--- content --->
+  );
 
   return {
     props: {
@@ -107,7 +61,6 @@ export const getStaticProps = async ({
       content,
       code,
       slug: params.slug,
-      // source: mdxSource,
     },
   };
 };
@@ -120,21 +73,19 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
     : router.asPath;
 
   React.useEffect(() => {
-    const registerView = () =>
-      fetch(`/api/pageview/${enRouter}`, {
-        method: 'POST',
-      });
-    registerView();
-
-    //update data
-    mutate(`/api/pageview/${enRouter}`);
-
+    // const registerView = () =>
+    //   fetch(`/api/pageview/${enRouter}`, {
+    //     method: 'POST',
+    //   });
+    // registerView();
+    // //update data
+    // mutate(`/api/pageview/${enRouter}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
-  const { title, description, date, tags, header } = frontmatter;
+  const { title, description, date, header } = frontmatter;
   const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
     `'`,
     '%27'
@@ -179,14 +130,17 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
         description={description}
       />
 
-      <div className=' text-center' key={slug}>
+      <div className='text-center' key={slug}>
         <div className='mx-auto  max-w-4xl'>
           <h1 className='text-white sm:text-5xl'>{title}</h1>
           <div className='my-10 text-gray-400'>
             <p className='text-xl'>
-              {`Posted on ${new Date(date).toLocaleString('default', {
-                month: 'long',
-              })} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
+              {`Posted by Jagad Yudha Awali on ${new Date(date).toLocaleString(
+                'default',
+                {
+                  month: 'long',
+                }
+              )} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
             </p>
             <div className='text-md -mt-10 flex items-center justify-center gap-1'>
               <ViewsCount slug={`${enRouter}`} />•
@@ -198,7 +152,7 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
         <div className='relative mx-auto h-56 max-w-3xl md:h-72 xl:h-96'>
           <div className='absolute h-full w-full'>
             <Image
-              className='rounded-xl'
+              className='rounded-md'
               src={header}
               layout='fill'
               objectFit='cover'
@@ -208,6 +162,20 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
         <p className='text-md mx-auto max-w-3xl text-left text-gray-400 sm:text-lg'>
           {description}
         </p>
+      </div>
+
+      <div className='mx-auto max-w-3xl'>
+        <Link
+          href={`/posts/${
+            slug.endsWith('-id') ? slug.replace('-id', '') : slug.concat('-id')
+          }`}
+        >
+          <a>
+            <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
+              Read in {!slug.endsWith('-id') ? 'Bahasa Indonesia' : 'English'}
+            </button>
+          </a>
+        </Link>
       </div>
 
       <div className='mx-auto max-w-3xl '>
