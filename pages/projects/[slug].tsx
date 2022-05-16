@@ -6,7 +6,7 @@ import Markdown from 'markdown-to-jsx';
 
 //components
 import Image from '@/components/image';
-import TechStack from '@/components/tech-stack';
+import TechStack from '@/components/projects/tech-stack';
 
 //lib
 import { cardTwitter } from '@/lib/seo';

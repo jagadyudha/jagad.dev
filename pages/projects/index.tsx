@@ -7,7 +7,6 @@ import { cardTwitter } from '@/lib/seo';
 import { getContentIndex } from '@/lib/fetcher';
 
 //components
-import TechStack from '@/components/tech-stack';
 import ProjectCard from '@/components/projects/card';
 
 //data
