@@ -81,29 +81,21 @@ const Home = ({
       </div>
 
       <div className='grid grid-cols-1 gap-5 md:gap-10'>
-        {featuredProject
-          .sort((a, b) => {
-            return (
-              new Date(b.frontmatter.date).valueOf() -
-              new Date(a.frontmatter.date).valueOf()
-            );
-          })
-          .map((item) => {
-            const { slug } = item;
-            const { title, description, date, stack, header } =
-              item.frontmatter;
-            return (
-              <FeaturedProject
-                key={slug}
-                slug={slug}
-                title={title}
-                description={description}
-                header={header}
-                date={date}
-                stack={stack}
-              />
-            );
-          })}
+        {featuredProject.map((item) => {
+          const { slug } = item;
+          const { title, description, date, stack, header } = item.frontmatter;
+          return (
+            <FeaturedProject
+              key={slug}
+              slug={slug}
+              title={title}
+              description={description}
+              header={header}
+              date={date}
+              stack={stack}
+            />
+          );
+        })}
       </div>
     </main>
   );

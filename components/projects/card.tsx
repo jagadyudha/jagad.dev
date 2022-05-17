@@ -15,7 +15,7 @@ export interface Props {
 const Card: React.FC<Props> = (props) => {
   const { title, description, header, stack, slug } = props;
   return (
-    <div className='group mb-10 flex-none items-center justify-between xl:flex xl:flex-row-reverse'>
+    <div className='group prose prose-invert mb-10 max-w-none flex-none items-center justify-between xl:flex xl:flex-row-reverse'>
       <div className='max-w-lg overflow-hidden rounded-md bg-background_100 xl:ml-10'>
         <div className='-my-10 w-full translate-x-10 translate-y-10 shadow-2xl duration-100 ease-in-out hover:translate-y-7'>
           <Image

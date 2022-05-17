@@ -6,7 +6,7 @@ import Markdown from 'markdown-to-jsx';
 
 //components
 import Image from '@/components/image';
-import TechStack from '@/components/projects/tech-stack';
+import customLink from '@/components/customLink';
 
 //lib
 import { cardTwitter } from '@/lib/seo';
@@ -102,23 +102,12 @@ const ProjectsSlug = ({ frontmatter, content, code, slug }: slugProps) => {
           )} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
         </p>
 
-        <div className='relative mx-auto h-56 max-w-3xl md:h-72 xl:h-96'>
-          <div className='absolute h-full w-full'>
-            <Image
-              className='rounded-md'
-              src={header}
-              layout='fill'
-              objectFit='cover'
-            />
-          </div>
-        </div>
-
-        <p className='text-md mx-auto max-w-3xl text-left text-gray-400 sm:text-lg'>
+        <p className='text-md mx-auto max-w-3xl text-center text-gray-400 sm:text-lg'>
           {description}
         </p>
       </div>
       <article className='mx-auto max-w-3xl '>
-        <Component components={{ Image } as any} />
+        <Component components={{ Image, a: customLink } as any} />
       </article>
     </main>
   );
