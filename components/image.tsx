@@ -28,9 +28,9 @@ const Image: React.FC<ImageProps> = ({ src, className, ...props }) => {
             setIsOpen(true)
           }
           src={src}
-          className={`${className ? className : 'rounded-md'} ${
-            isReady ? 'blur-0' : 'animate-pulse bg-zinc-600 blur-2xl'
-          }`}
+          className={`duration-700 ease-in-out ${
+            className ? className : 'rounded-md'
+          } ${isReady ? 'blur-0' : 'animate-pulse bg-zinc-600 blur-2xl'}`}
           {...props}
           onLoadingComplete={onLoadCallback}
           unoptimized={lightbox.replace(/^.*\./, '') === 'gif' ? true : false}

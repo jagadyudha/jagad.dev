@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
 import { useSWRConfig } from 'swr';
-import Link from 'next/link';
+import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
 
 //lib
@@ -180,7 +180,7 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
 
       <div className='mx-auto max-w-3xl '>
         <article>
-          <Component components={{ Image, Ads } as any} />
+          <Component components={{ Image, Ads, a: Link } as any} />
         </article>
         <hr className='my-8 opacity-20'></hr>
         <Comment />

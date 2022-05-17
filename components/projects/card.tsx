@@ -13,12 +13,13 @@ export interface Props {
 }
 
 const Card: React.FC<Props> = (props) => {
-  const { title, description, header, date, stack, slug } = props;
+  const { title, description, header, stack, slug } = props;
   return (
-    <div className='group prose prose-invert max-w-none flex-none items-center justify-between xl:flex xl:flex-row-reverse '>
-      <div className='my-5 ml-0 rounded-md xl:ml-10'>
-        <div className='h-full w-full rounded-md bg-background_100 pl-6 pt-6 shadow-xl md:pl-8 md:pt-8 xl:w-[700px]'>
+    <div className='group mb-10 flex-none items-center justify-between xl:flex xl:flex-row-reverse'>
+      <div className='max-w-lg overflow-hidden rounded-md bg-background_100 xl:ml-10'>
+        <div className='-my-10 w-full translate-x-10 translate-y-10 shadow-2xl duration-100 ease-in-out hover:translate-y-7'>
           <Image
+            className='rounded-sm'
             src={header}
             objectFit={'cover'}
             width={'1280'}
@@ -27,16 +28,16 @@ const Card: React.FC<Props> = (props) => {
         </div>
       </div>
 
-      <div className='max-w-xl'>
+      <div className='max-w-lg'>
         <h3>{title}</h3>
         <p>{description}</p>
         <div className='mb-8 flex flex-wrap'>
-          {stack.slice(0).map((item: string) => (
-            <TechStack key={item} name={item} />
+          {stack.slice(0).map((item: string, index) => (
+            <TechStack key={index} name={item} />
           ))}
         </div>
         <Link href={`/projects/${slug}`} passHref>
-          <button className='md:text-md w-full rounded-md bg-white bg-opacity-75 px-5  py-3 text-sm font-normal text-black duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4 lg:w-2/4'>
+          <button className='md:text-md w-full rounded-md bg-white bg-opacity-100 px-5  py-3 text-sm font-medium text-black duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4 lg:w-2/4'>
             Detail Project
           </button>
         </Link>
