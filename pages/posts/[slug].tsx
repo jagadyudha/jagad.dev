@@ -156,6 +156,7 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
               src={header}
               layout='fill'
               objectFit='cover'
+              alt={title}
             />
           </div>
         </div>
