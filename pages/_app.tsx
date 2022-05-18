@@ -43,7 +43,7 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   Router.events.on('routeChangeComplete', nprogress.done);
 
   //blacklist from layouting
-  if ([`/og`, `/404`].includes(appProps.router.pathname))
+  if ([`/og`].includes(appProps.router.pathname))
     return <Component {...pageProps} />;
 
   return (

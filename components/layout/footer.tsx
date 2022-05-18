@@ -1,5 +1,6 @@
 import React from 'react';
 import { NowPlaying } from '@/components/now-playing';
+import Link from '@/components/customLink';
 
 function footer() {
   return (
@@ -15,25 +16,19 @@ function footer() {
             <div className='text-xs text-gray-400 sm:text-sm'>
               <p>
                 Content licensed under{' '}
-                <a
-                  target='_blank'
-                  rel='noreferrer noopener'
-                  className='text-primary hover:underline'
-                  href='https://creativecommons.org/licenses/by-nc-sa/4.0/'
-                >
-                  CC BY-NC-SA 4.0
-                </a>
+                <Link href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>
+                  <span className='text-primary hover:underline'>
+                    CC BY-NC-SA 4.0
+                  </span>
+                </Link>
                 .
               </p>
               <p className=' text-gray-400'>
-                <a
-                  target='_blank'
-                  rel='noreferrer noopener'
-                  className='text-primary hover:underline'
-                  href='https://github.com/jagadyudha/jagad.dev/blob/main/LICENSE.md'
-                >
-                  MIT License
-                </a>
+                <Link href='https://github.com/jagadyudha/jagad.dev/blob/main/LICENSE.md'>
+                  <span className='text-primary hover:underline'>
+                    MIT License
+                  </span>
+                </Link>
                 {` © ${new Date().getFullYear()} Jagad Yudha`}.
               </p>
             </div>
@@ -48,9 +43,13 @@ function footer() {
                 {item.menu.toUpperCase()}
               </p>
               {item.content.map((item, index) => (
-                <p key={index} className='my-4 text-gray-400'>
-                  {item.name}
-                </p>
+                <div key={index}>
+                  <Link href={item.href}>
+                    <p className='my-4 text-gray-400 hover:text-primary hover:underline'>
+                      {item.name}
+                    </p>
+                  </Link>
+                </div>
               ))}
             </div>
           ))}
@@ -64,30 +63,39 @@ const nav = [
   {
     menu: 'Social',
     content: [
-      { name: 'Twitter', href: 'https' },
-      { name: 'Github', href: 'https' },
-      { name: 'Linkedin', href: 'https' },
-      { name: 'Youtube', href: 'https' },
-      { name: 'PolyWork', href: 'https' },
+      { name: 'Twitter', href: 'https://twitter.com/imyour_universe' },
+      { name: 'Github', href: 'https://github.com/jagadyudha/jagadyudha' },
+      {
+        name: 'Linkedin',
+        href: 'https://www.linkedin.com/in/jagad-yudha-39a4a51b6/',
+      },
+      {
+        name: 'Youtube',
+        href: 'https://www.youtube.com/c/noobsecurity_/videos',
+      },
+      { name: 'PolyWork', href: 'https://www.polywork.com/imyour_universe' },
     ],
   },
 
   {
     menu: 'General',
     content: [
-      { name: 'Home', href: 'https' },
-      { name: 'Posts', href: 'https' },
-      { name: 'Projects', href: 'https' },
-      { name: 'Activities', href: 'https' },
-      { name: 'About', href: 'https' },
+      { name: 'Home', href: '/' },
+      { name: 'Posts', href: '/posts' },
+      { name: 'Projects', href: '/projects' },
+      { name: 'Activities', href: '/activities' },
+      { name: 'About', href: '/about' },
     ],
   },
   {
     menu: 'Extra',
     content: [
-      { name: 'Twitter', href: 'https' },
-      { name: 'Github', href: 'https' },
-      { name: 'Linkedin', href: 'https' },
+      { name: 'Source Code', href: 'https://github.com/jagadyudha/jagad.dev' },
+      {
+        name: 'Newsletter',
+        href: 'https://www.getrevue.co/profile/imyour_universe',
+      },
+      { name: 'Resume', href: '/' },
     ],
   },
 ];
