@@ -6,8 +6,28 @@ function footer() {
   return (
     <footer className='bg-[#1a1a1c]'>
       {/* Licensed under the MIT License. */}
-      <div className='mx-8 max-w-6xl flex-none justify-between  py-20 md:mx-24 xl:mx-auto xl:flex'>
-        <div className='flex justify-center text-center xl:justify-between xl:text-left'>
+      <div className='mx-8 max-w-6xl flex-none justify-between py-10 md:mx-24 xl:mx-auto xl:flex xl:flex-row-reverse'>
+        {/* Nav Link */}
+        <div className='grid grid-cols-2 gap-10 text-left sm:grid-cols-3 sm:text-center xl:gap-24 xl:py-0 xl:text-left'>
+          {nav.map((item) => (
+            <div key={item.menu}>
+              <p className='font-medium text-white'>
+                {item.menu.toUpperCase()}
+              </p>
+              {item.content.map((item, index) => (
+                <div key={index}>
+                  <Link href={item.href}>
+                    <p className='my-4 text-gray-400 hover:text-primary hover:underline'>
+                      {item.name}
+                    </p>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className='mt-10 flex justify-center text-center xl:mt-0 xl:justify-between xl:text-left'>
           <div>
             <div className='mb-4 rounded-md border border-white border-opacity-20 px-3'>
               <NowPlaying />
@@ -24,7 +44,7 @@ function footer() {
                 .
               </p>
               <p className=' text-gray-400'>
-                <Link href='https://github.com/jagadyudha/jagad.dev/blob/main/LICENSE.md'>
+                <Link href='https://github.com/jagadyudha/jagad.dev/blob/master/LICENSE.md'>
                   <span className='text-primary hover:underline'>
                     MIT License
                   </span>
@@ -33,26 +53,6 @@ function footer() {
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Nav Link */}
-        <div className='hidden grid-cols-2 gap-10 py-14 sm:grid-cols-3 xl:grid xl:gap-24 xl:py-0'>
-          {nav.map((item) => (
-            <div key={item.menu} className='mx-auto'>
-              <p className='font-medium text-white'>
-                {item.menu.toUpperCase()}
-              </p>
-              {item.content.map((item, index) => (
-                <div key={index}>
-                  <Link href={item.href}>
-                    <p className='my-4 text-gray-400 hover:text-primary hover:underline'>
-                      {item.name}
-                    </p>
-                  </Link>
-                </div>
-              ))}
-            </div>
-          ))}
         </div>
       </div>
     </footer>

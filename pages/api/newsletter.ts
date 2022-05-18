@@ -1,4 +1,4 @@
-import { AddsSubscriber } from '@/lib/getrevue';
+import { AddsSubscriber, ShowsSubscriber } from '@/lib/getrevue';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -6,23 +6,18 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const peler = await AddsSubscriber(
-      req.body.email,
-      req.body.first_name,
-      req.body.last_name
-    );
-
-    return res.status(200).json(peler);
+    try {
+      const getrevue = await AddsSubscriber(req.body.email);
+      return res.status(200).json(getrevue);
+    } catch (e) {
+      return res.status(500).json(e);
+    }
   } else {
-    return res.status(200).json({ error: 'Method Not Allowed' });
+    try {
+      const getrevue = await ShowsSubscriber();
+      return res.status(200).json({ count: getrevue.length });
+    } catch (e) {
+      return res.status(500).json(e);
+    }
   }
-
-  //   return res.status(200).json({
-  //     music: {
-  //       getData,
-  //       getUrl,
-  //       is_playing,
-  //       cover,
-  //     },
-  //   });
 }

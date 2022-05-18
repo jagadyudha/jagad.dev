@@ -2,10 +2,11 @@
 import { InferGetStaticPropsType } from 'next';
 import readingTime from 'reading-time';
 import Link from 'next/link';
-
+import React from 'react';
 //components
 import FeaturedPost from '@/components/posts/featured';
 import FeaturedProject from '@/components/projects/card';
+import NewsLetter from '@/components/newsletter';
 
 //lib
 import { getContentIndex } from '@/lib/fetcher';
@@ -70,32 +71,8 @@ const Home = ({
         </div>
       </div>
 
-      {/* Featured Projects */}
-      <div className='mt-20 text-center '>
-        <h2 className='font-sans text-3xl font-bold text-white sm:text-5xl'>
-          Featured Projects
-        </h2>
-        <p className='text-md my-5 text-gray-400 sm:text-lg'>
-          A selection of my favorite works.
-        </p>
-      </div>
-
-      <div className='grid grid-cols-1 gap-5 md:gap-10'>
-        {featuredProject.map((item) => {
-          const { slug } = item;
-          const { title, description, date, stack, header } = item.frontmatter;
-          return (
-            <FeaturedProject
-              key={slug}
-              slug={slug}
-              title={title}
-              description={description}
-              header={header}
-              date={date}
-              stack={stack}
-            />
-          );
-        })}
+      <div className='my-20'>
+        <NewsLetter />
       </div>
     </main>
   );
