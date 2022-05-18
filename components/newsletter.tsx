@@ -29,7 +29,7 @@ const NewsLetter = () => {
     }
 
     inputEl.current!.value = '';
-    setMessage('Success');
+    setMessage('Success! 🎉 You are now subscribed to the newsletter.');
   };
 
   return (
