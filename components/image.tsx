@@ -27,13 +27,13 @@ const Image: React.FC<ImageProps> = ({ src, className, ...props }) => {
               router.pathname === '/projects/[slug]') &&
             setIsOpen(true)
           }
-          src={src}
+          src={`https://res.cloudinary.com/dlpb6j88q/image/fetch/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75%2Cw_800/${src}`}
           className={`duration-700 ease-in-out ${
             className ? className : 'rounded-md'
           } ${isReady ? 'blur-0' : 'animate-pulse bg-zinc-600 blur-2xl'}`}
           {...props}
           onLoadingComplete={onLoadCallback}
-          unoptimized={lightbox.replace(/^.*\./, '') === 'gif' ? true : false}
+          unoptimized={true}
         />
 
         {isOpen && (
