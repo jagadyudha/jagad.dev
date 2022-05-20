@@ -117,37 +117,76 @@ onLoadingComplete is a callback function that is invoked once the image is compl
 
 To see how the `onLoadingComplete` callback works, we must create a state that contains the boolean `false`.
 
-```javascript
-const [isReady, setIsReady] = useState(false);
+```javascript {1, 5}
+import React, { useState } from 'react';
+import NextImage from 'next/image';
+
+const Image = ({ src, ...props }) => {
+  const [isReady, setIsReady] = useState(false);
+
+  return (
+    <NextImage objectFit='cover' src={src} {...props} layout='responsive' />
+  );
+};
+
+export default Image;
 ```
 
 Next, we create a function onLoadCallback which will change the state of isReady to true.
 
-```javascript
-const onLoadCallback = () => {
-  setIsReady(true);
+```javascript {7-9}
+import React, { useState } from 'react';
+import NextImage from 'next/image';
+
+const Image = ({ src, ...props }) => {
+  const [isReady, setIsReady] = useState(false);
+
+  const onLoadCallback = () => {
+    setIsReady(true);
+  };
+
+  return (
+    <NextImage objectFit='cover' src={src} {...props} layout='responsive' />
+  );
 };
+
+export default Image;
 ```
 
 After that, we can call the `onLoadCallback` function in the `onLoadingComplete` props, which will trigger the event parameter which contains the loaded img.
 
-```javascript
-<NextImage
-  objectFit='cover'
-  src={}
-  width={}
-  height={}
-  onLoadingComplete={onLoadCallback} //this is called the callback function
-/>
+```javascript {16}
+import React, { useState } from 'react';
+import NextImage from 'next/image';
+
+const Image = ({ src, ...props }) => {
+  const [isReady, setIsReady] = useState(false);
+
+  const onLoadCallback = () => {
+    setIsReady(true);
+  };
+
+  return (
+    <NextImage
+      objectFit='cover'
+      src={src}
+      {...props}
+      onLoadingComplete={onLoadCallback}
+      layout='responsive'
+    />
+  );
+};
+
+export default Image;
 ```
 
 ## Create Custom Images Components
 
 Now that we know how to use the `onLoadingComplete` callback, we can create custom image components by creating a components folder and putting the `image.js` file inside it.
 
-```bash
+```bash {2}
 ├── README.md
-├── components # This is the folder where we will create our custom images components
+├── components
 │   └── image.js
 ├── next.config.js
 ├── package-lock.json
@@ -192,8 +231,6 @@ const Image = ({ src, ...props }) => {
 export default Image;
 ```
 
-Actually, the code above is the same code (full version) as the code we have learned in the [Understanding next/image onLoadingComplete callback](#understanding-nextimage-onloadingcomplete-callback) section.
-
 ## Apply a Blurred Effect to Images
 
 We use the blur effect to apply an effect to custom images that we created before. We can do this by adding the blur class with `blur-2xl` to the image when `isReady` is `false` and remove it when `isReady` is `true` with `blur-0`.
@@ -202,7 +239,7 @@ To make transition more interactive, we can add scale class with `scale-120` to 
 
 We also add the `transition` and `duration-1000` class to the image to apply the transition effect.
 
-```javascript
+```javascript {5-6}
 <NextImage
   objectFit='cover'
   src={src}
@@ -217,8 +254,7 @@ We also add the `transition` and `duration-1000` class to the image to apply the
 
 After That, we can import images components that we created before and use them in all images.
 
-```javascript
-//this is the image component we created before
+```javascript {1, 7}
 import Image from '../components/image';
 
 const Test = () => {

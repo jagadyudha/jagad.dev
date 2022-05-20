@@ -115,37 +115,76 @@ Hal-hal terkait transisi, yang mencakup properti transisi, durasi transisi, fung
 
 onLoadingComplete adalah fungsi callback yang dipanggil setelah gambar dimuat sepenuhnya dan placeholder telah dihapus. Ini berarti, kita dapat menambahkan transisi sebelum gambar dimuat sepenuhnya.
 
-Untuk melihat cara kerja callback `onLoad Complete`, kita harus membuat state yang berisi boolean `false`.
+Untuk melihat cara kerja callback `onLoadingComplete`, kita harus membuat state yang berisi boolean `false`.
 
-```javascript
-const [isReady, setIsReady] = useState(false);
+```javascript {1, 5}
+import React, { useState } from 'react';
+import NextImage from 'next/image';
+
+const Image = ({ src, ...props }) => {
+  const [isReady, setIsReady] = useState(false);
+
+  return (
+    <NextImage objectFit='cover' src={src} {...props} layout='responsive' />
+  );
+};
+
+export default Image;
 ```
 
 Selanjutnya, kita membuat fungsi onLoadCallback yang akan mengubah status `isReady` menjadi `true`.
 
-```javascript
-const onLoadCallback = () => {
-  setIsReady(true);
+```javascript {7-9}
+import React, { useState } from 'react';
+import NextImage from 'next/image';
+
+const Image = ({ src, ...props }) => {
+  const [isReady, setIsReady] = useState(false);
+
+  const onLoadCallback = () => {
+    setIsReady(true);
+  };
+
+  return (
+    <NextImage objectFit='cover' src={src} {...props} layout='responsive' />
+  );
 };
+
+export default Image;
 ```
 
 Setelah itu, kita bisa memanggil fungsi `onLoadCallback` pada props `onLoadingComplete`, yang akan memicu parameter event yang berisi img yang dimuat.
 
-```javascript
-<NextImage
-  objectFit='cover'
-  src={}
-  width={}
-  height={}
-  onLoadingComplete={onLoadCallback} //this is called the callback function
-/>
+```javascript {16}
+import React, { useState } from 'react';
+import NextImage from 'next/image';
+
+const Image = ({ src, ...props }) => {
+  const [isReady, setIsReady] = useState(false);
+
+  const onLoadCallback = () => {
+    setIsReady(true);
+  };
+
+  return (
+    <NextImage
+      objectFit='cover'
+      src={src}
+      {...props}
+      onLoadingComplete={onLoadCallback}
+      layout='responsive'
+    />
+  );
+};
+
+export default Image;
 ```
 
 ## Membuat Komponen Gambar Kustom
 
 Sekarang setelah kita mengetahui cara menggunakan callback `onLoadingComplete`, kita dapat membuat komponen gambar kustom dengan membuat folder komponen dan meletakkan file `image.js` di dalamnya.
 
-```bash
+```bash {2}
 ├── README.md
 ├── components # Ini adalah folder tempat kita akan membuat komponen gambar kustom
 │   └── image.js
@@ -202,7 +241,7 @@ Untuk membuat transisi lebih interaktif, kita dapat menambahkan kelas scale deng
 
 Kita juga akan menambahkan kelas `transisi` dan `durasi-1000` ke gambar untuk menerapkan efek transisi.
 
-```javascript
+```javascript {5-6}
 <NextImage
   objectFit='cover'
   src={src}
@@ -217,8 +256,7 @@ Kita juga akan menambahkan kelas `transisi` dan `durasi-1000` ke gambar untuk me
 
 Setelah itu, kita dapat mengimpor komponen gambar yang telah kita buat sebelumnya dan menggunakannya di semua gambar.
 
-```javascript
-//ini adalah komponen gambar yang kita buat sebelumnya
+```javascript {1, 7}
 import Image from '../components/image';
 
 const Test = () => {
