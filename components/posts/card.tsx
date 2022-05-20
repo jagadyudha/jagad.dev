@@ -26,6 +26,7 @@ const PostCard: React.FC<postProps> = (props) => {
             src={header}
             layout='fill'
             objectFit='cover'
+            alt={title}
           />
         </div>
       </div>

@@ -25,6 +25,7 @@ const Card: React.FC<Props> = (props) => {
               objectFit={'cover'}
               width={'1280'}
               height={'720'}
+              alt={title}
             />
           </div>
         </div>

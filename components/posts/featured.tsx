@@ -26,6 +26,7 @@ const Featured: React.FC<Props> = (props) => {
           src={header}
           layout='fill'
           objectFit='cover'
+          alt={title}
         />
       </div>
       <div className='relative z-10 flex h-full min-h-[300px] items-end rounded-md bg-opacity-40 bg-gradient-to-t from-background_100 to-transparent p-4 shadow-md md:min-h-full lg:min-h-[350px] xl:min-h-full'>

@@ -30,6 +30,7 @@ const Games: React.FC<GameProps> = ({ items }) => {
                 src={`https://steamcdn-a.akamaihd.net/steam/apps/${item.appid}/header.jpg`}
                 layout='fill'
                 objectFit='cover'
+                alt={item.name}
               />
             </div>
             <div className='relative z-10 flex h-full items-end rounded-md p-4 '>
