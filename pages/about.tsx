@@ -48,9 +48,7 @@ const About = () => {
           <div className='flex-none items-center sm:space-x-4 xl:flex'>
             <div className='mx-auto my-4 w-1/2 md:w-1/3 lg:w-1/4 xl:w-3/4'>
               <Image
-                src={
-                  'https://res.cloudinary.com/dlpb6j88q/image/upload/v1653014303/jagad.dev/me_p61sc3.png'
-                }
+                src={'/jagad.dev/me_p61sc3.png'}
                 className='rounded-full xl:rounded-md'
                 width={'600'}
                 height={'600'}

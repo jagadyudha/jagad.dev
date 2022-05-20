@@ -3,7 +3,11 @@ import NextImage, { ImageProps } from 'next/image';
 import Lightbox from 'react-image-lightbox';
 import { useRouter } from 'next/router';
 
-const Image: React.FC<ImageProps> = ({ src, className, ...props }) => {
+export type Props = {
+  src: string;
+} & ImageProps;
+
+const Image: React.FC<Props> = ({ src, className, ...props }) => {
   const [isReady, setIsReady] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -11,8 +15,11 @@ const Image: React.FC<ImageProps> = ({ src, className, ...props }) => {
     setIsReady(true);
   };
 
-  const lightbox: any = src;
   const router = useRouter();
+  const isCloudinary = src.startsWith('/');
+  const source = isCloudinary
+    ? `https://res.cloudinary.com/dlpb6j88q/image/upload/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75%2Cw_800/${src}`
+    : `https://res.cloudinary.com/dlpb6j88q/image/fetch/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75%2Cw_800/${src}`;
 
   return (
     <>
@@ -27,7 +34,7 @@ const Image: React.FC<ImageProps> = ({ src, className, ...props }) => {
               router.pathname === '/projects/[slug]') &&
             setIsOpen(true)
           }
-          src={`https://res.cloudinary.com/dlpb6j88q/image/fetch/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75%2Cw_800/${src}`}
+          src={source}
           className={`duration-700 ease-in-out ${
             className ? className : 'rounded-md'
           } ${isReady ? 'blur-0' : 'animate-pulse bg-zinc-600 blur-2xl'}`}
@@ -37,10 +44,7 @@ const Image: React.FC<ImageProps> = ({ src, className, ...props }) => {
         />
 
         {isOpen && (
-          <Lightbox
-            mainSrc={lightbox}
-            onCloseRequest={() => setIsOpen(false)}
-          />
+          <Lightbox mainSrc={source} onCloseRequest={() => setIsOpen(false)} />
         )}
       </figure>
     </>
