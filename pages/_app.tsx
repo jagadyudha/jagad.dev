@@ -55,6 +55,13 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
         openGraph={cardOpenGraph}
         twitter={cardTwitter}
       />
+      <Head>
+        <script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
+          crossOrigin='anonymous'
+        />
+      </Head>
       <Script
         async
         defer
