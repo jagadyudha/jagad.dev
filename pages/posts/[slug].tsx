@@ -7,6 +7,7 @@ import readingTime from 'reading-time';
 import { useSWRConfig } from 'swr';
 import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 //lib
 import { getContentPaths, getContentSlug } from '@/lib/fetcher';
@@ -129,6 +130,14 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
         publisherLogo='/assets/images/me.png'
         description={description}
       />
+
+      <Head>
+        <script
+          async
+          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
+          crossOrigin='anonymous'
+        ></script>
+      </Head>
 
       <div className='text-center'>
         <div className='mx-auto  max-w-4xl'>

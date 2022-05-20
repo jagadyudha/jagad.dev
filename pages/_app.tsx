@@ -48,13 +48,6 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
 
   return (
     <ThemeProvider attribute='class'>
-      <Head>
-        <script
-          async
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
-          crossOrigin='anonymous'
-        ></script>
-      </Head>
       <DefaultSeo
         title={DataSeo.title}
         description={DataSeo.description}
