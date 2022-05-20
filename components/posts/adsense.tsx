@@ -1,6 +1,15 @@
 import React from 'react';
 
 const Adsense = () => {
+  React.useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }
+    } catch (error: any) {
+      console.log('adsense error', error.message);
+    }
+  }, []);
   return (
     <div className='my-10 mx-6'>
       <ins

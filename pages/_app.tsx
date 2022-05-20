@@ -32,14 +32,6 @@ declare global {
 
 export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   const router = useRouter();
-  useEffect(() => {
-    var ads = document.getElementsByClassName('adsbygoogle').length;
-    for (var i = 0; i < ads; i++) {
-      try {
-        (window.adsbygoogle || []).push({});
-      } catch (e) {}
-    }
-  }, []);
 
   Router.events.on('routeChangeStart', nprogress.start);
   Router.events.on('routeChangeError', nprogress.done);
@@ -58,13 +50,6 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
         openGraph={cardOpenGraph}
         twitter={cardTwitter}
       />
-      <Head>
-        <script
-          async
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1510507608200585'
-          crossOrigin='anonymous'
-        />
-      </Head>
       <Script
         async
         defer

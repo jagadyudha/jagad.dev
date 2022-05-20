@@ -5,6 +5,23 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
+          <Head>
+            {/* google adsense */}
+            <script
+              async
+              src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-1510507608200585",
+            enable_page_level_ads: true
+            });
+            `,
+              }}
+            />
+          </Head>
           <link
             rel='apple-touch-icon'
             sizes='57x57'
