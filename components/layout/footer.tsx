@@ -73,7 +73,7 @@ const nav = [
         name: 'Youtube',
         href: 'https://www.youtube.com/c/noobsecurity_/videos',
       },
-      { name: 'PolyWork', href: 'https://www.polywork.com/imyour_universe' },
+      { name: 'Polywork', href: 'https://www.polywork.com/imyour_universe' },
     ],
   },
 
