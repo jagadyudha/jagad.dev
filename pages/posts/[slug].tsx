@@ -136,12 +136,9 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
           <h1 className='text-white sm:text-5xl'>{title}</h1>
           <div className='my-10 text-gray-400'>
             <p className='text-xl'>
-              {`Posted by Jagad Yudha Awali on ${new Date(date).toLocaleString(
-                'default',
-                {
-                  month: 'long',
-                }
-              )} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
+              {`Posted on ${new Date(date).toLocaleString('default', {
+                month: 'long',
+              })} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
             </p>
             <div className='text-md -mt-10 flex items-center justify-center gap-1'>
               <ViewsCount slug={`${enRouter}`} />•

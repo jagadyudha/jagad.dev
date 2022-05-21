@@ -94,18 +94,28 @@ const ProjectsSlug = ({ frontmatter, content, code, slug }: slugProps) => {
         <h1 className='text-white sm:text-5xl'>{title}</h1>
 
         <p className='my-14 text-xl'>
-          {`Launched by Jagad Yudha Awali on ${new Date(date).toLocaleString(
-            'default',
-            {
-              month: 'long',
-            }
-          )} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
+          {`Launched on ${new Date(date).toLocaleString('default', {
+            month: 'long',
+          })} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
         </p>
 
-        <p className='text-md mx-auto max-w-3xl text-center text-gray-400 sm:text-lg'>
+        <div className='relative mx-auto h-56 max-w-3xl md:h-72 xl:h-96'>
+          <div className='absolute h-full w-full'>
+            <Image
+              className='rounded-md'
+              src={header}
+              layout='fill'
+              objectFit='cover'
+              alt={title}
+            />
+          </div>
+        </div>
+
+        <p className='text-md mx-auto max-w-3xl text-left text-gray-400 sm:text-lg'>
           {description}
         </p>
       </div>
+      <hr className='mx-auto max-w-3xl' />
       <article className='mx-auto max-w-3xl '>
         <Component components={{ Image, a: customLink } as any} />
       </article>
