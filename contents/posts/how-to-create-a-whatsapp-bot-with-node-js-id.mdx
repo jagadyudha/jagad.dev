@@ -102,8 +102,22 @@ Saat perintah dijalankan, muncul kode QR, yang akan kita pindai dengan akun What
 
 Tujuan membuat bot adalah agar dapat merespons pesan. Jadi, dalam proyek yang kita buat sebelumnya, paste kode berikut.
 
-```javascript
-//Membalas Pesan
+```javascript {16-20}
+const qrcode = require('qrcode-terminal');
+const { Client } = require('whatsapp-web.js');
+
+const client = new Client();
+
+client.initialize();
+
+client.on('qr', (qr) => {
+  qrcode.generate(qr, { small: true });
+});
+
+client.on('ready', () => {
+  console.log('Client is ready!');
+});
+
 client.on('message', (message) => {
   if (message.body === 'hello') {
     message.reply('Hiiiii');
@@ -126,7 +140,7 @@ Fungsi dari pembuatan autentikasi adalah kita tidak perlu login (scan QR code) s
 
 Berikut adalah kode untuk membuat otentikasi:
 
-```javascript
+```javascript {2, 4-6}
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 
@@ -164,7 +178,7 @@ Di sisi lain, bot kurang interaktif jika hanya membalas dengan pesan teks, jadi 
 
 Berikut adalah kode untuk membuat bot membalas dengan media gambar:
 
-```javascript
+```javascript {2, 22-34}
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 

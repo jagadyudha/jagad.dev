@@ -159,7 +159,7 @@ const takePicture = async () => {
 
 Here is the complete source code with the `take` button.
 
-```javascript
+```javascript {8-14, 34}
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { RNCamera } from 'react-native-camera';
@@ -167,7 +167,6 @@ import { RNCamera } from 'react-native-camera';
 const App = () => {
   const ref = React.createRef();
 
-  //take picture handler
   const takePicture = async () => {
     if (ref.current) {
       const options = { quality: 0.5, base64: true };

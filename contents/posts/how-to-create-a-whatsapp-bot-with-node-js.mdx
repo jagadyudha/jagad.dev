@@ -102,8 +102,22 @@ When the command is executed, a QR code appears, which we will scan with the Wha
 
 The goal of creating a bot is for it to be able to respond to messages. So, in the project that we created before, paste the following code.
 
-```javascript
-//Replying Messages
+```javascript {16-20}
+const qrcode = require('qrcode-terminal');
+const { Client } = require('whatsapp-web.js');
+
+const client = new Client();
+
+client.initialize();
+
+client.on('qr', (qr) => {
+  qrcode.generate(qr, { small: true });
+});
+
+client.on('ready', () => {
+  console.log('Client is ready!');
+});
+
 client.on('message', (message) => {
   if (message.body === 'hello') {
     message.reply('Hiiiii');
@@ -126,11 +140,10 @@ The function of creating authentication is that we don't have to login (scan QR 
 
 Here is the code to create authentication :
 
-```javascript
+```javascript {2, 4-6}
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 
-//store authentication data to a file
 const client = new Client({
   authStrategy: new LocalAuth(),
 });
@@ -164,7 +177,7 @@ On the other hand, bots are less interactive if they only reply with text messag
 
 Here is the code to make bot replying with media:
 
-```javascript
+```javascript {2, 22-34}
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 
@@ -186,7 +199,6 @@ client.on('ready', () => {
   console.log('Client is ready!');
 });
 
-//Replying Messages with image from url
 client.on('message', async (message) => {
   if (message.body === 'meme') {
     //get media from url
