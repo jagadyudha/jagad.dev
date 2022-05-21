@@ -21,6 +21,7 @@
     "@types/prismjs": "^1.26.0",
     "@types/twemoji": "^12.1.2",
     "esbuild": "^0.14.39",
+    "framer-motion": "^6.3.3",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "markdown-to-jsx": "^7.1.7",

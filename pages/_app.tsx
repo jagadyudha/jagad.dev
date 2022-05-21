@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import type { AppProps /*, AppContext */ } from 'next/app';
 import Script from 'next/script';
 import nprogress from 'nprogress';
-import Head from 'next/head';
+import { motion } from 'framer-motion';
 
 //css
 import 'react-image-lightbox/style.css';
@@ -57,9 +57,18 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
         src='https://analytics.jagad.dev/umami.js'
       />
       <Layout key={router.pathname}>
-        <main className='mx-auto my-10 max-w-6xl px-6 sm:my-20 md:px-24 xl:px-0'>
+        <motion.main
+          initial='pageInitial'
+          animate='pageAnimate'
+          variants={{
+            pageInitial: { opacity: 0 },
+            pageAnimate: { opacity: 1 },
+          }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          className='mx-auto my-10 max-w-6xl px-6 sm:my-20 md:px-24 xl:px-0'
+        >
           <Component {...pageProps} />
-        </main>
+        </motion.main>
       </Layout>
     </ThemeProvider>
   );
