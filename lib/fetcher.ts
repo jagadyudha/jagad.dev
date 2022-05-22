@@ -35,15 +35,8 @@ export const getContentPaths = (dir: string) => {
 };
 
 export const getContentSlug = async (slug: string, dir: string) => {
-  let readFile;
-  try {
-    const fullPath = path.join(process.cwd(), `./contents/${dir}/${slug}.mdx`);
-    readFile = fs.readFileSync(fullPath, 'utf-8');
-  } catch (e) {
-    return {
-      notFound: true,
-    };
-  }
+  const fullPath = path.join(process.cwd(), `./contents/${dir}/${slug}.mdx`);
+  const readFile = fs.readFileSync(fullPath, 'utf-8');
 
   const { data: frontmatter, content } = matter(readFile);
 

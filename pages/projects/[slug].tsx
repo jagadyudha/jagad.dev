@@ -2,7 +2,6 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
 import { getMDXComponent } from 'mdx-bundler/client';
-import Markdown from 'markdown-to-jsx';
 
 //components
 import Image from '@/components/image';
@@ -43,10 +42,19 @@ export const getStaticProps = async ({
   params: { slug: string };
 }) => {
   //get from fetcher lib
-  const { frontmatter, code, content } = await getContentSlug(
-    params.slug,
-    'projects' //<--- content --->
-  );
+  let data;
+  try {
+    data = await getContentSlug(
+      params.slug,
+      'projects' //<--- content --->
+    );
+  } catch (e) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const { frontmatter, code, content } = data;
 
   return {
     props: {

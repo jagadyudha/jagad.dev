@@ -41,7 +41,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
@@ -51,10 +51,19 @@ export const getStaticProps = async ({
   params: { slug: string };
 }) => {
   //get from fetcher lib
-  const { frontmatter, code, content } = await getContentSlug(
-    params.slug,
-    'posts' //<--- content --->
-  );
+  let data;
+  try {
+    data = await getContentSlug(
+      params.slug,
+      'posts' //<--- content --->
+    );
+  } catch (e) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const { frontmatter, code, content } = data;
 
   return {
     props: {
