@@ -60,9 +60,16 @@ export const getStaticProps = async ({
   //check if slug is id
   const posts = getContentIndex('posts');
   const checkTranslation = posts.filter(
-    (item) => item.slug === `${params.slug}-id`
+    (item) =>
+      item.slug ===
+      `${
+        params.slug.endsWith('id')
+          ? params.slug.replace('-id', '')
+          : params.slug
+      }-id`
   );
-  const isBahasa = checkTranslation.length === 1 ? true : false;
+
+  const isBahasa = checkTranslation.length > 0 ? true : false;
   let data;
   try {
     data = await getContentSlug(
