@@ -10,7 +10,11 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 //lib
-import { getContentPaths, getContentSlug } from '@/lib/fetcher';
+import {
+  getContentPaths,
+  getContentSlug,
+  getContentIndex,
+} from '@/lib/fetcher';
 import { cardTwitter } from '@/lib/seo';
 
 //components
@@ -34,6 +38,7 @@ export interface Props {
   content: string;
   slug: string;
   code: string;
+  isBahasa: boolean;
 }
 
 export const getStaticPaths = async () => {
@@ -51,6 +56,13 @@ export const getStaticProps = async ({
   params: { slug: string };
 }) => {
   //get from fetcher lib
+
+  //check if slug is id
+  const posts = getContentIndex('posts');
+  const checkTranslation = posts.filter(
+    (item) => item.slug === `${params.slug}-id`
+  );
+  const isBahasa = checkTranslation.length === 1 ? true : false;
   let data;
   try {
     data = await getContentSlug(
@@ -70,12 +82,13 @@ export const getStaticProps = async ({
       frontmatter,
       content,
       code,
+      isBahasa,
       slug: params.slug,
     },
   };
 };
 
-const Posts = ({ frontmatter, content, slug, code }: Props) => {
+const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
   const { mutate } = useSWRConfig();
   const router = useRouter();
   const enRouter = router.asPath.endsWith('-id')
@@ -172,19 +185,23 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
         </p>
       </div>
 
-      <div className='mx-auto max-w-3xl'>
-        <Link
-          href={`/posts/${
-            slug.endsWith('-id') ? slug.replace('-id', '') : slug.concat('-id')
-          }`}
-        >
-          <a>
-            <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
-              Read in {!slug.endsWith('-id') ? 'Bahasa Indonesia' : 'English'}
-            </button>
-          </a>
-        </Link>
-      </div>
+      {isBahasa && (
+        <div className='mx-auto max-w-3xl'>
+          <Link
+            href={`/posts/${
+              slug.endsWith('-id')
+                ? slug.replace('-id', '')
+                : slug.concat('-id')
+            }`}
+          >
+            <a>
+              <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
+                Read in {!slug.endsWith('-id') ? 'Bahasa Indonesia' : 'English'}
+              </button>
+            </a>
+          </Link>
+        </div>
+      )}
 
       <div className='mx-auto max-w-3xl '>
         <article>
