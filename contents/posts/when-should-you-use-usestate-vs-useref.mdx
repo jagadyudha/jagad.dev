@@ -1,0 +1,242 @@
+---
+title: 'When should you use useState vs. useRef?'
+description: 'Understanding the similarities and differences between useState and useRef'
+header: 'https://images.unsplash.com/photo-1560942485-b2a11cc13456?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736'
+date: '2022-05-24'
+tags:
+  - react
+  - hooks
+  - webdev
+---
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Understanding the useState hooks](#understanding-the-use-state-hooks)
+3. [Understanding the useRef hooks](#understanding-the-use-ref-hooks)
+4. [When to use useRef and useState](#when-to-use-useref-and-usestate)
+5. [Conclusion](#conclusion)
+6. [References](#references)
+
+<Ads />
+
+## Introduction
+
+React is the most widely used library. React is popular because it is simple to use, making it suitable for small businesses and startups. React Hooks is one of the advantages offered.
+
+React has been easier since the release of hooks, but it may also be a pain due to their similar uses, for example, useState and useRef.
+
+In this article, I will discuss when to use useState and useRef.
+
+<Image
+  alt='React Hooks Meme'
+  src='/jagad.dev/posts/when-should-you-use-usestate-vs-useref/react_hooks_meme_mgipd9.jpg'
+  width='791'
+  height='545'
+/>
+
+Image Source: [Сomics meme: "React dev Class components React hooks" - Comics - Meme-arsenal.com](https://www.meme-arsenal.com/en/create/meme/4667429)
+
+## Understanding the useState hooks
+
+UseState is hook that allows you to create a state variable in a functional component. State generally refers to the data that is stored in a component.
+
+Below are code examples to illustrate useState.
+
+```jsx
+import React from 'react';
+
+const App = () => {
+  const [value, setValue] = React.useState();
+
+  const handleInputChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  console.log('check render');
+
+  return (
+    <>
+      <div className='App'>
+        <input value={value} onChange={handleInputChange} />
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+
+In the above example, useState() declares a state variable while its value is stored in the `value` variable. `setValue` is the function used to update this value. Every time the value of the input changes, it causes a re-rendering of the component.
+
+<Image
+  alt='useState Hooks example'
+  src='/jagad.dev/posts/when-should-you-use-usestate-vs-useref/useState_hooks_zalslv.gif'
+  width='800'
+  height='425'
+/>
+
+## Understanding the useRef hooks
+
+useRef are hooks that allow us to store or retain the value of a variable between renders. useRef can also be used to store mutable values that don't cause re-rendering.
+
+Below are code examples to illustrate useRef.
+
+```jsx
+import React from 'react';
+
+const App = () => {
+  const inputEl = React.useRef();
+  const [value, setValue] = React.useState();
+
+  const handleClick = () => {
+    setValue(inputEl.current.value);
+  };
+
+  console.log('check render');
+
+  return (
+    <>
+      <div className='App'>
+        Value: {value}
+        <input ref={inputEl} />
+        <button onClick={handleClick}>Render</button>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+
+In the example above we use useRef to store the value of the input element. with the help of useRef, we do not cause render cycles on every change of the input element. We only cause a re-render when the button is clicked. You can see the image below.
+
+<Image
+  alt='useRef Hooks example'
+  src='/jagad.dev/posts/when-should-you-use-usestate-vs-useref/useRef_hooks_hrs7hj.gif'
+  width='800'
+  height='425'
+/>
+
+<Ads />
+
+## When to use useRef and useState
+
+The biggest difference between useState and useRef is that useState causes re-rendering. whereas useRef does not cause re-rendering.
+
+For example, if we only want to get the value on submission of the form, we'll need to use useRef because we don't want unnecessary re-rendering.
+
+```jsx
+import React from 'react';
+
+const App = () => {
+  const inputEl = React.useRef();
+
+  const handleClick = () => {
+    console.log(inputEl.current.value);
+  };
+
+  return (
+    <>
+      <div className='App'>
+        <input ref={inputEl} />
+        <button onClick={handleClick}>Submit</button>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+
+<Image
+  alt='when to useRef and useState (1)'
+  src='/jagad.dev/posts/when-should-you-use-usestate-vs-useref/When_to_useRef_and_useState_1_l4qbst.gif'
+  width='800'
+  height='425'
+/>
+
+But if you want to validate the input, you'll need to use useState. In this case we create validation when the input must be 6 characters long.
+
+```jsx
+import React from 'react';
+
+const App = () => {
+  const [value, setValue] = React.useState();
+
+  const isValidate = value.length > 5;
+  console.log(isValidate);
+
+  const handleInputChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    <>
+      <div className='App'>
+        {isValidate ? 'Succes' : 'need more than 5 letters'}
+        <input value={value} onChange={handleInputChange} />
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+
+<Image
+  alt='when to useRef and useState (2)'
+  src='/jagad.dev/posts/when-should-you-use-usestate-vs-useref/When_to_useRef_and_useState_2_sz6bhm.gif'
+  width='800'
+  height='425'
+/>
+
+Personally, I believe that if the state appears in the UI, it should be used with useState; otherwise, it should be used with useRef. That way, we can save unnecessary rendering. Of course, there are exceptions if, for example, we want to combine with other hooks.
+
+Another example, if we create a toggle dark mode, we'll need to use useState because the state affects the UI and we'll need to re-render.
+
+```jsx
+import React from 'react';
+import './App.css';
+
+const App = () => {
+  const [darkMode, setDarkMode] = React.useState(false);
+
+  const handleClick = () => {
+    setDarkMode(!darkMode);
+  };
+
+  console.log('check render');
+
+  return (
+    <>
+      <div className={darkMode ? 'darkMode' : ''}>
+        <button onClick={handleClick}>Switch Mode</button>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+
+In the above example, we use useState to toggle the dark mode. When the button is clicked, `setDarkMode` is changed to the opposite value of the current state.
+
+<Image
+  alt='Toggle Dark Mode'
+  src='/jagad.dev/posts/when-should-you-use-usestate-vs-useref/Toggle_Dark_Mode_dehl4y.gif'
+  width='800'
+  height='425'
+/>
+
+Then how can the background change? That's because in the class section there is a ternary operator where when darkMode is `true`, className is "darkMode" and when darkMode is `false`, we leave className blank.
+
+## Conclusion
+
+Both hooks serve different purposes, even though they look the same. They can be used and combined depending on the situation.
+
+## References
+
+- [Why hooks are the best thing to happen to React - Stack Overflow Blog](https://stackoverflow.blog/2021/10/20/why-hooks-are-the-best-thing-to-happen-to-react/)
+- [React Hooks (w3schools.com)](https://www.w3schools.com/react/react_hooks.asp)
+- [useRef or useState, which is better? - DEV Community 👩‍💻👨‍💻](https://dev.to/salehmubashar/useref-or-usestate-which-is-better-258j)
