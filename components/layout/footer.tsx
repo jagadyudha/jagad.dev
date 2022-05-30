@@ -95,7 +95,11 @@ const nav = [
         name: 'Newsletter',
         href: 'https://www.getrevue.co/profile/imyour_universe',
       },
-      { name: 'Resume', href: '/' },
+      { name: 'Storybook', href: 'https://storybook.jagad.dev/' },
+      {
+        name: 'Resume',
+        href: 'https://drive.google.com/file/d/1j2qaw6opVFUKugMQU3tlNk4aTORjbtZv/view?usp=sharing',
+      },
     ],
   },
 ];

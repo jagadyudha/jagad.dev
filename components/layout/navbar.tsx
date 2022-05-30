@@ -21,7 +21,7 @@ const Navbar = () => {
     : router.pathname;
 
   return (
-    <nav className='z-50 mt-3 bg-opacity-50 '>
+    <nav className='z-50 mt-3 bg-opacity-50'>
       <Popover>
         <div>
           <div className='mx-auto flex items-center justify-center py-3 px-5 text-center sm:py-6 xl:mx-20'>

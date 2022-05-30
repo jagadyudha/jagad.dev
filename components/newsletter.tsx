@@ -48,7 +48,7 @@ const NewsLetter = () => {
               required
             />
             <button
-              className='sm:text-md absolute right-2 top-[7px] rounded-md bg-primary bg-opacity-70 px-3 py-1 text-sm text-white sm:px-5 sm:py-1'
+              className='sm:text-md absolute right-2 top-[7px] rounded-md bg-primary bg-opacity-70 px-3 py-1 text-sm text-white sm:px-5 sm:py-2'
               type='submit'
             >
               Subscribe
