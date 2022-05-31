@@ -1,10 +1,13 @@
-<img width="1280" alt="jagad.dev" src="https://og.jagad.dev/api/og.jpg">
+![image](https://user-images.githubusercontent.com/41937681/171084277-09a523db-daff-444b-8c0f-eaa71151d475.png)
 
 ## Tech Stack
 
-- Next.Js
-- Tailwindcss
+- Next.js
+- Tailwind CSS
 - Supabase
+- Mdx Bundler
+- SWR
+- Framer Motion
 
 ## Getting Started
 
@@ -23,6 +26,7 @@ $ npm install
 ```
 
 Create `.env.local` file :
+
 ```
 STEAM_TOKEN=[YOUR STEAM TOKEN]
 STEAM_ID=[YOUR STEAM ID]
