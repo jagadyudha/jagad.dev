@@ -121,8 +121,14 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           className='whitespace-nowrap rounded-md border border-primary px-4 py-2 text-sm font-medium text-primary'
           onClick={() => {
             if (languages === 'en') {
+              if (router.query.tag) {
+                router.push(`/posts`);
+              }
               setLanguages('id');
             } else {
+              if (router.query.tag) {
+                router.push(`/posts`);
+              }
               setLanguages('en');
             }
           }}
