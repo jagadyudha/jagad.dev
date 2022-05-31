@@ -1,0 +1,188 @@
+---
+title: 'Determine Market Segmentation Using the Naive Bayes Method'
+description: 'My college instructed me that I needed to write an article about naive Bayes while learning.'
+header: 'https://images.unsplash.com/photo-1559793978-37ab7dd23777?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=717&q=80'
+date: '2021-07-17'
+tags:
+  - python
+  - datamining
+  - sklearn
+---
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Reading Data Using Python](#reading-data-using-python)
+3. [Converting Data To Integer](#converting-data-to-integer)
+4. [Checking training data](#checking-training-data)
+5. [Determining Independent And Dependent Variables](#determining-independent-and-dependent-variables)
+6. [Reading Testing Data](#reading-testing-data)
+7. [Classification](#classification)
+
+<Ads />
+
+## Introduction
+
+Data mining is currently popular among informatics students. In fact, there are courses that specifically address data mining concerns. Naive Bayes is the most widely used method in data mining courses.
+
+Naive Bayes is a classification based on probability and statistical methods created by British scientist Thomas Bayes that forecasts future opportunities based on past experience.
+
+in this article we will learn together how naive bayes works.
+
+## Import Library
+
+```python
+import pandas as pd
+import numpy as np
+```
+
+The code above is used to activate the pandas and numpy libraries, which will be used in the analysis phase. The Pandas library itself is used for processing data related to data frames, while the Numpy library is used for easy and fast array manipulation.
+
+## Reading Data Using Python
+
+```python
+data_training=pd.read_excel('data_training.xlsx')
+data_training.head(30)
+```
+
+The code above is used to read the training data by using the pandas library. The training data read is in the form of an xlsx file.
+
+<Image
+  alt='Data'
+  src='/jagad.dev/posts/determine-market-segmentation-using-the-naive-bayes-method/data_xqet2l.png'
+  width='938'
+  height='377'
+/>
+
+## Converting Data To Integer
+
+Because naive bayes in Python cannot read training data in the form of strings, the training data is converted to integer form so that the data displayed is in the form of numbers.
+
+Here is the code to convert the training data to integer.
+
+```python
+from sklearn.preprocessing import LabelEncoder
+enc = LabelEncoder()
+data_training['Gender'] = enc.fit_transform(data_training['Gender'].values)
+data_training['Ever_Married'] = enc.fit_transform(data_training['Ever_Married'].values)
+data_training['Age'] = enc.fit_transform(data_training['Age'].values)
+data_training['Graduated'] = enc.fit_transform(data_training['Graduated'].values)
+data_training['Profession'] = enc.fit_transform(data_training['Profession'].values)
+data_training['Spending_Score'] = enc.fit_transform(data_training['Spending_Score'].values)
+data_training.head(30)
+```
+
+After that, the data will turn into an integer.
+
+<Image
+  alt='Data Integer'
+  src='/jagad.dev/posts/determine-market-segmentation-using-the-naive-bayes-method/Data_Integrer_npnh6c.png'
+  width='889'
+  height='449'
+/>
+
+## Checking training data
+
+.info() is used to find out data type information.
+
+```python
+data_training.info()
+```
+
+<Image
+  alt='Data Integer'
+  src='/jagad.dev/posts/determine-market-segmentation-using-the-naive-bayes-method/Checking_training_data_mxekbj.png'
+  width='358'
+  height='325'
+/>
+
+It can be seen that the data used is 30, consisting of 9 columns, and each variable is of type integer and object, and there is no data that is null or empty (non-null).
+
+## Determining Independent And Dependent Variables
+
+```python
+x = data_training.drop('Segmentation', axis=1)
+x.head(30)
+```
+
+The code above is used to delete the dependent variable and call the independent variable. Then when run, it will look like the image below:
+
+<Image
+  alt='Data without Segmentation'
+  src='/jagad.dev/posts/determine-market-segmentation-using-the-naive-bayes-method/data_without_dependent_variable_ubu018.png'
+  width='808'
+  height='493'
+/>
+
+Then to call the dependent variable, we can use the name of the existing data, followed by the column name, namely the "segmentation" column. To bring up the data, we can use the command "head".
+
+<Image
+  alt='dependant variable only'
+  src='/jagad.dev/posts/determine-market-segmentation-using-the-naive-bayes-method/dependent_variable_only_o4okdx.png'
+  width='515'
+  height='465'
+/>
+
+## Reading Testing Data
+
+To display testing data, you can use the pandas library by using the read_excel function.
+
+```python
+data_test=pd.read_excel('data_test.xlsx')
+data_test.head(30)
+```
+
+<Image
+  alt='read data testing'
+  src='/jagad.dev/posts/determine-market-segmentation-using-the-naive-bayes-method/read_data_testing_bgd7ga.png'
+  width='963'
+  height='170'
+/>
+
+Then the segmentation column will be dropped or separated, and the segmentation column will be deleted from the data.
+
+```python
+x_test = data_test.drop('Segmentation', axis=1)
+x_test.head(1)
+```
+
+<Image
+  alt='Drop dependent variable'
+  src='/jagad.dev/posts/determine-market-segmentation-using-the-naive-bayes-method/Drop_dependent_variable_w1cp7t.png'
+  width='832'
+  height='139'
+/>
+
+To display the segmentation column, we can use this command.
+
+```python
+y_test = data_test['Segmentation']
+y_test.head(1)
+```
+
+## Classification
+
+To perform the classification, you can run the following command:
+
+```python
+from sklearn.naive_bayes import GaussianNB
+modelnb = GaussianNB()
+nbtrain = modelnb.fit(x, y)
+Y_predict = nbtrain.predict(x_test)
+print(Y_predict)
+```
+
+<Image
+  alt='Results'
+  src='/jagad.dev/posts/determine-market-segmentation-using-the-naive-bayes-method/results_ct8maf.png'
+  width='525'
+  height='166'
+/>
+
+## Creators
+
+1. 181080200142 Jagad Yudha Awali
+2. 181080200134 Dewi Nur Afidah
+3. 181080200133 Ruri Aditya Pratama
+4. 181080200128 Tutut Anjarsari
+5. 181080200149 Jefry Fernando
