@@ -18,7 +18,7 @@ const Card: React.FC<Props> = (props) => {
     <Link href={`/projects/${slug}`}>
       <a className='group mb-5 max-w-none flex-none items-center justify-between xl:flex xl:flex-row-reverse'>
         <div className='max-w-lg overflow-hidden rounded-md bg-background_100 group-hover:bg-[#2C2D30] xl:ml-10'>
-          <div className='-my-10 w-full translate-x-10 translate-y-10 shadow-2xl duration-100 ease-in-out group-hover:translate-y-6'>
+          <div className='-my-10 w-full translate-x-5 translate-y-7 shadow-2xl duration-100 ease-in-out group-hover:translate-y-6 sm:translate-x-10 sm:translate-y-10'>
             <Image
               className='rounded-sm'
               src={header}

@@ -57,7 +57,7 @@ const Projects = ({
       <div className='mb-10 flex justify-center text-center md:mb-16'>
         <div className='max-w-xl'>
           <h1 className='-my-1 text-3xl sm:text-5xl'>{`Projects`}</h1>
-          <p className='text-xl text-gray-400 sm:text-lg'>
+          <p className='text-md text-gray-400 sm:text-lg'>
             {`I've been creating projects since my college days in 2018. I have a lot of ideas about what I want to do in the future, and this is my project that I have completed in the past.`}
           </p>
         </div>
