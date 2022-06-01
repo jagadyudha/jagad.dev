@@ -7,7 +7,6 @@ import readingTime from 'reading-time';
 import { useSWRConfig } from 'swr';
 import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 
 //lib
 import {
@@ -201,11 +200,9 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
                 : slug.concat('-id')
             }`}
           >
-            <a>
-              <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
-                Read in {!slug.endsWith('-id') ? 'Bahasa Indonesia' : 'English'}
-              </button>
-            </a>
+            <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
+              Read in {!slug.endsWith('-id') ? 'Bahasa Indonesia' : 'English'}
+            </button>
           </Link>
         </div>
       )}
