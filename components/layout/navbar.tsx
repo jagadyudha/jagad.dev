@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { IoMdClose } from 'react-icons/io';
+import { motion } from 'framer-motion';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -12,10 +15,40 @@ const navigation = [
 
 const Navbar = () => {
   const router = useRouter();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const wrapperRef = React.useRef<any>(null);
 
   const checkSlug = router.pathname.endsWith('/[slug]')
     ? router.pathname.replace('/[slug]', '')
     : router.pathname;
+
+  React.useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event: MouseEvent) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.ontouchmove = function (e) {
+        e.preventDefault();
+      };
+    } else {
+      document.ontouchmove = function (e) {
+        return true;
+      };
+    }
+
+    // Bind the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
   return (
     <>
       {/* Desktop View */}
@@ -35,23 +68,38 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile View */}
-      <nav className='container fixed bottom-3 z-20 flex justify-center sm:hidden'>
-        <div className='justify-center space-x-5 overflow-x-auto overflow-y-hidden rounded-md border border-white border-opacity-10 bg-[#1d1d1d] bg-opacity-80 p-3 text-sm shadow-lg backdrop-blur-md backdrop-filter'>
-          {navigation.map((item) => (
-            <Link key={item.name} href={item.href}>
-              {item.href === checkSlug ? (
-                <a className='border-b-2 border-primary py-3 pb-[10.5px] text-white'>
-                  {item.name}
-                </a>
-              ) : (
-                <a className='py-3 text-white hover:text-primary'>
-                  {item.name}
-                </a>
-              )}
-            </Link>
-          ))}
+      <nav>
+        <div className='flex justify-start py-8 px-8 sm:hidden'>
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? (
+              <IoMdClose className='text-2xl' />
+            ) : (
+              <GiHamburgerMenu className='text-2xl' />
+            )}
+          </button>
         </div>
+        {isOpen && (
+          <div className='container absolute z-20 h-screen bg-background px-8'>
+            {navigation.map((item, index) => (
+              <Link key={item.name} href={item.href}>
+                <a>
+                  <motion.div
+                    initial='pageInitial'
+                    animate='pageAnimate'
+                    variants={{
+                      pageInitial: { opacity: 0, x: -100 },
+                      pageAnimate: { opacity: 1, x: 0 },
+                    }}
+                    transition={{ duration: 0.2 * index, ease: 'easeInOut' }}
+                    className={`border-b border-white border-opacity-20 py-5 text-white`}
+                  >
+                    {item.name}
+                  </motion.div>
+                </a>
+              </Link>
+            ))}
+          </div>
+        )}
       </nav>
     </>
   );
