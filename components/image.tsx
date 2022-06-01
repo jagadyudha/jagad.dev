@@ -35,9 +35,9 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
             setIsOpen(true)
           }
           src={source}
-          className={`duration-700 ease-in-out ${
+          className={`duration-500 ease-in-out ${
             className ? className : 'rounded-md'
-          } ${isReady ? 'blur-0' : 'animate-pulse bg-zinc-600 blur-2xl'}`}
+          } ${isReady ? 'blur-0' : 'blur-2xl'}`}
           {...props}
           onLoadingComplete={onLoadCallback}
           unoptimized={true}
