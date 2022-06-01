@@ -64,7 +64,7 @@ const App = () => {
 export default App;
 ```
 
-Dalam contoh di atas, useState() mendeklarasikan variabel status sementara nilainya disimpan dalam variabel `nilai`. `setValue` adalah fungsi yang digunakan untuk memperbarui nilai ini. Setiap kali nilai input berubah, itu menyebabkan rendering ulang komponen.
+Dalam contoh di atas, useState() mendeklarasikan variabel status sementara nilainya disimpan dalam variabel `value`. `setValue` adalah fungsi yang digunakan untuk memperbarui nilai ini. Setiap kali nilai input berubah, itu menyebabkan rendering ulang komponen.
 
 <Image
   alt='useState Hooks example'
@@ -188,11 +188,9 @@ export default App;
   height='425'
 />
 
-Personally, I believe that if the state appears in the UI, it should be used with useState; otherwise, it should be used with useRef. That way, we can save unnecessary rendering. Of course, there are exceptions if, for example, we want to combine with other hooks.
-
 Secara pribadi, saya percaya bahwa jika state muncul pada UI, maka harus menggunakan useState; jika tidak, maka harus menggunakan useRef. Dengan begitu, kita bisa menghemat rendering yang tidak perlu. Tentu saja, ada pengecualian jika, misalnya, kita ingin menggabungkan dengan hooks lain.
 
-Contoh lain, jika kita membuat toggle mode gelap, kita harus menggunakan useState karena state tersebut memengaruhi UI dan kita harus melakukan merender ulang.
+Contoh lain, jika kita membuat toggle mode gelap, kita harus menggunakan useState karena state tersebut mempengaruhi UI dan kita juga harus melakukan merender ulang.
 
 ```jsx
 import React from 'react';
@@ -227,8 +225,6 @@ Pada contoh di atas, kita menggunakan useState untuk mengaktifkan mode gelap. Sa
   width='800'
   height='425'
 />
-
-Then how can the background change? That's because in the class section there is a ternary operator where when darkMode is `true`, className is "darkMode" and when darkMode is `false`, we leave className blank.
 
 Lalu bagaimana background bisa berubah? Itu karena di bagian class ada operator ternary di mana ketika darkMode adalah `true`, maka className adalah "darkMode" dan ketika darkMode adalah `false`, maka kita biarkan className kosong.
 
