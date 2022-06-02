@@ -61,10 +61,10 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
           initial='pageInitial'
           animate='pageAnimate'
           variants={{
-            pageInitial: { opacity: 0 },
-            pageAnimate: { opacity: 1 },
+            pageInitial: { opacity: 0, y: '30' },
+            pageAnimate: { opacity: 1, y: 0 },
           }}
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.2 }}
           className='mx-auto my-10 max-w-6xl px-6 sm:my-20 md:px-24 xl:px-0'
         >
           <Component {...pageProps} />
