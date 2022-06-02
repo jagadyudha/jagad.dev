@@ -23,8 +23,7 @@ const Navbar = () => {
   React.useEffect(() => {
     const body = document.querySelector('body');
     body!.style.overflow = isOpen ? 'hidden' : 'auto';
-    body!.style.position = isOpen ? 'fixed' : '';
-
+    body!.style.position = isOpen ? 'sticky' : '';
     if (isOpen) {
       window.addEventListener('scroll', (e) => {
         e.preventDefault();
@@ -64,7 +63,7 @@ const Navbar = () => {
           </button>
         </div>
         {isOpen && (
-          <div className='container absolute z-20 h-screen bg-background px-8'>
+          <div className='container absolute z-20 h-screen bg-background  px-8'>
             {navigation.map((item, index) => (
               <Link key={item.name} href={item.href}>
                 <a>

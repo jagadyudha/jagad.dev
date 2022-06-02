@@ -54,8 +54,6 @@ export const getStaticProps = async ({
 }: {
   params: { slug: string };
 }) => {
-  //get from fetcher lib
-
   //check if slug is id
   const posts = getContentIndex('posts');
   const checkTranslation = posts.filter(
@@ -106,7 +104,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
       fetch(`/api/pageview/${enRouter}`, {
         method: 'POST',
       });
-    registerView();
+    // registerView();
     //update data
     mutate(`/api/pageview/${enRouter}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -121,7 +119,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
   )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
 
   return (
-    <main className='prose prose-base prose-invert mx-auto max-w-none'>
+    <main className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>
       {/* Next Seo */}
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
@@ -208,7 +206,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
       )}
 
       <div className='mx-auto max-w-3xl '>
-        <article>
+        <article className='mx-auto max-w-3xl'>
           <Component components={{ Image, Ads, a: Link } as any} />
         </article>
         <hr className='my-8 opacity-20'></hr>
