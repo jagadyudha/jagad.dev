@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { IoMdClose } from 'react-icons/io';
+import { IoCloseOutline, IoMenuOutline } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 
 const navigation = [
@@ -16,38 +15,21 @@ const navigation = [
 const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = React.useState(false);
-  const wrapperRef = React.useRef<any>(null);
 
   const checkSlug = router.pathname.endsWith('/[slug]')
     ? router.pathname.replace('/[slug]', '')
     : router.pathname;
 
   React.useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
-    function handleClickOutside(event: MouseEvent) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    }
+    const body = document.querySelector('body');
+    body!.style.overflow = isOpen ? 'hidden' : 'auto';
+    body!.style.position = isOpen ? 'fixed' : '';
 
     if (isOpen) {
-      document.ontouchmove = function (e) {
+      window.addEventListener('scroll', (e) => {
         e.preventDefault();
-      };
-    } else {
-      document.ontouchmove = function (e) {
-        return true;
-      };
+      });
     }
-
-    // Bind the event listener
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
   }, [isOpen]);
   return (
     <>
@@ -68,13 +50,16 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <nav>
-        <div className='flex justify-start py-8 px-8 sm:hidden'>
-          <button onClick={() => setIsOpen(!isOpen)}>
+      <nav className='block sm:hidden'>
+        <div className='flex justify-start py-6 px-6 text-white'>
+          <button
+            className='rounded-md bg-background_100 p-[5px]'
+            onClick={() => setIsOpen(!isOpen)}
+          >
             {isOpen ? (
-              <IoMdClose className='text-2xl' />
+              <IoCloseOutline className={`text-2xl`} />
             ) : (
-              <GiHamburgerMenu className='text-2xl' />
+              <IoMenuOutline className='text-2xl' />
             )}
           </button>
         </div>
@@ -87,7 +72,7 @@ const Navbar = () => {
                     initial='pageInitial'
                     animate='pageAnimate'
                     variants={{
-                      pageInitial: { opacity: 0, x: -100 },
+                      pageInitial: { opacity: 0, x: '-100%' },
                       pageAnimate: { opacity: 1, x: 0 },
                     }}
                     transition={{ duration: 0.2 * index, ease: 'easeInOut' }}

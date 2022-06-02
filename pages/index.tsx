@@ -5,7 +5,6 @@ import Link from 'next/link';
 import React from 'react';
 //components
 import FeaturedPost from '@/components/posts/featured';
-import FeaturedProject from '@/components/projects/card';
 import NewsLetter from '@/components/newsletter';
 
 //lib
@@ -13,12 +12,11 @@ import { getContentIndex } from '@/lib/fetcher';
 
 const Home = ({
   featuredPost,
-  featuredProject,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <main>
       {/* Hero Section */}
-      <div className='prose prose-invert my-14 max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline md:my-24 xl:flex xl:space-x-4'>
+      <div className='prose prose-invert my-10 max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline md:my-24 xl:flex xl:space-x-4'>
         <div className='text-center xl:max-w-md xl:text-left'>
           <h1 className='text-3xl text-white sm:text-5xl'>
             {`Hi there! My name is`}{' '}

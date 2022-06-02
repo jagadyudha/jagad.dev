@@ -37,7 +37,7 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
           src={source}
           className={`duration-500 ease-in-out ${
             className ? className : 'rounded-md'
-          } ${isReady ? 'blur-0' : 'blur-2xl'}`}
+          } ${isReady ? 'bg-zinc-600 blur-0' : 'blur-2xl'}`}
           {...props}
           onLoadingComplete={onLoadCallback}
           unoptimized={true}
