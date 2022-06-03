@@ -26,7 +26,7 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
       <figure
         className={`${
           className ? className : 'rounded-md'
-        } flex justify-center overflow-hidden bg-zinc-500`}
+        } flex justify-center overflow-hidden`}
       >
         <NextImage
           onClick={() =>
@@ -35,9 +35,13 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
             setIsOpen(true)
           }
           src={source}
-          className={`duration-500 ease-in-out ${
+          className={`bg-zinc-600 duration-1000 ease-in-out ${
             className ? className : 'rounded-md'
-          } ${isReady ? 'bg-zinc-500 blur-0' : 'blur-2xl'}`}
+          } ${
+            isReady
+              ? 'scale-100 blur-0 grayscale-0'
+              : 'scale-150 blur-2xl grayscale'
+          }`}
           {...props}
           onLoadingComplete={onLoadCallback}
           unoptimized={true}

@@ -61,8 +61,8 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
           initial='pageInitial'
           animate='pageAnimate'
           variants={{
-            pageInitial: { opacity: 0, y: '30' },
-            pageAnimate: { opacity: 1, y: 0 },
+            pageInitial: { opacity: 0 },
+            pageAnimate: { opacity: 1 },
           }}
           transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.2 }}
           className='mx-auto my-10 max-w-6xl px-6 sm:my-20 md:px-24 xl:px-0'
