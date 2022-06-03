@@ -14,7 +14,7 @@
 Clone this repository by executing the following command :
 
 ```
-git clone https://github.com/alex-lechner/Documentation-Guideline.git
+git clone https://github.com/jagadyudha/jagad.dev.git
 ```
 
 Execute this command :
