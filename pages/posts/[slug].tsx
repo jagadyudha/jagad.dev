@@ -20,6 +20,7 @@ import { cardTwitter } from '@/lib/seo';
 import ViewsCount from '@/components/views-count';
 import Ads from '@/components/posts/adsense';
 import Comment from '@/components/posts/comment';
+import { Embed } from '@/components/embed';
 
 //data
 import DataSeo from '@/_data/seo.json';
@@ -207,7 +208,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
 
       <div className='mx-auto max-w-3xl '>
         <article className='mx-auto max-w-3xl'>
-          <Component components={{ Image, Ads, a: Link } as any} />
+          <Component components={{ Image, Ads, a: Link, Embed } as any} />
         </article>
         <hr className='my-8 opacity-20'></hr>
         <Comment />
