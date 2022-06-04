@@ -8,12 +8,7 @@ export type Props = {
 } & ImageProps;
 
 const Image: React.FC<Props> = ({ src, className, ...props }) => {
-  const [isReady, setIsReady] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  const onLoadCallback = () => {
-    setIsReady(true);
-  };
 
   const router = useRouter();
   const isCloudinary = src.startsWith('/');
@@ -37,13 +32,8 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
           src={source}
           className={`bg-zinc-600 duration-1000 ease-in-out ${
             className ? className : 'rounded-md'
-          } ${
-            isReady
-              ? 'scale-100 blur-0 grayscale-0'
-              : 'scale-150 blur-2xl grayscale'
           }`}
           {...props}
-          onLoadingComplete={onLoadCallback}
           unoptimized={true}
         />
 
