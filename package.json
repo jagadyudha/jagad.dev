@@ -41,7 +41,7 @@
     "rehype-autolink-headings": "^6.1.1",
     "rehype-prism-plus": "^1.4.0",
     "rehype-slug": "^5.0.1",
-    "sharp": "^0.29.3",
+    "sharp": "^0.30.6",
     "swr": "^1.0.1",
     "twemoji": "^13.1.0",
     "yarn": "^1.22.18"
