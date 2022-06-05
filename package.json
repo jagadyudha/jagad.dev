@@ -27,7 +27,7 @@
     "markdown-to-jsx": "^7.1.7",
     "mdx-bundler": "^9.0.0",
     "next": "^12.1.5-canary.4",
-    "next-seo": "^4.27.0",
+    "next-seo": "^4.29.0",
     "next-themes": "^0.0.15",
     "nprogress": "^0.2.0",
     "prismjs": "^1.27.0",
