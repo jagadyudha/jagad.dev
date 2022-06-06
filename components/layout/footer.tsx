@@ -64,7 +64,7 @@ const nav = [
     menu: 'Social',
     content: [
       { name: 'Twitter', href: 'https://twitter.com/imyour_universe' },
-      { name: 'Github', href: 'https://github.com/jagadyudha/jagadyudha' },
+      { name: 'Github', href: 'https://github.com/jagadyudha' },
       {
         name: 'Linkedin',
         href: 'https://www.linkedin.com/in/jagad-yudha-39a4a51b6/',
@@ -92,8 +92,8 @@ const nav = [
     content: [
       { name: 'Source Code', href: 'https://github.com/jagadyudha/jagad.dev' },
       {
-        name: 'Newsletter',
-        href: 'https://www.getrevue.co/profile/imyour_universe',
+        name: 'Analytics',
+        href: 'https://analytics.jagad.dev/share/PEGBLHu0/jagad.dev',
       },
       { name: 'Storybook', href: 'https://storybook.jagad.dev/' },
       {
