@@ -49,8 +49,9 @@ const Navbar = () => {
         </div>
       </nav>
 
+      {/* Mobile View */}
       <nav className='block sm:hidden'>
-        <div className='flex justify-start py-6 px-6 text-white'>
+        <div className='flex justify-end py-6 px-6 text-white'>
           <button
             className='rounded-md bg-background_100 p-[5px]'
             onClick={() => setIsOpen(!isOpen)}

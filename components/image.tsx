@@ -13,7 +13,7 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
   const router = useRouter();
   const isCloudinary = src.startsWith('/');
   const source = isCloudinary
-    ? `https://res.cloudinary.com/dlpb6j88q/image/upload/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75%2Cw_800/${src}`
+    ? `https://res.cloudinary.com/dlpb6j88q/image/upload/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75%2Cw_800${src}`
     : `https://res.cloudinary.com/dlpb6j88q/image/fetch/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75%2Cw_800/${src}`;
 
   return (
@@ -30,9 +30,7 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
             setIsOpen(true)
           }
           src={source}
-          className={`bg-zinc-600 duration-1000 ease-in-out ${
-            className ? className : 'rounded-md'
-          }`}
+          className={`bg-zinc-700 ${className ? className : 'rounded-md'}`}
           {...props}
           unoptimized={true}
         />
