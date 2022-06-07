@@ -34,9 +34,13 @@ const NewsLetter = () => {
 
   return (
     <div>
-      <div className='prose prose-invert max-w-none rounded-md border border-white border-opacity-10 bg-background_100 p-6 shadow-md sm:p-8'>
-        <h3>Subscribe to the newsletter</h3>
-        <p>Every two weeks, I publish programming-related blogs.</p>
+      <div className='prose prose-invert max-w-none rounded-md border border-white border-opacity-10 p-6 shadow-md sm:p-8'>
+        <p className='text-3xl font-bold text-white'>
+          Subscribe to the newsletter{' '}
+        </p>
+        <p className='-mt-4'>
+          Every two weeks, I publish programming-related blogs 🚀🚀🚀
+        </p>
         <p>No spam - unsubscribe at any time!</p>
         <form onSubmit={contactSubmit}>
           <div className='relative'>
@@ -48,7 +52,7 @@ const NewsLetter = () => {
               required
             />
             <button
-              className='sm:text-md absolute right-2 top-[7px] rounded-md bg-primary bg-opacity-70 px-3 py-1 text-sm text-white sm:px-5 sm:py-2'
+              className='sm:text-md absolute right-2 top-[7px] rounded-md bg-primary bg-opacity-100 px-3 py-1 text-sm text-white sm:px-5 sm:py-2'
               type='submit'
             >
               Subscribe

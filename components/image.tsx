@@ -30,6 +30,8 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
             setIsOpen(true)
           }
           src={source}
+          placeholder='blur'
+          blurDataURL={source}
           className={`bg-zinc-700 ${className ? className : 'rounded-md'}`}
           {...props}
           unoptimized={true}

@@ -69,7 +69,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className='my-20'>
+      <div className='my-20 bg-background_100'>
         <NewsLetter />
       </div>
     </main>

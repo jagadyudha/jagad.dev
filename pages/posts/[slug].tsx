@@ -24,6 +24,7 @@ import { Embed } from '@/components/embed';
 
 //data
 import DataSeo from '@/_data/seo.json';
+import NewsLetter from '@/components/newsletter';
 
 export interface frontmatter {
   title: string;
@@ -105,9 +106,11 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
       fetch(`/api/pageview/${enRouter}`, {
         method: 'POST',
       });
-    registerView();
+    // registerView();
     //update data
     mutate(`/api/pageview/${enRouter}`);
+    localStorage.setItem('view', `${enRouter}`);
+    console.log(localStorage.view);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -158,60 +161,73 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
         description={description}
       />
 
-      <div className='text-center'>
-        <div className='mx-auto  max-w-4xl'>
-          <h1 className='text-white sm:text-5xl'>{title}</h1>
-          <div className='my-10 text-gray-400'>
-            <p className='text-xl'>
-              {`Posted on ${new Date(date).toLocaleString('default', {
-                month: 'long',
-              })} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
+      <div className='flex-none xl:flex xl:space-x-8'>
+        {/* Content */}
+        <div className='container mx-auto max-w-3xl'>
+          <div className='text-center'>
+            <h1 className='text-white sm:text-5xl'>{title}</h1>
+            <div className='my-10 text-gray-400'>
+              <p className='text-xl'>
+                {`Posted on ${new Date(date).toLocaleString('default', {
+                  month: 'long',
+                })} ${new Date(date).getDate()}, ${new Date(
+                  date
+                ).getFullYear()}`}
+              </p>
+              <div className='text-md -mt-10 flex items-center justify-center gap-1'>
+                <ViewsCount slug={`${enRouter}`} />•
+                <p>{readingTime(content).text} </p>
+              </div>
+            </div>
+
+            <div className='relative mx-auto h-56  md:h-72 xl:h-96'>
+              <div className='absolute h-full w-full'>
+                <Image
+                  className='rounded-md'
+                  src={header}
+                  layout='fill'
+                  objectFit='cover'
+                  alt={title}
+                />
+              </div>
+            </div>
+            <p className='text-md mx-auto  text-left text-gray-400 sm:text-lg'>
+              {description}
             </p>
-            <div className='text-md -mt-10 flex items-center justify-center gap-1'>
-              <ViewsCount slug={`${enRouter}`} />•
-              <p>{readingTime(content).text} </p>
+          </div>
+          <div className='mx-auto  text-left'>
+            {isBahasa && (
+              <div className='mx-auto '>
+                <Link
+                  href={`/posts/${
+                    slug.endsWith('-id')
+                      ? slug.replace('-id', '')
+                      : slug.concat('-id')
+                  }`}
+                >
+                  <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
+                    Read in{' '}
+                    {!slug.endsWith('-id') ? 'Bahasa Indonesia' : 'English'}
+                  </button>
+                </Link>
+              </div>
+            )}
+          </div>
+          <div className='mx-auto'>
+            <article className='mx-auto '>
+              <Component components={{ Image, Ads, a: Link, Embed } as any} />
+            </article>
+            <hr className='my-8 opacity-20' />
+            <div>
+              <Comment />
             </div>
           </div>
         </div>
 
-        <div className='relative mx-auto h-56 max-w-3xl md:h-72 xl:h-96'>
-          <div className='absolute h-full w-full'>
-            <Image
-              className='rounded-md'
-              src={header}
-              layout='fill'
-              objectFit='cover'
-              alt={title}
-            />
-          </div>
+        {/* Sidebar */}
+        <div className='my-10 max-w-3xl space-y-6 xl:sticky xl:top-44 xl:my-0 xl:self-start'>
+          <NewsLetter />
         </div>
-        <p className='text-md mx-auto max-w-3xl text-left text-gray-400 sm:text-lg'>
-          {description}
-        </p>
-      </div>
-
-      {isBahasa && (
-        <div className='mx-auto max-w-3xl'>
-          <Link
-            href={`/posts/${
-              slug.endsWith('-id')
-                ? slug.replace('-id', '')
-                : slug.concat('-id')
-            }`}
-          >
-            <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
-              Read in {!slug.endsWith('-id') ? 'Bahasa Indonesia' : 'English'}
-            </button>
-          </Link>
-        </div>
-      )}
-
-      <div className='mx-auto max-w-3xl '>
-        <article className='mx-auto max-w-3xl'>
-          <Component components={{ Image, Ads, a: Link, Embed } as any} />
-        </article>
-        <hr className='my-8 opacity-20'></hr>
-        <Comment />
       </div>
     </main>
   );
