@@ -7,6 +7,7 @@ import readingTime from 'reading-time';
 import { useSWRConfig } from 'swr';
 import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
+import Reactions from '@/components/posts/reaction';
 
 //lib
 import {
@@ -106,11 +107,9 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
       fetch(`/api/pageview/${enRouter}`, {
         method: 'POST',
       });
-    // registerView();
+    registerView();
     //update data
-    mutate(`/api/pageview/${enRouter}`);
-    localStorage.setItem('view', `${enRouter}`);
-    console.log(localStorage.view);
+    // mutate(`/api/pageview/${enRouter}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -226,6 +225,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
 
         {/* Sidebar */}
         <div className='my-10 max-w-3xl space-y-6 xl:sticky xl:top-44 xl:my-0 xl:self-start'>
+          <Reactions slug={slug} />
           <NewsLetter />
         </div>
       </div>
