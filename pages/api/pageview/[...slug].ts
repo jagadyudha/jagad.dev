@@ -32,10 +32,6 @@ export default async function handler(
       .select('*')
       .eq('slug', fullSlug)
       .single();
-    if (data) {
-      res.send(data);
-    } else {
-      res.send({ slug: fullSlug, count: 0 });
-    }
+    res.status(200).json({ count: data?.count || 0 });
   }
 }

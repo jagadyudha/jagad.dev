@@ -107,9 +107,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
       fetch(`/api/pageview/${enRouter}`, {
         method: 'POST',
       });
-    registerView();
-    //update data
-    // mutate(`/api/pageview/${enRouter}`);
+    //registerView();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -162,7 +160,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
 
       <div className='flex-none xl:flex xl:space-x-8'>
         {/* Content */}
-        <div className='container mx-auto max-w-3xl'>
+        <div className='mx-auto max-w-3xl'>
           <div className='text-center'>
             <h1 className='text-white sm:text-5xl'>{title}</h1>
             <div className='my-10 text-gray-400'>
@@ -194,6 +192,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
               {description}
             </p>
           </div>
+
           <div className='mx-auto  text-left'>
             {isBahasa && (
               <div className='mx-auto '>
@@ -212,23 +211,25 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
               </div>
             )}
           </div>
-          <div className='mx-auto'>
-            <article className='mx-auto '>
-              <Component components={{ Image, Ads, a: Link, Embed } as any} />
-            </article>
-            <hr className='my-8 opacity-20' />
-            <div>
-              <Comment />
-            </div>
-          </div>
+          <article className='mx-auto '>
+            <Component components={{ Image, Ads, a: Link, Embed } as any} />
+          </article>
         </div>
 
         {/* Sidebar */}
-        <div className='my-10 max-w-3xl space-y-6 xl:sticky xl:top-44 xl:my-0 xl:self-start'>
-          <Reactions slug={slug} />
-          <NewsLetter />
+        <div className='my-10 mx-auto max-w-3xl space-y-6 xl:sticky xl:top-44 xl:my-0 xl:w-80 xl:self-start'>
+          <div>
+            <span className='mb-4 flex justify-center'>Post Reactions</span>
+            <Reactions slug={slug} />
+          </div>
+          <div className='hidden xl:block'>
+            <span className='mb-4 flex justify-center'>Ads</span>
+            <Ads />
+          </div>
         </div>
       </div>
+      <hr className='my-8 opacity-20' />
+      <Comment />
     </main>
   );
 };

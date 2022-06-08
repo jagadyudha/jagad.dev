@@ -7,7 +7,7 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     const { data } = await supabase
-      .from('views')
+      .from('reactions')
       .select()
       .eq('slug', req.query.slug)
       .single();
