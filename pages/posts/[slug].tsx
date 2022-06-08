@@ -217,12 +217,12 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
         </div>
 
         {/* Sidebar */}
-        <div className='my-10 mx-auto max-w-3xl space-y-6 xl:sticky xl:top-44 xl:my-0 xl:w-80 xl:self-start'>
+        <div className='my-10 max-w-3xl space-y-6 xl:my-0 xl:w-80'>
           <div>
             <span className='mb-4 flex justify-center'>Post Reactions</span>
             <Reactions slug={slug} />
           </div>
-          <div className='hidden xl:block'>
+          <div className='xl:sticky xl:top-10 xl:self-start'>
             <span className='mb-4 flex justify-center'>Ads</span>
             <Ads />
           </div>
