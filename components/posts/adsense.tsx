@@ -1,7 +1,15 @@
 import React from 'react';
-
+import { useDetectAdBlock } from 'adblock-detect-react';
+import { IoWarningOutline } from 'react-icons/io5';
 const Adsense = () => {
+  const adblock = useDetectAdBlock();
+  const [isAdblock, setIsAdblock] = React.useState(false);
+  console.log(adblock);
+
   React.useEffect(() => {
+    if (adblock) {
+      setIsAdblock(true);
+    }
     try {
       if (typeof window !== 'undefined') {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
@@ -10,6 +18,21 @@ const Adsense = () => {
       console.log('adsense error', error.message);
     }
   }, []);
+
+  if (isAdblock) {
+    return (
+      <div className='mt-4 rounded-md bg-[#FBBD23] bg-opacity-20 p-4'>
+        <div className='flex items-center space-x-2'>
+          <IoWarningOutline className='text-xl' />
+          <span className='font-bold text-white'>Warning!</span>
+        </div>
+        <p className='font-light text-gray-200'>
+          Please disable your adBlock to support our site and free contents from
+          jagad.dev
+        </p>
+      </div>
+    );
+  }
   return (
     <div className='my-10 mx-6'>
       <ins

@@ -20,6 +20,7 @@
     "@types/nprogress": "^0.2.0",
     "@types/prismjs": "^1.26.0",
     "@types/twemoji": "^12.1.2",
+    "adblock-detect-react": "^1.0.5",
     "esbuild": "^0.14.39",
     "framer-motion": "^6.3.3",
     "fs": "^0.0.1-security",

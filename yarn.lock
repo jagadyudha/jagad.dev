@@ -575,6 +575,11 @@ acorn@^8.0.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.7.1.tgz#0197122c843d1bf6d0a5e83220a788f278f63c30"
   integrity sha512-Xx54uLJQZ19lKygFXOWsscKUbsBZW0CPykPhVQdhIeIwrbPmJzqeASDInc8nKBnp/JT6igTs82qPXz069H8I/A==
 
+adblock-detect-react@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/adblock-detect-react/-/adblock-detect-react-1.0.5.tgz#b7fc828f687bf57f99ff8b3f8ecf326ca06dd702"
+  integrity sha512-XGSyRnQZjoP9LxLiMvnKbPqlIzFJEtJgT6j7T9sK2Aw9XOvwNSJKfd2xwbk+DmdpkuUysXnGlobn1SIRBQi12A==
+
 aggregate-error@^3.0.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/aggregate-error/-/aggregate-error-3.1.0.tgz"
