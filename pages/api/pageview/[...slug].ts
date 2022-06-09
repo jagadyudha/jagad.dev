@@ -9,20 +9,10 @@ export default async function handler(
   const fullSlug = `/${slug.join('/')}`;
 
   if (req.method === 'POST') {
-    const { data } = await supabase
-      .from('views')
-      .select()
-      .eq('slug', fullSlug)
-      .single();
-
-    if (data) {
-      await supabase.rpc('increment', {
-        slug_: fullSlug,
-      });
-    } else {
-      await supabase.from('views').insert({ slug: fullSlug });
-    }
-
+    await supabase.from('views').insert({ slug: fullSlug });
+    await supabase.rpc('increment', {
+      slug_: fullSlug,
+    });
     res.status(200).json({ status: 'ok' });
   }
 

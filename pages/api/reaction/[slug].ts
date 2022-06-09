@@ -6,70 +6,61 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const { data } = await supabase
-      .from('reactions')
-      .select()
-      .eq('slug', req.query.slug)
-      .single();
-
+    await supabase.from('reactions').insert({ slug: req.query.slug });
     const body = JSON.parse(req.body);
     const { reaction, type } = body;
 
-    if (data) {
-      if (reaction === 'like_count') {
-        if (type === 'increment') {
-          await supabase.rpc('increment_like_count', {
-            slug_: req.query.slug,
-          });
-        } else if (type === 'decrement') {
-          await supabase.rpc('decrement_like_count', {
-            slug_: req.query.slug,
-          });
-        }
+    if (reaction === 'like_count') {
+      if (type === 'increment') {
+        await supabase.rpc('increment_like_count', {
+          slug_: req.query.slug,
+        });
+      } else if (type === 'decrement') {
+        await supabase.rpc('decrement_like_count', {
+          slug_: req.query.slug,
+        });
       }
-
-      if (reaction === 'love_count') {
-        if (type === 'increment') {
-          await supabase.rpc('increment_love_count', {
-            slug_: req.query.slug,
-          });
-        } else if (type === 'decrement') {
-          await supabase.rpc('decrement_love_count', {
-            slug_: req.query.slug,
-          });
-        }
-      }
-
-      if (reaction === 'wow_count') {
-        if (type === 'increment') {
-          await supabase.rpc('increment_wow_count', {
-            slug_: req.query.slug,
-          });
-        } else if (type === 'decrement') {
-          await supabase.rpc('decrement_wow_count', {
-            slug_: req.query.slug,
-          });
-        }
-      }
-
-      if (reaction === 'yay_count') {
-        if (type === 'increment') {
-          await supabase.rpc('increment_yay_count', {
-            slug_: req.query.slug,
-          });
-        } else if (type === 'decrement') {
-          await supabase.rpc('decrement_yay_count', {
-            slug_: req.query.slug,
-          });
-        }
-      }
-
-      return res.status(200).json({
-        message: `Successfully performed reaction for: ${req.query.slug}`,
-      });
     }
-  } else {
-    await supabase.from('reactions').insert({ slug: req.query.slug });
+
+    if (reaction === 'love_count') {
+      if (type === 'increment') {
+        await supabase.rpc('increment_love_count', {
+          slug_: req.query.slug,
+        });
+      } else if (type === 'decrement') {
+        await supabase.rpc('decrement_love_count', {
+          slug_: req.query.slug,
+        });
+      }
+    }
+
+    if (reaction === 'wow_count') {
+      if (type === 'increment') {
+        await supabase.rpc('increment_wow_count', {
+          slug_: req.query.slug,
+        });
+      } else if (type === 'decrement') {
+        await supabase.rpc('decrement_wow_count', {
+          slug_: req.query.slug,
+        });
+      }
+    }
+
+    if (reaction === 'yay_count') {
+      if (type === 'increment') {
+        await supabase.rpc('increment_yay_count', {
+          slug_: req.query.slug,
+        });
+      } else if (type === 'decrement') {
+        await supabase.rpc('decrement_yay_count', {
+          slug_: req.query.slug,
+        });
+      }
+    }
+
+    return res.status(200).json({
+      message: `Successfully performed reaction for: ${req.query.slug}`,
+    });
   }
 
   if (req.method === 'GET') {

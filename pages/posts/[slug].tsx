@@ -107,7 +107,8 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
       fetch(`/api/pageview/${enRouter}`, {
         method: 'POST',
       });
-    //registerView();
+    registerView();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
