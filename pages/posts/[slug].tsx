@@ -224,7 +224,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
             <Reactions slug={slug} />
           </div>
           <div>
-            <span className='mb-4 flex justify-center'>Ads</span>
+            <span className='flex justify-center'>Ads</span>
             <Ads />
           </div>
         </div>

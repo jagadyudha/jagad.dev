@@ -28,7 +28,7 @@ const Adsense = () => {
           </p>
         </div>
       ) : (
-        <div className='my-10'>
+        <div className='mt-4'>
           <ins
             className='adsbygoogle'
             style={{
