@@ -39,7 +39,7 @@ const NewsLetter = () => {
           Subscribe to the newsletter{' '}
         </p>
         <p className='-mt-4'>
-          Every two weeks, I publish programming-related blogs 🚀🚀🚀
+          Every two weeks, I publish programming-related blogs 🚀
         </p>
         <p>No spam - unsubscribe at any time!</p>
         <form onSubmit={contactSubmit}>
