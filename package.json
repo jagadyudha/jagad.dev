@@ -4,6 +4,7 @@
     "predeploy": "npm run build",
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
