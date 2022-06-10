@@ -25,7 +25,6 @@ import { Embed } from '@/components/embed';
 
 //data
 import DataSeo from '@/_data/seo.json';
-import NewsLetter from '@/components/newsletter';
 
 export interface frontmatter {
   title: string;
@@ -115,9 +114,10 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   const { title, description, date, header } = frontmatter;
-  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75,w_800,h_450,c_fit,co_rgb:FFFFFF,g_west,x_70,y_-40,l_text:arial_60_bold:${encodeURIComponent(
+
+  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_540,h_630,c_fill,l_jagad.dev:posts:${slug}:header/fl_layer_apply,g_east/w_500,h_450,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
     title
-  ).replace(`'`, '%27')}/jagad.dev/social_h0ek7y.png`;
+  ).replace(`'`, '%27')}/jagad.dev/social.png`;
 
   return (
     <main className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>
@@ -181,7 +181,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
               <div className='absolute h-full w-full'>
                 <Image
                   className='rounded-md'
-                  src={header}
+                  src={`/jagad.dev/posts/${slug}/header`}
                   layout='fill'
                   objectFit='cover'
                   alt={title}

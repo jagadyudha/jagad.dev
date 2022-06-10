@@ -15,7 +15,7 @@ export interface postProps {
 }
 
 const PostCard: React.FC<postProps> = (props) => {
-  const { slug, title, description, date, tags, readtime, header } = props;
+  const { slug, title, description, date, tags, readtime } = props;
   const router = useRouter();
 
   return (
@@ -25,7 +25,7 @@ const PostCard: React.FC<postProps> = (props) => {
           <div className='absolute h-full w-full group-hover:opacity-70'>
             <Image
               className='rounded-md'
-              src={header}
+              src={`/jagad.dev/posts/${slug}/header`}
               layout='fill'
               objectFit='cover'
               alt={title}

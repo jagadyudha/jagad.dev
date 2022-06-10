@@ -21,7 +21,7 @@ const Featured: React.FC<Props> = (props) => {
         <div className='absolute h-full w-full rounded-md opacity-80 duration-150 ease-in-out group-hover:opacity-100'>
           <Image
             className='rounded-md'
-            src={header}
+            src={`/jagad.dev/posts/${slug}/header`}
             layout='fill'
             objectFit='cover'
             alt={title}
