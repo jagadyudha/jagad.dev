@@ -115,10 +115,9 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   const { title, description, date, header } = frontmatter;
-  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
-    `'`,
-    '%27'
-  )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
+  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75,w_800,h_450,c_fit,co_rgb:FFFFFF,g_west,x_70,y_-40,l_text:arial_60_bold:${encodeURIComponent(
+    title
+  ).replace(`'`, '%27')}/jagad.dev/social_h0ek7y.png`;
 
   return (
     <main className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>

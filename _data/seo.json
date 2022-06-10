@@ -2,5 +2,5 @@
   "url": "https://jagad.dev",
   "title": "Jagad Yudha Awali — Software Engineer",
   "description": "My personal website to share my projects, blogs, and other stuff.",
-  "ogimage": "https://og.jagad.dev/api/og.jpg"
+  "ogimage": "https://res.cloudinary.com/dlpb6j88q/image/upload/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75,w_800,h_450,c_fit,co_rgb:FFFFFF,g_west,x_70,y_-40,l_text:arial_60_bold:$Is%20PyScript%20going%20to%20take%20the%20place%20of%20JavaScript%3F/jagad.dev/social_h0ek7y.png"
 }
