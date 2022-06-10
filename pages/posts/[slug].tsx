@@ -115,10 +115,9 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   const { title, description, date, header } = frontmatter;
-  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
-    `'`,
-    '%27'
-  )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
+  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75,w_800,h_450,c_fit,co_rgb:FFFFFF,g_west,x_70,y_-40,l_text:arial_60_bold:${encodeURIComponent(
+    title
+  ).replace(`'`, '%27')}/jagad.dev/social_h0ek7y.png`;
 
   return (
     <main className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>
@@ -218,13 +217,13 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
         </div>
 
         {/* Sidebar */}
-        <div className='my-10 max-w-3xl space-y-6 xl:my-0 xl:w-80'>
+        <div className='my-10 space-y-6 xl:sticky xl:top-10 xl:my-0 xl:w-80 xl:self-start'>
           <div>
             <span className='mb-4 flex justify-center'>Post Reactions</span>
             <Reactions slug={slug} />
           </div>
-          <div className='xl:sticky xl:top-10 xl:self-start'>
-            <span className='mb-4 flex justify-center'>Ads</span>
+          <div>
+            <span className='flex justify-center'>Ads</span>
             <Ads />
           </div>
         </div>
