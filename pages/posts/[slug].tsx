@@ -217,7 +217,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
         </div>
 
         {/* Sidebar */}
-        <div className='my-10 space-y-6 overflow-auto xl:sticky xl:top-10 xl:my-0 xl:w-80 xl:self-start'>
+        <div className='my-10 space-y-6 xl:sticky xl:top-10 xl:my-0 xl:w-80 xl:self-start'>
           <div>
             <span className='mb-4 flex justify-center'>Post Reactions</span>
             <Reactions slug={slug} />
