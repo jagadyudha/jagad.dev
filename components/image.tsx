@@ -38,7 +38,13 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
         />
 
         {isOpen && (
-          <Lightbox mainSrc={source} onCloseRequest={() => setIsOpen(false)} />
+          <Lightbox
+            mainSrc={source.replace(
+              '/c_limit%2Cf_auto%2Cfl_progressive%2Cq_75%2Cw_800',
+              ''
+            )}
+            onCloseRequest={() => setIsOpen(false)}
+          />
         )}
       </figure>
     </>
