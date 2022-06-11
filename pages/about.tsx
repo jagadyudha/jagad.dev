@@ -3,36 +3,17 @@ import Image from '@/components/image';
 //seo
 import { NextSeo } from 'next-seo';
 import DataSeo from '@/_data/seo.json';
-import { cardTwitter } from '@/lib/seo';
 
 const About = () => {
   const title = 'About';
   const description = `My professional background, key accomplishments, personal values, and any brands I may be associated with.`;
-  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(
-    title
-  )}&description=${encodeURIComponent(description)}`;
+
   return (
     <>
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
         description={`My professional background, key accomplishments, personal values, and any brands I may be associated with`}
         canonical={`${DataSeo.url}/about`}
-        openGraph={{
-          url: `${DataSeo.url}/about`,
-          title: `${title} — Jagad Yudha Awali`,
-          description: description,
-          images: [
-            {
-              url: ogimage,
-              width: 1280,
-              height: 720,
-              alt: title,
-              type: 'image/jpeg',
-            },
-          ],
-          site_name: title,
-        }}
-        twitter={cardTwitter}
       />
 
       <main className='prose-md prose prose-invert max-w-none'>

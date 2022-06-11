@@ -69,10 +69,10 @@ export const getStaticProps = async ({
 const ProjectsSlug = ({ frontmatter, content, code, slug }: slugProps) => {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
   const { title, description, date, stack, header } = frontmatter;
-  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
-    `'`,
-    '%27'
-  )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
+
+  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,b_auto:predominant_gradient:2,c_pad,l_jagad.dev:projects:${slug}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
+    title
+  ).replace(`'`, '%27')}/jagad.dev/social.png`;
 
   return (
     <main className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>
@@ -111,7 +111,7 @@ const ProjectsSlug = ({ frontmatter, content, code, slug }: slugProps) => {
           <div className='absolute h-full w-full'>
             <Image
               className='rounded-md'
-              src={header}
+              src={`/jagad.dev/projects/${slug}/header`}
               layout='fill'
               objectFit='cover'
               alt={title}

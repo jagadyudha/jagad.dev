@@ -33,9 +33,6 @@ const Dashboard = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const title = 'Activities';
   const description = `Because I enjoy sharing my hobbies, I decided to create an API to keep track my online activities.`;
-  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(
-    title
-  )}&description=${encodeURIComponent(description)}`;
 
   const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
   const { data } = useSWR('/api/playersummaries', fetcher);
@@ -45,24 +42,7 @@ const Dashboard = ({
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
         description={description}
-        canonical={`${DataSeo.url}/posts`}
-        openGraph={{
-          type: 'article',
-          url: `${DataSeo.url}/activities`,
-          title: `${title} — Jagad Yudha Awali`,
-          description: description,
-          images: [
-            {
-              url: ogimage,
-              width: 1280,
-              height: 720,
-              alt: title,
-              type: 'image/jpeg',
-            },
-          ],
-          site_name: title,
-        }}
-        twitter={cardTwitter}
+        canonical={`${DataSeo.url}/activities`}
       />
 
       <main className='prose prose-invert max-w-none prose-a:no-underline'>

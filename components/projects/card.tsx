@@ -21,7 +21,7 @@ const Card: React.FC<Props> = (props) => {
           <div className='-my-10 w-full translate-x-5 translate-y-7 shadow-2xl duration-100 ease-in-out group-hover:translate-y-6 sm:translate-x-10 sm:translate-y-10'>
             <Image
               className='rounded-sm'
-              src={header}
+              src={`/jagad.dev/projects/${slug}/header`}
               objectFit={'cover'}
               width={'1280'}
               height={'720'}

@@ -68,10 +68,6 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const title = 'Posts';
   const description = `Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`;
-  const ogimage = `${DataSeo.ogimage}?title=${encodeURIComponent(title).replace(
-    `'`,
-    '%27'
-  )}&description=${encodeURIComponent(description).replace(`'`, '%27')}`;
 
   return (
     <main className='prose prose-invert mb-16 h-full max-w-none prose-a:no-underline sm:mb-32'>
@@ -79,23 +75,6 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         title={`${title} — Jagad Yudha Awali`}
         description={description}
         canonical={`${DataSeo.url}/posts`}
-        openGraph={{
-          type: 'article',
-          url: `${DataSeo.url}/posts`,
-          title: `${title} — Jagad Yudha Awali`,
-          description: description,
-          images: [
-            {
-              url: ogimage,
-              width: 1280,
-              height: 720,
-              alt: title,
-              type: 'image/jpeg',
-            },
-          ],
-          site_name: title,
-        }}
-        twitter={cardTwitter}
       />
       <div className='mb-16 flex justify-center text-center'>
         <div className='max-w-xl'>
