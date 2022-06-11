@@ -25,7 +25,9 @@ const PostCard: React.FC<postProps> = (props) => {
           <div className='absolute h-full w-full group-hover:opacity-70'>
             <Image
               className='rounded-md'
-              src={`/jagad.dev/posts/${slug}/header`}
+              src={`/jagad.dev/posts/${
+                slug.endsWith('-id') ? slug.replace('-id', '') : slug
+              }/header`}
               layout='fill'
               objectFit='cover'
               alt={title}
