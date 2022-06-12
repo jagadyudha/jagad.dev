@@ -84,8 +84,8 @@ export async function getStaticProps() {
     [
       'how-to-create-a-whatsapp-bot-with-node-js',
       'custom-image-transition-in-nextjs-with-tailwind-css',
-      'how-to-create-steam-player-summaries-with-next-js',
-      'react-native-camera-but-with-react-hooks',
+      'steam-now-playing',
+      'is-pyscript-going-to-take-the-place-of-javascript',
     ].includes(item.slug)
   );
 
