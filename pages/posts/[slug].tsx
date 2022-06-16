@@ -223,7 +223,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
             <span className='mb-4 flex justify-center'>Post Reactions</span>
             <Reactions slug={slug} />
           </div>
-          <div className=' xl:sticky xl:top-10 xl:my-0 xl:w-80 xl:self-start'>
+          <div className='hidden xl:sticky xl:top-10 xl:my-0 xl:block xl:w-80 xl:self-start'>
             <span className='flex justify-center'>Ads</span>
             <Ads />
           </div>

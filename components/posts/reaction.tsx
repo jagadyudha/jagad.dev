@@ -353,7 +353,7 @@ function ReactionCard({ isActive, incrementCB, decrementCB, children }: any) {
       onClick={isActive ? () => decrementCB() : () => incrementCB()}
       className={`${
         isActive ? 'bg-[#202022]' : 'bg-background_100'
-      } general-ring-state flex flex-1 flex-col items-center rounded-lg py-4`}
+      } general-ring-state flex flex-1 flex-col items-center rounded-lg py-4 transition-all duration-1000`}
     >
       {children}
     </div>
