@@ -6,8 +6,8 @@ export const NowPlaying = () => {
     refreshInterval: 20000,
   });
   return (
-    <div className='-my-1 flex items-center justify-center'>
-      <div className='flex min-h-[60px] w-full items-center justify-between rounded-lg'>
+    <div className='-my-1 flex min-h-[70px] max-w-md items-center justify-center'>
+      <div className='flex w-full items-center justify-between rounded-lg'>
         <div className='flex items-center'>
           <svg
             className='text-lg text-green-500'
@@ -29,7 +29,11 @@ export const NowPlaying = () => {
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                {`${data?.music.getData}`}
+                {`${
+                  data?.music.getData.length > 30
+                    ? `${data?.music.getData.slice(0, 30)}...`
+                    : data?.music.getData
+                }`}
               </a>
             ) : (
               <p>
