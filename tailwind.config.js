@@ -16,6 +16,7 @@ module.exports = {
         primary: '#0AC5B3',
         background: '#232426',
         background_100: '#2C2D30',
+        background_dark: '#1a1a1c',
       },
       fontFamily: {
         sans: ['Lexend Deca'],

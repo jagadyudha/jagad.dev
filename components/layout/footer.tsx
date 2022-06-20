@@ -4,7 +4,7 @@ import Link from '@/components/customLink';
 
 function footer() {
   return (
-    <footer className='bg-[#1a1a1c]'>
+    <footer className='bg-background_dark'>
       {/* Licensed under the MIT License. */}
       <div className='mx-8 max-w-6xl flex-none justify-between py-10 md:mx-24 xl:mx-auto xl:flex xl:flex-row-reverse'>
         {/* Nav Link */}

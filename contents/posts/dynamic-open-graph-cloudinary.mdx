@@ -1,0 +1,246 @@
+---
+title: 'Create Dynamic Open Graph Images with Cloudinary'
+description: 'Make an image more interactive with the use of CSS transitions.'
+date: '2022-06-20'
+tags:
+  - opengraph
+  - cloudinary
+---
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Getting Started](#getting-started)
+3. [Cloudinary Transformation](#cloudinary-transformation)
+4. [Design Open Graph](#design-open-graph)
+5. [Dynamic Open Graph with Cloudinary](#dynamic-open-graph-with-cloudinary)
+6. [Implementation](#implementation)
+7. [Conclusion](#conclusion)
+
+<Ads />
+
+## Introduction
+
+Sharing the websites on social media is one of the most important things we can do to ensure that audience sees it. However, if we just show links, it will be difficult to gain the attention of the audience.
+
+With the Open Graph, we can control how our websites are shared on social media by displaying images, titles, descriptions, and links in a way that the audience is interested in seeing them.
+
+<Image
+  alt='Open graph Example'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/Open_Graph_Example_fpyk51.png'
+  width='1431'
+  height='856'
+/>
+
+It can be seen that with the open graph, the website becomes more attractive when shared on social media.
+
+However, if we look at the website's meta tag, we can see that the image in the meta tag is static.
+
+```html {14-17}
+<meta
+  property="og:url"
+  content="https://aged-clave-571.notion.site/Google-Search-Operators-Cheat-Sheet-e0b50566aa2a4dc6a9643dceda52a3a4/"
+/>
+<meta property="og:type" content="website" />
+<meta
+  property="og:title"
+  content="Notion – The all-in-one workspace for your notes, tasks, wikis, and databases."
+/>
+<meta
+  property="og:description"
+  content="A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you and your team"
+/>
+<meta
+  property="og:image"
+  content="https://www.notion.so/images/meta/default.png"
+/>
+```
+
+So how can we make open graph images dynamic instead of making them one by one?
+
+In this post, we will together create dynamic open graph images with the help of cloudinary.
+
+<Image
+  alt='Meme about Open Graph'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/meme_about_open_graph_qu9dzn.jpg'
+  width='687'
+  height='500'
+/>
+
+## Getting Started
+
+First of all, if you're unfamiliar with cloudinary, basically cloudinary is a cloud image hosting service that allows you to transform images and videos to load faster with no visual degradation.
+
+If you don't have a Cloudinary account yet, you can sign up now. More information about crate account on cloudinary can be found at [Programmable Media Developer Get Started Guide | Cloudinary](https://cloudinary.com/documentation/how_to_integrate_cloudinary)
+
+## Cloudinary Transformation
+
+With cloudinary, we can do URL transformations instead of using fancy editing tools. We can do this by put the transformation URL like this:
+
+<div className='url-blog'>
+  <div>
+    <span>https://res.cloudinary.com/demo/image/upload/</span><span className='url-blog-inline'>[YOUR_TRANSFORMATIONS]</span><span>/lady.jpg</span>
+    <div />
+  </div>
+</div>
+
+There's a lot we can do with cloudinary, you can check the [documentation](https://cloudinary.com/documentation/image_transformation_reference) for more information. Here are some of the transformations that we can use:
+
+### Face detection-based image cropping
+
+By using the `c_crop`, `g_face` transformation, we can crop the image to the face of the person.
+
+<div className='url-blog'>
+  <div>
+    <span>https://res.cloudinary.com/demo/image/upload/</span><span className='url-blog-inline'>c_crop,g_face,h_400,w_400</span><span>/lady.jpg</span>
+  </div>
+</div>
+
+<Image
+  alt='Face detection-based image cropping'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/Face_Crop_Transformations_l0csct.png'
+  width='989'
+  height='781'
+/>
+
+### Text overlay positioning
+
+By using the `l_text` transformation, we can overlay text on the image. For example if we want to overlay the text `Haiiiiiii` on the image, we can use the following transformation:
+
+<div className='url-blog'>
+  <div>
+    <span>https://res.cloudinary.com/demo/image/upload/</span><span className='url-blog-inline'>l_text:Arial_45_bold:Haiiiiiiiiii,g_north_west,x_20,y_20</span><span>/lady.jpg</span>
+  </div>
+</div>
+
+<Image
+  alt='Text overlay positioning'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/Text_overlay_positioning_u2h1gt.png'
+  width='1241'
+  height='819'
+/>
+
+Cloudinary also provides a cookbook for creating transformations that can make it easier for us to customize images.
+
+## Design Open Graph
+
+Before we start implementing the open graph with cloudinary transformations, we need to design the open graph in figma. This is the design result that we will use.
+
+<Image
+  alt='Design Result'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/Design_Result_ugexk0.png'
+  width='1919'
+  height='1079'
+/>
+
+After that, we can seperate the design into different parts.
+
+<Image
+  alt='Seperate Design Result'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/Seperate_Design_Result_mzgatx.png'
+  width='1164'
+  height='663'
+/>
+
+I know that hr stands for horizontal rule, but I used it for a diagonal line. To be honest, I always use the hr name not only for horizontal but also for vertical.
+
+## Dynamic Open Graph with Cloudinary
+
+We need to structure folders in Cloudinary depending on the slug from posts to make the open graph dynamic. Here is the folder structure on the cloudinary that I have created.
+
+<Image
+  alt='Cloudinary Structure Folder'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/cloudinary_structure_folder_g2cr99.png'
+  width='1104'
+  height='812'
+/>
+
+I put the design we separated earlier into two parts:
+
+1. `social.png` and `hr.png` in the folder `/jagad.dev` (static)
+2. `header.png` in each post slug folder `/jagad.dev/post/[slug]` (dinamic)
+
+Here is the implementation for displaying `social.png`.
+
+<div className='url-blog'>
+  <div>
+    <span>https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit,f_auto,fl_progressive,q_75/jagad.dev/social</span>
+  </div>
+</div>
+
+For information, in cloudinary, we do not need to provide image formats such as `.png` or `.jpg` in the url. Instead, the image format will be served as `.webp`
+
+<Image
+  alt='Showing Social'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/showing_social_hpfuyb.png'
+  width='1043'
+  height='630'
+/>
+
+After that, we combine it with `header.png`, which is in the `/jagad.dev/posts/[slug]` folder.
+
+For example, I use the slug `steam-now-playing`.
+
+<div className='url-blog'>
+  <div>
+    <span>https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit,f_auto,fl_progressive,q_75/</span><span className='url-blog-inline'>w_600,h_630,c_fill,l_jagad.dev:posts:steam-now-playing:header/fl_layer_apply,g_east</span><span>/jagad.dev/social</span>
+  </div>
+</div>
+
+<Image
+  alt='Showing Social + header'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/showing_social_header_pazzkr.png'
+  width='1053'
+  height='634'
+/>
+
+Since I don't want to display just a square image in the open graph, I use `hr.png` to create a diagonal line to the left of the image.
+
+<div className='url-blog'>
+  <div>
+    <span>https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit,f_auto,fl_progressive,q_75/w_600,h_630,c_fill,l_jagad.dev:posts:steam-now-playing:header/fl_layer_apply,g_east/</span><span className='url-blog-inline'>w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485</span><span>/jagad.dev/social</span>
+  </div>
+</div>
+
+<Image
+  alt='Showing Social + header + hr'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/showing_social_header_hr_xu1v8k.png'
+  width='1278'
+  height='786'
+/>
+
+to create a dynamic post title, we can use a text overlay transformation like this:
+
+<div className='url-blog'>
+  <div>
+    <span>https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit,f_auto,fl_progressive,q_75/w_600,h_630,c_fill,l_jagad.dev:posts:steam-now-playing:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/</span><span className='url-blog-inline'>w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:This%20is%20dynamic%20open%20graph%20with%20cloudinary</span><span>/jagad.dev/social</span>
+  </div>
+</div>
+
+<Image
+  alt='Showing Social + header + hr + text overlay'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/showing_social_header_hr_text_overlay_afft3x.png'
+  width='1278'
+  height='786'
+/>
+
+## Implementation
+
+Implementation can be done very easily by changing the post slug and post title. The following is an example implementation using the JavaScript programming language.
+
+```javascript
+const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit,f_auto,fl_progressive,q_75/w_600,h_630,c_fill,l_jagad.dev:posts:${SLUG}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${TITLE}/jagad.dev/social`
+```
+
+This is the result of the dynamic open graph that has been implemented on this website.
+
+<Image
+  alt='Open Graph on this website'
+  src='/jagad.dev/posts/dynamic-open-graph-cloudinary/Implementation_on_this_website_xndsi0.png'
+  width='1166'
+  height='959'
+/>
+
+## Conclusion
+
+The advantage of creating dynamic open graphs with cloudinary is the fast load speed compared to using puppeteer or next-api-og-image.

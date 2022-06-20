@@ -17,3 +17,11 @@
 .prose pre code {
   @apply border-none p-0;
 }
+
+.url-blog {
+  @apply flex overflow-y-visible whitespace-pre-line break-words break-all rounded-md bg-background_dark p-3 px-3 text-sm;
+}
+
+.url-blog-inline {
+  @apply text-primary;
+}

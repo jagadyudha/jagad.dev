@@ -2,14 +2,14 @@
 https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript */
 code[class*='language-'],
 pre[class*='language-'] {
-  @apply whitespace-pre md:whitespace-pre;
+  @apply whitespace-pre md:whitespace-pre-wrap;
   color: #f8f8f2;
   background: 0 0;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 0.97em;
   text-align: left;
   word-spacing: normal;
-  word-break: normal;
+  word-break: break-all;
   line-height: 1.5;
   -moz-tab-size: 4;
   -o-tab-size: 4;
