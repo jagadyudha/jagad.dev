@@ -100,6 +100,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
   const enRouter = router.asPath.endsWith('-id')
     ? router.asPath.replace('-id', '')
     : router.asPath;
+  const generalSlug = slug.endsWith('-id') ? slug.replace('-id', '') : slug;
 
   React.useEffect(() => {
     const registerView = () =>
@@ -114,7 +115,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   const { title, description, date } = frontmatter;
-  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${enRouter}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
+  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${generalSlug}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
     title
   ).replace(`'`, '%27')}/jagad.dev/social.png`;
 
@@ -221,7 +222,7 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
         <div className='my-10 space-y-6'>
           <div>
             <span className='mb-4 flex justify-center'>Post Reactions</span>
-            <Reactions slug={slug} />
+            <Reactions slug={generalSlug} />
           </div>
           <div className='hidden xl:sticky xl:top-10 xl:my-0 xl:block xl:w-80 xl:self-start'>
             <span className='flex justify-center'>Ads</span>
