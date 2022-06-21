@@ -1,7 +1,7 @@
 ---
 title: 'Create Dynamic Open Graph Images with Cloudinary'
-description: 'Make an image more interactive with the use of CSS transitions.'
-date: '2022-06-20'
+description: 'Make dynamic Open Graph images with the help of Cloudinary URL transformations'
+date: '2022-06-21'
 tags:
   - opengraph
   - cloudinary
@@ -21,7 +21,7 @@ tags:
 
 ## Introduction
 
-Sharing the websites on social media is one of the most important things we can do to ensure that audience sees it. However, if we just show links, it will be difficult to gain the attention of the audience.
+Sharing websites on social media is one of the most important things we can do to ensure that an audience sees them. However, if we just show links, it will be difficult to gain the attention of the audience.
 
 With the Open Graph, we can control how our websites are shared on social media by displaying images, titles, descriptions, and links in a way that the audience is interested in seeing them.
 
@@ -32,9 +32,7 @@ With the Open Graph, we can control how our websites are shared on social media 
   height='856'
 />
 
-It can be seen that with the open graph, the website becomes more attractive when shared on social media.
-
-However, if we look at the website's meta tag, we can see that the image in the meta tag is static.
+It can be seen that with the open graph, the website becomes more attractive when shared on social media. However, if we look at the website's meta tag, we can see that the open graph image is static.
 
 ```html {14-17}
 <meta
@@ -56,9 +54,7 @@ However, if we look at the website's meta tag, we can see that the image in the 
 />
 ```
 
-So how can we make open graph images dynamic instead of making them one by one?
-
-In this post, we will together create dynamic open graph images with the help of cloudinary.
+So, instead of creating open graph images one by one, how can we make them dynamic? In this tutorial, we'll use cloudinary to build dynamic open graph images.
 
 <Image
   alt='Meme about Open Graph'
@@ -75,7 +71,7 @@ If you don't have a Cloudinary account yet, you can sign up now. More informatio
 
 ## Cloudinary Transformation
 
-With cloudinary, we can do URL transformations instead of using fancy editing tools. We can do this by put the transformation URL like this:
+With cloudinary, we can do URL transformations instead of using fancy editing tools. We can do this by accessing the URL like this:
 
 <div className='url-blog'>
   <div>
@@ -177,9 +173,7 @@ For information, in cloudinary, we do not need to provide image formats such as 
   height='630'
 />
 
-After that, we combine it with `header.png`, which is in the `/jagad.dev/posts/[slug]` folder.
-
-For example, I use the slug `steam-now-playing`.
+After that, we combine it with `header.png`, which is in the `/jagad.dev/posts/[slug]` folder. For example, if I use the slug `steam-now-playing`, the header image is in the `/jagad.dev/posts/steam-now-playing` folder.
 
 <div className='url-blog'>
   <div>
@@ -194,7 +188,7 @@ For example, I use the slug `steam-now-playing`.
   height='634'
 />
 
-Since I don't want to display just a square image in the open graph, I use `hr.png` to create a diagonal line to the left of the image.
+Since I don't want to display just a square header in the open graph, I use `hr.png` to create a diagonal line to the left of the image.
 
 <div className='url-blog'>
   <div>
