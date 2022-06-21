@@ -1,29 +1,29 @@
 ---
-title: 'Create Dynamic Open Graph Images with Cloudinary'
-description: 'Make dynamic Open Graph images with the help of Cloudinary URL transformations'
+title: 'Membuat Gambar Open Graph Dinamis dengan Cloudinary'
+description: 'Membuat gambar open graph dinamis dengan bantuan transformasi URL Cloudinary'
 date: '2022-06-21'
 tags:
   - opengraph
   - cloudinary
 ---
 
-## Table of Contents
+## Daftar isi
 
-1. [Introduction](#introduction)
-2. [Getting Started](#getting-started)
+1. [Pengantar](#pengantar)
+2. [Memulai Cloudinary](#memulai-cloudinary)
 3. [Cloudinary Transformation](#cloudinary-transformation)
-4. [Open Graph Design](#open-graph-design)
-5. [Dynamic Open Graph with Cloudinary](#dynamic-open-graph-with-cloudinary)
-6. [Implementation](#implementation)
-7. [Conclusion](#conclusion)
+4. [Desain Open Graph](#desain-open-graph)
+5. [Open Graph Dinamis dengan Cloudinary](#open-graph-dinamis-dengan-cloudinary)
+6. [Implementasi](#implementasi)
+7. [Kesimpulan](#kesimpulan)
 
 <Ads />
 
-## Introduction
+## Pengantar
 
-Sharing websites on social media is one of the most important things we can do to ensure that an audience sees them. However, if we just show links, it will be difficult to gain the attention of the audience.
+Berbagi situs web di media sosial adalah salah satu hal terpenting yang dapat kita lakukan untuk memastikan bahwa audiens melihatnya. Namun, jika kita hanya menampilkan tautan, akan sulit untuk menarik perhatian audiens.
 
-With the Open Graph, we can control how our websites are shared on social media by displaying images, titles, descriptions, and links in a way that the audience is interested in seeing them.
+Dengan Open Graph, kita dapat mengontrol bagaimana situs web kita dibagikan di media sosial dengan menampilkan gambar, judul, deskripsi, dan tautan dengan cara yang membuat audiens tertarik untuk melihatnya.
 
 <Image
   alt='Open graph Example'
@@ -32,7 +32,7 @@ With the Open Graph, we can control how our websites are shared on social media 
   height='856'
 />
 
-It can be seen that with the open graph, the website becomes more attractive when shared on social media. However, if we look at the website's meta tag, we can see that the open graph image is static.
+Terlihat bahwa dengan Open Graph, website menjadi lebih menarik saat dibagikan di media sosial. Namun, jika kita melihat tag meta situs web, kita dapat melihat bahwa Open Graph terbuka adalah statis.
 
 ```html {14-17}
 <meta
@@ -54,7 +54,7 @@ It can be seen that with the open graph, the website becomes more attractive whe
 />
 ```
 
-So, instead of creating open graph images one by one, how can we make them dynamic? In this tutorial, we'll use cloudinary to build dynamic open graph images.
+Daripada membuat gambar Open Graph satu per satu, bagaimana kita bisa membuatnya menjadi dinamis? Dalam tutorial ini, kita akan menggunakan cloudinary untuk membangun Open Graph yang dinamis.
 
 <Image
   alt='Meme about Open Graph'
@@ -63,15 +63,17 @@ So, instead of creating open graph images one by one, how can we make them dynam
   height='500'
 />
 
-## Getting Started
+## Memulai Cloudinary
 
-First of all, if you're unfamiliar with cloudinary, basically cloudinary is a cloud image hosting service that allows you to transform images and videos to load faster with no visual degradation.
+Pertama-tama, jika kalian tidak familiar dengan cloudinary, pada dasarnya cloudinary adalah layanan hosting gambar cloud yang memungkinkan kalian mengubah gambar dan video agar dimuat lebih cepat tanpa penurunan visual.
 
 If you don't have a Cloudinary account yet, you can sign up now. More information about crate account on cloudinary can be found at [Programmable Media Developer Get Started Guide | Cloudinary](https://cloudinary.com/documentation/how_to_integrate_cloudinary)
 
+Jika kalian belum memiliki akun Cloudinary, kalian dapat mendaftar sekarang. Informasi lebih lanjut tentang cara mendaftar di cloudinary dapat ditemukan di [Panduan Memulai Pengembang Media yang Dapat Diprogram | mendung](https://cloudinary.com/documentation/how_to_integrate_cloudinary)
+
 ## Cloudinary Transformation
 
-With cloudinary, we can do URL transformations instead of using fancy editing tools. We can do this by accessing the URL like this:
+Dengan cloudinary, kita dapat melakukan transformasi URL alih-alih menggunakan editing tools. Kita dapat melakukan ini dengan mengakses URL seperti ini:
 
 <div className='url-blog'>
   <div>
@@ -80,11 +82,11 @@ With cloudinary, we can do URL transformations instead of using fancy editing to
   </div>
 </div>
 
-There's a lot we can do with cloudinary, you can check the [documentation](https://cloudinary.com/documentation/image_transformation_reference) for more information. Here are some of the transformations that we can use:
+Ada banyak hal yang dapat kita lakukan dengan cloudinary, kalian dapat memeriksa [dokumentasinya](https://cloudinary.com/documentation/image_transformation_reference) untuk informasi lebih lanjut. Berikut adalah beberapa transformasi yang dapat kita gunakan:
 
-### Face detection-based image cropping
+### Pemangkasan gambar berbasis deteksi wajah
 
-By using the `c_crop`, `g_face` transformation, we can crop the image to the face of the person.
+Dengan menggunakan transformasi `c_crop`, `g_face`, kita dapat memotong gambar berdasarkan wajah.
 
 <div className='url-blog'>
   <div>
@@ -99,9 +101,9 @@ By using the `c_crop`, `g_face` transformation, we can crop the image to the fac
   height='781'
 />
 
-### Text overlay positioning
+### Pemosisian teks overlay
 
-By using the `l_text` transformation, we can overlay text on the image. For example if we want to overlay the text `Haiiiiiii` on the image, we can use the following transformation:
+Dengan menggunakan transformasi `l_text`, kita dapat meletakkan teks pada gambar. Misalnya jika kita ingin overlay teks `Haiiiiii` pada gambar, kita dapat menggunakan transformasi berikut:
 
 <div className='url-blog'>
   <div>
@@ -116,11 +118,11 @@ By using the `l_text` transformation, we can overlay text on the image. For exam
   height='819'
 />
 
-Cloudinary also provides a cookbook for creating transformations that can make it easier for us to customize images.
+Cloudinary juga menyediakan "buku masak" untuk membuat transformasi yang dapat memudahkan kita untuk kustomisasi gambar.
 
-## Open Graph Design
+## Desain Open Graph
 
-Before we start implementing the open graph with cloudinary transformations, we need to design the open graph in figma. This is the design result that we will use.
+Sebelum kita mulai mengimplementasikan open graph dengan transformasi cloudinary, kita perlu mendesain open graph di figma. Berikut adalah hasil desain yang akan kita gunakan.
 
 <Image
   alt='Design Result'
@@ -129,7 +131,7 @@ Before we start implementing the open graph with cloudinary transformations, we 
   height='1079'
 />
 
-After that, we can seperate the design into different parts.
+Setelah itu, kita dapat memisahkan desain menjadi beberapa bagian.
 
 <Image
   alt='Seperate Design Result'
@@ -138,11 +140,11 @@ After that, we can seperate the design into different parts.
   height='663'
 />
 
-I know that hr stands for horizontal rule, but I used it for a diagonal line. To be honest, I always use the hr name not only for horizontal but also for vertical.
+Saya paham bahwa hr adalah singkatan dari horizontal rule, tetapi saya menggunakannya untuk garis diagonal. Sejujurnya, saya selalu menggunakan nama hr tidak hanya untuk horizontal tetapi juga untuk vertikal.
 
-## Dynamic Open Graph with Cloudinary
+## Open Graph Dinamis dengan Cloudinary
 
-We need to structure folders in Cloudinary depending on the slug from posts to make the open graph dynamic. Here is the folder structure on the cloudinary that I have created.
+Kita perlu menyusun folder di Cloudinary tergantung pada slug dari postingan untuk membuat Open Graph menjadi dinamis. Berikut adalah struktur folder pada cloudinary yang telah saya buat.
 
 <Image
   alt='Cloudinary Structure Folder'
@@ -151,12 +153,12 @@ We need to structure folders in Cloudinary depending on the slug from posts to m
   height='812'
 />
 
-I put the design we separated earlier into two parts:
+Saya menempatkan desain yang kita pisahkan sebelumnya menjadi dua bagian:
 
-1. `social.png` and `hr.png` in the folder `/jagad.dev` (static)
-2. `header.png` in each post slug folder `/jagad.dev/post/[slug]` (dynamic)
+1. `social.png` dan `hr.png` di folder `/jagad.dev` (statis)
+2. `header.png` di setiap folder post slug `/jagad.dev/post/[slug]` (dinamis)
 
-Here is the implementation for displaying `social.png`.
+Berikut adalah implementasi untuk menampilkan `social.png`.
 
 <div className='url-blog'>
   <div>
@@ -164,7 +166,7 @@ Here is the implementation for displaying `social.png`.
   </div>
 </div>
 
-For information, in cloudinary, we do not need to provide image formats such as `.png` or `.jpg` in the url. Instead, the image format will be served as `.webp`
+Sebagai informasi, di cloudinary, kita tidak perlu menulis format gambar seperti `.png` atau `.jpg` di url. Sebagai gantinya, format gambar akan disajikan sebagai `.webp`.
 
 <Image
   alt='Showing Social'
@@ -173,7 +175,7 @@ For information, in cloudinary, we do not need to provide image formats such as 
   height='630'
 />
 
-After that, we combine it with `header.png`, which is in the `/jagad.dev/posts/[slug]` folder. For example, if I use the slug `steam-now-playing`, the header image is in the `/jagad.dev/posts/steam-now-playing` folder.
+Setelah itu kita gabungkan dengan `header.png` yang ada di folder `/jagad.dev/posts/[slug]`. Misalnya, jika saya menggunakan slug `steam-now-playing`, berarti gambar header ada di folder `/jagad.dev/posts/steam-now-playing`.
 
 <div className='url-blog'>
   <div>
@@ -188,7 +190,7 @@ After that, we combine it with `header.png`, which is in the `/jagad.dev/posts/[
   height='634'
 />
 
-Since I don't want to display just a square header in the open graph, I use `hr.png` to create a diagonal line to the left of the image.
+Karena tidak ingin hanya menampilkan header persegi di Open Graph, saya menggunakan `hr.png` untuk membuat garis diagonal di sebelah kiri gambar.
 
 <div className='url-blog'>
   <div>
@@ -203,7 +205,7 @@ Since I don't want to display just a square header in the open graph, I use `hr.
   height='786'
 />
 
-to create a dynamic post title, we can use a text overlay transformation like this:
+untuk membuat judul postingan yang dinamis, kita bisa menggunakan transformasi text overlay seperti berikut:
 
 <div className='url-blog'>
   <div>
@@ -218,15 +220,15 @@ to create a dynamic post title, we can use a text overlay transformation like th
   height='786'
 />
 
-## Implementation
+## Implementasi
 
-Implementation can be done very easily by changing the post slug and post title. The following is an example implementation using the JavaScript programming language.
+Implementasi dapat dilakukan dengan sangat mudah dengan mengubah post slug dan post title. Berikut ini adalah contoh implementasi menggunakan bahasa pemrograman JavaScript.
 
 ```javascript
 const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit,f_auto,fl_progressive,q_75/w_600,h_630,c_fill,l_jagad.dev:posts:${SLUG}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${TITLE}/jagad.dev/social`
 ```
 
-This is the result of the dynamic open graph that has been implemented on this website.
+Berikut adalah hasil dari open graph dinamis yang telah diimplementasikan pada website ini.
 
 <Image
   alt='Open Graph on this website'
@@ -235,6 +237,6 @@ This is the result of the dynamic open graph that has been implemented on this w
   height='959'
 />
 
-## Conclusion
+## Kesimpulan
 
-The advantage of creating dynamic open graphs with cloudinary is the fast load speed compared to using puppeteer or next-api-og-image.
+Keuntungan membuat open graph dinamis dengan cloudinary adalah kecepatan pemuatan yang cepat dibandingkan dengan menggunakan puppeteer atau next-api-og-image.
