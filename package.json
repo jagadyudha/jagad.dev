@@ -20,7 +20,7 @@
     "@types/twemoji": "^12.1.2",
     "adblock-detect-react": "^1.0.5",
     "esbuild": "^0.14.39",
-    "framer-motion": "^6.3.3",
+    "framer-motion": "^6.3.15",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "mdx-bundler": "^9.0.0",
