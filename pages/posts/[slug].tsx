@@ -4,7 +4,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
-import { useSWRConfig } from 'swr';
+import { BiMessageSquareCheck } from 'react-icons/bi';
 import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
 import Reactions from '@/components/posts/reaction';
@@ -32,6 +32,7 @@ export interface frontmatter {
   date: Date;
   tags: Array<string>;
   header: string;
+  contributors?: Array<string>;
 }
 
 export interface Props {
@@ -95,7 +96,6 @@ export const getStaticProps = async ({
 };
 
 const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
-  const { mutate } = useSWRConfig();
   const router = useRouter();
   const enRouter = router.asPath.endsWith('-id')
     ? router.asPath.replace('-id', '')
@@ -107,14 +107,14 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
       fetch(`/api/pageview/${enRouter}`, {
         method: 'POST',
       });
-    registerView();
+    // registerView();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
-  const { title, description, date } = frontmatter;
+  const { title, description, date, contributors } = frontmatter;
   const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${generalSlug}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
     title
   ).replace(`'`, '%27')}/jagad.dev/social.png`;
@@ -224,6 +224,21 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
             <span className='mb-4 flex justify-center'>Post Reactions</span>
             <Reactions slug={generalSlug} />
           </div>
+
+          {contributors && (
+            <div>
+              <span className='mb-4 flex justify-center'>Contributors</span>
+              <div className='rounded-md bg-background_100 p-5 '>
+                {contributors?.map((item, index) => (
+                  <span className='flex items-center' key={index}>
+                    <BiMessageSquareCheck className='mr-2 text-primary' />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className='hidden xl:sticky xl:top-10 xl:my-0 xl:block xl:w-80 xl:self-start'>
             <span className='flex justify-center'>Ads</span>
             <Ads />
