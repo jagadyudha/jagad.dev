@@ -12,7 +12,6 @@ import { getRecentlyGames } from '@/lib/steam';
 //seo
 import { NextSeo } from 'next-seo';
 import DataSeo from '@/_data/seo.json';
-import { cardTwitter } from '@/lib/seo';
 
 export async function getStaticProps() {
   const games = await getRecentlyGames();
