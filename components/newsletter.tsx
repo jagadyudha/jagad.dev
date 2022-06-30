@@ -38,16 +38,16 @@ const NewsLetter = () => {
         </p>
 
         <form onSubmit={contactSubmit}>
-          <div className='my-14 flex space-x-2'>
+          <div className='my-8 flex-none space-x-0 space-y-4 sm:my-14 sm:flex sm:space-y-0 sm:space-x-2'>
             <input
               ref={inputEl}
               type='email'
-              className='form-input w-full rounded-md border border-white border-opacity-20 bg-background py-3 text-gray-300  sm:py-3'
+              className='form-input w-full rounded-md border border-white border-opacity-20 bg-background py-2 text-gray-300  sm:py-4'
               placeholder='me@jagad.dev'
               required
             />
             <button
-              className='sm:text-md right-2 rounded-md bg-primary bg-opacity-100 px-3 py-1 text-sm text-white sm:px-5 sm:py-2'
+              className='text-md w-full rounded-md bg-primary bg-opacity-100 px-5 py-2 text-white sm:w-min sm:py-3'
               type='submit'
             >
               Subscribe

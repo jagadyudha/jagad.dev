@@ -135,7 +135,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
       />
 
       {/* frontmatter content */}
-      <div className='relative -mt-28 h-[105vh] w-screen bg-black md:w-[99.1vw]'>
+      <div className='relative -mt-28 min-h-[105vh]'>
         {/* Image */}
         <div className='absolute h-full w-full opacity-40'>
           <Image
@@ -149,7 +149,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         </div>
 
         {/* Metadata */}
-        <div className='relative flex h-full w-full items-center justify-center bg-gradient-to-t from-background to-transparent  text-center'>
+        <div className='relative flex h-full min-h-[105vh] w-full items-center justify-center bg-gradient-to-t from-background to-transparent  pt-20 text-center sm:pt-0'>
           <div className='mx-5 max-w-3xl'>
             {/* Title */}
             <h1 className='text-white sm:text-5xl'>{title}</h1>

@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { IoCloseOutline, IoMenuOutline } from 'react-icons/io5';
-import { motion } from 'framer-motion';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -33,7 +31,7 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop View */}
-      <nav className='relative z-10 hidden justify-center  py-6 pt-10 sm:flex'>
+      <nav className='relative z-10 hidden justify-center py-6 pt-10 sm:flex'>
         <div className='text-lg sm:space-x-14 sm:pr-2 md:ml-10 md:space-x-16 md:pr-4'>
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
@@ -50,43 +48,24 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile View */}
-      <nav
-        className={`relative z-20 block ${isOpen && 'bg-background'} sm:hidden`}
-      >
-        <div className='flex justify-end py-6 px-6 text-white'>
-          <button
-            className='rounded-md p-[5px]'
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? (
-              <IoCloseOutline className={`text-2xl`} />
-            ) : (
-              <IoMenuOutline className='text-2xl' />
-            )}
-          </button>
-        </div>
-        {isOpen && (
-          <div className='container absolute z-20 h-screen bg-background px-8'>
-            {navigation.map((item, index) => (
-              <Link key={item.name} href={item.href}>
-                <a>
-                  <motion.div
-                    initial='pageInitial'
-                    animate='pageAnimate'
-                    variants={{
-                      pageInitial: { opacity: 0, x: '-100%' },
-                      pageAnimate: { opacity: 1, x: 0 },
-                    }}
-                    transition={{ duration: 0.1 * index, ease: 'easeInOut' }}
-                    className={`border-b border-white border-opacity-10 py-5 text-white`}
-                  >
+      <nav className='relative z-20 w-full rounded-t-3xl bg-opacity-90 py-5 px-0 xs:px-4 sm:hidden'>
+        <div className='flex justify-center space-x-6'>
+          {navigation.map((item) => (
+            <Link key={item.name} href={item.href}>
+              {item.href === checkSlug ? (
+                <a className=' text-gray-300'>
+                  <p className='flex justify-center border-b-2 border-primary pb-1 text-sm '>
                     {item.name}
-                  </motion.div>
+                  </p>
                 </a>
-              </Link>
-            ))}
-          </div>
-        )}
+              ) : (
+                <a className=' text-gray-300'>
+                  <p className='flex justify-center text-sm'>{item.name}</p>
+                </a>
+              )}
+            </Link>
+          ))}
+        </div>
       </nav>
     </>
   );

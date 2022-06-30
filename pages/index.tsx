@@ -19,7 +19,7 @@ const Home = ({
       <div className='prose prose-invert my-10 max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline md:my-24 xl:flex xl:space-x-4'>
         <div className='text-center xl:max-w-md xl:text-left'>
           <h1 className='text-3xl text-white sm:text-5xl'>
-            {`Hi there! My name is`}{' '}
+            {`Hey there! My name is`}{' '}
             <span className='text-primary'>Jagad Yudha Awali</span>
           </h1>
           <p className='text-md text-gray-400 sm:text-lg '>
