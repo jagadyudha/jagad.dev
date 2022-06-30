@@ -4,7 +4,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
-import { BiMessageSquareCheck } from 'react-icons/bi';
+import { BiMessageSquareCheck, BiDownArrowAlt } from 'react-icons/bi';
 import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
 import Reactions from '@/components/posts/reaction';
@@ -25,7 +25,6 @@ import { Embed } from '@/components/embed';
 
 //data
 import DataSeo from '@/_data/seo.json';
-import { Item } from 'framer-motion/types/components/Reorder/Item';
 
 //types
 export interface frontmatter {
@@ -61,12 +60,6 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
     : router.asPath;
   const generalSlug = slug.endsWith('-id') ? slug.replace('-id', '') : slug;
 
-  //check en router once
-  React.useEffect(() => {
-    setIsEn(!router.asPath.endsWith('-id'));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   React.useEffect(() => {
     //get toc
     const HeadingArr: TocProps[] = [];
@@ -86,6 +79,12 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
     //   });
     // registerView();
 
+    if (isEn) {
+      setIsEn(!router.asPath.endsWith('-id'));
+    } else {
+      return;
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
@@ -95,6 +94,8 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
   const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${generalSlug}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
     title
   ).replace(`'`, '%27')}/jagad.dev/social.png`;
+
+  console.log(isEn);
 
   return (
     <main className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>
@@ -135,67 +136,84 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         description={description}
       />
 
-      <div className='flex-none xl:flex xl:space-x-8'>
-        {/* Content */}
-        <div className='mx-auto max-w-3xl'>
-          <div className='text-center'>
+      {/* frontmatter content */}
+      <div className='relative -mt-28 h-[105vh] w-screen bg-black md:w-[99.1vw]'>
+        {/* Image */}
+        <div className='absolute h-full w-full opacity-40'>
+          <Image
+            src={`/jagad.dev/posts/${
+              slug.endsWith('-id') ? slug.replace('-id', '') : slug
+            }/header`}
+            layout='fill'
+            objectFit='cover'
+            alt={title}
+          />
+        </div>
+
+        {/* Metadata */}
+        <div className='relative flex h-full w-full items-center justify-center bg-gradient-to-t from-background to-transparent  text-center'>
+          <div className='mx-5 max-w-3xl'>
+            {/* Title */}
             <h1 className='text-white sm:text-5xl'>{title}</h1>
+
+            {/* Description */}
+            <p className='text-md mx-auto text-center text-gray-400 sm:text-lg'>
+              {description}
+            </p>
+
             <div className='my-10 text-gray-400'>
-              <p className='text-xl'>
-                {`Posted on ${new Date(date).toLocaleString('default', {
-                  month: 'long',
-                })} ${new Date(date).getDate()}, ${new Date(
+              {/* Date */}
+              <p className='text-md'>
+                {`Posted by Jagad on ${new Date(date).toLocaleString(
+                  'default',
+                  {
+                    month: 'long',
+                  }
+                )} ${new Date(date).getDate()}, ${new Date(
                   date
                 ).getFullYear()}`}
               </p>
+
+              {/* Views */}
               <div className='text-md -mt-10 flex items-center justify-center gap-1'>
                 <ViewsCount slug={`${enRouter}`} />•
                 <p>{readingTime(content).text} </p>
               </div>
             </div>
 
-            <div className='relative mx-auto h-56  md:h-72 xl:h-96'>
-              <div className='absolute h-full w-full'>
-                <Image
-                  className='rounded-md'
-                  src={`/jagad.dev/posts/${
-                    slug.endsWith('-id') ? slug.replace('-id', '') : slug
-                  }/header`}
-                  layout='fill'
-                  objectFit='cover'
-                  alt={title}
-                />
-              </div>
+            {/* Button to change languages */}
+            <div className='mx-auto  text-center'>
+              {isTwoLanguages && (
+                <div className='mx-auto '>
+                  <Link
+                    href={`/posts/${
+                      slug.endsWith('-id')
+                        ? slug.replace('-id', '')
+                        : slug.concat('-id')
+                    }`}
+                  >
+                    <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
+                      Read in{' '}
+                      {!slug.endsWith('-id') ? 'Bahasa Indonesia' : 'English'}
+                    </button>
+                  </Link>
+                </div>
+              )}
             </div>
-            <p className='text-md mx-auto  text-left text-gray-400 sm:text-lg'>
-              {description}
-            </p>
           </div>
+        </div>
+      </div>
 
-          {/* Button to change languages */}
-          <div className='mx-auto  text-left'>
-            {isTwoLanguages && (
-              <div className='mx-auto '>
-                <Link
-                  href={`/posts/${
-                    slug.endsWith('-id')
-                      ? slug.replace('-id', '')
-                      : slug.concat('-id')
-                  }`}
-                >
-                  <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
-                    Read in{' '}
-                    {!slug.endsWith('-id') ? 'Bahasa Indonesia' : 'English'}
-                  </button>
-                </Link>
-              </div>
-            )}
-          </div>
-
+      <div
+        id='article'
+        className='mx-auto my-10 max-w-6xl flex-none px-6 sm:my-20 md:px-24 xl:flex xl:space-x-8 xl:px-0'
+      >
+        {/* Content */}
+        <div className='mx-auto max-w-3xl'>
           {/* Table of Contents */}
-          <div className='my-10 rounded-md bg-background_100 p-5'>
+          <div className='my-10 '>
             <span className='mb-5 block text-xl font-bold text-white'>
-              {isEn ? 'Table of Contents' : 'Daftar Isi'}
+              Table of Contents
             </span>
             <ol>
               {toc.length > 0 &&
@@ -211,7 +229,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
                       </li>
                     )}
 
-                    {item.level === 3 && (
+                    {/* {item.level === 3 && (
                       <Link href={`#${item.id}`}>
                         <a>
                           <span className='text-md my-0.5 ml-4 block '>
@@ -219,14 +237,16 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
                           </span>
                         </a>
                       </Link>
-                    )}
+                    )} */}
                   </div>
                 ))}
             </ol>
           </div>
 
           {/* Adsense */}
-          <Ads />
+          <div className='block xl:hidden'>
+            <Ads />
+          </div>
 
           {/* Article content */}
           <article className='mx-auto '>
@@ -235,34 +255,47 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         </div>
 
         {/* Sidebar */}
-        <div className='my-10 space-y-6'>
+        <div className='my-10 max-w-full space-y-6 xl:max-w-xs'>
           <div>
             <span className='mb-4 flex justify-center'>Post Reactions</span>
             <Reactions slug={generalSlug} />
           </div>
 
-          {contributors && (
-            <div>
-              <span className='mb-4 flex justify-center'>Contributors</span>
-              <div className='rounded-md bg-background_100 p-5 '>
-                {contributors?.map((item, index) => (
-                  <span className='flex items-center' key={index}>
-                    <BiMessageSquareCheck className='mr-2 text-primary' />
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* Contributor List */}
 
-          <div className='hidden xl:sticky xl:top-10 xl:my-0 xl:block xl:w-80 xl:self-start'>
+          <div>
+            <span className='mb-4 flex justify-center'>Contributors</span>
+            <div className='rounded-md bg-background_100 p-5 '>
+              {contributors && (
+                <>
+                  {contributors?.map((item, index) => (
+                    <span className='flex items-center' key={index}>
+                      <BiMessageSquareCheck className='mr-2 text-primary' />
+                      {item}
+                    </span>
+                  ))}
+                  <hr className='my-8' />
+                </>
+              )}
+
+              <p>
+                Jika ada yang salah dalam penulisan di website ini meliputi tata
+                bahasa, typo, dll. Silahkan kontribusi disini.
+              </p>
+            </div>
+          </div>
+
+          <div className='hidden xl:sticky xl:top-10 xl:my-0 xl:block xl:self-start'>
             <span className='flex justify-center'>Ads</span>
             <Ads />
           </div>
         </div>
       </div>
-      <hr className='my-8 opacity-20' />
-      <Comment />
+      {/* Comment Section */}
+      <section className='max-w-6xl px-6 md:mx-auto'>
+        <hr className='my-8 opacity-20' />
+        <Comment />
+      </section>
     </main>
   );
 };

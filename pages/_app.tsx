@@ -57,18 +57,32 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
         src='https://analytics.jagad.dev/umami.js'
       />
       <Layout key={router.pathname}>
-        <motion.main
-          initial='pageInitial'
-          animate='pageAnimate'
-          variants={{
-            pageInitial: { opacity: 0 },
-            pageAnimate: { opacity: 1 },
-          }}
-          transition={{ duration: 0.4, ease: 'easeInOut' }}
-          className='mx-auto my-10 max-w-6xl px-6 sm:my-20 md:px-24 xl:px-0'
-        >
-          <Component {...pageProps} />
-        </motion.main>
+        {![`/posts/[slug]`].includes(appProps.router.pathname) ? (
+          <motion.main
+            initial='pageInitial'
+            animate='pageAnimate'
+            variants={{
+              pageInitial: { opacity: 0 },
+              pageAnimate: { opacity: 1 },
+            }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            className='mx-auto my-10 max-w-6xl px-6 sm:my-20 md:px-24 xl:px-0'
+          >
+            <Component {...pageProps} />
+          </motion.main>
+        ) : (
+          <motion.main
+            initial='pageInitial'
+            animate='pageAnimate'
+            variants={{
+              pageInitial: { opacity: 0 },
+              pageAnimate: { opacity: 1 },
+            }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+          >
+            <Component {...pageProps} />
+          </motion.main>
+        )}
       </Layout>
     </ThemeProvider>
   );

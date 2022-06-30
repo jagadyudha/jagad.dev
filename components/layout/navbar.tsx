@@ -33,7 +33,7 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop View */}
-      <nav className='hidden justify-center bg-background py-6 pt-10 sm:flex'>
+      <nav className='relative z-10 hidden justify-center  py-6 pt-10 sm:flex'>
         <div className='text-lg sm:space-x-14 sm:pr-2 md:ml-10 md:space-x-16 md:pr-4'>
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
@@ -50,10 +50,12 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile View */}
-      <nav className='block sm:hidden'>
+      <nav
+        className={`relative z-10 block ${isOpen && 'bg-background'} sm:hidden`}
+      >
         <div className='flex justify-end py-6 px-6 text-white'>
           <button
-            className='rounded-md bg-background_100 p-[5px]'
+            className='rounded-md p-[5px]'
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? (
