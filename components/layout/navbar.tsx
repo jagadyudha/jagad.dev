@@ -51,7 +51,9 @@ const Navbar = () => {
 
       {/* Mobile View */}
       <nav
-        className={`relative z-10 block ${isOpen && 'bg-background'} sm:hidden`}
+        className={`relative z-20 block ${
+          isOpen && 'bg-background bg-opacity-90'
+        } sm:hidden`}
       >
         <div className='flex justify-end py-6 px-6 text-white'>
           <button
@@ -66,7 +68,7 @@ const Navbar = () => {
           </button>
         </div>
         {isOpen && (
-          <div className='container absolute z-20 h-screen bg-background px-8'>
+          <div className='container absolute z-20 h-screen bg-background bg-opacity-90 px-8 backdrop-blur-sm backdrop-filter'>
             {navigation.map((item, index) => (
               <Link key={item.name} href={item.href}>
                 <a>
@@ -77,8 +79,8 @@ const Navbar = () => {
                       pageInitial: { opacity: 0, x: '-100%' },
                       pageAnimate: { opacity: 1, x: 0 },
                     }}
-                    transition={{ duration: 0.2 * index, ease: 'easeInOut' }}
-                    className={`border-b border-white border-opacity-20 py-5 text-white`}
+                    transition={{ duration: 0.1 * index, ease: 'easeInOut' }}
+                    className={`border-b border-white border-opacity-10 py-5 text-white`}
                   >
                     {item.name}
                   </motion.div>

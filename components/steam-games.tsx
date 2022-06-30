@@ -33,7 +33,7 @@ const Games: React.FC<GameProps> = ({ items }) => {
                 alt={item.name}
               />
             </div>
-            <div className='relative z-10 flex h-full items-end rounded-md p-4 '>
+            <div className='relative z-0 flex h-full items-end rounded-md p-4 '>
               <div className=' rounded-mdl'>
                 <h3 className='bg-black bg-opacity-80 p-1'>{item.name}</h3>
 
