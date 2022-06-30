@@ -197,29 +197,32 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
             <span className='mb-5 block text-xl font-bold text-white'>
               {isEn ? 'Table of Contents' : 'Daftar Isi'}
             </span>
-            {toc.length > 0 &&
-              toc.map((item) => (
-                <div className='prose-a:no-underline' key={item.id}>
-                  {item.level === 2 && (
-                    <Link href={`#${item.id}`}>
-                      <a>
-                        <span className='text-md my-0.5 block text-gray-400'>
-                          {item.name}
-                        </span>
-                      </a>
-                    </Link>
-                  )}
-                  {item.level === 3 && (
-                    <Link href={`#${item.id}`}>
-                      <a>
-                        <span className='my-1 ml-4 block text-gray-400 '>
-                          {item.name}
-                        </span>
-                      </a>
-                    </Link>
-                  )}
-                </div>
-              ))}
+            <ol>
+              {toc.length > 0 &&
+                toc.map((item) => (
+                  <div key={item.id}>
+                    {item.level === 2 && (
+                      <li>
+                        <Link href={`#${item.id}`}>
+                          <a>
+                            <span className='text-md my-0.5 '>{item.name}</span>
+                          </a>
+                        </Link>
+                      </li>
+                    )}
+
+                    {item.level === 3 && (
+                      <Link href={`#${item.id}`}>
+                        <a>
+                          <span className='text-md my-0.5 ml-4 block '>
+                            {item.name}
+                          </span>
+                        </a>
+                      </Link>
+                    )}
+                  </div>
+                ))}
+            </ol>
           </div>
 
           {/* Adsense */}
