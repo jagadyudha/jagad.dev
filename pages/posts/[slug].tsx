@@ -25,7 +25,9 @@ import { Embed } from '@/components/embed';
 
 //data
 import DataSeo from '@/_data/seo.json';
+import { Item } from 'framer-motion/types/components/Reorder/Item';
 
+//types
 export interface frontmatter {
   title: string;
   description: string;
@@ -40,77 +42,50 @@ export interface Props {
   content: string;
   slug: string;
   code: string;
-  isBahasa: boolean;
+  isTwoLanguages: boolean;
 }
 
-export const getStaticPaths = async () => {
-  const paths = getContentPaths('posts');
-
-  return {
-    paths,
-    fallback: false,
-  };
+export type TocProps = {
+  id: string;
+  name: string | null;
+  level: number;
 };
 
-export const getStaticProps = async ({
-  params,
-}: {
-  params: { slug: string };
-}) => {
-  //check if slug is id
-  const posts = getContentIndex('posts');
-  const checkTranslation = posts.filter(
-    (item) =>
-      item.slug ===
-      `${
-        params.slug.endsWith('id')
-          ? params.slug.replace('-id', '')
-          : params.slug
-      }-id`
-  );
-
-  const isBahasa = checkTranslation.length > 0 ? true : false;
-  let data;
-  try {
-    data = await getContentSlug(
-      params.slug,
-      'posts' //<--- content --->
-    );
-  } catch (e) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const { frontmatter, code, content } = data;
-
-  return {
-    props: {
-      frontmatter,
-      content,
-      code,
-      isBahasa,
-      slug: params.slug,
-    },
-  };
-};
-
-const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
+//jsx
+const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
+  const [toc, setToc] = React.useState([] as Array<TocProps>);
+  const [isEn, setIsEn] = React.useState<boolean>(true);
   const router = useRouter();
-  const enRouter = router.asPath.endsWith('-id')
-    ? router.asPath.replace('-id', '')
-    : router.asPath;
+  const enRouter = !isEn ? router.asPath.replace('-id', '') : router.asPath;
+
   const generalSlug = slug.endsWith('-id') ? slug.replace('-id', '') : slug;
 
   React.useEffect(() => {
-    const registerView = () =>
-      fetch(`/api/pageview/${enRouter}`, {
-        method: 'POST',
+    //check en router
+    setIsEn(!router.asPath.endsWith('-id'));
+  }, []);
+
+  React.useEffect(() => {
+    //get toc
+    const HeadingArr: TocProps[] = [];
+    const headings = document.querySelectorAll('article h2, article h3');
+    headings.forEach((heading) => {
+      HeadingArr.push({
+        id: heading.id,
+        name: heading.textContent,
+        level: +heading.tagName.replace('H', ''),
       });
-    registerView();
+    });
+    setToc(HeadingArr);
+
+    // const registerView = () =>
+    //   fetch(`/api/pageview/${enRouter}`, {
+    //     method: 'POST',
+    //   });
+    // registerView();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [router]);
 
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
@@ -195,8 +170,9 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
             </p>
           </div>
 
+          {/* Button to change languages */}
           <div className='mx-auto  text-left'>
-            {isBahasa && (
+            {isTwoLanguages && (
               <div className='mx-auto '>
                 <Link
                   href={`/posts/${
@@ -213,6 +189,41 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
               </div>
             )}
           </div>
+
+          {/* Table of Contents */}
+          <div className='my-10 rounded-md bg-background_100 p-5'>
+            <span className='mb-5 block text-xl font-bold text-white'>
+              {isEn ? 'Table of Contents' : 'Daftar Isi'}
+            </span>
+            {toc.length > 0 &&
+              toc.map((item) => (
+                <div className='prose-a:no-underline' key={item.id}>
+                  {item.level === 2 && (
+                    <Link href={`#${item.id}`}>
+                      <a>
+                        <span className='text-md my-0.5 block text-gray-400'>
+                          {item.name}
+                        </span>
+                      </a>
+                    </Link>
+                  )}
+                  {item.level === 3 && (
+                    <Link href={`#${item.id}`}>
+                      <a>
+                        <span className='my-1 ml-4 block text-gray-400 '>
+                          {item.name}
+                        </span>
+                      </a>
+                    </Link>
+                  )}
+                </div>
+              ))}
+          </div>
+
+          {/* Adsense */}
+          <Ads />
+
+          {/* Article content */}
           <article className='mx-auto '>
             <Component components={{ Image, Ads, a: Link, Embed } as any} />
           </article>
@@ -249,6 +260,58 @@ const Posts = ({ frontmatter, content, slug, code, isBahasa }: Props) => {
       <Comment />
     </main>
   );
+};
+
+export const getStaticPaths = async () => {
+  const paths = getContentPaths('posts');
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { slug: string };
+}) => {
+  //check if slug is id
+  const posts = getContentIndex('posts');
+  const checkTranslation = posts.filter(
+    (item) =>
+      item.slug ===
+      `${
+        params.slug.endsWith('id')
+          ? params.slug.replace('-id', '')
+          : params.slug
+      }-id`
+  );
+
+  const isTwoLanguages = checkTranslation.length > 0 ? true : false;
+  let data;
+  try {
+    data = await getContentSlug(
+      params.slug,
+      'posts' //<--- content --->
+    );
+  } catch (e) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const { frontmatter, code, content } = data;
+
+  return {
+    props: {
+      frontmatter,
+      content,
+      code,
+      isTwoLanguages,
+      slug: params.slug,
+    },
+  };
 };
 
 export default Posts;
