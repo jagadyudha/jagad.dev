@@ -51,9 +51,7 @@ const Navbar = () => {
 
       {/* Mobile View */}
       <nav
-        className={`relative z-20 block ${
-          isOpen && 'bg-background bg-opacity-90'
-        } sm:hidden`}
+        className={`relative z-20 block ${isOpen && 'bg-background'} sm:hidden`}
       >
         <div className='flex justify-end py-6 px-6 text-white'>
           <button
@@ -68,7 +66,7 @@ const Navbar = () => {
           </button>
         </div>
         {isOpen && (
-          <div className='container absolute z-20 h-screen bg-background bg-opacity-90 px-8 backdrop-blur-sm backdrop-filter'>
+          <div className='container absolute z-20 h-screen bg-background px-8'>
             {navigation.map((item, index) => (
               <Link key={item.name} href={item.href}>
                 <a>

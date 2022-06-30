@@ -85,7 +85,7 @@ export async function getStaticProps() {
       'how-to-create-a-whatsapp-bot-with-node-js',
       'custom-image-transition-in-nextjs-with-tailwind-css',
       'steam-now-playing',
-      'is-pyscript-going-to-take-the-place-of-javascript',
+      'dynamic-open-graph-cloudinary',
     ].includes(item.slug)
   );
 
