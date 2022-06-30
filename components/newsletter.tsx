@@ -28,7 +28,7 @@ const NewsLetter = () => {
   };
 
   return (
-    <div className='rounded-md border border-white border-opacity-10 p-6 shadow-md sm:p-12 lg:text-center'>
+    <div className='rounded-md border border-white border-opacity-10 bg-background_100 p-6 shadow-md sm:p-12 lg:text-center'>
       <div className='mx-auto max-w-3xl'>
         <h3 className=' text-2xl font-bold text-white lg:text-4xl'>
           Subscribe to the newsletter{' '}
@@ -37,8 +37,8 @@ const NewsLetter = () => {
           Every two weeks, I publish programming-related blogs.
         </p>
 
-        <form className='my-14' onSubmit={contactSubmit}>
-          <div className='flex space-x-2'>
+        <form onSubmit={contactSubmit}>
+          <div className='my-14 flex space-x-2'>
             <input
               ref={inputEl}
               type='email'
@@ -55,9 +55,9 @@ const NewsLetter = () => {
           </div>
 
           {message && <p className='mt-2 text-white'>{message}</p>}
-          <p className='my-5 text-gray-400'>
+          <span className='my-5 block text-gray-400'>
             Only article updates will be sent to your email address.
-          </p>
+          </span>
         </form>
       </div>
     </div>

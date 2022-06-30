@@ -95,8 +95,6 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
     title
   ).replace(`'`, '%27')}/jagad.dev/social.png`;
 
-  console.log(isEn);
-
   return (
     <main className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>
       {/* Next Seo */}

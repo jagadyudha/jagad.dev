@@ -40,7 +40,7 @@ const Home = ({
           </div>
         </div>
 
-        <div className='my-10 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:my-0'>
+        <div className='my-10 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:my-0'>
           {featuredPost
             .sort((a, b) => {
               return (
@@ -69,9 +69,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className='my-20 bg-background_100'>
-        <NewsLetter />
-      </div>
+      <NewsLetter />
     </main>
   );
 };
