@@ -31,8 +31,8 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop View */}
-      <nav className='relative z-10 hidden justify-center py-6 pt-10 sm:flex'>
-        <div className='text-lg sm:space-x-14 sm:pr-2 md:ml-10 md:space-x-16 md:pr-4'>
+      <nav className='relative z-10 hidden justify-center bg-gradient-to-t from-transparent to-background py-6 pt-10 sm:flex'>
+        <div className='text-lg sm:space-x-10 sm:pr-2 md:ml-10 md:space-x-14 md:pr-4'>
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               {item.href === checkSlug ? (
@@ -40,7 +40,7 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ) : (
-                <a className='text-gray-400 hover:text-primary'>{item.name}</a>
+                <a className='text-gray-300 hover:text-primary'>{item.name}</a>
               )}
             </Link>
           ))}

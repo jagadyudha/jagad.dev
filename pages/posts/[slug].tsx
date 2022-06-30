@@ -8,6 +8,8 @@ import { BiMessageSquareCheck, BiDownArrowAlt } from 'react-icons/bi';
 import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
 import Reactions from '@/components/posts/reaction';
+import { HiOutlineClipboardList } from 'react-icons/hi';
+import { IoCloseOutline } from 'react-icons/io5';
 
 //lib
 import {
@@ -53,6 +55,7 @@ export type TocProps = {
 //jsx
 const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
   const [toc, setToc] = React.useState([] as Array<TocProps>);
+  const [tocOpen, setTocOpen] = React.useState(false);
   const [isEn, setIsEn] = React.useState<boolean>(true);
   const router = useRouter();
   const enRouter = router.asPath.endsWith('-id')
@@ -73,11 +76,11 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
     });
     setToc(HeadingArr);
 
-    // const registerView = () =>
-    //   fetch(`/api/pageview/${enRouter}`, {
-    //     method: 'POST',
-    //   });
-    // registerView();
+    const registerView = () =>
+      fetch(`/api/pageview/${enRouter}`, {
+        method: 'POST',
+      });
+    registerView();
 
     if (isEn) {
       setIsEn(!router.asPath.endsWith('-id'));
@@ -133,6 +136,72 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         publisherLogo='/assets/images/me.png'
         description={description}
       />
+
+      {/* Toc Modal Button */}
+      <button
+        onClick={() => setTocOpen(!tocOpen)}
+        className='fixed top-20 right-0 z-20'
+      >
+        <div className='rounded-l-md bg-background_100 p-2'>
+          <span className='absolute left-0 top-0 inline-flex h-3 w-3 animate-ping rounded-full bg-primary opacity-75'></span>
+          <HiOutlineClipboardList className='text-2xl' />
+        </div>
+      </button>
+
+      {/* ToC Modal Open */}
+      <>
+        {tocOpen && (
+          <div
+            onClick={() => setTocOpen(!tocOpen)}
+            className='fixed right-0 top-0 z-20 h-screen w-full'
+          ></div>
+        )}
+        <div
+          className={`${
+            tocOpen ? ' translate-x-0' : 'translate-x-full'
+          } fixed right-0 top-0 z-20 h-screen w-3/4 border-l border-l-white border-opacity-20 bg-background px-4 py-10 transition-all duration-300 md:w-1/3 xl:w-1/6`}
+        >
+          <button
+            onClick={() => setTocOpen(!tocOpen)}
+            className=' float-right -mt-1 rounded-md p-[5px]'
+          >
+            <IoCloseOutline className={`text-2xl text-white`} />
+          </button>
+          <span className='text-md mb-5 block font-bold text-white'>
+            Contents
+          </span>
+          <ol>
+            {toc.length > 0 &&
+              toc.map((item) => (
+                <div key={item.id}>
+                  {item.level === 2 && (
+                    <li>
+                      <Link href={`#${item.id}`}>
+                        <a>
+                          <span className='text-md my-0.5 '>{item.name}</span>
+                        </a>
+                      </Link>
+                    </li>
+                  )}
+
+                  <ul>
+                    {item.level === 3 && (
+                      <li>
+                        <Link href={`#${item.id}`}>
+                          <a>
+                            <span className='text-md my-0.5 block '>
+                              {item.name}
+                            </span>
+                          </a>
+                        </Link>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              ))}
+          </ol>
+        </div>
+      </>
 
       {/* frontmatter content */}
       <div className='relative -mt-28 min-h-[105vh]'>
@@ -204,43 +273,10 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
 
       <div
         id='article'
-        className='mx-auto my-10 max-w-6xl flex-none px-6 sm:my-20 md:px-24 xl:flex xl:space-x-8 xl:px-0'
+        className='mx-auto my-10 max-w-5xl flex-none px-6 sm:my-20 md:px-24 xl:flex xl:space-x-8 xl:px-0'
       >
         {/* Content */}
-        <div className='mx-auto max-w-3xl'>
-          {/* Table of Contents */}
-          <div className='my-10 '>
-            <span className='mb-5 block text-xl font-bold text-white'>
-              Table of Contents
-            </span>
-            <ol>
-              {toc.length > 0 &&
-                toc.map((item) => (
-                  <div key={item.id}>
-                    {item.level === 2 && (
-                      <li>
-                        <Link href={`#${item.id}`}>
-                          <a>
-                            <span className='text-md my-0.5 '>{item.name}</span>
-                          </a>
-                        </Link>
-                      </li>
-                    )}
-
-                    {/* {item.level === 3 && (
-                      <Link href={`#${item.id}`}>
-                        <a>
-                          <span className='text-md my-0.5 ml-4 block '>
-                            {item.name}
-                          </span>
-                        </a>
-                      </Link>
-                    )} */}
-                  </div>
-                ))}
-            </ol>
-          </div>
-
+        <div className='mx-auto max-w-2xl'>
           {/* Adsense */}
           <div className='block xl:hidden'>
             <Ads />
@@ -277,8 +313,8 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
               )}
 
               <p>
-                Jika ada yang salah dalam penulisan di website ini meliputi tata
-                bahasa, typo, dll. Silahkan kontribusi disini.
+                The writing on this website may contain errors in grammar,
+                punctuation, etc. Please make a contribution here.
               </p>
             </div>
           </div>
