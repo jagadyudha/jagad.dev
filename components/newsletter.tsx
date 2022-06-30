@@ -1,11 +1,6 @@
 import React from 'react';
-import useSWR from 'swr';
 
 const NewsLetter = () => {
-  //getSubscriber
-  const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
-  const { data } = useSWR('/api/newsletter', fetcher);
-
   const inputEl = React.useRef<HTMLInputElement>(null);
   const [message, setMessage] = React.useState('');
 
@@ -33,34 +28,36 @@ const NewsLetter = () => {
   };
 
   return (
-    <div>
-      <div className='prose prose-invert max-w-none rounded-md border border-white border-opacity-10 p-6 shadow-md sm:p-8'>
-        <p className='text-3xl font-bold text-white'>
+    <div className='rounded-md border border-white border-opacity-10 p-6 shadow-md sm:p-12 lg:text-center'>
+      <div className='mx-auto max-w-3xl'>
+        <h3 className=' text-2xl font-bold text-white lg:text-4xl'>
           Subscribe to the newsletter{' '}
+        </h3>
+        <p className='text-md my-3 text-gray-300 lg:text-xl'>
+          Every two weeks, I publish programming-related blogs.
         </p>
-        <p className='-mt-4'>
-          Every two weeks, I publish programming-related blogs 🚀
-        </p>
-        <p>No spam - unsubscribe at any time!</p>
-        <form onSubmit={contactSubmit}>
-          <div className='relative'>
+
+        <form className='my-14' onSubmit={contactSubmit}>
+          <div className='flex space-x-2'>
             <input
               ref={inputEl}
               type='email'
-              className='form-input w-full rounded-md bg-background py-2 text-gray-300 sm:py-3'
+              className='form-input w-full rounded-md border border-white border-opacity-20 bg-background py-3 text-gray-300  sm:py-3'
               placeholder='me@jagad.dev'
               required
             />
             <button
-              className='sm:text-md absolute right-2 top-[7px] rounded-md bg-primary bg-opacity-100 px-3 py-1 text-sm text-white sm:px-5 sm:py-2'
+              className='sm:text-md right-2 rounded-md bg-primary bg-opacity-100 px-3 py-1 text-sm text-white sm:px-5 sm:py-2'
               type='submit'
             >
               Subscribe
             </button>
           </div>
 
-          {message && <p>{message}</p>}
-          <p>{data?.count} Subscriber</p>
+          {message && <p className='mt-2 text-white'>{message}</p>}
+          <p className='my-5 text-gray-400'>
+            Only article updates will be sent to your email address.
+          </p>
         </form>
       </div>
     </div>
