@@ -56,13 +56,15 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
   const [toc, setToc] = React.useState([] as Array<TocProps>);
   const [isEn, setIsEn] = React.useState<boolean>(true);
   const router = useRouter();
-  const enRouter = !isEn ? router.asPath.replace('-id', '') : router.asPath;
-
+  const enRouter = router.asPath.endsWith('-id')
+    ? router.asPath.replace('-id', '')
+    : router.asPath;
   const generalSlug = slug.endsWith('-id') ? slug.replace('-id', '') : slug;
 
+  //check en router once
   React.useEffect(() => {
-    //check en router
     setIsEn(!router.asPath.endsWith('-id'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
