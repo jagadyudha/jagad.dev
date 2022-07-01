@@ -66,7 +66,7 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
               pageAnimate: { opacity: 1 },
             }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className='mx-auto my-10 max-w-6xl px-6 sm:my-20 md:px-24 xl:px-0'
+            className='mx-auto my-8 max-w-6xl px-6 sm:my-12 md:px-24 lg:my-20 xl:px-0'
           >
             <Component {...pageProps} />
           </motion.main>

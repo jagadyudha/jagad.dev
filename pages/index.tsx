@@ -16,7 +16,7 @@ const Home = ({
   return (
     <main>
       {/* Hero Section */}
-      <div className='prose prose-invert my-10 max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline md:my-24 xl:flex xl:space-x-4'>
+      <div className='prose prose-invert max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline md:my-24 xl:flex xl:space-x-4'>
         <div className='text-center xl:max-w-md xl:text-left'>
           <h1 className='text-3xl text-white sm:text-5xl'>
             {`Hey there! My name is`}{' '}

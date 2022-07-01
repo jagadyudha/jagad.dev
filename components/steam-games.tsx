@@ -14,8 +14,8 @@ export interface GameProps {
 
 const Games: React.FC<GameProps> = ({ items }) => {
   return (
-    <section className='container mb-16'>
-      <div className='grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 '>
+    <section className='mb-16'>
+      <div className='grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3'>
         {items.slice(0, 6).map((item: GameListProps) => (
           <a
             target='_blank'
