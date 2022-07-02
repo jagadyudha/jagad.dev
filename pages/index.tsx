@@ -75,7 +75,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts,
+      posts:filterFeaturedPost,
     },
     revalidate: 1,
   };
