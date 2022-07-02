@@ -8,11 +8,9 @@ import FeaturedPost from '@/components/posts/featured';
 import NewsLetter from '@/components/newsletter';
 
 //lib
-import { getContentIndex } from '@/lib/fetcher';
+import { getContentIndex, fetcher } from '@/lib/fetcher';
 
-const Home = ({
-  featuredPost,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <main>
       {/* Hero Section */}
@@ -41,31 +39,22 @@ const Home = ({
         </div>
 
         <div className='my-10 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:my-0'>
-          {featuredPost
-            .sort((a, b) => {
-              return (
-                new Date(b.frontmatter.date).valueOf() -
-                new Date(a.frontmatter.date).valueOf()
-              );
-            })
-            .slice(0, 4)
-            .map((featuredPost) => {
-              const { slug, content } = featuredPost;
-              const { title, description, date, tags, header } =
-                featuredPost.frontmatter;
-              return (
-                <FeaturedPost
-                  key={slug}
-                  slug={slug}
-                  title={title}
-                  description={description}
-                  header={header}
-                  date={date}
-                  tags={tags}
-                  readtime={readingTime(content).text}
-                />
-              );
-            })}
+          {posts.map((item) => {
+            const { slug, content } = item;
+            const { title, description, date, tags, header } = item.frontmatter;
+            return (
+              <FeaturedPost
+                key={slug}
+                slug={slug}
+                title={title}
+                description={description}
+                header={header}
+                date={date}
+                tags={tags}
+                readtime={readingTime(content).text}
+              />
+            );
+          })}
         </div>
       </div>
 
@@ -76,26 +65,19 @@ const Home = ({
 
 export async function getStaticProps() {
   const posts = getContentIndex('posts');
-  const projects = getContentIndex('projects');
-
-  const featuredPost = posts.filter((item) =>
-    [
-      'how-to-create-a-whatsapp-bot-with-node-js',
-      'custom-image-transition-in-nextjs-with-tailwind-css',
-      'steam-now-playing',
-      'dynamic-open-graph-cloudinary',
-    ].includes(item.slug)
+  const featuredPost = await fetcher(
+    `${process.env.SITE_URL}/api/featuredpost`
   );
 
-  const featuredProject = projects.filter((item) =>
-    ['citizenapp', 'pemerintah-desa-kebonsari'].includes(item.slug)
+  const filterFeaturedPost = posts.filter((item) =>
+    featuredPost.includes(item.slug)
   );
 
   return {
     props: {
-      featuredPost,
-      featuredProject,
+      posts: filterFeaturedPost,
     },
+    revalidate: 1,
   };
 }
 
