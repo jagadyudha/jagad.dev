@@ -5,6 +5,19 @@ import { bundleMDX } from 'mdx-bundler';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
+import { createClient } from 'next-sanity';
+
+export type SanityProps = {
+  markdown: string;
+  slug: string;
+};
+
+const client = createClient({
+  projectId: 'p9bgom2n',
+  dataset: 'production',
+  apiVersion: '2022-03-25',
+  useCdn: false,
+});
 
 export const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -12,22 +25,36 @@ export const fetcher = async (url: string) => {
   return data;
 };
 
-export const getContentIndex = (dir: string) => {
-  const files = fs.readdirSync(`./contents/${dir}`);
-  const data = files.map((fileName) => {
-    const slug = fileName.replace('.mdx', '');
-    const fullPath = path.join(process.cwd(), `./contents/${dir}`, fileName);
-    const readFile = fs.readFileSync(fullPath, 'utf-8');
-    const { data: frontmatter, content } = matter(readFile);
+export const getContentIndex = async () => {
+  const res = await client.fetch(`*[_type == "posts"]`);
+  const data = res.map((item: SanityProps) => {
+    const { data: frontmatter, content } = matter(item.markdown);
     return {
-      slug,
       frontmatter,
       content,
+      slug: item.slug,
     };
   });
 
   return data;
 };
+
+// export const getContentIndex = (dir: string) => {
+//   const files = fs.readdirSync(`./contents/${dir}`);
+//   const data = files.map((fileName) => {
+//     const slug = fileName.replace('.mdx', '');
+//     const fullPath = path.join(process.cwd(), `./contents/${dir}`, fileName);
+//     const readFile = fs.readFileSync(fullPath, 'utf-8');
+//     const { data: frontmatter, content } = matter(readFile);
+//     return {
+//       slug,
+//       frontmatter,
+//       content,
+//     };
+//   });
+
+//   return data;
+// };
 
 export const getContentPaths = (dir: string) => {
   const files = fs.readdirSync(`./contents/${dir}`);

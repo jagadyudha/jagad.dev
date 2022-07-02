@@ -6,17 +6,33 @@ import { useRouter } from 'next/router';
 import { IoSearch } from 'react-icons/io5';
 
 //lib
-import { cardTwitter } from '@/lib/seo';
-import { getContentIndex } from '@/lib/fetcher';
+import { getContentIndex, SanityProps } from '@/lib/fetcher';
 
 //data
 import DataSeo from '@/_data/seo.json';
 
 //components
+
 import PostCard from '@/components/posts/card';
 
+export type FrontmatterProps = {
+  title: string;
+  description: string;
+  date: Date;
+  tags: Array<string>;
+  header: string;
+  contributors?: Array<string>;
+};
+
+export type Props = {
+  frontmatter: FrontmatterProps;
+  content: string;
+  slug: string;
+};
+
 export async function getStaticProps() {
-  const posts = getContentIndex('posts');
+  const posts = await getContentIndex();
+
   return {
     props: {
       posts,
@@ -25,9 +41,12 @@ export async function getStaticProps() {
 }
 
 const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log(posts);
   // filter languages
-  const bahasaPosts = posts.filter((item) => item.slug.endsWith('-id'));
-  const englishPosts = posts.filter((item) => !item.slug.endsWith('-id'));
+  const bahasaPosts = posts.filter((item: Props) => item.slug.endsWith('-id'));
+  const englishPosts = posts.filter(
+    (item: Props) => !item.slug.endsWith('-id')
+  );
 
   // set default to english
   const [languages, setLanguages] = React.useState('en');
@@ -49,7 +68,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     };
 
     const fetchByTags = async () => {
-      const tag = post.filter((element) =>
+      const tag = post.filter((element: Props) =>
         element.frontmatter.tags.some(
           (item: string) => query.tag == item.toLocaleLowerCase()
         )
@@ -124,7 +143,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
               new Date(a.frontmatter.date).valueOf()
             );
           })
-          .filter((item) => {
+          .filter((item: Props) => {
             if (search === '') {
               return item;
             } else if (
@@ -135,7 +154,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
               return item;
             }
           })
-          .map((post) => {
+          .map((post: Props) => {
             const { slug, content } = post;
             const { title, description, date, tags, header } = post.frontmatter;
             return (
