@@ -5,13 +5,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { slug }: any = req.query;
-  const fullSlug = `/${slug.join('/')}`;
+  const { slug } = req.query;
 
   if (req.method === 'POST') {
-    await supabase.from('views').insert({ slug: fullSlug });
+    await supabase.from('views').insert({ slug });
     await supabase.rpc('increment', {
-      slug_: fullSlug,
+      slug_: slug,
     });
     res.status(200).json({ status: 'ok' });
   }
@@ -20,7 +19,7 @@ export default async function handler(
     const { data } = await supabase
       .from('views')
       .select('*')
-      .eq('slug', fullSlug)
+      .eq('slug', slug)
       .single();
     res.status(200).json({ count: data?.count || 0 });
   }
