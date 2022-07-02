@@ -65,17 +65,17 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export async function getStaticProps() {
   const posts = getContentIndex('posts');
-  const featuredPost = await fetcher(
-    `${process.env.SITE_URL}/api/featuredpost`
-  );
+  // const featuredPost = await fetcher(
+  //   `${process.env.SITE_URL}/api/featuredpost`
+  // );
 
-  const filterFeaturedPost = posts.filter((item) =>
-    featuredPost.includes(item.slug)
-  );
+  // const filterFeaturedPost = posts.filter((item) =>
+  //   featuredPost.includes(item.slug)
+  // );
 
   return {
     props: {
-      posts: filterFeaturedPost,
+      posts,
     },
     revalidate: 1,
   };

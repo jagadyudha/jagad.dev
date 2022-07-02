@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from '@/components/image';
 import Link from 'next/link';
+import ViewsCount from '@/components/views-count';
 
 export interface Props {
   slug: string;
@@ -31,11 +32,7 @@ const Featured: React.FC<Props> = (props) => {
           <div>
             <h3>
               <span className='mr-2 rounded-md bg-black bg-opacity-40 p-1 text-sm text-primary'>
-                {`${new Date(date).toLocaleString('default', {
-                  month: 'short',
-                })} ${new Date(date).getDate()}, ${new Date(
-                  date
-                ).getFullYear()}`}
+                <ViewsCount slug={slug} />
               </span>
               {title}{' '}
             </h3>
