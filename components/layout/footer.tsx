@@ -98,7 +98,7 @@ const nav = [
       { name: 'Storybook', href: 'https://storybook.jagad.dev/' },
       {
         name: 'Resume',
-        href: 'https://drive.google.com/file/d/1j2qaw6opVFUKugMQU3tlNk4aTORjbtZv/view?usp=sharing',
+        href: 'https://drive.google.com/file/d/1ccDHfmjjHuhBs32unU1KmfPY0yebvoc9/view?usp=sharing',
       },
     ],
   },
