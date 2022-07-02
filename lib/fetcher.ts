@@ -6,6 +6,12 @@ import rehypePrism from 'rehype-prism-plus';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 
+export const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  const data = await res.json();
+  return data;
+};
+
 export const getContentIndex = (dir: string) => {
   const files = fs.readdirSync(`./contents/${dir}`);
   const data = files.map((fileName) => {
