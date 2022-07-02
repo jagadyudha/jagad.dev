@@ -65,9 +65,7 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export async function getStaticProps() {
   const posts = getContentIndex('posts');
-  const featuredPost = await fetcher(
-    `${process.env.SITE_URL}/api/featuredpost`
-  );
+  const featuredPost = await fetcher(`https://jagad.dev/api/featuredpost`);
 
   const filterFeaturedPost = posts.filter((item) =>
     featuredPost.includes(item.slug)
@@ -75,7 +73,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts:filterFeaturedPost,
+      posts: filterFeaturedPost,
     },
     revalidate: 1,
   };
