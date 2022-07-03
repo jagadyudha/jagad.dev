@@ -8,7 +8,7 @@ export default async function handler(
   if (req.method === 'GET') {
     const { data } = await supabase
       .from('views')
-      .select('slug.s')
+      .select('slug')
       .order('count', { ascending: false })
       .limit(4);
 
