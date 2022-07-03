@@ -9,23 +9,7 @@ import NewsLetter from '@/components/newsletter';
 
 //lib
 import { getContentIndex, fetcher } from '@/lib/fetcher';
-
-export type FrontmatterProps = {
-  title: string;
-  description: string;
-  date: Date;
-  tags: Array<string>;
-  header: string;
-  contributors?: Array<string>;
-};
-
-export type Props = {
-  frontmatter: FrontmatterProps;
-  content: string;
-  slug: {
-    current: string;
-  };
-};
+import { Props } from './posts';
 
 const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -82,17 +66,19 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export async function getStaticProps() {
   const posts = await getContentIndex('posts');
-  const featuredPost = await fetcher(`https://jagad.dev/api/featuredpost`);
-
-  const filterFeaturedPost = posts.filter((item: Props) =>
-    featuredPost.includes(item.slug.current)
+  const featuredPost = await fetcher(
+    `${process.env.SITE_URL}/api/featuredpost`
   );
+
+  const filterFeaturedPost = featuredPost.map((item: string) => {
+    const post = posts.find((post: Props) => post.slug.current === item);
+    return post;
+  });
 
   return {
     props: {
       posts: filterFeaturedPost,
     },
-    revalidate: 1,
   };
 }
 
