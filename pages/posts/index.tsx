@@ -27,11 +27,13 @@ export type FrontmatterProps = {
 export type Props = {
   frontmatter: FrontmatterProps;
   content: string;
-  slug: string;
+  slug: {
+    current: string;
+  };
 };
 
 export async function getStaticProps() {
-  const posts = await getContentIndex();
+  const posts = await getContentIndex('posts');
 
   return {
     props: {
@@ -41,11 +43,12 @@ export async function getStaticProps() {
 }
 
 const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(posts);
   // filter languages
-  const bahasaPosts = posts.filter((item: Props) => item.slug.endsWith('-id'));
+  const bahasaPosts = posts.filter((item: Props) =>
+    item.slug.current.endsWith('-id')
+  );
   const englishPosts = posts.filter(
-    (item: Props) => !item.slug.endsWith('-id')
+    (item: Props) => !item.slug.current.endsWith('-id')
   );
 
   // set default to english
@@ -160,8 +163,8 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
             return (
               <PostCard
                 header={header}
-                key={slug}
-                slug={slug}
+                key={slug.current}
+                slug={slug.current}
                 title={title}
                 description={description}
                 date={date}
