@@ -37,7 +37,7 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile View */}
-      <nav className='relative z-20 w-full bg-opacity-90 px-0 xs:px-4 sm:hidden'>
+      <nav className='relative z-20 mt-3 w-full bg-opacity-90 px-0 xs:px-4 sm:hidden'>
         <div className='flex justify-center space-x-6'>
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
