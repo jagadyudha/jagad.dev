@@ -9,6 +9,7 @@ import NewsLetter from '@/components/newsletter';
 
 //lib
 import { getContentIndex, fetcher } from '@/lib/fetcher';
+import { Props } from './posts';
 
 const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -39,13 +40,13 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </div>
 
         <div className='my-10 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:my-0'>
-          {posts.map((item) => {
+          {posts.map((item: Props) => {
             const { slug, content } = item;
             const { title, description, date, tags, header } = item.frontmatter;
             return (
               <FeaturedPost
-                key={slug}
-                slug={slug}
+                key={slug.current}
+                slug={slug.current}
                 title={title}
                 description={description}
                 header={header}
@@ -64,12 +65,15 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 };
 
 export async function getStaticProps() {
-  const posts = getContentIndex('posts');
-  const featuredPost = await fetcher(`https://jagad.dev/api/featuredpost`);
-
-  const filterFeaturedPost = posts.filter((item) =>
-    featuredPost.includes(item.slug)
+  const posts = await getContentIndex('posts');
+  const featuredPost = await fetcher(
+    `${process.env.SITE_URL}/api/featuredpost`
   );
+
+  const filterFeaturedPost = featuredPost.map((item: string) => {
+    const post = posts.find((post: Props) => post.slug.current === item);
+    return post;
+  });
 
   return {
     props: {

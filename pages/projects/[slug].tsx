@@ -10,6 +10,7 @@ import customLink from '@/components/customLink';
 //lib
 import { cardTwitter } from '@/lib/seo';
 import { getContentPaths, getContentSlug } from '@/lib/fetcher';
+
 //data
 import DataSeo from '@/_data/seo.json';
 
@@ -24,16 +25,18 @@ export interface frontmatter {
 export interface slugProps {
   frontmatter: frontmatter;
   content: string;
-  slug: string;
+  slug: {
+    current: string;
+  };
   code: string;
 }
 
 export const getStaticPaths = async () => {
-  const paths = getContentPaths('projects');
+  const paths = await getContentPaths('projects');
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 export const getStaticProps = async ({
@@ -59,16 +62,18 @@ export const getStaticProps = async ({
   return {
     props: {
       frontmatter,
-      content,
       code,
-      slug: params.slug,
+      slug: {
+        current: params.slug,
+      },
     },
+    revalidate: 1,
   };
 };
 
-const ProjectsSlug = ({ frontmatter, content, code, slug }: slugProps) => {
+const ProjectsSlug = ({ frontmatter, code, slug }: slugProps) => {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
-  const { title, description, date, stack, header } = frontmatter;
+  const { title, description, date } = frontmatter;
 
   const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,b_auto:predominant_gradient:2,c_pad,l_jagad.dev:projects:${slug}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
     title
@@ -79,10 +84,10 @@ const ProjectsSlug = ({ frontmatter, content, code, slug }: slugProps) => {
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
         description={description}
-        canonical={`${DataSeo.url}/projects/${slug}`}
+        canonical={`${DataSeo.url}/projects/${slug.current}`}
         openGraph={{
           type: 'article',
-          url: `${DataSeo.url}/projects/${slug}`,
+          url: `${DataSeo.url}/projects/${slug.current}`,
           title: `${title} — Jagad Yudha Awali`,
           description: description,
           images: [
@@ -111,7 +116,7 @@ const ProjectsSlug = ({ frontmatter, content, code, slug }: slugProps) => {
           <div className='absolute h-full w-full'>
             <Image
               className='rounded-md'
-              src={`/jagad.dev/projects/${slug}/header`}
+              src={`/jagad.dev/projects/${slug.current}/header`}
               layout='fill'
               objectFit='cover'
               alt={title}

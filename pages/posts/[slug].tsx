@@ -41,7 +41,9 @@ export interface frontmatter {
 export interface Props {
   frontmatter: frontmatter;
   content: string;
-  slug: string;
+  slug: {
+    current: string;
+  };
   code: string;
   isTwoLanguages: boolean;
 }
@@ -58,7 +60,9 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
   const [tocOpen, setTocOpen] = React.useState(false);
   const [isEn, setIsEn] = React.useState<boolean>(true);
   const router = useRouter();
-  const allSlug = slug.endsWith('-id') ? slug.replace('-id', '') : slug;
+  const allSlug = slug.current.endsWith('-id')
+    ? slug.current.replace('-id', '')
+    : slug.current;
 
   React.useEffect(() => {
     //get toc
@@ -101,10 +105,10 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
         description={description}
-        canonical={`${DataSeo.url}/posts/${slug}`}
+        canonical={`${DataSeo.url}/posts/${slug.current}`}
         openGraph={{
           type: 'article',
-          url: `${DataSeo.url}/posts/${slug}`,
+          url: `${DataSeo.url}/posts/${slug.current}`,
           title: `${title} — Jagad Yudha Awali`,
           description: description,
           images: [
@@ -123,7 +127,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
 
       {/* JsonLd */}
       <ArticleJsonLd
-        url={`${DataSeo.url}/posts/${slug}`}
+        url={`${DataSeo.url}/posts/${slug.current}`}
         title={`${title} — Jagad Yudha Awali`}
         images={[ogimage]}
         datePublished={new Date(date).toISOString()}
@@ -206,7 +210,9 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         <div className='absolute h-full w-full opacity-40'>
           <Image
             src={`/jagad.dev/posts/${
-              slug.endsWith('-id') ? slug.replace('-id', '') : slug
+              slug.current.endsWith('-id')
+                ? slug.current.replace('-id', '')
+                : slug.current
             }/header`}
             layout='fill'
             objectFit='cover'
@@ -251,14 +257,16 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
                 <div className='mx-auto '>
                   <Link
                     href={`/posts/${
-                      slug.endsWith('-id')
-                        ? slug.replace('-id', '')
-                        : slug.concat('-id')
+                      slug.current.endsWith('-id')
+                        ? slug.current.replace('-id', '')
+                        : slug.current.concat('-id')
                     }`}
                   >
                     <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
                       Read in{' '}
-                      {!slug.endsWith('-id') ? 'Bahasa Indonesia' : 'English'}
+                      {!slug.current.endsWith('-id')
+                        ? 'Bahasa Indonesia'
+                        : 'English'}
                     </button>
                   </Link>
                 </div>
@@ -332,11 +340,11 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
 };
 
 export const getStaticPaths = async () => {
-  const paths = getContentPaths('posts');
+  const paths = await getContentPaths('posts');
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
@@ -346,10 +354,10 @@ export const getStaticProps = async ({
   params: { slug: string };
 }) => {
   //check if slug is id
-  const posts = getContentIndex('posts');
+  const posts = await getContentIndex('posts');
   const checkTranslation = posts.filter(
-    (item) =>
-      item.slug ===
+    (item: Props) =>
+      item.slug.current ===
       `${
         params.slug.endsWith('id')
           ? params.slug.replace('-id', '')
@@ -358,6 +366,7 @@ export const getStaticProps = async ({
   );
 
   const isTwoLanguages = checkTranslation.length > 0 ? true : false;
+
   let data;
   try {
     data = await getContentSlug(
@@ -378,8 +387,11 @@ export const getStaticProps = async ({
       content,
       code,
       isTwoLanguages,
-      slug: params.slug,
+      slug: {
+        current: params.slug,
+      },
     },
+    revalidate: 1,
   };
 };
 
