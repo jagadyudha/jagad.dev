@@ -70,8 +70,8 @@ const nav = [
         href: 'https://www.linkedin.com/in/jagad-yudha-39a4a51b6/',
       },
       {
-        name: 'Youtube',
-        href: 'https://www.youtube.com/c/noobsecurity_/videos',
+        name: 'Dribbble',
+        href: 'https://dribbble.com/jagadyudhaawali',
       },
       { name: 'Polywork', href: 'https://www.polywork.com/imyour_universe' },
     ],
