@@ -28,7 +28,7 @@ const Featured: React.FC<Props> = (props) => {
             alt={title}
           />
         </div>
-        <div className='relative z-10 flex h-full min-h-[300px] items-end rounded-md bg-background bg-opacity-30 p-4 md:min-h-full lg:min-h-[350px] xl:min-h-full'>
+        <div className='relative z-10 flex h-full min-h-[300px] items-end rounded-md bg-background bg-opacity-30 p-4 md:min-h-full lg:py-0 xl:min-h-full xl:py-4'>
           <div>
             <h3>
               <span className='mr-2 rounded-md bg-black bg-opacity-40 p-1 text-sm text-primary'>

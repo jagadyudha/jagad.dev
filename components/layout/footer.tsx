@@ -6,9 +6,9 @@ function footer() {
   return (
     <footer className='bg-background_dark  opacity-80 hover:opacity-100'>
       {/* Licensed under the MIT License. */}
-      <div className='mx-8 max-w-6xl flex-none justify-between py-10 md:mx-24 xl:mx-auto xl:flex xl:flex-row-reverse'>
+      <div className='mx-8 max-w-6xl flex-none justify-between py-10 md:mx-24 lg:mx-auto lg:flex lg:flex-row-reverse'>
         {/* Nav Link */}
-        <div className='grid grid-cols-2 gap-10 text-left sm:grid-cols-3 sm:text-center xl:gap-24 xl:py-0 xl:text-left'>
+        <div className='grid grid-cols-2 gap-10 text-left sm:grid-cols-3 sm:text-center lg:gap-24 lg:py-0 lg:text-left'>
           {nav.map((item) => (
             <div key={item.menu}>
               <p className='font-medium text-white'>
