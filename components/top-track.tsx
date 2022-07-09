@@ -5,7 +5,7 @@ export interface SpotifyProps {
 
 const Spotify: React.FC<SpotifyProps> = ({ items }) => {
   return (
-    <div className='grid grid-cols-1 gap-10  sm:grid-cols-2 xl:grid-cols-3'>
+    <div className='grid grid-cols-1 gap-10  sm:grid-cols-2 lg:grid-cols-3'>
       {items.map((item: any, index: number) => {
         const trackName = item.track.name;
         const trackImg = item.track.album.images[0].url;

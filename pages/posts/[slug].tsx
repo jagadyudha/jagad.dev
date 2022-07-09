@@ -278,12 +278,12 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
 
       <div
         id='article'
-        className='mx-auto my-10 max-w-5xl flex-none px-6 sm:my-20 md:px-24 xl:flex xl:space-x-8 xl:px-0'
+        className='mx-auto my-10 max-w-6xl flex-none px-6 sm:my-20 md:px-24 lg:flex lg:space-x-8 xl:px-0'
       >
         {/* Content */}
         <div className='mx-auto max-w-2xl'>
           {/* Adsense */}
-          <div className='block xl:hidden'>
+          <div className='block lg:hidden'>
             <Ads />
           </div>
 
