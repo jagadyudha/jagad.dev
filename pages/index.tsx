@@ -15,7 +15,7 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <main>
       {/* Hero Section */}
-      <div className='s prose prose-invert max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline md:my-20 lg:flex lg:space-x-8 xl:my-24'>
+      <div className='s prose prose-invert my-16 max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline md:my-20 lg:flex lg:space-x-8 xl:my-24'>
         <div className='mx-auto max-w-4xl text-center lg:max-w-md lg:text-left'>
           <h1 className='text-3xl text-white sm:text-5xl'>
             {`Hey there! My name is`}{' '}
@@ -39,7 +39,7 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           </div>
         </div>
 
-        <div className=' grid grid-cols-1 gap-6 sm:grid-cols-2 xl:my-0'>
+        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 xl:my-0'>
           {posts.map((item: Props) => {
             const { slug, content } = item;
             const { title, description, date, tags, header } = item.frontmatter;
