@@ -18,7 +18,6 @@ export interface postProps {
 
 const PostCard: React.FC<postProps> = (props) => {
   const { slug, title, description, date, tags, readtime } = props;
-  const router = useRouter();
 
   const { isRead } = useIsRead(
     slug.endsWith('-id') ? slug.replace('-id', '') : slug
@@ -51,7 +50,7 @@ const PostCard: React.FC<postProps> = (props) => {
             {isRead && (
               <span className='flex items-center text-primary opacity-50'>
                 <IoCheckmarkSharp className='mr-1' />
-                Already read
+                Read
               </span>
             )}
           </p>
