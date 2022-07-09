@@ -21,6 +21,6 @@ export default async function handler(
       .select('*')
       .eq('slug', slug)
       .single();
-    res.status(200).json({ count: data?.count || 0 });
+    res.status(200).json(data?.count || 0);
   }
 }

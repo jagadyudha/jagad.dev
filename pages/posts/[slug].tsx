@@ -11,6 +11,7 @@ import Reactions from '@/components/posts/reaction';
 import { HiOutlineClipboardList } from 'react-icons/hi';
 import { IoCloseOutline } from 'react-icons/io5';
 import useIsRead from '@/hooks/useIsRead';
+import useViewCount from '@/hooks/useViewCount';
 
 //lib
 import {
@@ -61,11 +62,13 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
   const [tocOpen, setTocOpen] = React.useState(false);
   const [isEn, setIsEn] = React.useState<boolean>(true);
   const router = useRouter();
-  const allSlug = slug.current.endsWith('-id')
+  const generalSlug = slug.current.endsWith('-id')
     ? slug.current.replace('-id', '')
     : slug.current;
 
-  const { setIsRead } = useIsRead(allSlug);
+  // custom hooks for register (isRead)
+  const { setIsRead } = useIsRead(generalSlug);
+  const { setViewCount } = useViewCount(generalSlug);
 
   React.useEffect(() => {
     //get toc
@@ -80,15 +83,11 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
     });
     setToc(HeadingArr);
 
+    //set View Count
+    setViewCount();
+
     //Set already read to true
     setIsRead();
-
-    //Increament views
-    const registerView = () =>
-      fetch(`/api/pageview/${allSlug}`, {
-        method: 'POST',
-      });
-    registerView();
 
     if (isEn) {
       setIsEn(!router.asPath.endsWith('-id'));
@@ -102,7 +101,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   const { title, description, date, contributors } = frontmatter;
-  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${allSlug}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
+  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${generalSlug}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
     title
   ).replace(`'`, '%27')}/jagad.dev/social.png`;
 
@@ -253,7 +252,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
 
               {/* Views */}
               <div className='text-md -mt-10 flex items-center justify-center gap-1'>
-                <ViewsCount slug={`${allSlug}`} />•
+                <ViewsCount slug={generalSlug} />•
                 <p>{readingTime(content).text} </p>
               </div>
             </div>
@@ -304,7 +303,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         <div className='my-10 max-w-full space-y-6 xl:max-w-xs'>
           <div>
             <span className='mb-4 flex justify-center'>Post Reactions</span>
-            <Reactions slug={allSlug} />
+            <Reactions slug={generalSlug} />
           </div>
 
           {/* Contributor List */}
