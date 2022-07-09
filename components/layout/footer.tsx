@@ -90,6 +90,10 @@ const nav = [
   {
     menu: 'Extra',
     content: [
+      {
+        name: 'Resume',
+        href: 'https://drive.google.com/file/d/1ccDHfmjjHuhBs32unU1KmfPY0yebvoc9/view?usp=sharing',
+      },
       { name: 'Source Code', href: 'https://github.com/jagadyudha/jagad.dev' },
       {
         name: 'Analytics',
@@ -97,8 +101,8 @@ const nav = [
       },
       { name: 'Storybook', href: 'https://storybook.jagad.dev/' },
       {
-        name: 'Resume',
-        href: 'https://drive.google.com/file/d/1ccDHfmjjHuhBs32unU1KmfPY0yebvoc9/view?usp=sharing',
+        name: 'Books',
+        href: 'https://jagadyudha.notion.site/jagadyudha/Reading-List-e5a47c93a900407e882db9b8989c605d',
       },
     ],
   },
