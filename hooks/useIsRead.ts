@@ -11,7 +11,7 @@ const useIsRead = (slug: string) => {
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       const read = JSON.parse(localStorage.getItem(slug) as string);
-      setIsRead(read.read || false);
+      setIsRead(read?.read ?? false);
     }
   }, [hydrated, slug]);
 

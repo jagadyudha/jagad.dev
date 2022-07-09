@@ -18,7 +18,6 @@ export interface postProps {
 
 const PostCard: React.FC<postProps> = (props) => {
   const { slug, title, description, date, tags, readtime } = props;
-  const router = useRouter();
 
   const { isRead } = useIsRead(
     slug.endsWith('-id') ? slug.replace('-id', '') : slug
