@@ -12,7 +12,6 @@ import { getContentIndex, SanityProps } from '@/lib/fetcher';
 import DataSeo from '@/_data/seo.json';
 
 //components
-
 import PostCard from '@/components/posts/card';
 
 export type FrontmatterProps = {
@@ -85,6 +84,15 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     if (query.tag) {
       fetchByTags();
     }
+
+    // const getLocalStorage = () => {
+    //   const concat = post.map((item: Props) => {
+    //     const data = localStorage.getItem(item.slug.current.replace('-id', ''));
+    //     return { ...item, localstorage: JSON.parse(data as string) };
+    //   });
+    //   setPost(concat);
+    // };
+    // getLocalStorage();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, languages]);

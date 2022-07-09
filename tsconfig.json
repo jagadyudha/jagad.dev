@@ -18,7 +18,8 @@
       "@/components/*": ["components/*"],
       "@/_data/*": ["_data/*"],
       "@/pages/*": ["pages/*"],
-      "@/lib/*": ["lib/*"]
+      "@/lib/*": ["lib/*"],
+      "@/hooks/*": ["hooks/*"]
     },
     "incremental": true
   },

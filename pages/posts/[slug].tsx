@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import Reactions from '@/components/posts/reaction';
 import { HiOutlineClipboardList } from 'react-icons/hi';
 import { IoCloseOutline } from 'react-icons/io5';
+import useIsRead from '@/hooks/useIsRead';
 
 //lib
 import {
@@ -64,6 +65,8 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
     ? slug.current.replace('-id', '')
     : slug.current;
 
+  const { setIsRead } = useIsRead(allSlug);
+
   React.useEffect(() => {
     //get toc
     const HeadingArr: TocProps[] = [];
@@ -77,6 +80,10 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
     });
     setToc(HeadingArr);
 
+    //Set already read to true
+    setIsRead();
+
+    //Increament views
     const registerView = () =>
       fetch(`/api/pageview/${allSlug}`, {
         method: 'POST',

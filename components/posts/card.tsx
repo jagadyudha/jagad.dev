@@ -3,6 +3,8 @@ import Image from '@/components/image';
 import Tags from '@/components/posts/tags';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import useIsRead from '@/hooks/useIsRead';
+import { IoCheckmarkSharp } from 'react-icons/io5';
 
 export interface postProps {
   slug: string;
@@ -17,6 +19,10 @@ export interface postProps {
 const PostCard: React.FC<postProps> = (props) => {
   const { slug, title, description, date, tags, readtime } = props;
   const router = useRouter();
+
+  const { isRead } = useIsRead(
+    slug.endsWith('-id') ? slug.replace('-id', '') : slug
+  );
 
   return (
     <Link href={`/posts/${slug}`} key={slug}>
@@ -36,10 +42,18 @@ const PostCard: React.FC<postProps> = (props) => {
         </div>
 
         <div className='relative '>
-          <p className='text-md'>
-            {`Posted on ${new Date(date).toLocaleString('default', {
+          <p className='text-md flex space-x-4 text-white'>
+            <span>{`${new Date(date).toLocaleString('default', {
               month: 'long',
-            })} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
+            })} ${new Date(date).getDate()}, ${new Date(
+              date
+            ).getFullYear()}`}</span>
+            {isRead && (
+              <span className='flex items-center text-primary opacity-50'>
+                <IoCheckmarkSharp className='mr-1' />
+                Already read
+              </span>
+            )}
           </p>
 
           <h3>{title} </h3>

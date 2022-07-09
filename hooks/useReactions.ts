@@ -21,7 +21,6 @@ const useReactions = (slug: string) => {
   const [loved, setLoved] = useState(false);
   const [wow, setWow] = useState(false);
   const [yay, setYay] = useState(false);
-  const [read, setRead] = useState(false);
   const [reactions, setReactions] = useState<Reaction>();
 
   const [hydrated, setHydrated] = useState(false);
