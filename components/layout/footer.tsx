@@ -92,7 +92,7 @@ const nav = [
     content: [
       {
         name: 'Resume',
-        href: 'https://drive.google.com/file/d/1ccDHfmjjHuhBs32unU1KmfPY0yebvoc9/view?usp=sharing',
+        href: 'https://drive.google.com/file/d/1MWmVGVdnE83fggTb8PTbx7rVwChjuqD-/view?usp=sharing',
       },
       { name: 'Source Code', href: 'https://github.com/jagadyudha/jagad.dev' },
       {
