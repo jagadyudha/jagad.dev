@@ -31,7 +31,7 @@ const About = () => {
         <div className='relative float-left mr-4 h-36 w-1/2  object-cover md:w-1/3 lg:h-64 lg:w-1/4 xl:w-3/4'>
           <Image
             src={'/jagad.dev/me_p61sc3.png'}
-            className='rounded-md'
+            className='rounded-sm md:rounded-md'
             layout='fill'
             objectFit='cover'
             objectPosition={'50% 30%'}
@@ -137,29 +137,15 @@ const skills = [
   },
   {
     name: 'Mobile Development',
-    list: [
-      'React Native',
-      'Flutter (Learning)',
-      'React Native Paper',
-      'React Navigation',
-      'Native Base',
-    ],
+    list: ['React Native', 'Flutter (Learning)'],
   },
   {
     name: 'Backend Development',
-    list: [
-      'Express',
-      'Next.js API',
-      'Flask',
-      'Supabase',
-      'Firebase',
-      'MongoDB',
-      'MySQL',
-    ],
+    list: ['Express', 'Next.js API', 'Flask', 'Supabase', 'Firebase', 'MySQL'],
   },
   {
     name: 'Web Development',
-    list: ['HTML & CSS', 'Tailwind', 'Bootstrap', 'React', 'Next.js'],
+    list: ['HTML & CSS', 'Tailwind CSS', 'Bootstrap', 'React', 'Next.js'],
   },
   {
     name: 'Tools',
