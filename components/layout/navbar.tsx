@@ -19,9 +19,12 @@ const Navbar = () => {
 
   return (
     <>
+      <div className='flex justify-center md:my-0'>
+        <div className=' absolute -top-20 z-[-2] h-10 w-full max-w-6xl bg-gradient-to-r from-primary  to-purple-800 blur-3xl xl:-top-10'></div>
+      </div>
       {/* Desktop View */}
-      <nav className='relative z-10 hidden justify-center bg-gradient-to-t from-transparent to-background py-6 pt-10 sm:flex'>
-        <div className='text-lg sm:space-x-10 sm:pr-2 md:ml-10 md:space-x-14 md:pr-4'>
+      <nav className='relative z-10 hidden justify-center py-6 pt-10 sm:flex'>
+        <div className='text-lg sm:space-x-10 sm:pr-2 md:ml-10 md:space-x-12 md:pr-4'>
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               {item.href === checkSlug ? (
