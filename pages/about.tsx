@@ -28,7 +28,7 @@ const About = () => {
           </p>
         </div>
 
-        <div className='relative float-left mr-4 h-36 w-1/2  object-cover md:w-1/3 lg:h-64 lg:w-1/4 xl:w-3/4'>
+        <div className='relative float-left mr-4 h-36 w-1/2  object-cover md:w-1/3 lg:h-64 lg:w-1/4'>
           <Image
             src={'/jagad.dev/me_p61sc3.png'}
             className='rounded-sm md:rounded-md'
