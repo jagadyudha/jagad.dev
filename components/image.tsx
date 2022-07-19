@@ -9,6 +9,11 @@ export type Props = {
 
 const Image: React.FC<Props> = ({ src, className, ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+
+  const onLoadCallback = () => {
+    setIsReady(true);
+  };
 
   const router = useRouter();
   const convertToWebp = src.replace(/\.(png|jpg|jpeg)$/, '.webp');
@@ -33,8 +38,11 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
           src={source}
           placeholder='blur'
           blurDataURL={source}
-          className={`bg-zinc-700 ${className ? className : 'rounded-md'}`}
+          className={`${!isReady && 'animate-pulse bg-zinc-600'} ${
+            className ? className : 'rounded-md'
+          }`}
           {...props}
+          onLoadingComplete={onLoadCallback}
           unoptimized={true}
         />
 

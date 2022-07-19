@@ -114,16 +114,15 @@ const ProjectsSlug = ({ frontmatter, code, slug }: slugProps) => {
           })} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
         </p>
 
-        <div className='relative mx-auto h-56 max-w-3xl md:h-72 xl:h-96'>
-          <div className='absolute h-full w-full'>
-            <Image
-              className='rounded-md'
-              src={`/jagad.dev/projects/${slug.current}/header`}
-              layout='fill'
-              objectFit='cover'
-              alt={title}
-            />
-          </div>
+        <div className='mx-auto h-full w-full max-w-3xl'>
+          <Image
+            className='rounded-md'
+            src={`/jagad.dev/projects/${slug.current}/header`}
+            width={'1280'}
+            height={'773.04'}
+            objectFit='cover'
+            alt={title}
+          />
         </div>
 
         <p className='text-md mx-auto max-w-3xl text-left text-gray-400 sm:text-lg'>
