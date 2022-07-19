@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <>
       <div className='flex justify-center md:my-0'>
-        <div className=' absolute -top-20 z-[-2] h-10 w-full max-w-6xl bg-gradient-to-r from-primary  to-purple-800 blur-3xl xl:-top-10'></div>
+        <div className=' absolute  z-[-2] h-10 w-full max-w-6xl bg-gradient-to-r from-primary  to-purple-800 blur-3xl xl:-top-10'></div>
       </div>
       {/* Desktop View */}
       <nav className='relative z-10 hidden justify-center py-6 pt-10 sm:flex'>
