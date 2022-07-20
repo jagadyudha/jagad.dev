@@ -71,7 +71,7 @@ const nav = [
       },
       {
         name: 'Dribbble',
-        href: 'https://dribbble.com/jagadyudhaawali',
+        href: 'https://dribbble.com/jagadyudha',
       },
       { name: 'Polywork', href: 'https://www.polywork.com/imyour_universe' },
     ],
@@ -101,7 +101,7 @@ const nav = [
       },
       { name: 'Storybook', href: 'https://storybook.jagad.dev/' },
       {
-        name: 'Books',
+        name: 'Reading List',
         href: 'https://jagadyudha.notion.site/jagadyudha/Reading-List-e5a47c93a900407e882db9b8989c605d',
       },
     ],
