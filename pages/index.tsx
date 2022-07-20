@@ -15,7 +15,7 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <main>
       {/* Hero Section */}
-      <div className='s prose prose-invert my-16 max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline md:my-20 lg:flex lg:space-x-8 xl:my-24'>
+      <div className='prose prose-invert my-16 max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline md:my-20 lg:flex lg:space-x-8 xl:my-24'>
         <div className='mx-auto max-w-4xl text-center lg:max-w-md lg:text-left'>
           <h1 className='text-3xl text-white sm:text-5xl'>
             {`Hey there! My name is`}{' '}

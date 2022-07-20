@@ -19,8 +19,8 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='flex justify-center md:my-0'>
-        <div className=' absolute  z-[-2] h-10 w-full max-w-6xl bg-gradient-to-r from-primary  to-purple-800 blur-3xl xl:-top-10'></div>
+      <div className='relative flex justify-center'>
+        <div className='absolute -top-10 z-[-2] mx-auto hidden h-10 w-full max-w-6xl bg-gradient-to-r from-primary  to-purple-600 blur-3xl lg:block'></div>
       </div>
       {/* Desktop View */}
       <nav className='relative z-10 hidden justify-center py-6 pt-10 sm:flex'>
@@ -40,7 +40,7 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile View */}
-      <nav className='relative z-20 mt-3 w-full bg-opacity-90 px-0 xs:px-4 sm:hidden'>
+      <nav className='relative z-10 mt-3 w-full bg-opacity-90 px-0 xs:px-4 sm:hidden'>
         <div className='flex justify-center space-x-6'>
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>

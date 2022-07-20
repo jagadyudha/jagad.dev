@@ -4,11 +4,11 @@ import Link from '@/components/customLink';
 
 function footer() {
   return (
-    <footer className='bg-background_dark opacity-80  duration-300 hover:opacity-100'>
+    <footer className=' bg-background_dark px-6 opacity-80 duration-300 hover:opacity-100 md:px-24'>
       {/* Licensed under the MIT License. */}
-      <div className='mx-8 max-w-6xl flex-none justify-between py-10 md:mx-24 lg:mx-auto lg:flex lg:flex-row-reverse'>
+      <div className=' mx-auto max-w-6xl flex-none justify-between py-10 lg:flex lg:flex-row-reverse'>
         {/* Nav Link */}
-        <div className='grid grid-cols-2 gap-10 text-left sm:grid-cols-3 sm:text-center lg:gap-24 lg:py-0 lg:text-left'>
+        <div className='grid grid-cols-2 gap-10  text-left sm:grid-cols-3 sm:text-center lg:py-0 lg:text-left xl:gap-24'>
           {nav.map((item) => (
             <div key={item.menu}>
               <p className='font-medium text-white'>
@@ -27,7 +27,7 @@ function footer() {
           ))}
         </div>
 
-        <div className='mt-10 flex justify-center text-center xl:mt-0 xl:justify-between xl:text-left'>
+        <div className='mt-10 flex justify-center  text-center xl:mt-0 xl:justify-between xl:text-left'>
           <div>
             <div className='mb-4 rounded-md border border-white border-opacity-20 px-3'>
               <NowPlaying />
