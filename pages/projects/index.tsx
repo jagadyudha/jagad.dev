@@ -41,7 +41,7 @@ const Projects = ({
   projects,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const title = 'Projects';
-  const description = `Since my first year of college in 2018, I've been working on projects. I have a lot of ideas for what I want to achieve in the future, and here is an example of a project I completed previously.`;
+  const description = `I've been creating projects since my college days in 2018. I love to create new things, and I can't wait to see what I create next.`;
 
   return (
     <main className='prose prose-invert mb-16 h-full max-w-none prose-a:no-underline sm:mb-32'>
@@ -54,7 +54,7 @@ const Projects = ({
         <div className='max-w-xl'>
           <h1 className='-my-1 text-3xl sm:text-5xl'>{`Projects`}</h1>
           <p className='text-md text-gray-400 sm:text-lg'>
-            {`I've been creating projects since my college days in 2018. I have a lot of ideas about what I want to do in the future, and this is my project that I have completed in the past.`}
+            {`I've been creating projects since my college days in 2018. I love to create new things, and I can't wait to see what I create next.`}
           </p>
         </div>
       </div>

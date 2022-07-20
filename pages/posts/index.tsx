@@ -98,7 +98,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   }, [query, languages]);
 
   const title = 'Posts';
-  const description = `Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`;
+  const description = `I have been writing online for over a year, and I've published close to ${englishPosts.length} articles on programming-related topics.`;
 
   return (
     <main className='prose prose-invert mb-16 h-full max-w-none prose-a:no-underline sm:mb-32'>
@@ -111,7 +111,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <div className='max-w-xl'>
           <h1 className='-my-1 text-3xl sm:text-5xl'>{`Posts`}</h1>
           <p className='text-md text-gray-400 sm:text-lg'>
-            {`Aside from coding, I occasionally write, but I still write about programming. because If I don't code in my life, something bad has happened to me.`}
+            {`I have been writing online for over a year, and I've published close to ${englishPosts.length} articles on programming-related topics.`}
           </p>
         </div>
       </div>

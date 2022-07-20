@@ -21,9 +21,10 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
             {`Hey there! My name is`}{' '}
             <span className='text-primary'>Jagad Yudha Awali</span>
           </h1>
-          <p className='text-md mb-10 text-gray-400 sm:text-lg'>
-            A Software Engineer who specializes in front-end for web and mobile
-            applications. In addition, I publish programming-related blogs.
+          <p className='text-md mb-10 text-gray-400'>
+            I am a software engineer who specializes in front-end development
+            for web and mobile applications. I also love to write code and share
+            my knowledge with others. 
           </p>
           <div className='mb-10 space-x-2 md:mb-20 lg:mb-0'>
             <Link href={'/posts'} passHref>
