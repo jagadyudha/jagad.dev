@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/41937681/171084277-09a523db-daff-444b-8c0f-eaa71151d475.png)
+![image_processing20220707-11306-b7nvzq](https://user-images.githubusercontent.com/41937681/181581311-1b11511c-2c36-4484-98e2-c05678a57169.png)
 
 ## Tech Stack
 
