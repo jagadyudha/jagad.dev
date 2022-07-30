@@ -16,10 +16,10 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     <main>
       {/* Hero Section */}
       <div className='prose prose-invert my-16 max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline md:my-20 lg:flex lg:space-x-8 xl:my-24'>
-        <div className='mx-auto max-w-4xl text-center lg:max-w-md lg:text-left'>
-          <h1 className='text-3xl text-white sm:text-5xl'>
-            {`Hey there! My name is`}{' '}
-            <span className='text-primary'>Jagad Yudha Awali</span>
+        <div className='mx-auto max-w-4xl  text-center lg:max-w-md lg:text-left'>
+          <h1 className='whitespace-pre-line text-4xl text-white sm:text-5xl'>
+            {`Hey there! I'm\n`}{' '}
+            <span className='text-primary'>Jagad Yudha</span>
           </h1>
           <p className='text-md mb-10 text-gray-400'>
             I am a software engineer who specializes in front-end development
@@ -28,7 +28,7 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           </p>
           <div className='mb-10 space-x-2 md:mb-20 lg:mb-0'>
             <Link href={'/posts'} passHref>
-              <button className='md:text-md shadow- shadow-pri rounded-md bg-primary bg-opacity-75 py-3 px-3 text-sm font-bold shadow-md duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4'>
+              <button className='md:text-md rounded-md bg-primary bg-opacity-75 py-3 px-3 text-sm font-bold shadow-md duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4'>
                 Read the post
               </button>
             </Link>

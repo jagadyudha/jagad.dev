@@ -252,7 +252,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
 
               {/* Views */}
               <div className='text-md -mt-10 flex items-center justify-center gap-1'>
-                <ViewsCount slug={generalSlug} />•
+                <ViewsCount slug={generalSlug} /> •
                 <p>{readingTime(content).text} </p>
               </div>
             </div>

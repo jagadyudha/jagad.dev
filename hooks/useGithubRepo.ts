@@ -7,9 +7,6 @@ export type Props = {
   language: string;
   forks_count: number;
   html_url: string;
-  owner: {
-    avatar_url: string;
-  };
   message?: string;
 };
 
