@@ -37,10 +37,6 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   Router.events.on('routeChangeError', nprogress.done);
   Router.events.on('routeChangeComplete', nprogress.done);
 
-  //blacklist from layouting
-  if ([`/og`].includes(appProps.router.pathname))
-    return <Component {...pageProps} />;
-
   return (
     <ThemeProvider attribute='class'>
       <DefaultSeo
@@ -66,7 +62,7 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
               pageAnimate: { opacity: 1 },
             }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className='mx-auto my-8 max-w-6xl px-6 sm:my-12 md:px-24 lg:my-12 xl:my-20 xl:px-0'
+            className='mx-auto my-8 max-w-6xl px-3 xs:px-6 sm:my-12 md:px-24 lg:my-12 xl:my-20 xl:px-0'
           >
             <Component {...pageProps} />
           </motion.main>

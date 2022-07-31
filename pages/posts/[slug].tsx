@@ -227,7 +227,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         </div>
 
         {/* Metadata */}
-        <div className='relative flex h-full min-h-[105vh] w-full items-center justify-center bg-gradient-to-t from-background to-transparent  pt-20 text-center sm:pt-0'>
+        <div className='relative flex h-full min-h-[105vh] w-full items-center justify-center bg-gradient-to-t from-background to-transparent pt-32  text-center xs:pt-20 sm:pt-0'>
           <div className='mx-5 max-w-3xl'>
             {/* Title */}
             <h1 className='text-white sm:text-5xl'>{title}</h1>

@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <>
       <div className='relative flex justify-center'>
-        <div className='absolute -top-10 z-[-2] mx-auto hidden h-10 w-full max-w-6xl bg-gradient-to-r from-primary  to-purple-600 blur-3xl lg:block'></div>
+        <div className='background-animate absolute -top-10 z-[-2] mx-auto hidden h-10 w-full max-w-6xl bg-gradient-to-r  from-primary via-blue-500 to-pink-500 blur-3xl lg:block'></div>
       </div>
       {/* Desktop View */}
       <nav className='relative z-10 hidden justify-center py-6 pt-10 sm:flex'>
@@ -41,18 +41,18 @@ const Navbar = () => {
 
       {/* Mobile View */}
       <nav className='relative z-10 mt-3 w-full bg-opacity-90 px-0 xs:px-4 sm:hidden'>
-        <div className='flex justify-center space-x-6'>
+        <div className='flex justify-center space-x-3 text-xs xs:space-x-6 xs:text-sm'>
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               {item.href === checkSlug ? (
                 <a className=' my-4 text-gray-300'>
-                  <p className='flex justify-center border-b-2 border-primary pb-1 text-sm '>
+                  <p className='flex justify-center border-b-2 border-primary pb-1'>
                     {item.name}
                   </p>
                 </a>
               ) : (
                 <a className='my-4 text-gray-300'>
-                  <p className='flex justify-center text-sm'>{item.name}</p>
+                  <p className='flex justify-center'>{item.name}</p>
                 </a>
               )}
             </Link>
