@@ -4,6 +4,7 @@ import { LinkProps } from 'next/link';
 
 export type Props = {
   href: string;
+  className?: string;
 } & LinkProps;
 
 const customLink: React.FC<Props> = ({ href, children, ...props }) => {
