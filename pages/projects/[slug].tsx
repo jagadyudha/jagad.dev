@@ -7,6 +7,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import Image from '@/components/image';
 import customLink from '@/components/customLink';
 import GithubCard from '@/components/githubCard';
+import { Embed } from '@/components/embed';
 
 //lib
 import { cardTwitter } from '@/lib/seo';
@@ -128,7 +129,9 @@ const ProjectsSlug = ({ frontmatter, code, slug }: slugProps) => {
       </div>
       <hr className='mx-auto max-w-3xl' />
       <article className='mx-auto max-w-3xl '>
-        <Component components={{ Image, a: customLink, GithubCard } as any} />
+        <Component
+          components={{ Image, a: customLink, GithubCard, Embed } as any}
+        />
       </article>
     </main>
   );
