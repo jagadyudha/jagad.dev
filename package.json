@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@giscus/react": "^1.1.1",
-    "@supabase/supabase-js": "^1.29.4",
+    "@supabase/supabase-js": "^1.35.5",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.4.1",
     "@tailwindcss/typography": "^0.5.0",
