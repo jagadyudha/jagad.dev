@@ -343,7 +343,14 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
 
               <p>
                 The writing on this website may contain errors in grammar,
-                punctuation, etc. Please make a contribution here.
+                punctuation, etc. Please make a{' '}
+                <Link
+                  href={
+                    'https://github.com/jagadyudha/jagad.dev/blob/master/CONTRIBUTIONS.md'
+                  }
+                >
+                  contribution here
+                </Link>
               </p>
             </div>
           </div>
