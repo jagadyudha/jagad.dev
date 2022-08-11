@@ -20,6 +20,7 @@ export interface frontmatter {
   title: string;
   description: string;
   date: Date;
+  last_updated?: Date
   stack: Array<string>;
   header: string;
 }
@@ -35,7 +36,6 @@ export interface slugProps {
 
 export const getStaticPaths = async () => {
   const paths = await getContentPaths('projects');
-
   return {
     paths,
     fallback: 'blocking',

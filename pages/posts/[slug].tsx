@@ -38,6 +38,7 @@ export interface frontmatter {
   tags: Array<string>;
   header: string;
   contributors?: Array<string>;
+  last_updated?: string;
 }
 
 export interface Props {
@@ -100,7 +101,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
 
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
-  const { title, description, date, contributors } = frontmatter;
+  const { title, description, date, contributors, last_updated } = frontmatter;
   const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${generalSlug}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
     title
   ).replace(`'`, '%27')}/jagad.dev/social.png`;
@@ -137,7 +138,11 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         title={`${title} — Jagad Yudha Awali`}
         images={[ogimage]}
         datePublished={new Date(date).toISOString()}
-        dateModified={new Date(date).toISOString()}
+        dateModified={
+          last_updated
+            ? new Date(last_updated).toISOString()
+            : new Date(date).toISOString()
+        }
         authorName={['Jagad Yudha Awali']}
         publisherName='jagad.dev'
         publisherLogo='/assets/images/me.png'
@@ -239,7 +244,20 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
 
             <div className='my-10 text-gray-400'>
               {/* Date */}
-              <p className='text-md'>
+
+              {/* if content updated */}
+              {last_updated && (
+                <span className='block text-sm '>
+                  Last updated
+                  {` ${new Date(last_updated).toLocaleString('default', {
+                    month: 'long',
+                  })} ${new Date(last_updated).getDate()}, ${new Date(
+                    last_updated
+                  ).getFullYear()}`}
+                </span>
+              )}
+
+              <span className='block text-sm'>
                 {`Posted by Jagad on ${new Date(date).toLocaleString(
                   'default',
                   {
@@ -248,10 +266,10 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
                 )} ${new Date(date).getDate()}, ${new Date(
                   date
                 ).getFullYear()}`}
-              </p>
+              </span>
 
               {/* Views */}
-              <div className='text-md -mt-10 flex items-center justify-center gap-1'>
+              <div className='text-md mt-10 flex items-center justify-center gap-1 text-sm'>
                 <ViewsCount slug={generalSlug} /> •
                 <p>{readingTime(content).text} </p>
               </div>
