@@ -305,7 +305,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         className='mx-auto my-10 max-w-6xl flex-none px-6 sm:my-20 md:px-24 lg:flex lg:space-x-8 xl:px-0'
       >
         {/* Content */}
-        <div className='mx-auto max-w-2xl'>
+        <div className='mx-auto w-full'>
           {/* Adsense */}
           <div className='block lg:hidden'>
             <Ads />
@@ -318,7 +318,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         </div>
 
         {/* Sidebar */}
-        <div className='my-10 max-w-full space-y-6 xl:max-w-xs'>
+        <div className='my-10 space-y-6 lg:w-1/2'>
           <div>
             <span className='mb-4 flex justify-center'>Post Reactions</span>
             <Reactions slug={generalSlug} />
@@ -362,7 +362,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         </div>
       </div>
       {/* Comment Section */}
-      <section className='max-w-6xl px-6 md:mx-auto'>
+      <section className='max-w-5xl px-6 md:mx-auto'>
         <hr className='my-8 opacity-20' />
         <Comment />
       </section>

@@ -4,11 +4,11 @@ import Link from '@/components/customLink';
 
 function footer() {
   return (
-    <footer className=' bg-background_dark px-6 opacity-80 duration-300 hover:opacity-100 md:px-24'>
+    <footer className='bg-background_dark opacity-80 duration-300 hover:opacity-100'>
       {/* Licensed under the MIT License. */}
-      <div className=' mx-auto max-w-6xl flex-none justify-between py-10 lg:flex lg:flex-row-reverse'>
+      <div className='mx-auto max-w-6xl flex-none justify-between px-3 py-10 xs:px-6 md:px-24 lg:flex lg:flex-row-reverse  xl:px-0'>
         {/* Nav Link */}
-        <div className='grid grid-cols-2 gap-10  text-left sm:grid-cols-3 sm:text-center lg:py-0 lg:text-left xl:gap-24'>
+        <div className='grid grid-cols-2 gap-10 text-left sm:grid-cols-3 sm:text-center lg:py-0 lg:text-left xl:gap-24'>
           {nav.map((item) => (
             <div key={item.menu}>
               <p className='font-medium text-white'>

@@ -36,20 +36,20 @@ export const NowPlaying = () => {
                   data?.music.getData.length > 30
                     ? `${data?.music.getData.slice(0, 30)}...`
                     : data?.music.getData
-                }`}
+                  }`}
               </a>
             ) : (
-              <p>
-                <span className='mr-1 text-sm font-light text-gray-300'>
-                  Spotifty -
+                <p>
+                  <span className='mr-1 text-sm font-light text-gray-300'>
+                    Spotifty -
                 </span>
                 Not Playing
-              </p>
-            )}
+                </p>
+              )}
           </div>
         ) : (
-          <div className='ml-2 h-4 w-full animate-pulse rounded-sm bg-zinc-600'></div>
-        )}
+            <div className='ml-2 h-4 w-1/2 animate-pulse rounded-sm bg-zinc-600'></div>
+          )}
       </div>
     </div>
   );

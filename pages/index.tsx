@@ -80,6 +80,7 @@ export async function getStaticProps() {
     props: {
       posts: filterFeaturedPost,
     },
+    revalidate: 1,
   };
 }
 
