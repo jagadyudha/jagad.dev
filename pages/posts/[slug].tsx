@@ -12,6 +12,7 @@ import { HiOutlineClipboardList } from 'react-icons/hi';
 import { IoCloseOutline } from 'react-icons/io5';
 import useIsRead from '@/hooks/useIsRead';
 import useViewCount from '@/hooks/useViewCount';
+import GithubCard from '@/components/githubCard';
 
 //lib
 import {
@@ -313,8 +314,12 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
 
           {/* Article content */}
           <article className='mx-auto '>
-            <Component components={{ Image, Ads, a: Link, Embed } as any} />
+            <Component
+              components={{ Image, Ads, a: Link, Embed, GithubCard } as any}
+            />
           </article>
+          <hr className='my-8 opacity-20' />
+          <Comment />
         </div>
 
         {/* Sidebar */}
@@ -361,11 +366,6 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
           </div>
         </div>
       </div>
-      {/* Comment Section */}
-      <section className='max-w-5xl px-6 md:mx-auto'>
-        <hr className='my-8 opacity-20' />
-        <Comment />
-      </section>
     </main>
   );
 };

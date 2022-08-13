@@ -29,9 +29,9 @@ const GithubCard: React.FC<Props> = ({ repo }) => {
 
   return (
     <Link className='no-underline' href={data?.html_url!}>
-      <div className='max-w-md space-y-4 rounded-md border border-white border-opacity-20 bg-background_100 p-6 duration-300 hover:scale-105'>
+      <div className='max-w-full space-y-4 rounded-md border border-white border-opacity-20 bg-background_100 p-6 duration-300 hover:scale-105'>
         <GoMarkGithub className='text-3xl text-white' />
-        <span className='block text-2xl font-bold text-primary'>
+        <span className='block text-xl font-bold text-primary'>
           {data?.name}
         </span>
         <span className='block pb-5 text-gray-300'>{data?.description}</span>

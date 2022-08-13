@@ -27,7 +27,7 @@ const Image: React.FC<Props> = ({ src, className, ...props }) => {
       <figure
         className={`${
           className ? className : 'rounded-md'
-        } flex justify-center overflow-hidden`}
+        } flex overflow-hidden`}
       >
         <NextImage
           onClick={() =>
