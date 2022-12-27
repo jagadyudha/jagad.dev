@@ -1,7 +1,7 @@
 //default
 import { InferGetStaticPropsType } from 'next';
 import readingTime from 'reading-time';
-import Link from 'next/link';
+import Link from '@/components/customLink';
 import React from 'react';
 //components
 import FeaturedPost from '@/components/posts/featured';

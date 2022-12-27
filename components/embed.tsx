@@ -4,7 +4,7 @@ export type EmbedProps = {
   src: string;
 };
 
-export const Embed = ({ src }: EmbedProps) => {
+const Embed = ({ src }: EmbedProps) => {
   return (
     <div className='relative pt-[56.25%]'>
       <iframe
@@ -15,3 +15,5 @@ export const Embed = ({ src }: EmbedProps) => {
     </div>
   );
 };
+
+export default Embed;

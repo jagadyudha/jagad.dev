@@ -19,7 +19,7 @@ module.exports = {
         background_dark: '#1a1a1c',
       },
       fontFamily: {
-        sans: ['Lexend Deca'],
+        sans: ['Inter'],
       },
     },
     screens: {

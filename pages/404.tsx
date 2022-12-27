@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/customLink';
 import Twemoji from '@/components/Twemoji';
 import Head from 'next/head';
 const ErrorCustomPage = () => {
@@ -15,7 +15,7 @@ const ErrorCustomPage = () => {
         </p>
         <p className='my-4 text-lg font-normal text-primary'>
           <Link href='/'>
-            <a> Go back home</a>
+            <span> Go back home</span>
           </Link>
         </p>
       </div>

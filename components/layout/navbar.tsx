@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
 
 const navigation = [
@@ -28,11 +28,13 @@ const Navbar = () => {
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               {item.href === checkSlug ? (
-                <a className='border-b-2 border-primary pb-1 text-white'>
+                <span className='border-b-2 border-primary pb-1 text-white'>
                   {item.name}
-                </a>
+                </span>
               ) : (
-                <a className='text-gray-300 hover:text-primary'>{item.name}</a>
+                <span className='text-gray-300 hover:text-primary'>
+                  {item.name}
+                </span>
               )}
             </Link>
           ))}
@@ -45,15 +47,13 @@ const Navbar = () => {
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               {item.href === checkSlug ? (
-                <a className=' my-4 text-gray-300'>
-                  <p className='flex justify-center border-b-2 border-primary pb-1'>
-                    {item.name}
-                  </p>
-                </a>
+                <p className='my-4 flex justify-center border-b-2 border-primary  pb-1 text-gray-300'>
+                  {item.name}
+                </p>
               ) : (
-                <a className='my-4 text-gray-300'>
-                  <p className='flex justify-center'>{item.name}</p>
-                </a>
+                <p className='my-4 flex justify-center text-gray-300'>
+                  {item.name}
+                </p>
               )}
             </Link>
           ))}

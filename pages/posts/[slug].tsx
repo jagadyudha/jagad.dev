@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import readingTime from 'reading-time';
 import { BiMessageSquareCheck, BiDownArrowAlt } from 'react-icons/bi';
-import Link from '@/components/customLink';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Reactions from '@/components/posts/reaction';
 import { HiOutlineClipboardList } from 'react-icons/hi';
@@ -26,7 +26,7 @@ import { cardTwitter } from '@/lib/seo';
 import ViewsCount from '@/components/views-count';
 import Ads from '@/components/posts/adsense';
 import Comment from '@/components/posts/comment';
-import { Embed } from '@/components/embed';
+import Embed from '@/components/embed';
 
 //data
 import DataSeo from '@/_data/seo.json';
@@ -84,7 +84,6 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
       });
     });
     setToc(HeadingArr);
-
     //set View Count
     setViewCount();
 
@@ -190,9 +189,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
                   {item.level === 2 && (
                     <li>
                       <Link href={`#${item.id}`}>
-                        <a>
-                          <span className='text-md my-0.5 '>{item.name}</span>
-                        </a>
+                        <span className='text-md my-0.5 '>{item.name}</span>
                       </Link>
                     </li>
                   )}
@@ -201,11 +198,9 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
                     {item.level === 3 && (
                       <li>
                         <Link href={`#${item.id}`}>
-                          <a>
-                            <span className='text-md my-0.5 block '>
-                              {item.name}
-                            </span>
-                          </a>
+                          <span className='text-md my-0.5 block '>
+                            {item.name}
+                          </span>
                         </Link>
                       </li>
                     )}
@@ -319,7 +314,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
             />
           </article>
           <hr className='my-8 opacity-20' />
-          <Comment />
+          {/* <Comment /> */}
         </div>
 
         {/* Sidebar */}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from '@/components/image';
-import Link from 'next/link';
+import Link from '@/components/customLink';
 import TechStack from '@/components/projects/tech-stack';
 
 export interface Props {

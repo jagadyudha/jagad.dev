@@ -10,11 +10,7 @@ export type Props = {
 const customLink: React.FC<Props> = ({ href, children, ...props }) => {
   const isExternal = href.startsWith('http') ? false : true;
   if (isExternal) {
-    return (
-      <Link href={href}>
-        <a>{children}</a>
-      </Link>
-    );
+    return <Link href={href}>{children}</Link>;
   }
 
   return (

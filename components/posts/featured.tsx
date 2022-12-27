@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from '@/components/image';
-import Link from 'next/link';
+import Link from '@/components/customLink';
 import ViewsCount from '@/components/views-count';
 
 export interface Props {
@@ -18,7 +18,7 @@ const Featured: React.FC<Props> = (props) => {
 
   return (
     <Link href={`/posts/${slug}`} key={slug}>
-      <a className='group relative h-full rounded-md bg-opacity-75  duration-150 ease-in-out'>
+      <div className='group relative h-full rounded-md bg-opacity-75  duration-150 ease-in-out'>
         <div className='absolute h-full w-full rounded-md opacity-80 duration-150 ease-in-out group-hover:opacity-100'>
           <Image
             className='rounded-md'
@@ -40,7 +40,7 @@ const Featured: React.FC<Props> = (props) => {
             <p className='text-gray-300'>{description}</p>
           </div>
         </div>
-      </a>
+      </div>
     </Link>
   );
 };
