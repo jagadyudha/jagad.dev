@@ -70,7 +70,7 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
               transition={{ duration: 0.4, ease: 'easeInOut' }}
               className={clsx(
                 !isBlogPost &&
-                  'mx-auto my-8 max-w-5xl px-3 xs:px-6 sm:my-12 md:px-24 lg:my-12 xl:my-20 xl:px-0'
+                  'mx-auto my-8 max-w-6xl px-3 xs:px-6 sm:my-12 md:px-24 lg:my-12 xl:my-20 xl:px-0'
               )}
             >
               <Component {...pageProps} />

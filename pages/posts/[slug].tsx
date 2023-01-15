@@ -314,7 +314,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
             />
           </article>
           <hr className='my-8 opacity-20' />
-          {/* <Comment /> */}
+          <Comment />
         </div>
 
         {/* Sidebar */}

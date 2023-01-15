@@ -24,7 +24,7 @@ const Navbar = () => {
       </div>
       {/* Desktop View */}
       <nav className='relative z-10 hidden justify-center py-6 pt-10 sm:flex'>
-        <div className='text-lg sm:space-x-10 sm:pr-2 md:ml-10 md:space-x-12 md:pr-4'>
+        <div className='sm:space-x-10 sm:pr-2 md:ml-10 md:space-x-8 md:pr-4'>
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               {item.href === checkSlug ? (

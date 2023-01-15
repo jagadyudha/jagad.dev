@@ -8,7 +8,7 @@ export const NowPlaying = () => {
 
   return (
     <div className='-my-1 flex min-h-[70px] max-w-md items-center justify-center'>
-      <div className='flex w-full items-center justify-start rounded-lg'>
+      <div className='flex w-full items-center justify-start rounded-none'>
         <div className='flex items-center'>
           <svg
             className='text-lg text-green-500'
@@ -24,7 +24,7 @@ export const NowPlaying = () => {
           </svg>
         </div>
         {data ? (
-          <div className='md:text-md ml-2 font-sans text-sm text-white'>
+          <div className='md:text-md ml-2 text-sm text-white'>
             {data?.music.is_playing ? (
               <a
                 className='hover:text-primary'
@@ -36,20 +36,20 @@ export const NowPlaying = () => {
                   data?.music.getData.length > 30
                     ? `${data?.music.getData.slice(0, 30)}...`
                     : data?.music.getData
-                  }`}
+                }`}
               </a>
             ) : (
-                <p>
-                  <span className='mr-1 text-sm font-light text-gray-300'>
-                    Spotifty -
+              <p>
+                <span className='mr-1 text-sm font-light text-gray-300'>
+                  Spotifty -
                 </span>
                 Not Playing
-                </p>
-              )}
+              </p>
+            )}
           </div>
         ) : (
-            <div className='ml-2 h-4 w-1/2 animate-pulse rounded-sm bg-zinc-600'></div>
-          )}
+          <div className='ml-2 h-4 w-1/2 animate-pulse rounded-none bg-zinc-600'></div>
+        )}
       </div>
     </div>
   );
