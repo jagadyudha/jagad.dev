@@ -3,9 +3,8 @@ import Image from '@/components/image';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
-import readingTime from 'reading-time';
-import { BiMessageSquareCheck, BiDownArrowAlt } from 'react-icons/bi';
-import Link from 'next/link';
+import { BiMessageSquareCheck } from 'react-icons/bi';
+import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
 import Reactions from '@/components/posts/reaction';
 import { HiOutlineClipboardList } from 'react-icons/hi';
@@ -228,69 +227,37 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         </div>
 
         {/* Metadata */}
-        <div className='relative flex h-full min-h-[105vh] w-full items-center justify-center bg-gradient-to-t from-background to-transparent pt-32  text-center xs:pt-20 sm:pt-0'>
+        <div className='relative flex h-full min-h-[105vh] w-full items-center justify-center bg-gradient-to-t from-background to-transparent text-center'>
           <div className='mx-5 max-w-3xl'>
             {/* Title */}
-            <h1 className='text-white sm:text-5xl'>{title}</h1>
+            <h1 className='text-3xl text-white sm:text-5xl'>{title}</h1>
 
-            {/* Description */}
-            <p className='text-md mx-auto text-center text-gray-400 sm:text-lg'>
-              {description}
-            </p>
-
-            <div className='my-10 text-gray-400'>
-              {/* Date */}
-
-              {/* if content updated */}
-              {last_updated && (
-                <span className='block text-sm '>
-                  Last updated
-                  {` ${new Date(last_updated).toLocaleString('default', {
-                    month: 'long',
-                  })} ${new Date(last_updated).getDate()}, ${new Date(
-                    last_updated
-                  ).getFullYear()}`}
-                </span>
-              )}
-
-              <span className='block text-sm'>
-                {`Posted by Jagad on ${new Date(date).toLocaleString(
-                  'default',
-                  {
-                    month: 'long',
-                  }
-                )} ${new Date(date).getDate()}, ${new Date(
-                  date
-                ).getFullYear()}`}
-              </span>
-
-              {/* Views */}
-              <div className='text-md mt-10 flex items-center justify-center gap-1 text-sm'>
-                <ViewsCount slug={generalSlug} /> •
-                <p>{readingTime(content).text} </p>
+            <div className='relative my-10 grid grid-cols-[auto_1fr_auto] items-center gap-x-2'>
+              <time className=' bg-white bg-opacity-20 p-1 px-2  text-sm'>
+                {date}
+              </time>
+              <div className='w-full border-b'></div>
+              <div>
+                <ViewsCount slug={generalSlug} />
               </div>
             </div>
 
-            {/* Button to change languages */}
-            <div className='mx-auto  text-center'>
-              {isTwoLanguages && (
-                <div className='mx-auto '>
-                  <Link
-                    href={`/posts/${
-                      slug.current.endsWith('-id')
-                        ? slug.current.replace('-id', '')
-                        : slug.current.concat('-id')
-                    }`}
-                  >
-                    <button className='rounded-md border  border-primary px-3 py-2 text-sm font-medium text-primary'>
-                      Read in{' '}
-                      {!slug.current.endsWith('-id')
-                        ? 'Bahasa Indonesia'
-                        : 'English'}
-                    </button>
-                  </Link>
-                </div>
-              )}
+            {/* Description */}
+            <div className='items-center lg:grid lg:grid-cols-[1fr_auto]'>
+              <p className='text-md mb-10 text-center text-gray-400 sm:text-lg md:text-left lg:mb-0'>
+                {description}
+              </p>
+              <Link
+                href={`/posts/${
+                  slug.current.endsWith('-id')
+                    ? slug.current.replace('-id', '')
+                    : slug.current.concat('-id')
+                }`}
+              >
+                <button className='rounded-none border  border-primary px-3 py-2 text-sm font-medium text-primary'>
+                  Read in {!slug.current.endsWith('-id') ? 'Bahasa' : 'English'}
+                </button>
+              </Link>
             </div>
           </div>
         </div>
