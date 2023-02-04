@@ -17,10 +17,16 @@ const Navbar = () => {
     ? router.pathname.replace('/[slug]', '')
     : router.pathname;
 
+  const isPostSlug = router.pathname.endsWith('/posts/[slug]');
+
   return (
     <>
       <div className='relative flex justify-center'>
-        <div className='background-animate absolute -top-10 z-[-2] mx-auto hidden h-10 w-full max-w-6xl bg-gradient-to-r  from-primary via-blue-500 to-pink-500 blur-3xl lg:block'></div>
+        {isPostSlug ? (
+          <div className='absolute mx-auto hidden h-10 w-full max-w-6xl bg-black blur-3xl lg:block'></div>
+        ) : (
+          <div className='background-animate absolute -top-10 z-[-2] mx-auto h-10 w-full max-w-6xl bg-gradient-to-r  from-primary via-blue-500 to-pink-500 blur-3xl'></div>
+        )}
       </div>
       {/* Desktop View */}
       <nav className='relative z-10 hidden justify-center py-6 pt-10 sm:flex'>
