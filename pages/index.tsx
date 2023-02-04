@@ -3,14 +3,19 @@ import { InferGetStaticPropsType } from 'next';
 import readingTime from 'reading-time';
 import Link from '@/components/customLink';
 import React from 'react';
+
 //components
 import FeaturedPost from '@/components/posts/featured';
 
 //lib
 import { getContentIndex, fetcher } from '@/lib/fetcher';
 import { Props } from './posts';
+import { getAllTimeCode } from '@/lib/wakatime';
 
-const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home = ({
+  posts,
+  allTimeCode,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <main>
       {/* Hero Section */}
@@ -22,8 +27,12 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           </h1>
           <p className='text-md mb-10 text-gray-400'>
             I am a software engineer who specializes in front-end development
-            for web and mobile applications. I also love to write code and share
-            my knowledge with others. 
+            for web and mobile applications. so far I have opened a text editor
+            for{' '}
+            <span className=' font-bold text-white'>
+              {allTimeCode?.data?.text}
+            </span>
+            . I also love to write code and share my knowledge with others. 
           </p>
           <div className='mb-10 space-x-2 md:mb-20 lg:mb-0'>
             <Link href={'/posts'} passHref>
@@ -63,21 +72,29 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 };
 
 export async function getStaticProps() {
+  // get post
   const posts = await getContentIndex('posts');
   const featuredPost = await fetcher(
     `${process.env.SITE_URL}/api/featuredpost`
   );
 
+  // all time code
+  const allTimeCode = await getAllTimeCode();
+
+  // filterFeaturedPost
   const filterFeaturedPost = featuredPost.map((item: string) => {
     const post = posts.find((post: Props) => post.slug.current === item);
     return post;
   });
 
+  console.log(allTimeCode);
+
   return {
     props: {
       posts: filterFeaturedPost,
+      allTimeCode,
     },
-    revalidate: 1,
+    revalidate: 10,
   };
 }
 
