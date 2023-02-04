@@ -11,13 +11,13 @@ function footer() {
         <div className='grid grid-cols-2 gap-10 text-left sm:grid-cols-3 sm:text-center lg:py-0 lg:text-left xl:gap-24'>
           {nav.map((item) => (
             <div key={item.menu}>
-              <p className='font-medium text-white'>
+              <p className='mb-2 font-semibold text-white'>
                 {item.menu.toUpperCase()}
               </p>
               {item.content.map((item, index) => (
                 <div key={index}>
                   <Link href={item.href}>
-                    <p className='my-4 text-gray-400 hover:text-primary hover:underline'>
+                    <p className='my-3 text-gray-400 hover:text-primary hover:underline'>
                       {item.name}
                     </p>
                   </Link>
@@ -99,7 +99,6 @@ const nav = [
         name: 'Analytics',
         href: 'https://analytics.jagad.dev/share/PEGBLHu0/jagad.dev',
       },
-      { name: 'Storybook', href: 'https://storybook.jagad.dev/' },
       {
         name: 'Reading List',
         href: 'https://jagadyudha.notion.site/jagadyudha/Reading-List-e5a47c93a900407e882db9b8989c605d',

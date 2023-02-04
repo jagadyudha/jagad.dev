@@ -23,8 +23,7 @@ const Featured: React.FC<Props> = (props) => {
           <Image
             className='rounded-none'
             src={`/jagad.dev/posts/${slug}/header`}
-            layout='fill'
-            objectFit='cover'
+            fill
             alt={title}
           />
         </div>

@@ -58,6 +58,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   // search posts
   const [search, setSearch] = React.useState('');
 
+  // query hooks
   const router = useRouter();
   const { query } = router;
 
@@ -85,15 +86,6 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
       fetchByTags();
     }
 
-    // const getLocalStorage = () => {
-    //   const concat = post.map((item: Props) => {
-    //     const data = localStorage.getItem(item.slug.current.replace('-id', ''));
-    //     return { ...item, localstorage: JSON.parse(data as string) };
-    //   });
-    //   setPost(concat);
-    // };
-    // getLocalStorage();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, languages]);
 
@@ -116,7 +108,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </div>
       </div>
 
-      <div className='my-10'>
+      {/* <div className='my-10'>
         <div className='relative mb-4 w-full'>
           <input
             type='text'
@@ -145,7 +137,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         >
           Read in {languages === 'en' ? 'Bahasa' : 'English'}
         </button>
-      </div>
+      </div> */}
 
       <div className='max-2-xl my-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:my-0'>
         {post
