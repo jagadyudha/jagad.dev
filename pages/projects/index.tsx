@@ -59,7 +59,7 @@ const Projects = ({
         </div>
       </div>
       <div className='mx-auto my-5 md:my-10'>
-        <div className='grid grid-cols-1 gap-5 md:gap-10'>
+        <div className='max-2-xl my-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:my-0 xl:grid-cols-3'>
           {projects
             .sort((a: any, b: any) => {
               return (

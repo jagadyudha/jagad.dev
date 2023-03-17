@@ -17,7 +17,7 @@ const Spotify: React.FC<SpotifyProps> = ({ items }) => {
               target='_blank'
               rel='noopener noreferrer'
               href={trackUrl}
-              className='my-5 flex sm:flex-none'
+              className='my-5 flex items-center sm:flex-none'
             >
               <div className='my-auto mr-3'>
                 <Image
@@ -30,12 +30,12 @@ const Spotify: React.FC<SpotifyProps> = ({ items }) => {
                 ></Image>
               </div>
               <div>
-                <p className='text-md -my-1 font-sans font-semibold  text-white sm:text-lg'>
+                <p className='text-md -my-1  font-semibold  text-white sm:text-lg'>
                   {trackName.length > 40
                     ? `${trackName.slice(0, 40)}...`
                     : trackName}
                 </p>
-                <p className='text-md -my-1 font-sans font-normal text-gray-300 sm:text-lg'>
+                <p className='text-md -my-1  font-normal text-gray-300 sm:text-lg'>
                   {trackArtist}
                 </p>
               </div>

@@ -30,28 +30,20 @@ const About = () => {
 
         <div className='relative float-left mr-4 h-36 w-1/2  object-cover md:w-1/3 lg:h-64 lg:w-1/4'>
           <Image
-            src={'/jagad.dev/me_p61sc3.png'}
-            className='rounded-sm md:rounded-md'
-            layout='fill'
-            objectFit='cover'
-            objectPosition={'50% 30%'}
+            src={'https://avatars.githubusercontent.com/u/41937681?v=4'}
+            className='rounded object-cover'
+            fill
             alt={'Jagad Yudha Awali'}
           />
         </div>
 
         <div>
-          <p>
-            {`Hello! I'm Jagad Yudha Awali. I was born and raised in Sidoarjo,
-                Indonesia. I am currently working freelance as a front-end
-                developer while studying at the `}
-            <a
-              className='font-medium text-primary underline'
-              href='https://umsida.ac.id'
-            >
-              University of Muhammadiyah Sidoarjo.
-            </a>
+          <p className='line-through'>
+            {`Hi there! I'm Jagad Yudha Awali. I was born and raised in Sidoarjo,
+                Indonesia. I am currently working at Simpul Technology as a frontend
+                engineer. I love building websites and apps that are easy to use, fast, and beautiful.`}
           </p>
-          <p className='text-md mb-5 '>
+          <p className='text-md line-through'>
             I&apos;ve been attracted by the world of information technology
             since I was in junior high school.{' '}
             <a
@@ -77,27 +69,7 @@ const About = () => {
             </a>{' '}
             on React, React Native, TypeScript, and Next.Js.
           </p>
-          <p className='text-md -mt-1'>
-            Learning new technologies is essential for me since, in the future,
-            I think illiteracy will be defined as the inability to read
-            programming languages.
-          </p>
-          <p className='text-md '>
-            Aside from programming stuff, I enjoy playing simulation racing, —
-            especially Formula 1, and began competing in the Indo Formula League
-            and winning the{' '}
-            <a href='https://youtu.be/jIm3e-iBWjc?t=3845'>France Grand Prix</a>.
-          </p>
-          <p>
-            Read more about my activities related to programming on{' '}
-            <a
-              href='https://www.polywork.com/imyour_universe'
-              target={'_blank'}
-              rel='noreferrer noopener'
-            >
-              Polywork
-            </a>
-          </p>
+          <p className='text-md text-xl lg:pt-5 xl:pt-10'>{`I'm nothing.`}</p>
         </div>
 
         <div className='mt-16 text-center'>
@@ -111,10 +83,10 @@ const About = () => {
         <div className=' grid grid-cols-1 gap-5 sm:grid-cols-3'>
           {skills.map((item, index) => (
             <div
-              className='-pt-5 rounded-lg border border-white border-opacity-10 bg-background_100 p-5'
+              className='-pt-5 rounded border border-white border-opacity-10 bg-background_100 bg-opacity-50 p-5'
               key={index}
             >
-              <h2 className='mb-5 -mt-0.5 text-lg font-bold text-white sm:text-xl'>
+              <h2 className='mb-4 -mt-0.5 text-lg font-bold text-white sm:text-xl'>
                 {item.name}
               </h2>
               {item.list.map((item, index) => (
@@ -133,19 +105,19 @@ const About = () => {
 const skills = [
   {
     name: 'Programming Languages',
-    list: ['JavaScript', 'TypeScript', 'Python', 'Dart (Learning)'],
+    list: ['JavaScript', 'TypeScript', 'Python'],
   },
   {
     name: 'Mobile Development',
-    list: ['React Native', 'Flutter (Learning)'],
+    list: ['React Native'],
   },
   {
     name: 'Backend Development',
-    list: ['Express', 'Next.js API', 'Flask', 'Supabase', 'Firebase', 'MySQL'],
+    list: ['Express', 'Next.js API', 'Flask', 'Supabase', 'Firebase'],
   },
   {
     name: 'Web Development',
-    list: ['HTML & CSS', 'Tailwind CSS', 'Bootstrap', 'React', 'Next.js'],
+    list: ['HTML & CSS', 'React', 'Vue.js'],
   },
   {
     name: 'Tools',

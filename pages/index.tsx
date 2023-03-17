@@ -36,12 +36,12 @@ const Home = ({
           </p>
           <div className='mb-10 space-x-2 md:mb-20 lg:mb-0'>
             <Link href={'/posts'} passHref>
-              <button className='md:text-md rounded-none bg-primary bg-opacity-75 py-3 px-3 text-sm font-bold text-white shadow-md duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4'>
+              <button className='md:text-md rounded bg-primary bg-opacity-75 py-3 px-3 text-sm font-bold text-white shadow-md duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4'>
                 Read the post
               </button>
             </Link>
             <Link href={'/about'} passHref>
-              <button className='md:text-md rounded-none bg-[#393b3f] py-3 px-3 text-sm font-bold text-white duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4 '>
+              <button className='md:text-md rounded bg-[#393b3f] py-3 px-3 text-sm font-bold text-white duration-300 ease-in-out hover:opacity-80 md:px-6 md:py-4 '>
                 About me
               </button>
             </Link>
@@ -86,8 +86,6 @@ export async function getStaticProps() {
     const post = posts.find((post: Props) => post.slug.current === item);
     return post;
   });
-
-  console.log(allTimeCode);
 
   return {
     props: {

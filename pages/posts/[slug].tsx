@@ -213,15 +213,14 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
       {/* frontmatter content */}
       <div className='relative -mt-28 min-h-[105vh]'>
         {/* Image */}
-        <div className='absolute h-full w-full opacity-40'>
+        <div className='absolute h-full w-full object-cover opacity-40'>
           <Image
             src={`/jagad.dev/posts/${
               slug.current.endsWith('-id')
                 ? slug.current.replace('-id', '')
                 : slug.current
             }/header`}
-            layout='fill'
-            objectFit='cover'
+            fill
             alt={title}
           />
         </div>
@@ -254,7 +253,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
                     : slug.current.concat('-id')
                 }`}
               >
-                <button className='rounded-none border  border-primary px-3 py-2 text-sm font-medium text-primary'>
+                <button className='rounded border  border-primary px-3 py-2 text-sm font-medium text-primary'>
                   Read in {!slug.current.endsWith('-id') ? 'Bahasa' : 'English'}
                 </button>
               </Link>

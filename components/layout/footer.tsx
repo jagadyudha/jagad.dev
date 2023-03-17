@@ -29,7 +29,7 @@ function footer() {
 
         <div className='mt-10 flex justify-center text-center xl:mt-0 xl:justify-between xl:text-left'>
           <div>
-            <div className='mb-4 rounded-none border border-white border-opacity-20 px-3'>
+            <div className='mb-4 rounded border border-white border-opacity-20 px-3'>
               <NowPlaying />
             </div>
 

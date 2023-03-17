@@ -18,20 +18,20 @@ const Featured: React.FC<Props> = (props) => {
 
   return (
     <Link href={`/posts/${slug}`} key={slug}>
-      <div className='group relative h-full rounded-none bg-opacity-75  duration-150 ease-in-out'>
-        <div className='absolute h-full w-full rounded-none opacity-80 duration-150 ease-in-out group-hover:opacity-100'>
+      <div className='group relative h-full rounded bg-opacity-75  duration-150 ease-in-out'>
+        <div className='absolute h-full w-full rounded opacity-80 duration-150 ease-in-out group-hover:opacity-100'>
           <Image
-            className='rounded-none'
+            className='rounded'
             src={`/jagad.dev/posts/${slug}/header`}
             fill
             alt={title}
           />
         </div>
-        <div className='relative z-10 flex h-full min-h-[300px] items-end rounded-none bg-background bg-opacity-30 p-4 md:min-h-full lg:py-0 xl:min-h-full xl:py-4'>
+        <div className='relative z-10 flex h-full min-h-[300px] items-end rounded bg-background bg-opacity-30 p-4 md:min-h-full lg:py-0 xl:min-h-full xl:py-4'>
           <div>
             <h3>
               <div className='my-2'>
-                <span className='mr-2 rounded-none bg-black bg-opacity-40 p-1 text-xs text-neutral-300'>
+                <span className='mr-2 rounded bg-black bg-opacity-40 p-1 text-xs text-neutral-300'>
                   <ViewsCount slug={slug} />
                 </span>
               </div>

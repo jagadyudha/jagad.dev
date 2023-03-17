@@ -40,7 +40,9 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   Router.events.on('routeChangeComplete', nprogress.done);
 
   // check if content inside blog post
-  const isBlogPost = [`/posts/[slug]`].includes(appProps.router.pathname);
+  const isBlogPost = [`/posts/[slug]`, '/projects/[slug]'].includes(
+    appProps.router.pathname
+  );
 
   return (
     <ThemeProvider attribute='class'>
@@ -60,7 +62,7 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
       <div className={inter.className}>
         <Layout key={router.pathname}>
           {
-            <motion.main
+            <motion.div
               initial='pageInitial'
               animate='pageAnimate'
               variants={{
@@ -74,7 +76,7 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
               )}
             >
               <Component {...pageProps} />
-            </motion.main>
+            </motion.div>
           }
         </Layout>
       </div>

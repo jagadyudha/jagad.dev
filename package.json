@@ -14,6 +14,7 @@
     "@supabase/supabase-js": "^1.29.4",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",
     "@types/nprogress": "^0.2.0",
     "@types/twemoji": "^12.1.2",

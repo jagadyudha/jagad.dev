@@ -7,7 +7,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import Image from '@/components/image';
 import customLink from '@/components/customLink';
 import GithubCard from '@/components/githubCard';
-import { Embed } from '@/components/embed';
+import Embed from '@/components/embed';
 
 //lib
 import { cardTwitter } from '@/lib/seo';
@@ -20,7 +20,7 @@ export interface frontmatter {
   title: string;
   description: string;
   date: Date;
-  last_updated?: Date
+  last_updated?: Date;
   stack: Array<string>;
   header: string;
 }
@@ -107,27 +107,35 @@ const ProjectsSlug = ({ frontmatter, code, slug }: slugProps) => {
         }}
         twitter={cardTwitter}
       />
-      <div className='mx-auto max-w-4xl text-center'>
-        <h1 className='text-white sm:text-5xl'>{title}</h1>
+      <div className='mx-auto text-center'>
+        <div className='relative -mt-28 min-h-[105vh]'>
+          {/* Image */}
+          <div className='absolute h-full w-full opacity-40'>
+            <Image
+              className=' object-cover'
+              src={`/jagad.dev/projects/${
+                slug.current.endsWith('-id')
+                  ? slug.current.replace('-id', '')
+                  : slug.current
+              }/header`}
+              fill
+              alt={title}
+            />
+          </div>
 
-        <p className='my-14 text-xl'>
-          {`Launched on ${new Date(date).toLocaleString('default', {
-            month: 'long',
-          })} ${new Date(date).getDate()}, ${new Date(date).getFullYear()}`}
-        </p>
+          {/* Metadata */}
+          <div className='relative flex h-full min-h-[105vh] w-full items-center justify-center bg-gradient-to-t from-background to-transparent text-center'>
+            <div className='mx-5 max-w-3xl'>
+              {/* Title */}
+              <h1 className='text-3xl text-white sm:text-5xl'>{title}</h1>
 
-        <div className='mx-auto h-full w-full max-w-3xl'>
-          <Image
-            className='rounded-md'
-            src={`/jagad.dev/projects/${slug.current}/header`}
-            width={'1280'}
-            height={'773.04'}
-            objectFit='cover'
-            alt={title}
-          />
+              <p className='text-md mb-10 text-center text-gray-400 sm:text-lg lg:mb-0'>
+                {description}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <hr className='mx-auto max-w-3xl' />
       <article className='mx-auto max-w-3xl '>
         <Component
           components={{ Image, a: customLink, GithubCard, Embed } as any}

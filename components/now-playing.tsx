@@ -8,7 +8,7 @@ export const NowPlaying = () => {
 
   return (
     <div className='-my-1 flex min-h-[70px] max-w-md items-center justify-center'>
-      <div className='flex w-full items-center justify-start rounded-none'>
+      <div className='flex w-full items-center justify-start rounded'>
         <div className='flex items-center'>
           <svg
             className='text-lg text-green-500'
@@ -48,7 +48,7 @@ export const NowPlaying = () => {
             )}
           </div>
         ) : (
-          <div className='ml-2 h-4 w-1/2 animate-pulse rounded-none bg-zinc-600'></div>
+          <div className='ml-2 h-4 w-1/2 animate-pulse rounded bg-zinc-600'></div>
         )}
       </div>
     </div>

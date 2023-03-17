@@ -15,34 +15,33 @@ export interface Props {
 const Card: React.FC<Props> = (props) => {
   const { title, description, header, stack, slug } = props;
   return (
-    <Link href={`/projects/${slug}`}>
-      <a className='group mb-5 max-w-none flex-none items-center justify-between lg:flex lg:flex-row-reverse'>
-        <div className='w-full overflow-hidden rounded-md bg-background_100 group-hover:bg-[#2C2D30] lg:ml-10'>
-          <div className='translate-x-16 lg:translate-x-32'>
-            <Image
-              className='rounded-sm'
-              src={`/jagad.dev/projects/${slug}/header`}
-              objectFit={'cover'}
-              width={'1280'}
-              height={'773.04'}
-              alt={title}
-            />
+    <div className='group h-72 overflow-hidden rounded bg-background_100 px-3 md:h-60 lg:h-[17rem]'>
+      <Link href={`/projects/${slug}`} key={slug}>
+        <div className='relative text-center'>
+          <h3>{title}</h3>
+          <div className='-mt-2 flex justify-center space-x-4'>
+            {stack
+              .slice(0)
+              .reverse()
+              .map((tag, index) => (
+                <TechStack key={index} name={tag} />
+              ))}
           </div>
+          {/* <p className='text-gray-400 line-clamp-2'>{description}</p> */}
         </div>
 
-        <div className='lg:w-[900px]'>
-          <h3 className='group-hover:text-primary group-hover:underline'>
-            {title}
-          </h3>
-          <p className='text-gray-400'>{description}</p>
-          <div className='mb-8 flex flex-wrap'>
-            {stack.slice(0).map((item: string, index) => (
-              <TechStack key={index} name={item} />
-            ))}
-          </div>
+        <div className=' relative top-0 h-full w-full duration-300 group-hover:-translate-y-5'>
+          <Image
+            className='!h-auto rounded object-contain'
+            src={`/jagad.dev/projects/${
+              slug.endsWith('-id') ? slug.replace('-id', '') : slug
+            }/header`}
+            fill
+            alt={title}
+          />
         </div>
-      </a>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

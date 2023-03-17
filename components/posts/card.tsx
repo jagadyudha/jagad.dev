@@ -28,7 +28,7 @@ const PostCard: React.FC<postProps> = (props) => {
         <div className='relative mx-auto h-56 max-w-3xl md:h-72 xl:h-80'>
           <div className='absolute h-full w-full group-hover:opacity-70'>
             <Image
-              className='rounded-none object-cover'
+              className='rounded object-cover'
               src={`/jagad.dev/posts/${
                 slug.endsWith('-id') ? slug.replace('-id', '') : slug
               }/header`}
@@ -55,7 +55,7 @@ const PostCard: React.FC<postProps> = (props) => {
 
           <h3>{title}</h3>
 
-          <p className='text-gray-400'>{description}</p>
+          <p className='text-gray-400 line-clamp-2'>{description}</p>
         </div>
       </Link>
 

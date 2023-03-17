@@ -17,7 +17,9 @@ const Navbar = () => {
     ? router.pathname.replace('/[slug]', '')
     : router.pathname;
 
-  const isPostSlug = router.pathname.endsWith('/posts/[slug]');
+  const isPostSlug =
+    router.pathname.endsWith('/posts/[slug]') ||
+    router.pathname.endsWith('/projects/[slug]');
 
   return (
     <>
