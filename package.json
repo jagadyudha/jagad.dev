@@ -23,7 +23,7 @@
     "esbuild": "^0.14.39",
     "framer-motion": "^8.0.2",
     "gray-matter": "^4.0.3",
-    "mdx-bundler": "^9.0.0",
+    "mdx-bundler": "^9.2.1",
     "next": "^13.1.1",
     "next-sanity": "^3.1.8",
     "next-seo": "^5.15.0",
