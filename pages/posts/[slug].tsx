@@ -213,8 +213,9 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
       {/* frontmatter content */}
       <div className='relative -mt-28 min-h-[105vh]'>
         {/* Image */}
-        <div className='absolute h-full w-full object-cover opacity-40'>
+        <div className='absolute h-full w-full opacity-40'>
           <Image
+            className='object-cover'
             src={`/jagad.dev/posts/${
               slug.current.endsWith('-id')
                 ? slug.current.replace('-id', '')
