@@ -40,7 +40,7 @@ const About = () => {
         <div>
           <p className='line-through'>
             {`Hi there! I'm Jagad Yudha Awali. I was born and raised in Sidoarjo,
-                Indonesia. I am currently working at Simpul Technology as a frontend
+                Indonesia. I am currently working at simpul technologies as a frontend
                 engineer. I love building websites and apps that are easy to use, fast, and beautiful.`}
           </p>
           <p className='text-md line-through'>
