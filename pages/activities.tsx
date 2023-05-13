@@ -19,7 +19,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      games: games.response['games'],
+      games: games.response['games'] ?? [],
       spotify: spotify['items'],
     },
     revalidate: 1,
