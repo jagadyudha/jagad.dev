@@ -6,7 +6,6 @@ const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Posts', href: '/posts' },
   { name: 'Projects', href: '/projects' },
-  { name: 'Activites', href: '/activities' },
   { name: 'About', href: '/about' },
 ];
 
@@ -36,11 +35,11 @@ const Navbar = () => {
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               {item.href === checkSlug ? (
-                <span className='border-b-2 border-primary pb-1 text-white'>
+                <span className='border-b-2 border-gray-300 pb-1 text-white'>
                   {item.name}
                 </span>
               ) : (
-                <span className='text-gray-300 hover:text-primary'>
+                <span className='text-gray-200 hover:text-gray-300'>
                   {item.name}
                 </span>
               )}
@@ -55,7 +54,7 @@ const Navbar = () => {
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               {item.href === checkSlug ? (
-                <p className='my-4 flex justify-center border-b-2 border-primary  pb-1 text-gray-300'>
+                <p className='my-4 flex justify-center border-b-2 border-gray-300 pb-1 text-gray-300'>
                   {item.name}
                 </p>
               ) : (

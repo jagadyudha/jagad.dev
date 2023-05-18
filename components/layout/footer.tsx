@@ -1,5 +1,5 @@
 import React from 'react';
-import { NowPlaying } from '@/components/now-playing';
+import { NowPlaying } from '@/components/nowPlaying';
 import Link from '@/components/customLink';
 
 function footer() {
@@ -63,17 +63,12 @@ const nav = [
   {
     menu: 'Social',
     content: [
-      { name: 'Twitter', href: 'https://twitter.com/imyour_universe' },
       { name: 'Github', href: 'https://github.com/jagadyudha' },
+      { name: 'Twitter', href: 'https://twitter.com/imyour_universe' },
       {
         name: 'Linkedin',
         href: 'https://www.linkedin.com/in/jagad-yudha-39a4a51b6/',
       },
-      {
-        name: 'Dribbble',
-        href: 'https://dribbble.com/jagadyudha',
-      },
-      { name: 'Polywork', href: 'https://www.polywork.com/imyour_universe' },
     ],
   },
 
@@ -83,7 +78,6 @@ const nav = [
       { name: 'Home', href: '/' },
       { name: 'Posts', href: '/posts' },
       { name: 'Projects', href: '/projects' },
-      { name: 'Activities', href: '/activities' },
       { name: 'About', href: '/about' },
     ],
   },
@@ -94,11 +88,11 @@ const nav = [
         name: 'Resume',
         href: 'https://drive.google.com/file/d/1MWmVGVdnE83fggTb8PTbx7rVwChjuqD-/view?usp=sharing',
       },
-      { name: 'Source Code', href: 'https://github.com/jagadyudha/jagad.dev' },
       {
         name: 'Analytics',
         href: 'https://analytics.jagad.dev/share/PEGBLHu0/jagad.dev',
       },
+      { name: 'Source Code', href: 'https://github.com/jagadyudha/jagad.dev' },
       {
         name: 'Reading List',
         href: 'https://jagadyudha.notion.site/jagadyudha/Reading-List-e5a47c93a900407e882db9b8989c605d',

@@ -103,41 +103,10 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <div className='max-w-xl'>
           <h1 className='-my-1 text-3xl sm:text-5xl'>{`Posts`}</h1>
           <p className='text-md text-gray-400 sm:text-lg'>
-            {`I have been writing online for over a year, and I've published close to ${englishPosts.length} articles on programming-related topics.`}
+            {`Collection of informative and resources focused on various programming-related with the latest industry trends.`}
           </p>
         </div>
       </div>
-
-      {/* <div className='my-10'>
-        <div className='relative mb-4 w-full'>
-          <input
-            type='text'
-            className='form-input block w-full rounded-md border-0 bg-background_100 py-2 text-gray-300 placeholder-gray-300 focus:ring-white'
-            placeholder='Search Posts...'
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <IoSearch className='absolute right-4 top-[9px] text-xl text-gray-300' />
-        </div>
-
-        <button
-          className='whitespace-nowrap rounded-md border border-primary px-4 py-2 text-sm font-medium text-primary'
-          onClick={() => {
-            if (languages === 'en') {
-              if (router.query.tag) {
-                router.push(`/posts`);
-              }
-              setLanguages('id');
-            } else {
-              if (router.query.tag) {
-                router.push(`/posts`);
-              }
-              setLanguages('en');
-            }
-          }}
-        >
-          Read in {languages === 'en' ? 'Bahasa' : 'English'}
-        </button>
-      </div> */}
 
       <div className='max-2-xl my-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:my-0'>
         {post

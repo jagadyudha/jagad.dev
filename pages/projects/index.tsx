@@ -54,7 +54,7 @@ const Projects = ({
         <div className='max-w-xl'>
           <h1 className='-my-1 text-3xl sm:text-5xl'>{`Projects`}</h1>
           <p className='text-md text-gray-400 sm:text-lg'>
-            {`I've been creating projects since my college days in 2018. I love to create new things, and I can't wait to see what I create next.`}
+            {`Collection of my past endeavors, each representing a unique expression of my creativity and problem-solving abilities.`}
           </p>
         </div>
       </div>

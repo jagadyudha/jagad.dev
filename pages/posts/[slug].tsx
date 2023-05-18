@@ -22,7 +22,7 @@ import {
 import { cardTwitter } from '@/lib/seo';
 
 //components
-import ViewsCount from '@/components/views-count';
+import ViewsCount from '@/components/ViewsCount';
 import Ads from '@/components/posts/adsense';
 import Comment from '@/components/posts/comment';
 import Embed from '@/components/embed';

@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from '@/components/image';
 import Link from '@/components/customLink';
-import ViewsCount from '@/components/views-count';
+import ViewsCount from '@/components/ViewsCount';
 
 export interface Props {
   slug: string;
