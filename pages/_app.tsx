@@ -59,27 +59,30 @@ export function MyApp({ Component, pageProps, ...appProps }: AppProps) {
         data-website-id='9431b762-4519-49ab-a53c-e338f465c833'
         src='https://analytics.jagad.dev/umami.js'
       />
-      <div className={inter.className}>
-        <Layout key={router.pathname}>
-          {
-            <motion.div
-              initial='pageInitial'
-              animate='pageAnimate'
-              variants={{
-                pageInitial: { opacity: 0 },
-                pageAnimate: { opacity: 1 },
-              }}
-              transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className={clsx(
-                !isBlogPost &&
-                  'mx-auto my-8 max-w-6xl px-3 xs:px-6 sm:my-12 md:px-24 lg:my-12 xl:my-20 xl:px-0'
-              )}
-            >
-              <Component {...pageProps} />
-            </motion.div>
-          }
-        </Layout>
-      </div>
+      <style jsx global>{`
+        html {
+          font-family: ${inter.style.fontFamily};
+        }
+      `}</style>
+      <Layout key={router.pathname}>
+        {
+          <motion.div
+            initial='pageInitial'
+            animate='pageAnimate'
+            variants={{
+              pageInitial: { opacity: 0 },
+              pageAnimate: { opacity: 1 },
+            }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            className={clsx(
+              !isBlogPost &&
+                'mx-auto my-8 max-w-6xl px-3 xs:px-6 sm:my-12 md:px-24 lg:my-12 xl:my-20 xl:px-0'
+            )}
+          >
+            <Component {...pageProps} />
+          </motion.div>
+        }
+      </Layout>
     </ThemeProvider>
   );
 }
