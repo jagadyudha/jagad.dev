@@ -31,7 +31,7 @@ const About = () => {
         <div className='relative float-left mr-4 h-36 w-1/2  object-cover md:w-1/3 lg:h-64 lg:w-1/4'>
           <Image
             src={'https://avatars.githubusercontent.com/u/41937681?v=4'}
-            className='rounded object-cover'
+            className='rounded-lg object-cover'
             fill
             alt={'Jagad Yudha Awali'}
           />
@@ -40,8 +40,8 @@ const About = () => {
         <div>
           <p className='line-through'>
             {`Hi there! I'm Jagad Yudha Awali. I was born and raised in Sidoarjo,
-                Indonesia. I am currently working at simpul technologies as a frontend
-                engineer. I love building websites and apps that are easy to use, fast, and beautiful.`}
+                Indonesia. I am currently working at simpul technologies as a Frontend
+                Engineer. I love building websites and apps that are easy to use, fast, and beautiful.`}
           </p>
           <p className='text-md line-through'>
             I&apos;ve been attracted by the world of information technology
@@ -69,7 +69,7 @@ const About = () => {
             </a>{' '}
             on React, React Native, TypeScript, and Next.Js.
           </p>
-          <p className='text-md text-xl lg:pt-5 xl:pt-10'>{`I'm nothing.`}</p>
+          <p className='text-md text-xl'>{`I'm nothing.`}</p>
         </div>
 
         <div className='mt-16 text-center'>
@@ -80,10 +80,10 @@ const About = () => {
         </div>
 
         <div className='my-10'></div>
-        <div className=' grid grid-cols-1 gap-5 sm:grid-cols-3'>
+        <div className='grid grid-cols-1 gap-5 sm:grid-cols-3'>
           {skills.map((item, index) => (
             <div
-              className='-pt-5 rounded border border-white border-opacity-10 bg-background_100 bg-opacity-50 p-5'
+              className='-pt-5 rounded-md border border-gray-700 bg-white bg-opacity-5 p-5 backdrop-blur-lg'
               key={index}
             >
               <h2 className='mb-4 -mt-0.5 text-lg font-bold text-white sm:text-xl'>

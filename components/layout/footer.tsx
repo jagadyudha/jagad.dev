@@ -4,9 +4,8 @@ import Link from '@/components/customLink';
 
 function footer() {
   return (
-    <footer className='bg-background_dark opacity-80 duration-300 hover:opacity-100'>
-      {/* Licensed under the MIT License. */}
-      <div className='mx-auto max-w-6xl flex-none justify-between px-3 py-10 xs:px-6 md:px-24 lg:flex lg:flex-row-reverse  xl:px-0'>
+    <footer className='relative'>
+      <div className='relative z-[2] mx-auto max-w-6xl flex-none justify-between px-3 py-10 xs:px-6 md:px-24  lg:flex lg:flex-row-reverse xl:px-0'>
         {/* Nav Link */}
         <div className='grid grid-cols-2 gap-10 text-left sm:grid-cols-3 sm:text-center lg:py-0 lg:text-left xl:gap-24'>
           {nav.map((item) => (
@@ -29,7 +28,7 @@ function footer() {
 
         <div className='mt-10 flex justify-center text-center xl:mt-0 xl:justify-between xl:text-left'>
           <div>
-            <div className='mb-4 rounded border border-white border-opacity-20 px-3'>
+            <div className='mb-4 rounded-lg border border-gray-700 bg-white bg-opacity-5 px-3 backdrop-blur-lg'>
               <NowPlaying />
             </div>
 

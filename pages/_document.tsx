@@ -97,7 +97,7 @@ class MyDocument extends Document {
           />
           <meta name='theme-color' content='#171717' />
         </Head>
-        <body className='bg-background'>
+        <body className='background-core'>
           <Main />
           <NextScript />
         </body>

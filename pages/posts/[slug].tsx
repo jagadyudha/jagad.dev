@@ -3,13 +3,10 @@ import Image from '@/components/image';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
-import { BiMessageSquareCheck } from 'react-icons/bi';
 import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
-import Reactions from '@/components/posts/reaction';
 import { HiOutlineClipboardList } from 'react-icons/hi';
-import { IoCloseOutline } from 'react-icons/io5';
-import useIsRead from '@/hooks/useIsRead';
+import TocList from '@/components/posts/tocList';
 import useViewCount from '@/hooks/useViewCount';
 import GithubCard from '@/components/githubCard';
 
@@ -67,8 +64,6 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
     ? slug.current.replace('-id', '')
     : slug.current;
 
-  // custom hooks for register (isRead)
-  const { setIsRead } = useIsRead(generalSlug);
   const { setViewCount } = useViewCount(generalSlug);
 
   React.useEffect(() => {
@@ -83,11 +78,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
       });
     });
     setToc(HeadingArr);
-    //set View Count
     setViewCount();
-
-    //Set already read to true
-    setIsRead();
 
     if (isEn) {
       setIsEn(!router.asPath.endsWith('-id'));
@@ -149,18 +140,18 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
       />
 
       {/* Toc Modal Button */}
-      <button
-        onClick={() => setTocOpen(!tocOpen)}
-        className='fixed top-20 right-0 z-20'
-      >
-        <div className='rounded-l-md bg-background_100 p-2'>
-          <span className='absolute left-0 top-0 inline-flex h-3 w-3 animate-ping rounded-full bg-primary opacity-75'></span>
-          <HiOutlineClipboardList className='text-2xl' />
-        </div>
-      </button>
+      {/* <button
+            onClick={() => setTocOpen(!tocOpen)}
+            className='fixed top-20 right-0 z-20'
+          >
+            <div className='rounded-l-md bg-background_100 p-2'>
+              <span className='absolute left-0 top-0 inline-flex h-3 w-3 animate-ping rounded-full bg-primary opacity-75'></span>
+              <HiOutlineClipboardList className='text-2xl' />
+            </div>
+          </button> */}
 
       {/* ToC Modal Open */}
-      <>
+      {/* <>
         {tocOpen && (
           <div
             onClick={() => setTocOpen(!tocOpen)}
@@ -208,7 +199,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
               ))}
           </ol>
         </div>
-      </>
+      </> */}
 
       {/* frontmatter content */}
       <div className='relative -mt-28 min-h-[105vh]'>
@@ -233,7 +224,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
             <h1 className='text-3xl text-white sm:text-5xl'>{title}</h1>
 
             <div className='relative my-10 grid grid-cols-[auto_1fr_auto] items-center gap-x-2'>
-              <time className=' bg-white bg-opacity-20 p-1 px-2  text-sm'>
+              <time className='rounded-lg bg-white bg-opacity-20 p-1 px-2 text-sm'>
                 {date}
               </time>
               <div className='w-full border-b'></div>
@@ -254,7 +245,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
                     : slug.current.concat('-id')
                 }`}
               >
-                <button className='rounded border  border-primary px-3 py-2 text-sm font-medium text-primary'>
+                <button className='rounded-lg border  border-primary px-3 py-2 text-sm font-medium text-primary'>
                   Read in {!slug.current.endsWith('-id') ? 'Bahasa' : 'English'}
                 </button>
               </Link>
@@ -269,13 +260,8 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
       >
         {/* Content */}
         <div className='mx-auto w-full'>
-          {/* Adsense */}
-          <div className='block lg:hidden'>
-            <Ads />
-          </div>
-
           {/* Article content */}
-          <article className='mx-auto '>
+          <article className='mx-auto'>
             <Component
               components={{ Image, Ads, a: Link, Embed, GithubCard } as any}
             />
@@ -285,46 +271,15 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
         </div>
 
         {/* Sidebar */}
-        <div className='my-10 space-y-6 lg:w-1/2'>
-          <div>
-            <span className='mb-4 flex justify-center'>Post Reactions</span>
-            <Reactions slug={generalSlug} />
-          </div>
-
-          {/* Contributor List */}
-
-          <div>
-            <span className='mb-4 flex justify-center'>Contributors</span>
-            <div className='rounded-md bg-background_100 p-5 '>
-              {contributors && (
-                <>
-                  {contributors?.map((item, index) => (
-                    <span className='flex items-center' key={index}>
-                      <BiMessageSquareCheck className='mr-2 text-primary' />
-                      {item}
-                    </span>
-                  ))}
-                  <hr className='my-8' />
-                </>
-              )}
-
-              <p>
-                The writing on this website may contain errors in grammar,
-                punctuation, etc. Please make a{' '}
-                <Link
-                  href={
-                    'https://github.com/jagadyudha/jagad.dev/blob/master/CONTRIBUTIONS.md'
-                  }
-                >
-                  contribution here
-                </Link>
-              </p>
+        <div className='my-10 ml-4 space-y-6 lg:w-[40%]'>
+          <div className='sticky top-10 rounded-lg border border-gray-700 bg-white bg-opacity-5 backdrop-blur-sm backdrop-filter'>
+            <span className='block px-4 py-3 font-medium'>
+              Table of Contents
+            </span>
+            <hr className='m-0' />
+            <div className='pr-2 hidden lg:block'>
+              <TocList toc={toc} />
             </div>
-          </div>
-
-          <div className='hidden xl:sticky xl:top-10 xl:my-0 xl:block xl:self-start'>
-            <span className='flex justify-center'>Ads</span>
-            <Ads />
           </div>
         </div>
       </div>
