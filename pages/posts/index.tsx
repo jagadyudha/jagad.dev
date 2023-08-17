@@ -93,7 +93,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const description = `I have been writing online for over a year, and I've published close to ${englishPosts.length} articles on programming-related topics.`;
 
   return (
-    <main className='prose prose-invert mb-16 h-full max-w-4xl mx-auto prose-a:no-underline sm:mb-32'>
+    <main className='prose prose-invert mx-auto mb-16 h-full max-w-4xl prose-a:no-underline sm:mb-32'>
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
         description={description}

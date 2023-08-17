@@ -83,7 +83,7 @@ const About = () => {
         <div className='grid grid-cols-1 gap-5 sm:grid-cols-3'>
           {skills.map((item, index) => (
             <div
-              className='-pt-5 border border-gray-700 bg-white bg-opacity-5 backdrop-blur-lg rounded-md p-5'
+              className='-pt-5 rounded-md border border-gray-700 bg-white bg-opacity-5 p-5 backdrop-blur-lg'
               key={index}
             >
               <h2 className='mb-4 -mt-0.5 text-lg font-bold text-white sm:text-xl'>

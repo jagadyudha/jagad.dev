@@ -1,4 +1,15 @@
 {
-    "singleQuote": true,
-    "jsxSingleQuote": true
-  }
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "importOrder": [
+    "^react(.*)",
+    "<THIRD_PARTY_MODULES>",
+    "^@/components/(.*)",
+    "^@/lib/(.*)",
+    "^@/stores/(.*)",
+    "^@/hooks/(.*)",
+    "^@/(.*)",
+    "^[./]"
+  ],
+  "importOrderSeparation": true
+}

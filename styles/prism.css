@@ -28,7 +28,7 @@ pre[class*='language-'] {
 }
 :not(pre) > code[class*='language-'],
 pre[class*='language-'] {
-  background-color: #1a1a1c;
+  @apply border border-gray-800 bg-white bg-opacity-5 backdrop-blur-sm
 }
 :not(pre) > code[class*='language-'] {
   padding: 0.1em;
