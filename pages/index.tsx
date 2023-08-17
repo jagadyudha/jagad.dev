@@ -20,7 +20,7 @@ const Home = ({
     <main>
       {/* Hero Section */}
       <div className='prose prose-invert my-8 max-w-none flex-none items-center space-x-0 text-white prose-a:no-underline sm:my-16 md:my-20 lg:flex lg:space-x-8 xl:my-24'>
-        <div className='mx-auto w-full text-center lg:w-1/2 lg:text-left'>
+        <div className='mx-auto w-full text-center lg:w-3/4 lg:text-left'>
           <h1 className='whitespace-pre-line text-3xl text-white xs:text-4xl sm:text-5xl'>
             {`Hey there! I'm\n`}{' '}
             <span className='text-primary'>Jagad Yudha</span>

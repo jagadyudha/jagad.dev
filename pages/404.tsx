@@ -1,5 +1,5 @@
 import Link from '@/components/customLink';
-import Twemoji from '@/components/Twemoji';
+import Twemoji from '@/components/shared/Twemoji';
 import Head from 'next/head';
 const ErrorCustomPage = () => {
   return (
