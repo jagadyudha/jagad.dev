@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.background-core {
+  background-image: radial-gradient(hsl(200,40%,14%),hsl(220,14%,10%) 40%);
+  background-repeat: repeat;
+  background-size: 100% 100%;
+}
+
+
 .background-animate {
   background-size: 400%;
 

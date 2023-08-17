@@ -233,7 +233,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
             <h1 className='text-3xl text-white sm:text-5xl'>{title}</h1>
 
             <div className='relative my-10 grid grid-cols-[auto_1fr_auto] items-center gap-x-2'>
-              <time className=' bg-white bg-opacity-20 p-1 px-2  text-sm'>
+              <time className='bg-white bg-opacity-20 rounded-lg p-1 px-2 text-sm'>
                 {date}
               </time>
               <div className='w-full border-b'></div>
@@ -254,7 +254,7 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
                     : slug.current.concat('-id')
                 }`}
               >
-                <button className='rounded border  border-primary px-3 py-2 text-sm font-medium text-primary'>
+                <button className='rounded-lg border  border-primary px-3 py-2 text-sm font-medium text-primary'>
                   Read in {!slug.current.endsWith('-id') ? 'Bahasa' : 'English'}
                 </button>
               </Link>

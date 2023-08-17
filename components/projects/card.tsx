@@ -15,7 +15,7 @@ export interface Props {
 const Card: React.FC<Props> = (props) => {
   const { title, description, header, stack, slug } = props;
   return (
-    <div className='group h-72 overflow-hidden rounded bg-background_100 px-3 md:h-60 lg:h-[17rem]'>
+    <div className='group h-72 overflow-hidden rounded-md border border-gray-700 bg-white bg-opacity-5 backdrop-blur-lg px-3 md:h-60 lg:h-[17rem]'>
       <Link href={`/projects/${slug}`} key={slug}>
         <div className='relative text-center'>
           <h3>{title}</h3>
@@ -32,7 +32,7 @@ const Card: React.FC<Props> = (props) => {
 
         <div className=' relative top-0 h-full w-full duration-300 group-hover:-translate-y-5'>
           <Image
-            className='!h-auto rounded object-contain'
+            className='!h-auto rounded-lg object-contain'
             src={`/jagad.dev/projects/${
               slug.endsWith('-id') ? slug.replace('-id', '') : slug
             }/header`}

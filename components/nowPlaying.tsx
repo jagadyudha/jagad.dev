@@ -48,7 +48,7 @@ export const NowPlaying = () => {
             )}
           </div>
         ) : (
-          <div className='ml-2 h-4 w-1/2 animate-pulse rounded bg-zinc-600'></div>
+          <div className='ml-2 h-4 w-1/2 animate-pulse rounded-lg bg-zinc-600'></div>
         )}
       </div>
     </div>

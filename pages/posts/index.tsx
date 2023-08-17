@@ -93,13 +93,13 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const description = `I have been writing online for over a year, and I've published close to ${englishPosts.length} articles on programming-related topics.`;
 
   return (
-    <main className='prose prose-invert mb-16 h-full max-w-none prose-a:no-underline sm:mb-32'>
+    <main className='prose prose-invert mb-16 h-full max-w-4xl mx-auto prose-a:no-underline sm:mb-32'>
       <NextSeo
         title={`${title} — Jagad Yudha Awali`}
         description={description}
         canonical={`${DataSeo.url}/posts`}
       />
-      <div className='mb-16 flex justify-center text-center'>
+      <div className='flex justify-center text-center md:mb-5'>
         <div className='max-w-xl'>
           <h1 className='-my-1 text-3xl sm:text-5xl'>{`Posts`}</h1>
           <p className='text-md text-gray-400 sm:text-lg'>
@@ -108,7 +108,7 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </div>
       </div>
 
-      <div className='max-2-xl my-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:my-0'>
+      <div className='max-2-xl mb-10 grid grid-cols-1 gap-y-6 md:gap-y-10 xl:my-0'>
         {post
           .sort((a: any, b: any) => {
             return (
