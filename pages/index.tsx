@@ -8,7 +8,7 @@ import React from 'react';
 import FeaturedPost from '@/components/posts/featured';
 
 //lib
-import { getContentIndex, fetcher } from '@/lib/fetcher';
+import { getContentIndex, fetcher, getFeaturedPosts } from '@/lib/fetcher';
 import { Props } from './posts';
 import { getAllTimeCode } from '@/lib/wakatime';
 
@@ -49,7 +49,7 @@ const Home = ({
         </div>
 
         <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 xl:my-0'>
-          {posts.map((item: Props) => {
+          {posts?.map((item: Props) => {
             const { slug, content } = item;
             const { title, description, date, tags, header } = item.frontmatter;
             return (
@@ -74,15 +74,13 @@ const Home = ({
 export async function getStaticProps() {
   // get post
   const posts = await getContentIndex('posts');
-  const featuredPost = await fetcher(
-    `${process.env.SITE_URL}/api/featuredpost`
-  );
+  const featuredPost = await getFeaturedPosts();
 
   // all time code
   const allTimeCode = await getAllTimeCode();
 
   // filterFeaturedPost
-  const filterFeaturedPost = featuredPost.map((item: string) => {
+  const filterFeaturedPost = featuredPost?.map((item: string) => {
     const post = posts.find((post: Props) => post.slug.current === item);
     return post;
   });

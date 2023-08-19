@@ -5,7 +5,6 @@ import { NextSeo } from 'next-seo';
 import { ArticleJsonLd } from 'next-seo';
 import Link from '@/components/customLink';
 import { useRouter } from 'next/router';
-import { HiOutlineClipboardList } from 'react-icons/hi';
 import TocList from '@/components/posts/tocList';
 import useViewCount from '@/hooks/useViewCount';
 import GithubCard from '@/components/githubCard';
@@ -57,14 +56,8 @@ export type TocProps = {
 //jsx
 const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
   const [toc, setToc] = React.useState([] as Array<TocProps>);
-  const [tocOpen, setTocOpen] = React.useState(false);
-  const [isEn, setIsEn] = React.useState<boolean>(true);
   const router = useRouter();
-  const generalSlug = slug.current.endsWith('-id')
-    ? slug.current.replace('-id', '')
-    : slug.current;
-
-  const { setViewCount } = useViewCount(generalSlug);
+  const { setViewCount } = useViewCount(slug.current);
 
   React.useEffect(() => {
     //get toc
@@ -80,19 +73,13 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
     setToc(HeadingArr);
     setViewCount();
 
-    if (isEn) {
-      setIsEn(!router.asPath.endsWith('-id'));
-    } else {
-      return;
-    }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   const { title, description, date, contributors, last_updated } = frontmatter;
-  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${generalSlug}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
+  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${slug.current}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
     title
   ).replace(`'`, '%27')}/jagad.dev/social.png`;
 
@@ -229,26 +216,15 @@ const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
               </time>
               <div className='w-full border-b'></div>
               <div>
-                <ViewsCount slug={generalSlug} />
+                <ViewsCount slug={slug.current} />
               </div>
             </div>
 
             {/* Description */}
-            <div className='items-center lg:grid lg:grid-cols-[1fr_auto]'>
+            <div className='items-center w-full flex justify-center'>
               <p className='text-md mb-10 text-center text-gray-400 sm:text-lg md:text-left lg:mb-0'>
                 {description}
               </p>
-              <Link
-                href={`/posts/${
-                  slug.current.endsWith('-id')
-                    ? slug.current.replace('-id', '')
-                    : slug.current.concat('-id')
-                }`}
-              >
-                <button className='rounded-lg border  border-primary px-3 py-2 text-sm font-medium text-primary'>
-                  Read in {!slug.current.endsWith('-id') ? 'Bahasa' : 'English'}
-                </button>
-              </Link>
             </div>
           </div>
         </div>

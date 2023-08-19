@@ -14,7 +14,7 @@ export interface Props {
 }
 
 const Featured: React.FC<Props> = (props) => {
-  const { slug, title, description, date, tags, readtime, header } = props;
+  const { slug, title, description } = props;
 
   return (
     <Link href={`/posts/${slug}`} key={slug}>

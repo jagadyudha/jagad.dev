@@ -4,6 +4,7 @@ import rehypePrism from 'rehype-prism-plus';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import { createClient } from 'next-sanity';
+import supabase from './supabase';
 
 export type SanityProps = {
   markdown: string;
@@ -77,4 +78,19 @@ export const getContentSlug = async (slug: string, contents: string) => {
   const { code } = result;
 
   return { code, frontmatter, content };
+};
+
+// featured post
+export const getFeaturedPosts = async () => {
+  const { data } = await supabase
+    .from('views')
+    .select('slug')
+    .order('count', { ascending: false })
+    .limit(4);
+
+  const modifiers = data?.map((item) => {
+    return item.slug;
+  });
+
+  return modifiers;
 };
