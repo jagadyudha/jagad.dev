@@ -44,7 +44,6 @@ export interface Props {
     current: string;
   };
   code: string;
-  isTwoLanguages: boolean;
 }
 
 export type TocProps = {
@@ -54,7 +53,7 @@ export type TocProps = {
 };
 
 //jsx
-const Posts = ({ frontmatter, content, slug, code, isTwoLanguages }: Props) => {
+const Posts = ({ frontmatter, content, slug, code }: Props) => {
   const [toc, setToc] = React.useState([] as Array<TocProps>);
   const router = useRouter();
   const { setViewCount } = useViewCount(slug.current);
@@ -289,8 +288,6 @@ export const getStaticProps = async ({
       }-id`
   );
 
-  const isTwoLanguages = checkTranslation.length > 0 ? true : false;
-
   let data;
   try {
     data = await getContentSlug(
@@ -304,13 +301,11 @@ export const getStaticProps = async ({
   }
 
   const { frontmatter, code, content } = data;
-
   return {
     props: {
       frontmatter,
       content,
       code,
-      isTwoLanguages,
       slug: {
         current: params.slug,
       },
