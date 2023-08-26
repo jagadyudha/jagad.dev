@@ -78,7 +78,9 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   const { title, description, date, contributors, last_updated } = frontmatter;
-  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${slug.current}:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
+  const ogimage = `https://res.cloudinary.com/dlpb6j88q/image/upload/w_1200,h_630,c_limit%2Cf_auto%2Cfl_progressive%2Cq_75/w_600,h_630,c_fill,l_jagad.dev:posts:${
+    slug.current
+  }:header/fl_layer_apply,g_east/w_192,h_630,c_fill,l_jagad.dev:hr/fl_layer_apply,g_west,x_485/w_500,h_630,c_fit,co_rgb:ffffff,g_west,x_60,y_-40,l_text:arial_50_bold:${encodeURIComponent(
     title
   ).replace(`'`, '%27')}/jagad.dev/social.png`;
 
@@ -220,7 +222,7 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
             </div>
 
             {/* Description */}
-            <div className='items-center w-full flex justify-center'>
+            <div className='flex w-full items-center justify-center'>
               <p className='text-md mb-10 text-center text-gray-400 sm:text-lg md:text-left lg:mb-0'>
                 {description}
               </p>
@@ -252,7 +254,7 @@ const Posts = ({ frontmatter, content, slug, code }: Props) => {
               Table of Contents
             </span>
             <hr className='m-0' />
-            <div className='pr-2 hidden lg:block'>
+            <div className='hidden pr-2 lg:block'>
               <TocList toc={toc} />
             </div>
           </div>

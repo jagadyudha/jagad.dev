@@ -3,10 +3,9 @@ import readingTime from 'reading-time';
 import { NextSeo } from 'next-seo';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
-import { IoSearch } from 'react-icons/io5';
 
 //lib
-import { getContentIndex, SanityProps } from '@/lib/fetcher';
+import { getContentIndex } from '@/lib/fetcher';
 
 //data
 import DataSeo from '@/_data/seo.json';
@@ -43,54 +42,11 @@ export async function getStaticProps() {
 }
 
 const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  // filter languages
-  const bahasaPosts = posts.filter((item: Props) =>
-    item.slug.current.endsWith('-id')
-  );
-  const englishPosts = posts.filter(
-    (item: Props) => !item.slug.current.endsWith('-id')
-  );
-
-  // set default to english
-  const [languages, setLanguages] = React.useState('en');
-  const [post, setPost] = React.useState(englishPosts);
-
-  // search posts
-  const [search, setSearch] = React.useState('');
-
   // query hooks
   const router = useRouter();
-  const { query } = router;
-
-  React.useEffect(() => {
-    const fetchByLang = async () => {
-      if (languages === 'id') {
-        setPost(bahasaPosts);
-      } else {
-        setPost(englishPosts);
-      }
-    };
-
-    const fetchByTags = async () => {
-      const tag = post.filter((element: Props) =>
-        element.frontmatter.tags.some(
-          (item: string) => query.tag == item.toLocaleLowerCase()
-        )
-      );
-      setPost(tag);
-    };
-
-    fetchByLang();
-
-    if (query.tag) {
-      fetchByTags();
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, languages]);
 
   const title = 'Posts';
-  const description = `I have been writing online for over a year, and I've published close to ${englishPosts.length} articles on programming-related topics.`;
+  const description = `I have been writing online for over a year, and I've published close to ${posts.length} articles on programming-related topics.`;
 
   return (
     <main className='prose prose-invert mx-auto mb-16 h-full max-w-4xl prose-a:no-underline sm:mb-32'>
@@ -109,23 +65,12 @@ const Posts = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
       </div>
 
       <div className='max-2-xl mb-10 grid grid-cols-1 gap-y-6 md:gap-y-10 xl:my-0'>
-        {post
+        {posts
           .sort((a: any, b: any) => {
             return (
               new Date(b.frontmatter.date).valueOf() -
               new Date(a.frontmatter.date).valueOf()
             );
-          })
-          .filter((item: Props) => {
-            if (search === '') {
-              return item;
-            } else if (
-              item.frontmatter.title
-                .toLowerCase()
-                .includes(search.toLowerCase())
-            ) {
-              return item;
-            }
           })
           .map((post: Props) => {
             const { slug, content } = post;
