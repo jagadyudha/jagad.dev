@@ -35,7 +35,7 @@ export const dataCardX = {
 export const dataSkills = [
   {
     name: 'Programming Languages',
-    list: ['JavaScript', 'TypeScript', 'Python'],
+    list: ['TypeScript', 'JavaScript', 'Python', 'Rust (Learning)'],
   },
   {
     name: 'Mobile Development',
@@ -43,11 +43,11 @@ export const dataSkills = [
   },
   {
     name: 'Backend Development',
-    list: ['Express', 'Next.js API', 'Flask', 'Supabase', 'Firebase'],
+    list: ['Express', 'Flask', 'Prisma', 'Supabase', 'Firebase'],
   },
   {
     name: 'Web Development',
-    list: ['HTML & CSS', 'React', 'Vue.js'],
+    list: ['HTML & CSS', 'React', 'Vue.js', 'Next.js'],
   },
   {
     name: 'Tools',
@@ -56,7 +56,7 @@ export const dataSkills = [
 
   {
     name: 'Hosting',
-    list: ['Vercel', 'Netlify'],
+    list: ['Vercel', 'Netlify', 'Railway'],
   },
 ];
 
@@ -65,7 +65,7 @@ export const dataFooter = [
     menu: 'Social',
     content: [
       { name: 'Github', href: 'https://github.com/jagadyudha' },
-      { name: 'Twitter', href: 'https://twitter.com/imyour_universe' },
+      { name: 'X / Twitter', href: 'https://x.com/imyour_universe' },
       {
         name: 'Linkedin',
         href: 'https://www.linkedin.com/in/jagad-yudha-39a4a51b6/',

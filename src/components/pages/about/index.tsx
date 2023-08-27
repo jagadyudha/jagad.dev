@@ -1,7 +1,7 @@
 'use client';
 
 import Image from '@/components/shared/image';
-
+import Twemoji from '@/components/shared/Twemoji';
 import { dataSkills } from '@/libs/data';
 
 const AboutIndex = () => {
@@ -10,10 +10,6 @@ const AboutIndex = () => {
       <div className='prose-md prose prose-invert max-w-none'>
         <div className='mb-16 text-center'>
           <h1 className='-my-1 text-3xl sm:text-5xl'>About Me</h1>
-          <p className='text-md text-gray-400 sm:text-lg'>
-            {`Here's my professional background, key accomplishments, and personal
-            values.`}
-          </p>
         </div>
 
         <div className='relative float-left mr-4 h-36 w-1/2  object-cover md:w-1/3 lg:h-64 lg:w-1/4'>
@@ -25,38 +21,15 @@ const AboutIndex = () => {
           />
         </div>
         <div>
-          <p className='line-through'>
-            {`Hi there! I'm Jagad Yudha Awali. I was born and raised in Sidoarjo,
-                Indonesia. I am currently working at simpul technologies as a Frontend
-                Engineer. I love building websites and apps that are easy to use, fast, and beautiful.`}
+          <p>
+            {`Jagad Yudha is a masterful enchanter of the digital realm. With a wave of his coding wand, he conjures up mesmerizing web and app creations that sparkle with elegance and swiftness. His spells are intricately woven, crafting digital treasures that are both visually enchanting and powerfully functional.`}
           </p>
-          <p className='text-md line-through'>
-            I&apos;ve been attracted by the world of information technology
-            since I was in junior high school.{' '}
-            <a
-              className='font-medium text-primary underline'
-              href='https://www.perl.org/'
-            >
-              Perl
-            </a>{' '}
-            and the{' '}
-            <a
-              className='font-medium text-primary underline'
-              href='https://www.gnu.org/software/bash/'
-            >
-              Bash shell
-            </a>{' '}
-            were both new to me at the time. Since then, I&apos;ve primarily
-            worked with{' '}
-            <a
-              className='font-medium text-primary underline'
-              href='https://www.javascript.com/'
-            >
-              JavaScript
-            </a>{' '}
-            on React, React Native, TypeScript, and Next.Js.
+          <p>
+            In this secret enchanted scrolls (<a href='https://jagad.dev'>jagad.dev</a>), Jagad Yudha shares his wisdom, unveiling the arcane secrets of technology with clarity and grace. Each word he scribes is like a magical incantation, unraveling the mysteries of the tech world for all to comprehend.
           </p>
-          <p className='text-md text-xl'>{`I'm nothing.`}</p>
+          <p className='inline items-start'>
+          With a heart attuned to the desires of his clients, Jagad Yudha weaves his spells to craft interfaces that dance with intuition. He is the artist of user delight, ensuring that every interaction with his creations is a wondrous journey. Turning the ordinary into the extraordinary, one line of code at a time.
+          </p>
         </div>
 
         <div className='mt-16 text-center'>
