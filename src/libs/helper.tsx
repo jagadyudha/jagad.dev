@@ -8,7 +8,8 @@ export const getOpenGraphImage = (
       title,
     ).replace(`'`, '%27')}/jagad.dev/social.png`;
     return ogimage;
-  } else if (type === 'projects'){
-    return ''
+  } else if (type === 'projects') {
+    return '';
   }
+  return '';
 };

@@ -2,9 +2,9 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-import useTocObserver from '@/hooks/useTocObserver';
-
 import CustomLink from '@/components/shared/customLink';
+
+import useTocObserver from '@/hooks/useTocObserver';
 
 export type TocProps = {
   id: string;

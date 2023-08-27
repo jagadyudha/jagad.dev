@@ -1,8 +1,10 @@
-import { PostProps } from '@/libs/types';
-import React from 'react'
+import React from 'react';
+
 import PostCard from '@/components/pages/posts/card';
 
-const PostIndex = ({posts}: {posts: PostProps[]}) => {
+import { PostProps } from '@/libs/types';
+
+const PostIndex = ({ posts }: { posts: PostProps[] }) => {
   return (
     <div className='prose prose-invert mx-auto mb-16 h-full max-w-4xl prose-a:no-underline sm:mb-32'>
       <div className='flex justify-center text-center md:mb-5'>
@@ -38,7 +40,7 @@ const PostIndex = ({posts}: {posts: PostProps[]}) => {
           })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PostIndex
+export default PostIndex;

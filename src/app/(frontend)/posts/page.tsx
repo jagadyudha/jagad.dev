@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
+
 import { Metadata } from 'next';
+
 import { getPosts } from '@/services/posts.service';
-import { PostProps } from '@/libs/types';
+
 import PostIndex from '@/components/pages/posts/index';
+
+import { PostProps } from '@/libs/types';
 
 export const revalidate = 3600;
 
@@ -12,10 +16,8 @@ export const metadata: Metadata = {
 };
 
 const Posts = async () => {
-  const posts = await getPosts() as PostProps[]
-  return (
-    <PostIndex posts={posts} />
-  )
-}
+  const posts = (await getPosts()) as PostProps[];
+  return <PostIndex posts={posts} />;
+};
 
-export default Posts
+export default Posts;

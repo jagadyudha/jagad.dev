@@ -16,7 +16,7 @@ export type PostProps = {
     date: Date;
     tags: Array<string>;
   };
-  code?: string
+  code?: string;
 };
 
 export type TocProps = {

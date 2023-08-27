@@ -1,31 +1,33 @@
 import matter from 'gray-matter';
+import { bundleMDX } from 'mdx-bundler';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypePrism from 'rehype-prism-plus';
+import rehypeSlug from 'rehype-slug';
 
 import sanity from '@/libs/sanity';
 import supabase from '@/libs/supabase';
 import { PostRawProps, PostProps } from '@/libs/types';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypePrism from 'rehype-prism-plus';
-import rehypeSlug from 'rehype-slug';
-import { bundleMDX } from 'mdx-bundler';
 
 export const getPosts = async () => {
   const query = `*[_type == "posts"]`;
   const res = await sanity.fetch(query);
-  const data = res.filter((item: PostRawProps) => !item.slug.current.endsWith('id')).map((item: PostRawProps) => {
-    const { data: frontmatter, content } = matter(item.markdown);
-    return {
-      frontmatter,
-      content,
-      slug: item.slug.current,
-    };
-  });
+  const data = res
+    .filter((item: PostRawProps) => !item.slug.current.endsWith('id'))
+    .map((item: PostRawProps) => {
+      const { data: frontmatter, content } = matter(item.markdown);
+      return {
+        frontmatter,
+        content,
+        slug: item.slug.current,
+      };
+    });
   return data;
 };
 
 export const getPost = async (slug: string) => {
-  const query = `*[_type == "posts" && slug.current == "${slug}"][0]`
+  const query = `*[_type == "posts" && slug.current == "${slug}"][0]`;
   const res = await sanity.fetch(query);
-  const { data: frontmatter, content } = matter(res.markdown)
+  const { data: frontmatter, content } = matter(res.markdown);
   const result = await bundleMDX({
     source: content.trim(),
     mdxOptions(options) {

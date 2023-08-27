@@ -9,7 +9,7 @@ const useViewCount = (slug: string) => {
   const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
   const { data } = useSWR(`/api/views/${slug}`, fetcher);
   React.useEffect(() => {
-    if (data) {
+    if (data && data.views) {
       setViewCount(data.views.count);
     }
   }, [data]);
