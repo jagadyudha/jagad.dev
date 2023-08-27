@@ -12,7 +12,7 @@ const Twemoji: React.FC<Props> = ({ emoji }) => (
       __html: twemoji.parse(emoji, {
         folder: 'svg',
         ext: '.svg',
-      }),
+      }) as any,
     }}
   />
 );

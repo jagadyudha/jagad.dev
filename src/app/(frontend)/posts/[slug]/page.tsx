@@ -15,12 +15,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateStaticParams() {
-  const posts = (await getPosts()) as PostProps[];
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
@@ -45,6 +40,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
     },
   };
+}
+
+export async function generateStaticParams() {
+  const posts = (await getPosts()) as PostProps[];
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 const Post = async ({ params }: { params: { slug: string } }) => {

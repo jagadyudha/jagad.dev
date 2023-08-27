@@ -1,6 +1,6 @@
 import React from 'react';
 import { BiGitRepoForked, BiStar } from 'react-icons/bi';
-import { GoMarkGithub } from 'react-icons/go';
+import { IoLogoGithub } from 'react-icons/io';
 
 import Link from '@/components/shared/customLink';
 
@@ -16,7 +16,7 @@ const GithubCard: React.FC<Props> = ({ repo }) => {
   if (loading) {
     return (
       <div className='max-w-md animate-pulse space-y-4 rounded-md border border-white border-opacity-20 bg-background_100 p-6 duration-300 hover:scale-105'>
-        <GoMarkGithub className='text-3xl text-white' />
+        <IoLogoGithub className='text-3xl text-white' />
         <span className='block h-3 rounded-sm bg-zinc-600 text-2xl font-bold'></span>
         <span className='block h-3 rounded-sm bg-zinc-600 text-2xl font-bold'></span>
         <span className='block h-3 w-1/2 rounded-sm bg-zinc-600 text-2xl font-bold'></span>
@@ -32,7 +32,7 @@ const GithubCard: React.FC<Props> = ({ repo }) => {
   return (
     <Link className='no-underline' href={data?.html_url!}>
       <div className='max-w-full space-y-4 rounded-md border border-white border-opacity-20 bg-background_100 p-6 duration-300 hover:scale-105'>
-        <GoMarkGithub className='text-3xl text-white' />
+        <IoLogoGithub className='text-3xl text-white' />
         <span className='block text-xl font-bold text-primary'>
           {data?.name}
         </span>
