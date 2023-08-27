@@ -2,10 +2,11 @@
 
 import React from 'react';
 import 'react-image-lightbox/style.css';
-import Head from 'next/head';
+
 import { Inter } from '@next/font/google';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import Head from 'next/head';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import nprogress from 'nprogress';
@@ -134,18 +135,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           content='/favicon/ms-icon-144x144.png'
         />
         <meta name='theme-color' content='#171717' />
-        <style jsx global>{`
-          html {
-            font-family: ${inter.style.fontFamily};
-          }
-        `}</style>
       </Head>
+      <style jsx global>{`
+        html {
+          font-family: ${inter.style.fontFamily};
+        }
+      `}</style>
       <Script
-          async
-          defer
-          data-website-id='9431b762-4519-49ab-a53c-e338f465c833'
-          src='https://analytics.jagad.dev/umami.js'
-        />
+        async
+        defer
+        data-website-id='9431b762-4519-49ab-a53c-e338f465c833'
+        src='https://analytics.jagad.dev/umami.js'
+      />
       <body className='background-core'>
         <Navbar />
         <motion.main

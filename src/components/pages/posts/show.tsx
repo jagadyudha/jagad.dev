@@ -10,7 +10,6 @@ import Comment from '@/components/pages/posts/comment';
 import Toc from '@/components/pages/posts/toc';
 import Link from '@/components/shared/customLink';
 import Embed from '@/components/shared/embed';
-import GithubCard from '@/components/shared/githubCard';
 import Image from '@/components/shared/image';
 import Views from '@/components/shared/views';
 
@@ -49,7 +48,7 @@ const PostShow = ({ post }: { post: PostProps }) => {
   const ArticleComponent = React.useMemo(
     () => getMDXComponent(post.code!),
 
-     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [post.code!],
   );
 
@@ -93,7 +92,7 @@ const PostShow = ({ post }: { post: PostProps }) => {
         <div className='mx-auto w-full'>
           <article className='mx-auto'>
             <ArticleComponent
-              components={{ Image, Ads, a: Link, Embed, GithubCard } as any}
+              components={{ Image, Ads, a: Link, Embed } as any}
             />
           </article>
           <hr className='my-8 opacity-20' />
