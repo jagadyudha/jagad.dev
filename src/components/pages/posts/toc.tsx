@@ -25,8 +25,8 @@ const Toc = ({ toc }: { toc: TocProps[] }) => {
                   <span
                     onClick={() => setActiveId(item.id)}
                     className={clsx(
-                      'my-0.5 text-sm text-white hover:text-primary',
-                      tocActiveId === item.id && 'text-primary',
+                      'my-0.5 text-sm hover:text-primary',
+                      tocActiveId == item.id ? 'text-primary' : 'text-white',
                     )}
                   >
                     {item.name}
