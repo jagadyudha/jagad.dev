@@ -19,6 +19,22 @@ export type PostProps = {
   code?: string;
 };
 
+export type ProjectRawProps = PostRawProps;
+
+export type ProjectProps = {
+  content: string;
+  slug: string;
+  frontmatter: {
+    slug: string;
+    title: string;
+    description: string;
+    date: Date;
+    stack: Array<string>;
+    header: string;
+  };
+  code?: string;
+};
+
 export type TocProps = {
   id: string;
   name: string | null;

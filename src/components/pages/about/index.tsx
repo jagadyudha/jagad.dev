@@ -1,6 +1,7 @@
 'use client';
 
 import Image from '@/components/shared/image';
+
 import { dataSkills } from '@/libs/data';
 
 const AboutIndex = () => {
@@ -24,10 +25,18 @@ const AboutIndex = () => {
             {`Jagad Yudha is a masterful enchanter of the digital realm. With a wave of his coding wand, he conjures up mesmerizing web and app creations that sparkle with elegance and swiftness. His spells are intricately woven, crafting digital treasures that are both visually enchanting and powerfully functional.`}
           </p>
           <p>
-            In this secret enchanted scrolls (<a href='https://jagad.dev'>jagad.dev</a>), Jagad Yudha shares his wisdom, unveiling the arcane secrets of technology with clarity and grace. Each word he scribes is like a magical incantation, unraveling the mysteries of the tech world for all to comprehend.
+            In this secret enchanted scrolls (
+            <a href='https://jagad.dev'>jagad.dev</a>), Jagad Yudha shares his
+            wisdom, unveiling the arcane secrets of technology with clarity and
+            grace. Each word he scribes is like a magical incantation,
+            unraveling the mysteries of the tech world for all to comprehend.
           </p>
           <p className='inline items-start'>
-          With a heart attuned to the desires of his clients, Jagad Yudha weaves his spells to craft interfaces that dance with intuition. He is the artist of user delight, ensuring that every interaction with his creations is a wondrous journey. Turning the ordinary into the extraordinary, one line of code at a time.
+            With a heart attuned to the desires of his clients, Jagad Yudha
+            weaves his spells to craft interfaces that dance with intuition. He
+            is the artist of user delight, ensuring that every interaction with
+            his creations is a wondrous journey. Turning the ordinary into the
+            extraordinary, one line of code at a time.
           </p>
         </div>
         <div className='mt-16 text-center'>

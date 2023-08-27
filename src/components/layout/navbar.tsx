@@ -16,13 +16,13 @@ const Navbar = () => {
   const filteredPathName = pathname.split('/').filter((item) => item);
   const checkSlug =
     '/' + (filteredPathName.length > 0 ? filteredPathName[0] : '');
-  const isPostSlug =
-    pathname.endsWith('/posts/[slug]') || pathname.endsWith('/projects/[slug]');
+  const isContentSlug =
+    pathname.includes('/posts/') || pathname.includes('/projects/');
 
   return (
     <>
       <div className='relative flex justify-center'>
-        {isPostSlug ? (
+        {isContentSlug ? (
           <div className='absolute mx-auto hidden h-10 w-full max-w-6xl bg-black blur-3xl lg:block'></div>
         ) : (
           <div className='background-animate absolute -top-10 z-[-2] mx-auto h-10 w-full max-w-6xl bg-gradient-to-r  from-primary via-blue-500 to-pink-500 blur-3xl'></div>
