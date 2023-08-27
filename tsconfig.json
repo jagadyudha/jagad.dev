@@ -19,24 +19,21 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@/components/*": [
-        "src/components/*"
-      ],
-      "@/_data/*": [
-        "_data/*"
+      "@/services/*": [
+        "src/services/*"
       ],
       "@/pages/*": [
         "src/pages/*"
       ],
-      "@/libs/*": [
-        "src/libs/*"
+      "@/components/*": [
+        "src/components/*"
       ],
       "@/hooks/*": [
         "src/hooks/*"
       ],
-      "@/services/*": [
-        "src/services/*"
-      ]
+      "@/libs/*": [
+        "src/libs/*"
+      ],
     },
     "incremental": true,
     "plugins": [

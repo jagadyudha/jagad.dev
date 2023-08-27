@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Image from '@/components/shared/image';
 import TechStack from '@/components/projects/tech-stack';
 import Link from '@/components/shared/customLink';
+import Image from '@/components/shared/image';
 
 export interface Props {
   title: string;

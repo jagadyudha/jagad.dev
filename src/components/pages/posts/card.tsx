@@ -2,6 +2,7 @@ import React from 'react';
 
 import Tag from '@/components/pages/posts/tag';
 import Link from '@/components/shared/customLink';
+
 import { PostProps } from '@/libs/types';
 
 const PostCard: React.FC<PostProps['frontmatter']> = (props) => {

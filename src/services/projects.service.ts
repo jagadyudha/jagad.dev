@@ -1,3 +1,1 @@
-export const getProjects = () => {
-  
-}
+export const getProjects = () => {};

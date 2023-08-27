@@ -13,8 +13,9 @@ const navigation = [
 
 const Navbar = () => {
   const pathname = usePathname();
-  const filteredPathName = pathname.split('/').filter((item) => item)
-  const checkSlug = '/' + (filteredPathName.length > 0 ? filteredPathName[0] : '')
+  const filteredPathName = pathname.split('/').filter((item) => item);
+  const checkSlug =
+    '/' + (filteredPathName.length > 0 ? filteredPathName[0] : '');
   const isPostSlug =
     pathname.endsWith('/posts/[slug]') || pathname.endsWith('/projects/[slug]');
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Views from '@/components/shared/views';
 import Link from '@/components/shared/customLink';
+import Views from '@/components/shared/views';
 
 import { PostProps } from '@/libs/types';
 
