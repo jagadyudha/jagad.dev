@@ -21,7 +21,7 @@ const HomeIndex = ({ featuredPost }: { featuredPost: PostProps[] }) => {
             I am a software engineer who specializes in front-end development
             for web and mobile applications. so far I have opened a text editor
             for <span className=' font-bold text-white'>18000</span>. I also
-            love to write code and share my knowledge with others. 
+            love to write code and share my knowledge with others.
           </p>
           <div className='mb-10 space-x-2 md:mb-20 lg:mb-0'>
             <Link href={'/posts'} passHref>

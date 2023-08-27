@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 
 const Spotifty = () => {
-  const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const { data } = useSWR('/api/spotify', fetcher, {
     refreshInterval: 20000,
   });

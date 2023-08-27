@@ -1,7 +1,6 @@
 'use client';
 
 import Image from '@/components/shared/image';
-import Twemoji from '@/components/shared/Twemoji';
 import { dataSkills } from '@/libs/data';
 
 const AboutIndex = () => {
@@ -31,14 +30,12 @@ const AboutIndex = () => {
           With a heart attuned to the desires of his clients, Jagad Yudha weaves his spells to craft interfaces that dance with intuition. He is the artist of user delight, ensuring that every interaction with his creations is a wondrous journey. Turning the ordinary into the extraordinary, one line of code at a time.
           </p>
         </div>
-
         <div className='mt-16 text-center'>
           <h1 className='-my-1 text-3xl sm:text-5xl'>Skillset</h1>
           <p className='text-md text-gray-400 sm:text-lg'>
             My skillset is a mix of web and mobile development.
           </p>
         </div>
-
         <div className='my-10'></div>
         <div className='grid grid-cols-1 gap-5 sm:grid-cols-3'>
           {dataSkills.map((item, index) => (

@@ -1,10 +1,10 @@
-import { NextResponse as res, type NextRequest } from 'next/server';
+import { NextResponse as res } from 'next/server';
 
 import { getCurrentlyPlaying } from '@/services/spotify.service';
 
 export const revalidate = 0;
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const response = await getCurrentlyPlaying();
     if (response?.status === 204) {

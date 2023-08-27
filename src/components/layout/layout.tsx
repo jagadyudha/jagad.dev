@@ -21,6 +21,7 @@ import '../../../styles/prism.css';
 import '../../../styles/twemoji.css';
 
 declare global {
+  // eslint-disable-next-line no-unused-vars
   interface Window {
     adsbygoogle: any;
   }

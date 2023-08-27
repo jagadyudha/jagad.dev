@@ -6,7 +6,7 @@ import Link from '@/components/shared/customLink';
 import { PostProps } from '@/libs/types';
 
 const PostCard: React.FC<PostProps['frontmatter']> = (props) => {
-  const { slug, title, description, date, tags } = props;
+  const { slug, title, description, tags } = props;
   const reservedTasks = tags.slice(0).reverse();
 
   return (
