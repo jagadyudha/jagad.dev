@@ -2,7 +2,7 @@
 
 import React from 'react';
 import 'react-image-lightbox/style.css';
-
+import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
@@ -43,7 +43,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <html lang='en'>
-      <head>
+      <Head>
         <script
           async
           src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
@@ -57,12 +57,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             });
             `,
           }}
-        />
-        <Script
-          async
-          defer
-          data-website-id='9431b762-4519-49ab-a53c-e338f465c833'
-          src='https://analytics.jagad.dev/umami.js'
         />
         <link
           rel='apple-touch-icon'
@@ -145,7 +139,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             font-family: ${inter.style.fontFamily};
           }
         `}</style>
-      </head>
+      </Head>
+      <Script
+          async
+          defer
+          data-website-id='9431b762-4519-49ab-a53c-e338f465c833'
+          src='https://analytics.jagad.dev/umami.js'
+        />
       <body className='background-core'>
         <Navbar />
         <motion.main

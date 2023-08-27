@@ -46,9 +46,11 @@ const PostShow = ({ post }: { post: PostProps }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  const Component = React.useMemo(
-    () => getMDXComponent(post?.code!),
-    [post?.code!],
+  const ArticleComponent = React.useMemo(
+    () => getMDXComponent(post.code!),
+
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+    [post.code!],
   );
 
   const { title, description, date } = post.frontmatter;
@@ -90,7 +92,7 @@ const PostShow = ({ post }: { post: PostProps }) => {
       >
         <div className='mx-auto w-full'>
           <article className='mx-auto'>
-            <Component
+            <ArticleComponent
               components={{ Image, Ads, a: Link, Embed, GithubCard } as any}
             />
           </article>

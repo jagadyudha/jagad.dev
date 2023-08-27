@@ -26,6 +26,7 @@ const useGithubRepo = (repo: string) => {
     };
 
     handleFetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { data: state, loading };
