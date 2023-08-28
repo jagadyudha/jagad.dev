@@ -100,13 +100,13 @@ const PostShow = ({ post }: { post: PostProps }) => {
         </div>
 
         {/* Sidebar */}
-        <div className='my-10 ml-4 space-y-6 lg:w-[40%]'>
+        <div className='hidden lg:block my-10 ml-4 space-y-6 lg:w-[40%]'>
           <div className='sticky top-10 rounded-lg border border-gray-700 bg-white bg-opacity-5 backdrop-blur-sm backdrop-filter'>
             <span className='block px-4 py-3 font-medium'>
               Table of Contents
             </span>
             <hr className='m-0' />
-            <div className='hidden pr-2 lg:block'>
+            <div className='pr-2'>
               <Toc toc={toc} />
             </div>
           </div>

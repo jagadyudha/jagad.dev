@@ -20,7 +20,7 @@ export const ProjectShow = ({ project }: { project: ProjectProps }) => {
   const { title, description } = project.frontmatter;
 
   return (
-    <main className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>
+    <div className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>
       <div className='mx-auto text-center'>
         <div className='relative -mt-28 min-h-[105vh]'>
           <div className='absolute h-full w-full opacity-40'>
@@ -44,6 +44,6 @@ export const ProjectShow = ({ project }: { project: ProjectProps }) => {
       <article className='mx-auto max-w-3xl '>
         <ArticleComponent components={{ Image, a: customLink, Embed } as any} />
       </article>
-    </main>
+    </div>
   );
 };
