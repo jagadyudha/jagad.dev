@@ -22,7 +22,7 @@ const AboutIndex = () => {
         </div>
         <div>
           <p>
-            {`Jagad Yudha is a masterful enchanter of the digital realm. With a wave of his coding wand, he conjures up mesmerizing web and app creations that sparkle with elegance and swiftness. His spells are intricately woven, crafting digital treasures that are both visually enchanting and powerfully functional.`}
+            {`Jagad Yudha is a wizard of app enchantment who specializes in front-end spells. With a wave of his coding wand, he conjures up mesmerizing web and app creations that sparkle with elegance and swiftness. His spells are intricately woven, crafting digital treasures that are both visually enchanting and powerfully functional.`}
           </p>
           <p>
             In this secret enchanted scrolls (

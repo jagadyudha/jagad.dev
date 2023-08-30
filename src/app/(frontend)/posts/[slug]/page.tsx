@@ -20,7 +20,13 @@ export const revalidate = 3600;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const slug = params.slug;
-  const post = (await getPost(slug)) as PostProps;
+  let post = null;
+  try {
+    post = (await getPost(slug)) as PostProps;
+    if (!post) throw Error;
+  } catch (error) {
+     return {}
+  }
 
   return {
     title: post.frontmatter.title,

@@ -20,12 +20,11 @@ const HomeIndex = ({ featuredPost, allTimeCode }: Props) => {
           {`Hey there! I'm\n`} <span className='text-primary'>Jagad Yudha</span>
         </h1>
         <p className='text-md mb-10 text-gray-400'>
-          I am a software engineer who specializes in front-end development for
-          web and mobile applications. so far I have opened a text editor for{' '}
+         {`I am a wizard of app enchantment who specializes in front-end spells. Over the course of my magical journey, I've summoned my text editor for a grand total of `}
           <span className=' font-bold text-white'>
             {allTimeCode?.data?.text}
           </span>
-          . I also love to write code and share my knowledge with others.
+          . I also love to sharing the arcane knowledge with fellow spellcasters.
         </p>
         <div className='mb-10 space-x-2 md:mb-20 lg:mb-0'>
           <Link href={'/posts'} passHref>
