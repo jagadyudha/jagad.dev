@@ -1,12 +1,13 @@
 {
   "singleQuote": true,
   "jsxSingleQuote": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrder": [
     "^react(.*)",
     "<THIRD_PARTY_MODULES>",
+    "^@/services/(.*)",
     "^@/components/(.*)",
-    "^@/lib/(.*)",
-    "^@/stores/(.*)",
+    "^@/libs/(.*)",
     "^@/hooks/(.*)",
     "^@/(.*)",
     "^[./]"
