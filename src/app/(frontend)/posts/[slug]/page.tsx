@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     post = (await getPost(slug)) as PostProps;
     if (!post) throw Error;
   } catch (error) {
-     return {}
+    return {};
   }
 
   return {
