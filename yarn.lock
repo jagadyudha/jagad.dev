@@ -877,6 +877,15 @@
     get-it "^8.4.3"
     rxjs "^7.0.0"
 
+"@sanity/client@^6.5.0":
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-6.6.0.tgz#7c53c745885587f57f95a27f55e127abd5173486"
+  integrity sha512-AZNtl1/BSRNOsjy5k/1q1feIHPuExugWsG0ZuNj4/etOddFMaXfUvCHHuv89pHb6l/3CWv+UPysvMNU0+qS2Ig==
+  dependencies:
+    "@sanity/eventsource" "^5.0.0"
+    get-it "^8.4.3"
+    rxjs "^7.0.0"
+
 "@sanity/eventsource@5.0.0", "@sanity/eventsource@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-5.0.0.tgz#45410c8259e0bb80b4e308e1872846439590805a"
@@ -4350,11 +4359,12 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-next-sanity@^5.4.6:
-  version "5.4.6"
-  resolved "https://registry.yarnpkg.com/next-sanity/-/next-sanity-5.4.6.tgz#3d9cf8802c7a48662cfb43841745ab89b7a37917"
-  integrity sha512-VgbLxYfgzLETNXKuvShhtaYKlz7DDb5QlFvvjf0eF82lIevI1c0jGHgPRhOTRuv0csvy9FVFCyMlxoc+BkAVmQ==
+next-sanity@^5.5.7:
+  version "5.5.7"
+  resolved "https://registry.yarnpkg.com/next-sanity/-/next-sanity-5.5.7.tgz#d68dbcc873b916bb3eec7cadf0dd0b907a71416c"
+  integrity sha512-HR+06xnsyfbUiF3gn/jeCQcroAI4vCNoDruvqGSMtNgHPRkGomIvAKfs2dFl1FmITcEtG6XgvCPqdj1PVxHyfw==
   dependencies:
+    "@sanity/client" "^6.5.0"
     "@sanity/preview-kit" "3.1.6"
     "@sanity/webhook" "3.0.1"
     groq "^3.0.0"
