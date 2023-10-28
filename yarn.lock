@@ -877,7 +877,26 @@
     get-it "^8.4.3"
     rxjs "^7.0.0"
 
-"@sanity/eventsource@5.0.0", "@sanity/eventsource@^5.0.0":
+"@sanity/client@^6.7.0":
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-6.7.0.tgz#f38a9097a5e28541ed058fa9e2d46941bbb367ec"
+  integrity sha512-nQGIuXXhdtP5FDsdBjuPRpeV6jOHU6Eq5xr52KyUUi29SgC5h5XUzRIu7d1sF8N+ONqTngYueFuB8JDsdSo1Ng==
+  dependencies:
+    "@sanity/eventsource" "^5.0.0"
+    get-it "^8.4.3"
+    rxjs "^7.0.0"
+
+"@sanity/eventsource@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-5.0.1.tgz#133bbb3cd4403cfe1bf6e6b62fc8ff5a76cbd5c7"
+  integrity sha512-BFdRPTqVI76Nh18teu8850lV8DETdtJilFAlmQq/BdoXo88BSWBSTkIIi+H6AW1O9Nd7uT+9VRBqKuL2HKrYlA==
+  dependencies:
+    "@types/event-source-polyfill" "1.0.2"
+    "@types/eventsource" "1.1.12"
+    event-source-polyfill "1.0.31"
+    eventsource "2.0.2"
+
+"@sanity/eventsource@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-5.0.0.tgz#45410c8259e0bb80b4e308e1872846439590805a"
   integrity sha512-0ewT+BDzfiamHwitUfRcwsl/RREHjWv6VNZvQ8Q4OnnNKXfEEGXbWmqzof0okOTkp4XELgyliht4Qj28o9AU2g==
@@ -887,28 +906,28 @@
     event-source-polyfill "1.0.31"
     eventsource "2.0.2"
 
-"@sanity/groq-store@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@sanity/groq-store/-/groq-store-4.1.1.tgz#7511561a6e3b71a4652b593a9c710b7fa9ad45e7"
-  integrity sha512-SZg6i5Vb/fncUk5le42ijwkPeOm8WRkPoofM5d+BBqcAAuHctD1qZV0TMyZkw+HFNXbjzhW76rrytTgzsP+ZaQ==
+"@sanity/groq-store@4.1.3":
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@sanity/groq-store/-/groq-store-4.1.3.tgz#952f2a8464371bbc70fa7d096cf10b3b1ec61a88"
+  integrity sha512-Yh3zbCkpnrowIG8+tMoZHGxV9HFMWVlZ4zhNfF1Y2rygi14SJteV+ildrlq3/OFq9/Y/cc6iXSD/+U6dErIpNw==
   dependencies:
     "@sanity/eventsource" "^5.0.0"
     "@sanity/types" "^3.14.5"
     fast-deep-equal "3.1.3"
     groq "^3.14.5"
-    groq-js "1.2.0"
+    groq-js "1.3.0"
     mendoza "3.0.3"
     simple-get "4.0.1"
     split2 "4.2.0"
     throttle-debounce "5.0.0"
 
-"@sanity/preview-kit@3.1.6":
-  version "3.1.6"
-  resolved "https://registry.yarnpkg.com/@sanity/preview-kit/-/preview-kit-3.1.6.tgz#817a54f89ed87f719b13b7932c37e83f8a8f783a"
-  integrity sha512-V8gZlIcyqqMr1WDAzrNXntrgYVeR56EKEZHbXOoHIr3qjgCRXPogVJ5w09DJ6cMhv2NKClOpAqmA9MWzt81wXw==
+"@sanity/preview-kit@3.2.6":
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/@sanity/preview-kit/-/preview-kit-3.2.6.tgz#af0b2cc1dbfc5e0154cafc106d4e491b4ec5945b"
+  integrity sha512-TsqAbw/YikixLQ6Brphc8fkldBS3aTRWU5i+pAW4Lk9ywNCYqarKyXfMXGHjhb8eK7QQBnKQoQ93sPzKB9tz3w==
   dependencies:
-    "@sanity/eventsource" "5.0.0"
-    "@sanity/groq-store" "4.1.1"
+    "@sanity/eventsource" "5.0.1"
+    "@sanity/groq-store" "4.1.3"
     "@vercel/stega" "0.1.0"
     lodash.get "4.4.2"
     lodash.isplainobject "4.0.6"
@@ -1056,10 +1075,20 @@
   resolved "https://registry.yarnpkg.com/@types/event-source-polyfill/-/event-source-polyfill-1.0.1.tgz#ffcb4ca17bc35bc1ca5d3e047fe833292bb73c32"
   integrity sha512-dls8b0lUgJ/miRApF0efboQ9QZnAm7ofTO6P1ILu8bRPxUFKDxVwFf8+TeuuErmNui6blpltyr7+eV72dbQXlQ==
 
+"@types/event-source-polyfill@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/event-source-polyfill/-/event-source-polyfill-1.0.2.tgz#3cc00a416c540361ec1763ccab0ed32491970d3a"
+  integrity sha512-qE5zrFd73BRs5oSjVys6g/5GboqOMbzLRTUFPAhfULvvvbRAOXw9m4Wk+p1BtoZm4JgW7TljGGfVabBqvi3eig==
+
 "@types/eventsource@1.1.11":
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/@types/eventsource/-/eventsource-1.1.11.tgz#a2c0bfd0436b7db42ed1b2b2117f7ec2e8478dc7"
   integrity sha512-L7wLDZlWm5mROzv87W0ofIYeQP5K2UhoFnnUyEWLKM6UBb0ZNRgAqp98qE5DkgfBXdWfc2kYmw9KZm4NLjRbsw==
+
+"@types/eventsource@1.1.12":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@types/eventsource/-/eventsource-1.1.12.tgz#ceed409a2a19ef8ecb44545d9546f74dc448f426"
+  integrity sha512-KlVguyxdoO8VkAhOMwOemK+NhFAg0gOwJHgimrWJUgM6LrdVW2nLa+d47WVWQcs8feRn0eeP+5yUDmDfzLBjRA==
 
 "@types/hast@^2.0.0":
   version "2.3.5"
@@ -2865,10 +2894,10 @@ gray-matter@^4.0.3:
     section-matter "^1.0.0"
     strip-bom-string "^1.0.0"
 
-groq-js@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/groq-js/-/groq-js-1.2.0.tgz#ee78608fb117d0fb203e940742fb6bb7f1aa8936"
-  integrity sha512-XW4PXKqf4LMsRGGz2MmBRcxDg8NJD0qTJxvd7YOdb6/IH1RQcqL/QK2o76Uxd0A3CiwMlJLUoPrL9KGUDWT39A==
+groq-js@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/groq-js/-/groq-js-1.3.0.tgz#7fc03a41c0b5a4160edfd714735e756d653b637a"
+  integrity sha512-J7+JcxM0OvoowSkhNZAabCLueldEMkKzd9ufCEDRjKvkD1PcBUwyfsGvxUI59UojRCqFqp0y76LLzPzwSZTetw==
 
 groq@^3.0.0, groq@^3.14.5:
   version "3.15.1"
@@ -4350,12 +4379,13 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-next-sanity@^5.4.6:
-  version "5.4.6"
-  resolved "https://registry.yarnpkg.com/next-sanity/-/next-sanity-5.4.6.tgz#3d9cf8802c7a48662cfb43841745ab89b7a37917"
-  integrity sha512-VgbLxYfgzLETNXKuvShhtaYKlz7DDb5QlFvvjf0eF82lIevI1c0jGHgPRhOTRuv0csvy9FVFCyMlxoc+BkAVmQ==
+next-sanity@^5.5.10:
+  version "5.5.10"
+  resolved "https://registry.yarnpkg.com/next-sanity/-/next-sanity-5.5.10.tgz#ac6fd27b3e2ba7bda7d9d44fe2e0994cda2496d4"
+  integrity sha512-S/ZFq3xs3WTFl8awDjbcQI8TxzEqPfKEXFze2yTJEu3Ny0yAvSHxF6AysYyCvb8nAnpCMTJsxiHZX6OambVlpg==
   dependencies:
-    "@sanity/preview-kit" "3.1.6"
+    "@sanity/client" "^6.7.0"
+    "@sanity/preview-kit" "3.2.6"
     "@sanity/webhook" "3.0.1"
     groq "^3.0.0"
 
