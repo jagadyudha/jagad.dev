@@ -16,7 +16,7 @@ const ProjectIndex = ({ projects }: { projects: ProjectProps[] }) => {
         </div>
       </div>
       <div className='mx-auto my-5 md:my-10'>
-        <div className='max-2-xl my-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:my-0 xl:grid-cols-3'>
+        <div className='max-2-xl my-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:my-0 lg:grid-cols-3'>
           {projects
             .sort((a: any, b: any) => {
               return (
