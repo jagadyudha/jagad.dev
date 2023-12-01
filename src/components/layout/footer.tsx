@@ -8,7 +8,7 @@ import { dataFooter } from '@/libs/data';
 function Footer() {
   return (
     <footer className='relative'>
-      <div className='relative z-[2] mx-auto max-w-6xl flex-none justify-between px-3 py-10 xs:px-6 md:px-24  lg:flex lg:flex-row-reverse xl:px-0'>
+      <div className='relative z-[2] mx-auto max-w-[74rem] md:px-24 lg:px-8 flex-none justify-between px-3 py-10 xs:px-6  lg:flex lg:flex-row-reverse'>
         <div className='grid grid-cols-2 gap-10 text-left sm:grid-cols-3 sm:text-center lg:py-0 lg:text-left xl:gap-24'>
           {dataFooter.map((item) => (
             <div key={item.menu}>
