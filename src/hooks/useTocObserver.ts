@@ -8,8 +8,10 @@ const useTocObserver = () => {
   const pathname = usePathname();
 
   React.useEffect(() => {
-    const handleObsever = (entries: any) => {
-      entries.forEach((entry: any) => {
+    const handleObsever = (
+      entries: { isIntersecting?: boolean; target: { id: string } }[],
+    ) => {
+      entries.forEach((entry) => {
         if (entry?.isIntersecting) {
           setActiveId(entry.target.id);
         }

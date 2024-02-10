@@ -7,7 +7,7 @@ import { Inter } from '@next/font/google';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { usePathname, useSearchParams } from 'next/navigation';
-import Script from 'next/script';
+// import Script from 'next/script';
 import nprogress from 'nprogress';
 
 import Footer from '@/components/layout/footer';
@@ -49,12 +49,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           font-family: ${inter.style.fontFamily};
         }
       `}</style>
-      <Script
+      {/* <Script
         async
         defer
         data-website-id='9431b762-4519-49ab-a53c-e338f465c833'
         src='https://analytics.jagad.dev/umami.js'
-      />
+      /> */}
       <body className='background-core'>
         <Navbar />
         <motion.main

@@ -12,12 +12,12 @@ function Footer() {
         <div className='grid grid-cols-2 gap-10 text-left sm:grid-cols-3 sm:text-center lg:py-0 lg:text-left xl:gap-24'>
           {dataFooter.map((item) => (
             <div key={item.menu}>
-              <p className='mb-2 font-semibold text-white'>
+              <p className='mb-2 font-semibold text-white font-bold text-primary'>
                 {item.menu.toUpperCase()}
               </p>
               {item.content.map((item, index) => (
                 <div key={index}>
-                  <Link href={item.href}>
+                  <Link href={item.href} className='bg-black'>
                     <p className='my-3 text-gray-400 hover:text-primary hover:underline'>
                       {item.name}
                     </p>
