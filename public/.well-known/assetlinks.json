@@ -1,0 +1,12 @@
+[
+    {
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.filmore.app",
+            "sha256_cert_fingerprints": [
+                "F4:2B:DC:B7:AE:1C:E7:D3:53:D7:82:B2:52:2A:30:1D:DC:69:52:83:57:72:95:3B:84:57:94:78:4A:85:04:A5"
+            ]
+        }
+    }
+]
