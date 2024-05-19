@@ -20,7 +20,7 @@ const HomeIndex = ({ featuredPost, allTimeCode }: Props) => {
           {`Hey there! I'm\n`} <span className='text-primary'>Jagad Yudha</span>
         </h1>
         <p className='text-md mb-10 text-gray-400'>
-          {`I am a wizard of app enchantment who specializes in front-end spells. Over the course of my magical journey, I've summoned my text editor for a grand total of `}
+          {`A wizard of app enchantment who specializes in front-end spells. Over the course of my magical journey, I've summoned my text editor for a grand total of `}
           <span className=' font-bold text-white'>
             {allTimeCode?.data?.text}
           </span>
