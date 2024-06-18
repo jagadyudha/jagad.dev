@@ -5,23 +5,19 @@ import React from 'react';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { usePathname } from 'next/navigation';
 
-import Ads from '@/components/pages/posts/adsense';
-import Comment from '@/components/pages/posts/comment';
-import Toc from '@/components/pages/posts/toc';
+import Ads from '@/components/pages/post/adsense';
+import Comment from '@/components/pages/post/comment';
+import Toc from '@/components/pages/post/toc';
 import Link from '@/components/shared/customLink';
 import Embed from '@/components/shared/embed';
 import Image from '@/components/shared/image';
-import Views from '@/components/shared/views';
 
 import { PostProps } from '@/libs/types';
 import { TocProps } from '@/libs/types';
 
-import useViewCount from '@/hooks/useViewCount';
-
-const PostShow = ({ post }: { post: PostProps }) => {
+const Post = ({ post, bundler }: { post: PostProps; bundler: string }) => {
   // state
   const [toc, setToc] = React.useState([] as Array<TocProps>);
-  const { setViewCount } = useViewCount(post.slug);
 
   // hooks
   const pathname = usePathname();
@@ -39,20 +35,17 @@ const PostShow = ({ post }: { post: PostProps }) => {
     });
     setToc(HeadingArr);
 
-    // register view
-    setViewCount();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const ArticleComponent = React.useMemo(
-    () => getMDXComponent(post.code!),
+    () => getMDXComponent(bundler),
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [post.code!],
+    [bundler],
   );
 
-  const { title, description, date } = post.frontmatter;
+  const { title, description, createdAt, views } = post;
 
   return (
     <div className='prose prose-base prose-invert mx-auto mb-16 max-w-none sm:mb-28'>
@@ -70,12 +63,10 @@ const PostShow = ({ post }: { post: PostProps }) => {
             <h1 className='text-3xl text-white sm:text-5xl'>{title}</h1>
             <div className='relative my-10 grid grid-cols-[auto_1fr_auto] items-center gap-x-2'>
               <time className='rounded-lg bg-white bg-opacity-20 p-1 px-2 text-sm'>
-                {date}
+                {createdAt}
               </time>
               <div className='w-full border-b'></div>
-              <div>
-                <Views slug={post.slug} />
-              </div>
+              <span>{views} views</span>
             </div>
             <div className='flex w-full items-center justify-center'>
               <p className='text-md mb-10 text-center text-gray-400 sm:text-lg md:text-left lg:mb-0'>
@@ -116,4 +107,4 @@ const PostShow = ({ post }: { post: PostProps }) => {
   );
 };
 
-export default PostShow;
+export default Post;

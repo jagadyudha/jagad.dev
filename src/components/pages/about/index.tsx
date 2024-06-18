@@ -22,7 +22,7 @@ const AboutIndex = () => {
         </div>
         <div>
           <p>
-            {`I am Jagad Yudha, a wizard of app enchantment, specializing in front-end spells. With a wave of my coding wand, I conjure up mesmerizing web and app creations that sparkle with elegance and swiftness. My spells are intricately woven, crafting digital treasures that are both visually enchanting and powerfully functional.`}
+            {`I'm Jagad Yudha, a wizard of app enchantment, specializing in front-end spells. With a wave of my coding wand, I conjure up mesmerizing web and app creations that sparkle with elegance and swiftness. My spells are intricately woven, crafting digital treasures that are both visually enchanting and powerfully functional.`}
           </p>
           <p>
             In my secret enchanted scrolls (
@@ -32,11 +32,11 @@ const AboutIndex = () => {
             mysteries of the tech world for all to comprehend.
           </p>
           <p className='inline items-start'>
-            With a heart attuned to the desires of my clients, I weave my spells
-            to craft interfaces that dance with intuition. I am the artist of
+            {`With a heart attuned to the desires of my clients, I weave my spells
+            to craft interfaces that dance with intuition. I'm the artist of
             user delight, ensuring that every interaction with my creations is a
             wondrous journey. I turn the ordinary into the extraordinary, one
-            line of code at a time.
+            line of code at a time.`}
           </p>
         </div>
         <div className='mt-16 text-center'>

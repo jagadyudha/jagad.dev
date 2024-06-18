@@ -1,39 +1,17 @@
-export type PostRawProps = {
-  markdown: string;
-  slug: {
-    current: string;
-  };
-};
-
 export type PostProps = {
-  content: string;
+  id: number;
   slug: string;
-  frontmatter: {
-    slug: string;
-    title: string;
-    header: string;
-    description: string;
-    date: Date;
-    tags: Array<string>;
-  };
-  code?: string;
+  title: string;
+  description: string;
+  markdown: string;
+  createdAt: string;
+  updatedAt: string | null;
+  tags: Array<string>;
+  header: string;
+  views: number;
 };
 
-export type ProjectRawProps = PostRawProps;
-
-export type ProjectProps = {
-  content: string;
-  slug: string;
-  frontmatter: {
-    slug: string;
-    title: string;
-    description: string;
-    date: Date;
-    stack: Array<string>;
-    header: string;
-  };
-  code?: string;
-};
+export type WorkProps = Omit<PostProps, 'markdown'>;
 
 export type TocProps = {
   id: string;

@@ -1,6 +1,6 @@
 import { getFeaturedPosts } from 'src/services/posts.service';
 
-import HomeIndex from '@/components/pages/homes/index';
+import HomeIndex from '@/components/pages/home/index';
 
 import { PostProps } from '@/libs/types';
 import { getAllTimeCode } from '@/libs/wakatime';

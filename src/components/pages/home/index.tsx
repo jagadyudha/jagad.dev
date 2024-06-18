@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import FeaturedPost from '@/components/pages/homes/featured';
+import FeaturedPost from '@/components/pages/home/featured';
 import Link from '@/components/shared/customLink';
 
 import { PostProps } from '@/libs/types';
@@ -44,7 +44,7 @@ const HomeIndex = ({ featuredPost, allTimeCode }: Props) => {
       <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 xl:my-0'>
         {featuredPost.map((item) => {
           const { slug } = item;
-          const { title, description, date, tags, header } = item.frontmatter;
+          const { title, description, createdAt, tags, header, views } = item;
           return (
             <FeaturedPost
               key={slug}
@@ -52,8 +52,9 @@ const HomeIndex = ({ featuredPost, allTimeCode }: Props) => {
               title={title}
               description={description}
               header={header}
-              date={date}
+              createdAt={createdAt}
               tags={tags}
+              views={views}
             />
           );
         })}

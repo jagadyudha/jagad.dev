@@ -2,13 +2,19 @@ import React from 'react';
 
 import { Metadata } from 'next';
 
-import { getPost, getPosts } from '@/services/posts.service';
+import {
+  getPost,
+  getPosts,
+  incrementPostViews,
+} from '@/services/posts.service';
 
-import PostShow from '@/components/pages/posts/show';
+import PostShow from '@/components/pages/post';
 
 import { dataOpenGraph } from '@/libs/data';
 import { getOpenGraphImage } from '@/libs/helper';
 import { PostProps } from '@/libs/types';
+
+import useMdxBundler from '@/hooks/useMdxBundler';
 
 type Props = {
   params: { slug: string };
@@ -22,22 +28,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   let post = null;
   try {
-    post = (await getPost(slug)) as PostProps;
+    post = (await getPost({ slug })) as PostProps;
     if (!post) throw Error;
   } catch (error) {
     return {};
   }
 
   return {
-    title: post.frontmatter.title,
-    description: post.frontmatter.description,
+    title: post.title,
+    description: post.description,
     openGraph: {
       ...dataOpenGraph,
-      title: post.frontmatter.title,
+      title: post.title,
       url: '/posts/' + post.slug,
       images: [
         {
-          url: getOpenGraphImage('posts', post.slug, post.frontmatter.title),
+          url: getOpenGraphImage('posts', post.slug, post.title),
           width: 1280,
           height: 720,
           alt: 'Social',
@@ -57,8 +63,12 @@ export async function generateStaticParams() {
 
 const Post = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug;
-  const post = (await getPost(slug)) as PostProps;
-  return <PostShow post={post} />;
+
+  // register post views
+  await incrementPostViews({ slug });
+  const post = (await getPost({ slug })) as PostProps;
+  const bundler = await useMdxBundler({ markdown: post.markdown });
+  return <PostShow post={post} bundler={bundler} />;
 };
 
 export default Post;

@@ -22,14 +22,12 @@
     "@types/nprogress": "^0.2.0",
     "adblock-detect-react": "^1.0.5",
     "clsx": "^1.2.1",
-    "encoding": "^0.1.13",
     "esbuild": "^0.19.2",
     "eslint-plugin-prettier": "^5.0.0",
     "framer-motion": "^8.0.2",
     "gray-matter": "^4.0.3",
     "mdx-bundler": "^9.2.1",
     "next": "^13.4.19",
-    "next-sanity": "^5.4.6",
     "next-sitemap": "^4.2.3",
     "next-themes": "^0.2.1",
     "nprogress": "^0.2.0",
@@ -41,7 +39,6 @@
     "rehype-autolink-headings": "^6.1.1",
     "rehype-prism-plus": "^1.4.0",
     "rehype-slug": "^5.0.1",
-    "sharp": "^0.30.6",
     "swr": "^2.0.0"
   },
   "devDependencies": {

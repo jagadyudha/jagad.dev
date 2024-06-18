@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 import { getPosts } from '@/services/posts.service';
 
-import PostIndex from '@/components/pages/posts/index';
+import Posts from '@/components/pages/posts';
 
 import { PostProps } from '@/libs/types';
 
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   description: `Collection of informative and resources focused on various programming-related with the latest industry trends.`,
 };
 
-const Posts = async () => {
+const Index = async () => {
   const posts = (await getPosts()) as PostProps[];
-  return <PostIndex posts={posts} />;
+  return <Posts posts={posts} />;
 };
 
-export default Posts;
+export default Index;

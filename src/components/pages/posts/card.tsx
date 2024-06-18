@@ -5,7 +5,9 @@ import Link from '@/components/shared/customLink';
 
 import { PostProps } from '@/libs/types';
 
-const PostCard: React.FC<PostProps['frontmatter']> = (props) => {
+const PostCard: React.FC<
+  Omit<PostProps, 'markdown' | 'updatedAt' | 'id' | 'views'>
+> = (props) => {
   const { slug, title, description, tags } = props;
   const reservedTasks = tags.slice(0).reverse();
 

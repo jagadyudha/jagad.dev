@@ -1,49 +1,35 @@
-import matter from 'gray-matter';
-import { bundleMDX } from 'mdx-bundler';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypePrism from 'rehype-prism-plus';
-import rehypeSlug from 'rehype-slug';
-
-import sanity from '@/libs/sanity';
 import supabase from '@/libs/supabase';
-import { PostRawProps, PostProps } from '@/libs/types';
+import { PostProps } from '@/libs/types';
 
 export const getPosts = async () => {
-  const query = `*[_type == "posts"]`;
-  const res = await sanity.fetch(query);
-  const data = res
-    .filter((item: PostRawProps) => !item.slug.current.endsWith('id'))
-    .map((item: PostRawProps) => {
-      const { data: frontmatter, content } = matter(item.markdown);
-      return {
-        frontmatter,
-        content,
-        slug: item.slug.current,
-      };
-    });
-  return data;
+  try {
+    const { data } = await supabase
+      .from('post')
+      .select('*')
+      .order('id', { ascending: false });
+    if (!data) {
+      throw Error('Failed get posts');
+    }
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const getPost = async (slug: string) => {
-  const query = `*[_type == "posts" && slug.current == "${slug}"][0]`;
-  const res = await sanity.fetch(query);
-  const { data: frontmatter, content } = matter(res.markdown);
-  const result = await bundleMDX({
-    source: content.trim(),
-    mdxOptions(options) {
-      options.rehypePlugins = [
-        ...(options.rehypePlugins ?? []),
-        rehypeSlug,
-        rehypeAutolinkHeadings,
-        rehypePrism,
-      ];
-
-      return options;
-    },
-  });
-  const { code } = result;
-
-  return { code, frontmatter, content, slug };
+export const getPost = async ({ slug }: Pick<PostProps, 'slug'>) => {
+  try {
+    const { data } = await supabase
+      .from('post')
+      .select('*')
+      .eq('slug', slug)
+      .single();
+    if (!data) {
+      throw Error('Failed get post');
+    }
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getFeaturedPosts = async () => {
@@ -83,9 +69,8 @@ export const getPostViews = async (slug: string) => {
   return data;
 };
 
-export const incrementPostViews = async (slug: string) => {
-  await supabase.from('views').insert({ slug });
-  await supabase.rpc('increment', {
+export const incrementPostViews = async ({ slug }: { slug: string }) => {
+  await supabase.rpc('incrementPostViews', {
     slug_: slug,
   });
   return { status: 'ok' };

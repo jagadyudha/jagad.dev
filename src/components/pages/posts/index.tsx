@@ -25,7 +25,7 @@ const PostIndex = ({ posts }: { posts: PostProps[] }) => {
           })
           .map((post) => {
             const { slug } = post;
-            const { title, description, date, tags, header } = post.frontmatter;
+            const { title, description, createdAt, tags, header } = post;
             return (
               <PostCard
                 header={header}
@@ -33,7 +33,7 @@ const PostIndex = ({ posts }: { posts: PostProps[] }) => {
                 slug={slug}
                 title={title}
                 description={description}
-                date={date}
+                createdAt={createdAt}
                 tags={tags}
               />
             );
