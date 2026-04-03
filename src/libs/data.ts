@@ -89,15 +89,7 @@ export const dataFooter = [
         name: 'Resume',
         href: 'https://drive.google.com/file/d/1MWmVGVdnE83fggTb8PTbx7rVwChjuqD-/view?usp=sharing',
       },
-      {
-        name: 'Analytics',
-        href: 'https://analytics.jagad.dev/share/PEGBLHu0/jagad.dev',
-      },
       { name: 'Source Code', href: 'https://github.com/jagadyudha/jagad.dev' },
-      {
-        name: 'Reading List',
-        href: 'https://jagadyudha.notion.site/jagadyudha/Reading-List-e5a47c93a900407e882db9b8989c605d',
-      },
     ],
   },
 ];

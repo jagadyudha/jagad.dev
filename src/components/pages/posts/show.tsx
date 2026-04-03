@@ -11,7 +11,6 @@ import Toc from '@/components/pages/posts/toc';
 import Link from '@/components/shared/customLink';
 import Embed from '@/components/shared/embed';
 import Image from '@/components/shared/image';
-import Views from '@/components/shared/views';
 
 import { PostProps } from '@/libs/types';
 import { TocProps } from '@/libs/types';
@@ -73,9 +72,6 @@ const PostShow = ({ post }: { post: PostProps }) => {
                 {date}
               </time>
               <div className='w-full border-b'></div>
-              <div>
-                <Views slug={post.slug} />
-              </div>
             </div>
             <div className='flex w-full items-center justify-center'>
               <p className='text-md mb-10 text-center text-gray-400 sm:text-lg md:text-left lg:mb-0'>

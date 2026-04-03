@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Spotify from '@/components/layout/spotify';
 import Link from '@/components/shared/customLink';
 
 import { dataFooter } from '@/libs/data';
@@ -29,10 +28,6 @@ function Footer() {
         </div>
         <div className='mt-10 flex justify-center text-center xl:mt-0 xl:justify-between xl:text-left'>
           <div>
-            <div className='mb-4 rounded-lg border border-gray-700 bg-white bg-opacity-5 px-3 backdrop-blur-lg'>
-              <Spotify />
-            </div>
-
             <div className='text-xs text-gray-400 sm:text-sm'>
               <p>
                 Content licensed under{' '}
